@@ -2,6 +2,7 @@ GradientLoadingBar
 ====================
 
 ![Swift3.0](https://img.shields.io/badge/Swift-3.0-blue.svg?style=flat)
+
 An animated gradient loading bar.
 Inspired by [iOS Style Gradient Progress Bar with Pure CSS/CSS3](http://www.cssscript.com/ios-style-gradient-progress-bar-with-pure-css-css3/).
 
