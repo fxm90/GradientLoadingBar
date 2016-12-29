@@ -44,6 +44,9 @@ GradientLoadingBar(
 
 After that you can use __"GradientLoadingBar.sharedInstance()"__ as mentioned above.
 
+### Usage with PromiseKit
+Check out [my GitHub Gist](https://gist.github.com/fxm90/698554e8335f34e0c6ab95194a4678fb) on how to easily use GradientLoadingBar with [PromiseKit](promisekit.org).
+
 ### Version
 1.0.0
 
