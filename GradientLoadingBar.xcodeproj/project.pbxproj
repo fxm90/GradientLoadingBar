@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9725C8891E658B7200C79AEC /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9725C8881E658B7200C79AEC /* Types.swift */; };
+		977AD2BC1E65871B00E19852 /* GradientLoadingBarDefaultValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AD2BB1E65871B00E19852 /* GradientLoadingBarDefaultValues.swift */; };
 		97AE29101E13C5B400C454C6 /* GradientLoadingBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AE29061E13C5B400C454C6 /* GradientLoadingBar.framework */; };
 		97AE29151E13C5B400C454C6 /* GradientLoadingBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AE29141E13C5B400C454C6 /* GradientLoadingBarTests.swift */; };
 		97AE29171E13C5B400C454C6 /* GradientLoadingBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 97AE29091E13C5B400C454C6 /* GradientLoadingBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -27,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9725C8881E658B7200C79AEC /* Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Types.swift; path = Types/Types.swift; sourceTree = "<group>"; };
+		977AD2BB1E65871B00E19852 /* GradientLoadingBarDefaultValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GradientLoadingBarDefaultValues.swift; path = Constants/GradientLoadingBarDefaultValues.swift; sourceTree = "<group>"; };
 		97AE29061E13C5B400C454C6 /* GradientLoadingBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GradientLoadingBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97AE29091E13C5B400C454C6 /* GradientLoadingBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GradientLoadingBar.h; sourceTree = "<group>"; };
 		97AE290A1E13C5B400C454C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -58,6 +62,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		973C80121E65722C00346ACE /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				9725C8881E658B7200C79AEC /* Types.swift */,
+			);
+			name = Types;
+			sourceTree = "<group>";
+		};
+		977AD2B81E657F8300E19852 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				977AD2BB1E65871B00E19852 /* GradientLoadingBarDefaultValues.swift */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
 		97AE28FC1E13C5B400C454C6 = {
 			isa = PBXGroup;
 			children = (
@@ -100,8 +120,10 @@
 		97AE29211E13C5E500C454C6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				977AD2B81E657F8300E19852 /* Constants */,
 				97AE29221E13C5E500C454C6 /* Extensions */,
 				97AE29241E13C5E500C454C6 /* Structs */,
+				973C80121E65722C00346ACE /* Types */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -243,6 +265,8 @@
 			files = (
 				97AE29291E13C5E500C454C6 /* UIColor+Initializers.swift in Sources */,
 				97AE29281E13C5E500C454C6 /* GradientLoadingBar.swift in Sources */,
+				977AD2BC1E65871B00E19852 /* GradientLoadingBarDefaultValues.swift in Sources */,
+				9725C8891E658B7200C79AEC /* Types.swift in Sources */,
 				97AE292B1E13C5E500C454C6 /* GradientView.swift in Sources */,
 				97AE292A1E13C5E500C454C6 /* Durations.swift in Sources */,
 			);
@@ -450,6 +474,7 @@
 				97AE291C1E13C5B400C454C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		97AE291D1E13C5B400C454C6 /* Build configuration list for PBXNativeTarget "GradientLoadingBarTests" */ = {
 			isa = XCConfigurationList;
@@ -458,6 +483,7 @@
 				97AE291F1E13C5B400C454C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

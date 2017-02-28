@@ -9,15 +9,11 @@
 import Foundation
 import UIKit
 
-// Default configuration
-let defaults = (
-    height: 2.5,
-    durations: Durations(fadeIn: 0.33, fadeOut: 0.66, progress: 3.33)
-)
-
+// Handler for GradientView
 public class GradientLoadingBar {
     private let height : Double
     private let durations : Durations!
+    private let gradientColors : GradientColors!
     
     private lazy var gradientView : GradientView! = self.initGradientView()
     private var gradientViewAddedToWindow : Bool = false
@@ -27,11 +23,13 @@ public class GradientLoadingBar {
     private static var instance : GradientLoadingBar?
     
     public init (
-        height: Double = defaults.height,
-        durations: Durations! = defaults.durations
+        height: Double = GradientLoadingBarDefaultValues.height,
+        durations: Durations! = GradientLoadingBarDefaultValues.durations,
+        gradientColors: GradientColors! = GradientLoadingBarDefaultValues.gradientColors
     ) {
         self.height = height
         self.durations = durations
+        self.gradientColors = gradientColors
         
         self.visibilityCounter = 0 // Used to handle mutliple calls to show/hide at the same time
     }
@@ -50,7 +48,8 @@ public class GradientLoadingBar {
         
         let gradientView = GradientView(
             frame: CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: CGFloat(self.height)),
-            durations: durations
+            durations: durations,
+            gradientColors: gradientColors
         )
         
         // Add view to main window

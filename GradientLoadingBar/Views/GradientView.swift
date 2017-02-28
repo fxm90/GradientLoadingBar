@@ -32,19 +32,6 @@ class GradientView : UIView, CAAnimationDelegate {
         self.gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0);
         self.gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0);
         
-        // Colors from http://www.cssscript.com/ios-style-gradient-progress-bar-with-pure-css-css3/
-        let gradientColors = [
-            UIColor(hexString:"#4cd964").cgColor,
-            UIColor(hexString:"#5ac8fa").cgColor,
-            UIColor(hexString:"#007aff").cgColor,
-            UIColor(hexString:"#34aadc").cgColor,
-            UIColor(hexString:"#5856d6").cgColor,
-            UIColor(hexString:"#ff2d55").cgColor
-        ]
-        
-        // Append reversed gradient to simulate infinte animation
-        self.gradientLayer.colors = gradientColors + gradientColors.reversed() + gradientColors;
-        
         // Set default durations to 0
         self.durations = Durations()
         
@@ -53,8 +40,13 @@ class GradientView : UIView, CAAnimationDelegate {
         self.layer.insertSublayer(gradientLayer, at: 0)
     }
     
-    convenience init(frame: CGRect, durations : Durations) {
+    convenience init(frame: CGRect, durations : Durations, gradientColors : GradientColors) {
         self.init(frame: frame)
+        
+        // Append reversed gradient to simulate infinte animation
+        self.gradientLayer.colors =
+            gradientColors + gradientColors.reversed() + gradientColors;
+        
         self.durations = durations
     }
     
