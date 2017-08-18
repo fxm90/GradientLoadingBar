@@ -8,4 +8,4 @@
 
 import Foundation
 
-public typealias GradientColors = Array<CGColor>
+public typealias GradientColors = [CGColor]

@@ -9,14 +9,15 @@
 import Foundation
 
 public struct Durations {
-    var fadeIn : Double = 0.0
-    var fadeOut : Double = 0.0
-    var progress : Double = 0.0
+    let fadeIn: Double
+    let fadeOut: Double
+    let progress: Double
 
-    // Self-written initializer is required to allow public access (http://stackoverflow.com/a/26224873/3532505)
+    // Self-written initializer is required to allow public access
+    // Source: http://stackoverflow.com/a/26224873/3532505
     public init(fadeIn: Double = 0.0, fadeOut: Double = 0.0, progress: Double = 0.0) {
-        self.fadeIn = fadeIn;
-        self.fadeOut = fadeOut;
-        self.progress = progress;
+        self.fadeIn = fadeIn
+        self.fadeOut = fadeOut
+        self.progress = progress
     }
 }

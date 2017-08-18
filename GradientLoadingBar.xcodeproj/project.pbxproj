@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9725C8891E658B7200C79AEC /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9725C8881E658B7200C79AEC /* Types.swift */; };
-		977AD2BC1E65871B00E19852 /* GradientLoadingBarDefaultValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AD2BB1E65871B00E19852 /* GradientLoadingBarDefaultValues.swift */; };
 		97AE29101E13C5B400C454C6 /* GradientLoadingBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AE29061E13C5B400C454C6 /* GradientLoadingBar.framework */; };
 		97AE29151E13C5B400C454C6 /* GradientLoadingBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AE29141E13C5B400C454C6 /* GradientLoadingBarTests.swift */; };
 		97AE29171E13C5B400C454C6 /* GradientLoadingBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 97AE29091E13C5B400C454C6 /* GradientLoadingBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -30,7 +29,6 @@
 
 /* Begin PBXFileReference section */
 		9725C8881E658B7200C79AEC /* Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Types.swift; path = Types/Types.swift; sourceTree = "<group>"; };
-		977AD2BB1E65871B00E19852 /* GradientLoadingBarDefaultValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GradientLoadingBarDefaultValues.swift; path = Constants/GradientLoadingBarDefaultValues.swift; sourceTree = "<group>"; };
 		97AE29061E13C5B400C454C6 /* GradientLoadingBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GradientLoadingBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97AE29091E13C5B400C454C6 /* GradientLoadingBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GradientLoadingBar.h; sourceTree = "<group>"; };
 		97AE290A1E13C5B400C454C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -68,14 +66,6 @@
 				9725C8881E658B7200C79AEC /* Types.swift */,
 			);
 			name = Types;
-			sourceTree = "<group>";
-		};
-		977AD2B81E657F8300E19852 /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-				977AD2BB1E65871B00E19852 /* GradientLoadingBarDefaultValues.swift */,
-			);
-			name = Constants;
 			sourceTree = "<group>";
 		};
 		97AE28FC1E13C5B400C454C6 = {
@@ -120,7 +110,6 @@
 		97AE29211E13C5E500C454C6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				977AD2B81E657F8300E19852 /* Constants */,
 				97AE29221E13C5E500C454C6 /* Extensions */,
 				97AE29241E13C5E500C454C6 /* Structs */,
 				973C80121E65722C00346ACE /* Types */,
@@ -174,6 +163,7 @@
 				97AE29021E13C5B400C454C6 /* Frameworks */,
 				97AE29031E13C5B400C454C6 /* Headers */,
 				97AE29041E13C5B400C454C6 /* Resources */,
+				975AE92C1F45728B00336A42 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -209,7 +199,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Felix Mau";
 				TargetAttributes = {
 					97AE29051E13C5B400C454C6 = {
@@ -258,6 +248,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		975AE92C1F45728B00336A42 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		97AE29011E13C5B400C454C6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -265,7 +271,6 @@
 			files = (
 				97AE29291E13C5E500C454C6 /* UIColor+Initializers.swift in Sources */,
 				97AE29281E13C5E500C454C6 /* GradientLoadingBar.swift in Sources */,
-				977AD2BC1E65871B00E19852 /* GradientLoadingBarDefaultValues.swift in Sources */,
 				9725C8891E658B7200C79AEC /* Types.swift in Sources */,
 				97AE292B1E13C5E500C454C6 /* GradientView.swift in Sources */,
 				97AE292A1E13C5E500C454C6 /* Durations.swift in Sources */,
@@ -309,6 +314,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -332,7 +338,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -362,6 +368,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -379,7 +386,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
