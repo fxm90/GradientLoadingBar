@@ -43,7 +43,7 @@ For custom colors you have to pass an array with `CGColor` values. For creating 
 If you don't want to save the instance on a variable and use the singleton instead, you can use the `saveInstance()` method. Add the following code to your app delegate `didFinishLaunchingWithOptions` method:
 ```swift
 GradientLoadingBar(
-    height: 1.0,
+    height: 3.0,
     durations: Durations(fadeIn: 1.0, fadeOut: 2.0, progress: 3.00),
     gradientColors: [
         UIColor(hexString:"#4cd964").cgColor,
@@ -58,7 +58,7 @@ After that you can use `GradientLoadingBar.sharedInstance()` as mentioned above.
 Check out [my GitHub Gist](https://gist.github.com/fxm90/698554e8335f34e0c6ab95194a4678fb) on how to easily use GradientLoadingBar with [PromiseKit](http://promisekit.org/).
 
 ### Version
-1.1.0
+1.1.1
 
 ### Author
 Felix Mau (contact(@)felix.hamburg)
