@@ -13,33 +13,36 @@ import UIKit
 public extension UIColor {
 
     // Create color from RGB(A)
-    convenience init(absoluteRed: Int, green: Int, blue: Int, alpha: CGFloat = 1.0) {
+    convenience init(absoluteRed: Int, green: Int, blue: Int, alpha: Int = 255) {
         let normalizedRed = CGFloat(absoluteRed) / 255.0
         let normalizedGreen = CGFloat(green) / 255.0
         let normalizedBlue = CGFloat(blue) / 255.0
+        let normalizedAlpha = CGFloat(alpha) / 255.0
 
         self.init(
             red: normalizedRed,
             green: normalizedGreen,
             blue: normalizedBlue,
-            alpha: alpha
+            alpha: normalizedAlpha
         )
     }
 
     // Color from HEX-Value
     // Based on: http://stackoverflow.com/a/24263296
-    convenience init(hexValue: Int) {
+    convenience init(hex: Int) {
         self.init(
-            absoluteRed: (hexValue >> 16) & 0xff,
-            green: (hexValue >> 8) & 0xff,
-            blue: hexValue & 0xff
+            absoluteRed: (hex >> 16) & 0xff,
+            green: (hex >> 8) & 0xff,
+            blue: hex & 0xff
         )
     }
 
     // Color from HEX-String
     // Based on: http://stackoverflow.com/a/27203691
     convenience init(hexString: String) {
-        var normalizedHexString = hexString.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        var normalizedHexString = hexString
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .uppercased()
 
         if normalizedHexString.hasPrefix("#") {
             normalizedHexString.remove(at: normalizedHexString.startIndex)
@@ -50,7 +53,7 @@ public extension UIColor {
         Scanner(string: normalizedHexString).scanHexInt32(&hexValue)
 
         self.init(
-            hexValue:Int(hexValue)
+            hex: Int(hexValue)
         )
     }
 }
