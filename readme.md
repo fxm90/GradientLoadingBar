@@ -59,7 +59,7 @@ After that you can use `GradientLoadingBar.sharedInstance()` as mentioned above.
 Check out [my GitHub Gist](https://gist.github.com/fxm90/698554e8335f34e0c6ab95194a4678fb) on how to easily use GradientLoadingBar with [PromiseKit](http://promisekit.org/).
 
 ### Version
-1.1.2
+1.1.3
 
 ### Author
 Felix Mau (contact(@)felix.hamburg)

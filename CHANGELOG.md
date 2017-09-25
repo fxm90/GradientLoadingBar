@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [1.1.3] - 2017-25-09
+### Fixed
+ - Fix never adding gradient view to "keyWindow" if it is not available on first call to "show()"
+
 ## [1.1.2] - 2017-27-08
 ### Added
  - Basic tests / TravisCI integration
@@ -23,13 +27,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [1.1.0] - 2017-28-02
 ### Changed
- - allow changing gradient colors
+ - Allow changing gradient colors
 
 ## [1.0.0] - 2016-28-12
-- initial release
+- Initial release
 
 
-[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.2...master
+[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.3...master
+[1.1.3]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.2...1.1.3
 [1.1.2]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.1...1.1.2
 [1.1.1]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/fxm90/GradientLoadingBar/compare/1.0.0...1.1.0

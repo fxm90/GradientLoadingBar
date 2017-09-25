@@ -33,9 +33,6 @@ public class GradientLoadingBar {
     // View contain the gradient bar
     private let gradientView: GradientView
 
-    // Used to add "gradientView" once to key window on first call of "show()"
-    private var addedToKeyWindow = false
-
     // Used to handle mutliple calls to show at the same time
     private var isVisible = false
 
@@ -58,10 +55,12 @@ public class GradientLoadingBar {
             durations: durations,
             gradientColors: gradientColors
         )
+
+        addGradientViewToKeyWindow()
     }
 
     deinit {
-        if addedToKeyWindow {
+        if gradientView.superview != nil {
             gradientView.removeFromSuperview()
         }
     }
@@ -69,16 +68,23 @@ public class GradientLoadingBar {
     // MARK: - Layout
 
     private func addGradientViewToKeyWindow() {
+        // If initializer called in "appDelegate" key window will not be available..
         guard let keyWindow = UIApplication.shared.keyWindow else {
-            print("GradientLoadingBar: Couldn't add gradientView to keyWindow, as it is not available yet. Aborting.")
+            // .. so we setup an observer to add "gradientView" to key window when it's ready.
+            let notificationCenter = NotificationCenter.default
+            notificationCenter.observeOnce(forName: NSNotification.Name.UIWindowDidBecomeKey) { (_ notification) in
+                self.addGradientViewToKeyWindow()
+            }
+
+            // Stop here and wait for observer to finish.
             return
         }
 
-        // Add gradient view to main window
+        // Add gradient view to main window..
         gradientView.translatesAutoresizingMaskIntoConstraints = false
         keyWindow.addSubview(gradientView)
 
-        // Layout gradient view in main window
+        // .. and apply layout anchors.
         setupConstraints(keyWindow: keyWindow)
     }
 
@@ -107,13 +113,6 @@ public class GradientLoadingBar {
     // MARK: - Show / Hide
 
     public func show() {
-        if !addedToKeyWindow {
-            addedToKeyWindow = true
-
-            // Add "gradientView" to key window here, as window might not be available during intialization.
-            addGradientViewToKeyWindow()
-        }
-
         if !isVisible {
             isVisible = true
 

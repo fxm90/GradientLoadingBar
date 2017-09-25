@@ -11,9 +11,10 @@
 		97AE29101E13C5B400C454C6 /* GradientLoadingBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AE29061E13C5B400C454C6 /* GradientLoadingBar.framework */; };
 		97AE29171E13C5B400C454C6 /* GradientLoadingBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 97AE29091E13C5B400C454C6 /* GradientLoadingBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		97AE29281E13C5E500C454C6 /* GradientLoadingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AE29201E13C5E500C454C6 /* GradientLoadingBar.swift */; };
-		97AE29291E13C5E500C454C6 /* UIColor+Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AE29231E13C5E500C454C6 /* UIColor+Initializers.swift */; };
 		97AE292A1E13C5E500C454C6 /* Durations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AE29251E13C5E500C454C6 /* Durations.swift */; };
 		97AE292B1E13C5E500C454C6 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AE29271E13C5E500C454C6 /* GradientView.swift */; };
+		97CC3E7F1F77838700116D41 /* NotificationCenter+ObserveOnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CC3E7E1F77838700116D41 /* NotificationCenter+ObserveOnce.swift */; };
+		97CC3E801F77898E00116D41 /* UIColor+Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CC3E7C1F77834400116D41 /* UIColor+Initializers.swift */; };
 		97CDC6D61F51E932006249FE /* UIColor+InitializersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CDC6D51F51E932006249FE /* UIColor+InitializersTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,9 +36,10 @@
 		97AE290F1E13C5B400C454C6 /* GradientLoadingBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GradientLoadingBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		97AE29161E13C5B400C454C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97AE29201E13C5E500C454C6 /* GradientLoadingBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLoadingBar.swift; sourceTree = "<group>"; };
-		97AE29231E13C5E500C454C6 /* UIColor+Initializers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Initializers.swift"; sourceTree = "<group>"; };
 		97AE29251E13C5E500C454C6 /* Durations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Durations.swift; sourceTree = "<group>"; };
 		97AE29271E13C5E500C454C6 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		97CC3E7C1F77834400116D41 /* UIColor+Initializers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Initializers.swift"; sourceTree = "<group>"; };
+		97CC3E7E1F77838700116D41 /* NotificationCenter+ObserveOnce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+ObserveOnce.swift"; sourceTree = "<group>"; };
 		97CDC6D51F51E932006249FE /* UIColor+InitializersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+InitializersTests.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,7 +122,8 @@
 		97AE29221E13C5E500C454C6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				97AE29231E13C5E500C454C6 /* UIColor+Initializers.swift */,
+				97CC3E7D1F77836200116D41 /* NotificationCenter */,
+				97CC3E7B1F77834400116D41 /* UIColor */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -139,6 +142,22 @@
 				97AE29271E13C5E500C454C6 /* GradientView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		97CC3E7B1F77834400116D41 /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				97CC3E7C1F77834400116D41 /* UIColor+Initializers.swift */,
+			);
+			path = UIColor;
+			sourceTree = "<group>";
+		};
+		97CC3E7D1F77836200116D41 /* NotificationCenter */ = {
+			isa = PBXGroup;
+			children = (
+				97CC3E7E1F77838700116D41 /* NotificationCenter+ObserveOnce.swift */,
+			);
+			path = NotificationCenter;
 			sourceTree = "<group>";
 		};
 		97CDC6D31F51E932006249FE /* Helpers */ = {
@@ -285,9 +304,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97AE29291E13C5E500C454C6 /* UIColor+Initializers.swift in Sources */,
 				97AE29281E13C5E500C454C6 /* GradientLoadingBar.swift in Sources */,
 				9725C8891E658B7200C79AEC /* Types.swift in Sources */,
+				97CC3E801F77898E00116D41 /* UIColor+Initializers.swift in Sources */,
+				97CC3E7F1F77838700116D41 /* NotificationCenter+ObserveOnce.swift in Sources */,
 				97AE292B1E13C5E500C454C6 /* GradientView.swift in Sources */,
 				97AE292A1E13C5E500C454C6 /* Durations.swift in Sources */,
 			);
@@ -315,6 +335,7 @@
 		97AE29181E13C5B400C454C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -369,6 +390,7 @@
 		97AE29191E13C5B400C454C6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";

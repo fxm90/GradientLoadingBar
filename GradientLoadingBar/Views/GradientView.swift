@@ -62,6 +62,9 @@ final class GradientView: UIView, CAAnimationDelegate {
     override func layoutSubviews() {
         super.layoutSubviews()
 
+        // Unfortunately CGLayer is not affected by autolayout, so any change in the
+        // size of the view will not change the gradient layer..
+
         // Three times of the width in order to apply normal, reversed and normal gradient to simulate infinte animation
         gradientLayer.frame =
             CGRect(x: 0, y: 0, width: 3 * bounds.size.width, height: bounds.size.height)
