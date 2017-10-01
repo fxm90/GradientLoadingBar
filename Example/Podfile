@@ -1,0 +1,15 @@
+platform :ios, '9.0'
+
+use_frameworks!
+
+target 'GradientLoadingBar_Example' do
+  pod 'GradientLoadingBar', :path => '../'
+
+  # Dev Dependecies
+  pod 'SwiftLint'
+
+  target 'GradientLoadingBar_Tests' do
+    inherit! :search_paths
+
+  end
+end

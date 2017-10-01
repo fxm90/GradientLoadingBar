@@ -1,13 +1,15 @@
 GradientLoadingBar
 ====================
 
-![Swift3.0](https://img.shields.io/badge/Swift-3.0-green.svg?style=flat) ![Version](https://img.shields.io/cocoapods/v/GradientLoadingBar.svg) ![Master branch build status](https://travis-ci.org/fxm90/GradientLoadingBar.svg?branch=master)
+![Swift3.0](https://img.shields.io/badge/Swift-3.0-green.svg?style=flat) [![CI Status](http://img.shields.io/travis/fxm90/GradientLoadingBar.svg?style=flat)](https://travis-ci.org/fxm90/GradientLoadingBar) [![Version](https://img.shields.io/cocoapods/v/GradientLoadingBar.svg?style=flat)](http://cocoapods.org/pods/GradientLoadingBar) [![License](https://img.shields.io/cocoapods/l/GradientLoadingBar.svg?style=flat)](http://cocoapods.org/pods/GradientLoadingBar) [![Platform](https://img.shields.io/cocoapods/p/GradientLoadingBar.svg?style=flat)](http://cocoapods.org/pods/GradientLoadingBar)
 
-
+### Example
 An animated gradient loading bar.
 Inspired by [iOS Style Gradient Progress Bar with Pure CSS/CSS3](http://www.cssscript.com/ios-style-gradient-progress-bar-with-pure-css-css3/).
 
 ![Example](http://felix.hamburg/files/github/gradient-loading-bar/screen.gif)
+
+To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ### Integration
 GradientLoadingBar can be added to your project using [CocoaPods](https://cocoapods.org/) by adding the following line to your Podfile:
@@ -58,8 +60,9 @@ After that you can use `GradientLoadingBar.sharedInstance()` as mentioned above.
 ### Usage with PromiseKit
 Check out [my GitHub Gist](https://gist.github.com/fxm90/698554e8335f34e0c6ab95194a4678fb) on how to easily use GradientLoadingBar with [PromiseKit](http://promisekit.org/).
 
-### Version
-1.1.3
-
 ### Author
 Felix Mau (contact(@)felix.hamburg)
+
+### License
+
+GradientLoadingBar is available under the MIT license. See the LICENSE file for more info.

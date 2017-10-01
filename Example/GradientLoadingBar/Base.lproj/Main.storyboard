@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="GradientLoadingBar_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Hrq-tB-Sk3">
+                                <rect key="frame" x="8" y="313" width="359" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6V-cT-b8Q">
+                                        <rect key="frame" x="0.0" y="0.0" width="109" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                        <state key="normal" title="Show"/>
+                                        <connections>
+                                            <action selector="onShowButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="waN-Bz-Apv"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vPX-Aq-vYS">
+                                        <rect key="frame" x="125" y="0.0" width="109" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                        <state key="normal" title="Toggle"/>
+                                        <connections>
+                                            <action selector="onToggleButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="WR3-PO-oRU"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mLp-ey-yd5">
+                                        <rect key="frame" x="250" y="0.0" width="109" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                        <state key="normal" title="Hide"/>
+                                        <connections>
+                                            <action selector="onHideButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="I90-ag-8WI"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="MKv-F0-eqc"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gradient Loading Bar Sample" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yyG-X7-TqU">
+                                <rect key="frame" x="8" y="28" width="367" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="yyG-X7-TqU" firstAttribute="topMargin" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="16" id="Cgi-K1-QvI"/>
+                            <constraint firstAttribute="trailing" secondItem="yyG-X7-TqU" secondAttribute="trailingMargin" constant="8" id="Kzx-UG-MZ8"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Hrq-tB-Sk3" secondAttribute="leading" constant="8" id="RYo-pg-jMG"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="yyG-X7-TqU" secondAttribute="leading" constant="8" id="Tux-QM-4Y2"/>
+                            <constraint firstItem="Hrq-tB-Sk3" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" constant="8" id="dlt-Lu-gam"/>
+                            <constraint firstItem="Hrq-tB-Sk3" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="f6U-Tr-ynV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="hideButton" destination="mLp-ey-yd5" id="sn9-wz-PhX"/>
+                        <outlet property="showButton" destination="W6V-cT-b8Q" id="Dhf-Cl-DXz"/>
+                        <outlet property="toggleButton" destination="vPX-Aq-vYS" id="lY1-n6-kvK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
