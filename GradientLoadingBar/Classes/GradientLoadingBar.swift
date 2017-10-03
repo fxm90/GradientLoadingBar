@@ -12,10 +12,10 @@ import UIKit
 // Handler for GradientView
 public class GradientLoadingBar {
 
-    private struct DefaultValues {
-        static let height = 2.5
+    public struct DefaultValues {
+        public static let height = 2.5
 
-        static let durations =
+        public static let durations =
             Durations(fadeIn: 0.33, fadeOut: 0.66, progress: 3.33)
 
         // iOS color palette
