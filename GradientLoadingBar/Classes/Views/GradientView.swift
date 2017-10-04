@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-final class GradientView: UIView, CAAnimationDelegate {
+final public class GradientView: UIView, CAAnimationDelegate {
 
     private struct Constants {
         static let fadeInAnimationKey = "GradientView--fade-in"
@@ -59,7 +59,7 @@ final class GradientView: UIView, CAAnimationDelegate {
 
     // MARK: - Layout
 
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
 
         // Unfortunately CGLayer is not affected by autolayout, so any change in the
@@ -76,26 +76,26 @@ final class GradientView: UIView, CAAnimationDelegate {
 
     // MARK: - Progress animations (automatically triggered via delegates)
 
-    func animationDidStart(_ anim: CAAnimation) {
-        if anim == gradientLayer.animation(forKey: Constants.fadeInAnimationKey) {
-            // Start progress animation
-            let animation = CABasicAnimation(keyPath: "position")
+    public func animationDidStart(_ anim: CAAnimation) {
+        guard anim == gradientLayer.animation(forKey: Constants.fadeInAnimationKey) else { return }
 
-            animation.fromValue = CGPoint(x: -2 * bounds.size.width, y: 0)
-            animation.toValue = CGPoint(x: 0, y: 0)
+        // Start progress animation
+        let animation = CABasicAnimation(keyPath: "position")
 
-            animation.duration = durations.progress
-            animation.repeatCount = Float.infinity
+        animation.fromValue = CGPoint(x: -2 * bounds.size.width, y: 0)
+        animation.toValue = CGPoint(x: 0, y: 0)
 
-            gradientLayer.add(animation, forKey: Constants.progressAnimationKey)
-        }
+        animation.duration = durations.progress
+        animation.repeatCount = Float.infinity
+
+        gradientLayer.add(animation, forKey: Constants.progressAnimationKey)
     }
 
-    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        if anim == gradientLayer.animation(forKey: Constants.fadeOutAnimationKey) {
-            // Stop progress animation
-            gradientLayer.removeAnimation(forKey: Constants.progressAnimationKey)
-        }
+    public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        guard anim == gradientLayer.animation(forKey: Constants.fadeOutAnimationKey) else { return }
+
+        // Stop progress animation
+        gradientLayer.removeAnimation(forKey: Constants.progressAnimationKey)
     }
 
     // MARK: Fade-In / Out animations
@@ -117,7 +117,7 @@ final class GradientView: UIView, CAAnimationDelegate {
 
     // MARK: - Public trigger methods
 
-    func show() {
+    public func show() {
         // Remove possible existing fade-out animation
         gradientLayer.removeAnimation(forKey: Constants.fadeOutAnimationKey)
 
@@ -130,7 +130,7 @@ final class GradientView: UIView, CAAnimationDelegate {
         )
     }
 
-    func hide() {
+    public func hide() {
         // Remove possible existing fade-in animation
         gradientLayer.removeAnimation(forKey: Constants.fadeInAnimationKey)
 

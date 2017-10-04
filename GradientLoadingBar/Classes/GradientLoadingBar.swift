@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 // Handler for GradientView
-public class GradientLoadingBar {
+open class GradientLoadingBar {
 
     public struct DefaultValues {
         public static let height = 2.5
@@ -30,16 +30,19 @@ public class GradientLoadingBar {
         ]
     }
 
-    // View contain the gradient bar
-    private let gradientView: GradientView
+    // View containing the gradient view.
+    public var superview: UIView?
 
-    // Used to handle mutliple calls to show at the same time
-    private var isVisible = false
+    // View with the gradient layer.
+    public let gradientView: GradientView
 
-    // Height of gradient bar
-    private var height = 0.0
+    // Used to handle mutliple calls to show at the same time.
+    public private(set) var isVisible = false
 
-    // Instance variable for singleton
+    // Height of gradient bar.
+    public private(set) var height = 0.0
+
+    // Instance variable for singleton.
     private static var instance: GradientLoadingBar?
 
     // MARK: - Initializers
@@ -47,16 +50,18 @@ public class GradientLoadingBar {
     public init (
         height: Double = DefaultValues.height,
         durations: Durations = DefaultValues.durations,
-        gradientColors: GradientColors = DefaultValues.gradientColors
+        gradientColors: GradientColors = DefaultValues.gradientColors,
+        onView superview: UIView? = UIApplication.shared.keyWindow
     ) {
         self.height = height
+        self.superview = superview
 
         gradientView = GradientView(
             durations: durations,
             gradientColors: gradientColors
         )
 
-        addGradientViewToKeyWindow()
+        addGradientViewToSuperview()
     }
 
     deinit {
@@ -67,32 +72,35 @@ public class GradientLoadingBar {
 
     // MARK: - Layout
 
-    private func addGradientViewToKeyWindow() {
+    private func addGradientViewToSuperview() {
         // If initializer called in "appDelegate" key window will not be available..
-        guard let keyWindow = UIApplication.shared.keyWindow else {
-            // .. so we setup an observer to add "gradientView" to key window when it's ready.
+        guard let superview = superview else {
+            // .. so we setup an observer to add "gradientView" to key window (by saving it as superview) when it's ready.
             let notificationCenter = NotificationCenter.default
             notificationCenter.observeOnce(forName: NSNotification.Name.UIWindowDidBecomeKey) { (_ notification) in
-                self.addGradientViewToKeyWindow()
+                self.superview = UIApplication.shared.keyWindow
+                self.addGradientViewToSuperview()
             }
 
             // Stop here and wait for observer to finish.
             return
         }
 
-        // Add gradient view to main window..
+        // Add gradient view to superview..
         gradientView.translatesAutoresizingMaskIntoConstraints = false
-        keyWindow.addSubview(gradientView)
+        superview.addSubview(gradientView)
 
         // .. and apply layout anchors.
-        setupConstraints(keyWindow: keyWindow)
+        setupConstraints()
     }
 
-    private func setupConstraints(keyWindow: UIWindow) {
-        gradientView.leadingAnchor.constraint(equalTo: keyWindow.leadingAnchor).isActive = true
-        gradientView.trailingAnchor.constraint(equalTo: keyWindow.trailingAnchor).isActive = true
+    open func setupConstraints() {
+        guard let superview = superview else { return }
 
-        gradientView.topAnchor.constraint(equalTo: keyWindow.topAnchor).isActive = true
+        gradientView.leadingAnchor.constraint(equalTo: superview.leadingAnchor).isActive = true
+        gradientView.trailingAnchor.constraint(equalTo: superview.trailingAnchor).isActive = true
+
+        gradientView.topAnchor.constraint(equalTo: superview.topAnchor).isActive = true
         gradientView.heightAnchor.constraint(equalToConstant: CGFloat(height)).isActive = true
     }
 
