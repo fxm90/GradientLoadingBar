@@ -8,4 +8,5 @@
 
 import Foundation
 
+/// Array with gradient colors.
 public typealias GradientColors = [CGColor]

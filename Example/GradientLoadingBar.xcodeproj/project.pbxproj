@@ -14,7 +14,9 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		77357BD34CFF2778341F80E8 /* Pods_GradientLoadingBar_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03CD5D69D7C3FBBDBF5FABBB /* Pods_GradientLoadingBar_Example.framework */; };
 		8020C040972E902A8CCAA9E7 /* Pods_GradientLoadingBar_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434E3C8A6E245A38C2831E73 /* Pods_GradientLoadingBar_Tests.framework */; };
-		972B29D51F7F8A40009D9F89 /* UIColor+InitializersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972B29D41F7F88F6009D9F89 /* UIColor+InitializersTests.swift */; };
+		970738871FA7286400930D92 /* UIColor+InitializersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970738841FA7286400930D92 /* UIColor+InitializersTests.swift */; };
+		970738881FA7286400930D92 /* NotificationCenter+ObserveOnceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970738861FA7286400930D92 /* NotificationCenter+ObserveOnceTests.swift */; };
+		9707388B1FA7306D00930D92 /* DurationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9707388A1FA7306D00930D92 /* DurationsTests.swift */; };
 		975731651F8423A90009548B /* GradientLoadingBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975731631F84237C0009548B /* GradientLoadingBarTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +46,9 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* GradientLoadingBar_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GradientLoadingBar_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		972B29D41F7F88F6009D9F89 /* UIColor+InitializersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+InitializersTests.swift"; sourceTree = "<group>"; };
+		970738841FA7286400930D92 /* UIColor+InitializersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+InitializersTests.swift"; sourceTree = "<group>"; };
+		970738861FA7286400930D92 /* NotificationCenter+ObserveOnceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+ObserveOnceTests.swift"; sourceTree = "<group>"; };
+		9707388A1FA7306D00930D92 /* DurationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationsTests.swift; sourceTree = "<group>"; };
 		975731631F84237C0009548B /* GradientLoadingBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLoadingBarTests.swift; sourceTree = "<group>"; };
 		C06CA4DFA1DCB931095ABD3D /* GradientLoadingBar.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GradientLoadingBar.podspec; path = ../GradientLoadingBar.podspec; sourceTree = "<group>"; };
 		F76834BE9E43CA11377EC030 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -142,10 +146,36 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		970738831FA7286400930D92 /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				970738841FA7286400930D92 /* UIColor+InitializersTests.swift */,
+			);
+			path = UIColor;
+			sourceTree = "<group>";
+		};
+		970738851FA7286400930D92 /* NotificationCenter */ = {
+			isa = PBXGroup;
+			children = (
+				970738861FA7286400930D92 /* NotificationCenter+ObserveOnceTests.swift */,
+			);
+			path = NotificationCenter;
+			sourceTree = "<group>";
+		};
+		970738891FA7305C00930D92 /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+				9707388A1FA7306D00930D92 /* DurationsTests.swift */,
+			);
+			name = Structs;
+			path = Extensions/Structs;
+			sourceTree = "<group>";
+		};
 		972B29D21F7F88F6009D9F89 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				972B29D31F7F88F6009D9F89 /* Extensions */,
+				970738891FA7305C00930D92 /* Structs */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -153,7 +183,8 @@
 		972B29D31F7F88F6009D9F89 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				972B29D41F7F88F6009D9F89 /* UIColor+InitializersTests.swift */,
+				970738851FA7286400930D92 /* NotificationCenter */,
+				970738831FA7286400930D92 /* UIColor */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -428,8 +459,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				970738871FA7286400930D92 /* UIColor+InitializersTests.swift in Sources */,
+				970738881FA7286400930D92 /* NotificationCenter+ObserveOnceTests.swift in Sources */,
 				975731651F8423A90009548B /* GradientLoadingBarTests.swift in Sources */,
-				972B29D51F7F8A40009D9F89 /* UIColor+InitializersTests.swift in Sources */,
+				9707388B1FA7306D00930D92 /* DurationsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

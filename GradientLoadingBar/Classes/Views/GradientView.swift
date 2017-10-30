@@ -11,19 +11,31 @@ import UIKit
 
 final public class GradientView: UIView, CAAnimationDelegate {
 
+    /// Animation-Keys for each animation
     private struct Constants {
         static let fadeInAnimationKey = "GradientView--fade-in"
         static let fadeOutAnimationKey = "GradientView--fade-out"
         static let progressAnimationKey = "GradientView--progress"
     }
 
+    /// `CALayer` holding the gradient
     private let gradientLayer = CAGradientLayer()
 
+    /// Configuration with durations for each animation
     private let durations: Durations
+    
+    /// Colors used for the gradient
     private let gradientColors: GradientColors
 
     // MARK: - Initializers
 
+    /// Initializes a new gradient view (holding the `CALayer` used for the gradient)
+    ///
+    /// Parameters:
+    ///  - durations:      Configuration with durations for each animation
+    ///  - gradientColors: Colors used for the gradient
+    ///
+    /// Returns: Instance with gradient view
     init(durations: Durations, gradientColors: GradientColors) {
         self.durations = durations
         self.gradientColors = gradientColors

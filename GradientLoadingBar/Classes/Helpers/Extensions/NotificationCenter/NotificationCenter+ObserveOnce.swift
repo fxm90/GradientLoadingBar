@@ -11,16 +11,27 @@ import Foundation
 // Source: https://gist.github.com/fxm90/68e2cc3cd6b63751c225b1e1249088cc
 extension NotificationCenter {
 
-    // Same parameters as "addObserver", except with default properties
+    /// Adds an observer to the given notification center, which fires just once.
+    ///
+    /// Note:
+    ///  - Same parameters as "addObserver", but with default properties
+    ///    See http://apple.co/2zZIYJB for details.
+    ///
+    /// Parameters:
+    ///  - name:   The name of the notification for which to register the observer
+    ///  - object: The object whose notifications the observer wants to receive
+    ///  - queue:  The operation queue to which block should be added.
+    ///  - block:  The block to be executed when the notification is received.
+    ///
     func observeOnce(
-        forName: NSNotification.Name?,
+        forName name: NSNotification.Name?,
         object obj: Any? = nil,
         queue: OperationQueue? = nil,
         using block: @escaping (Notification) -> Swift.Void)
     {
         var observer: NSObjectProtocol?
         observer = addObserver(
-            forName: forName,
+            forName: name,
             object: obj,
             queue: queue
         ) { [weak self] (notification) in

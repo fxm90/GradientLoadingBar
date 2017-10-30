@@ -18,9 +18,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var customSuperviewButton: UIButton!
     @IBOutlet weak var customContraintsButton: UIButton!
 
-    let gradientLoadingBar =
-        GradientLoadingBar.sharedInstance()
-
     var customSuperviewLoadingBar: GradientLoadingBar?
     var customContraintsLoadingBar: BottomGradientLoadingBar?
 
@@ -58,15 +55,15 @@ class ViewController: UIViewController {
     // MARK: - User actions
 
     @IBAction func onShowButtonTouchUpInside(_ sender: Any) {
-        gradientLoadingBar.show()
+        GradientLoadingBar.shared.show()
     }
 
     @IBAction func onToggleButtonTouchUpInside(_ sender: Any) {
-        gradientLoadingBar.toggle()
+        GradientLoadingBar.shared.toggle()
     }
 
     @IBAction func onHideButtonTouchUpInside(_ sender: Any) {
-        gradientLoadingBar.hide()
+        GradientLoadingBar.shared.hide()
     }
 
     @IBAction func onCustomSuperviewButtonTouchUpInside(_ sender: Any) {
@@ -84,11 +81,13 @@ class BottomGradientLoadingBar: GradientLoadingBar {
     override func setupConstraints() {
         guard let superview = superview else { return }
 
-        gradientView.leadingAnchor.constraint(equalTo: superview.leadingAnchor).isActive = true
-        gradientView.trailingAnchor.constraint(equalTo: superview.trailingAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            gradientView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
+            gradientView.trailingAnchor.constraint(equalTo: superview.trailingAnchor),
 
-        gradientView.bottomAnchor.constraint(equalTo: superview.bottomAnchor).isActive = true
-        gradientView.heightAnchor.constraint(equalToConstant: CGFloat(height)).isActive = true
+            gradientView.bottomAnchor.constraint(equalTo: superview.bottomAnchor),
+            gradientView.heightAnchor.constraint(equalToConstant: CGFloat(height))
+        ])
     }
 }
 

@@ -12,9 +12,17 @@ import UIKit
 // Source: https://gist.github.com/fxm90/1350d27abf92af3be59aaa9eb72c9310
 public extension UIColor {
 
-    // Create color from RGB(A)
-    convenience init(absoluteRed: Int, green: Int, blue: Int, alpha: Int = 255) {
-        let normalizedRed = CGFloat(absoluteRed) / 255.0
+    /// Create color from RGB(A)
+    ///
+    /// Parameters:
+    ///  - absoluteRed: Red value (between 0 - 255)
+    ///  - green:       Green value (between 0 - 255)
+    ///  - blue:        Blue value (between 0 - 255)
+    ///  - alpha:       Blue value (between 0 - 255)
+    ///
+    /// Returns: UIColor instance.
+    convenience init(absoluteRed red: Int, green: Int, blue: Int, alpha: Int = 255) {
+        let normalizedRed = CGFloat(red) / 255.0
         let normalizedGreen = CGFloat(green) / 255.0
         let normalizedBlue = CGFloat(blue) / 255.0
         let normalizedAlpha = CGFloat(alpha) / 255.0
@@ -27,8 +35,15 @@ public extension UIColor {
         )
     }
 
-    // Color from HEX-Value
-    // Based on: http://stackoverflow.com/a/24263296
+    /// Create color from an hexadecimal inter value (e.g. 0xFFFFFF)
+    ///
+    /// Note:
+    ///  - Based on: http://stackoverflow.com/a/24263296
+    ///
+    /// Parameters:
+    ///  - hex: hexadecimal inter for color
+    ///
+    /// Returns: UIColor instance.
     convenience init(hex: Int) {
         self.init(
             absoluteRed: (hex >> 16) & 0xff,
@@ -37,8 +52,15 @@ public extension UIColor {
         )
     }
 
-    // Color from HEX-String
-    // Based on: http://stackoverflow.com/a/27203691
+    /// Create color from an hexadecimal string value (e.g. "#FFFFFF" / "FFFFFF")
+    ///
+    /// Note:
+    ///  - Based on: http://stackoverflow.com/a/27203691
+    ///
+    /// Parameters:
+    ///  - hex: hexadecimal string for color
+    ///
+    /// Returns: UIColor instance.
     convenience init(hexString: String) {
         var normalizedHexString = hexString
             .trimmingCharacters(in: .whitespacesAndNewlines)

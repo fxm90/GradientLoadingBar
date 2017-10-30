@@ -30,23 +30,33 @@ open class GradientLoadingBar {
         ]
     }
 
-    // View containing the gradient view.
+    /// View containing the gradient view.
     public var superview: UIView?
 
-    // View with the gradient layer.
+    /// View with the gradient layer.
     public let gradientView: GradientView
 
-    // Used to handle mutliple calls to show at the same time.
+    /// Boolean flag, true if gradient view is currently visible, otherwise false.
+    /// Used to handle mutliple calls to show at the same time.
     public private(set) var isVisible = false
 
-    // Height of gradient bar.
+    /// Height of gradient bar.
     public private(set) var height = 0.0
-
-    // Instance variable for singleton.
-    private static var instance: GradientLoadingBar?
+    
+    /// Singleton instance.
+    public static var shared = GradientLoadingBar()
 
     // MARK: - Initializers
 
+    /// Creates a new gradient loading bar instance.
+    ///
+    /// Parameters:
+    ///  - height:         Height of the gradient bar
+    ///  - durations:      Configuration with durations for each animation
+    ///  - gradientColors: Colors used for the gradient
+    ///  - superview:      View containing the gradient bar
+    ///
+    /// Returns: Instance with gradient bar
     public init (
         height: Double = DefaultValues.height,
         durations: Durations = DefaultValues.durations,
@@ -94,32 +104,36 @@ open class GradientLoadingBar {
         setupConstraints()
     }
 
+    /// Apply layout contraints for gradient loading view.
     open func setupConstraints() {
         guard let superview = superview else { return }
 
-        gradientView.leadingAnchor.constraint(equalTo: superview.leadingAnchor).isActive = true
-        gradientView.trailingAnchor.constraint(equalTo: superview.trailingAnchor).isActive = true
-
-        gradientView.topAnchor.constraint(equalTo: superview.topAnchor).isActive = true
-        gradientView.heightAnchor.constraint(equalToConstant: CGFloat(height)).isActive = true
+        NSLayoutConstraint.activate([
+            gradientView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
+            gradientView.trailingAnchor.constraint(equalTo: superview.trailingAnchor),
+            
+            gradientView.topAnchor.constraint(equalTo: superview.topAnchor),
+            gradientView.heightAnchor.constraint(equalToConstant: CGFloat(height))
+        ])
     }
 
     // MARK: - Helper to use as a Singleton
 
+    /// Saves the current instance as instance for singleton.
+    @available(*, deprecated, message: "use .shared instead")
     public func saveInstance() {
-        type(of: self).instance = self
+        type(of: self).shared = self
     }
 
+    /// Singleton instance.
+    @available(*, deprecated, message: "use .shared instead")
     public static func sharedInstance() -> GradientLoadingBar {
-        if instance == nil {
-            instance = GradientLoadingBar()
-        }
-
-        return instance!
+        return shared
     }
 
     // MARK: - Show / Hide
 
+    /// Fade in the gradient loading bar.
     public func show() {
         if !isVisible {
             isVisible = true
@@ -128,6 +142,7 @@ open class GradientLoadingBar {
         }
     }
 
+    /// Fade out the gradient loading bar.
     public func hide() {
         if isVisible {
             isVisible = false
@@ -136,6 +151,7 @@ open class GradientLoadingBar {
         }
     }
 
+    /// Toggle visiblity of gradient loading bar.
     public func toggle() {
         if isVisible {
             hide()
