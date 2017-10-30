@@ -7,13 +7,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
-## [1.1.5] - 2017-03-10
+## [1.1.6] - 2017-10-30
+### Added
+ - Allow setting a custom superview
+ - Documentation
+
+## [1.1.5] - 2017-10-03
 ### Fixed
  - Struct 'DefaultValues' is private and cannot be referenced from a default argument value ([#001])
 
 [#001]: https://github.com/fxm90/GradientLoadingBar/issues/1
 
-## [1.1.4] - 2017-01-10
+## [1.1.4] - 2017-10-01
 ### Added
  - Refactored project structure to match "pod lib create" / TravisCI integration
  - Added example project
@@ -44,8 +49,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial release
 
 
-[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.5...master
-[1.1.4]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.4...1.1.5
+[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.6...master
+[1.1.6]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.5...1.1.6
+[1.1.5]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.4...1.1.5
 [1.1.4]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.3...1.1.4
 [1.1.3]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.2...1.1.3
 [1.1.2]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.1...1.1.2
