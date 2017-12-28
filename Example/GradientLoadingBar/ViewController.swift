@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var customContraintsButton: UIButton!
 
     var customSuperviewLoadingBar: GradientLoadingBar?
-    var customContraintsLoadingBar: BottomGradientLoadingBar?
+    var customConstraintsLoadingBar: BottomGradientLoadingBar?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         customSuperviewButton.clipsToBounds = true
 
         // Add custom gradient loading bar to button.
-        customContraintsLoadingBar = BottomGradientLoadingBar(onView: customContraintsButton)
+        customConstraintsLoadingBar = BottomGradientLoadingBar(onView: customContraintsButton)
         customContraintsButton.clipsToBounds = true
     }
 
@@ -67,11 +67,15 @@ class ViewController: UIViewController {
     }
 
     @IBAction func onCustomSuperviewButtonTouchUpInside(_ sender: Any) {
-        customSuperviewLoadingBar!.toggle()
+        guard let customSuperviewLoadingBar = customSuperviewLoadingBar else { return }
+
+        customSuperviewLoadingBar.toggle()
     }
 
     @IBAction func onCustomContraintsButtonTouchUpInside(_ sender: Any) {
-        customContraintsLoadingBar!.toggle()
+        guard let customConstraintsLoadingBar = customConstraintsLoadingBar else { return }
+
+        customConstraintsLoadingBar.toggle()
     }
 }
 

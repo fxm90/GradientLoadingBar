@@ -23,27 +23,21 @@ extension NotificationCenter {
     ///  - queue:  The operation queue to which block should be added.
     ///  - block:  The block to be executed when the notification is received.
     ///
-    func observeOnce(
-        forName name: NSNotification.Name?,
-        object obj: Any? = nil,
-        queue: OperationQueue? = nil,
-        using block: @escaping (Notification) -> Swift.Void)
-    {
+    func observeOnce(forName name: NSNotification.Name?,
+                     object obj: Any? = nil,
+                     queue: OperationQueue? = nil,
+                     using block: @escaping (Notification) -> Swift.Void) {
+
         var observer: NSObjectProtocol?
-        observer = addObserver(
-            forName: name,
-            object: obj,
-            queue: queue
-        ) { [weak self] (notification) in
-            guard let `self` = self else {
-                return
+        observer = addObserver(forName: name,
+                               object: obj,
+                               queue: queue) { [weak self] (notification) in
+            defer {
+                // Remove observer, so closure will be executed just once
+                self?.removeObserver(observer!)
             }
 
-            // Call completion block and..
             block(notification)
-
-            // .. directly remove observer!
-            self.removeObserver(observer!)
         }
     }
 }

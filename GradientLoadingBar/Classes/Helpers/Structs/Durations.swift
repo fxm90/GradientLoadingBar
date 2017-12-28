@@ -9,6 +9,9 @@
 import Foundation
 
 public struct Durations {
+
+    // MARK: - Properties
+
     /// Duration (in sec.) for fade in animation
     let fadeIn: Double
     
@@ -17,6 +20,8 @@ public struct Durations {
     
     /// Duration (in sec.) for progress animation
     let progress: Double
+
+    // MARK: - Initializers
 
     // Self-written initializer is required to allow public access
     // Source: http://stackoverflow.com/a/26224873/3532505

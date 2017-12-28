@@ -43,30 +43,44 @@ class NotificationCenterObserveOnceTests: XCTestCase {
         let expect = expectation(description: "Should receive notification just once")
 
         let notificationName = Notification.Name(rawValue: "foobar")
-        var notificationCount = 0
+
+        // Setup a counter, to validate closure is executed just once
+        var observeOnceCount = 0
         notificationCenter.observeOnce(forName: notificationName) { (_: Notification)  in
-            notificationCount += 1
+            observeOnceCount += 1
+        }
+
+        // Setup a second counter, to validate all notifications have been send
+        var addObserverCount = 0
+        let observer = notificationCenter.addObserver(forName: notificationName, object: nil, queue: nil) { (_: Notification) in
+            addObserverCount += 1
         }
 
         // Trigger multiple notifications
+        let notificationQuantity = 5
         let notificationDispatchQueue = DispatchQueue(label: "Queue sending notifications", qos: .userInitiated)
         notificationDispatchQueue.async {
-            for _ in 1...4 {
+            for _ in 1 ... notificationQuantity {
                 self.notificationCenter.post(name: notificationName, object: nil)
             }
         }
 
         // Check counter after all notifications have been send
-        let when = DispatchTime.now() + 0.5
+        let checkNotificationOffset: TimeInterval = 0.5
+        let when = DispatchTime.now() + checkNotificationOffset
         DispatchQueue.main.asyncAfter(deadline: when) {
-            XCTAssertEqual(notificationCount, 1)
+            self.notificationCenter.removeObserver(observer)
+
+            // Validate counters
+            XCTAssertEqual(observeOnceCount, 1)
+            XCTAssertEqual(addObserverCount, notificationQuantity)
 
             expect.fulfill()
         }
 
         wait(
             for: [expect],
-            timeout: TimeInterval(0.6)
+            timeout: checkNotificationOffset + 0.1
         )
     }
 }

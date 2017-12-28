@@ -16,10 +16,10 @@ class DurationsTests: XCTestCase {
         let fadeOut = 0.2
         let progress = 0.3
 
-        let durations = Durations(fadeIn: fadeIn, fadeOut: fadeOut, progress: progress)
+        let animationDurations = Durations(fadeIn: fadeIn, fadeOut: fadeOut, progress: progress)
 
-        XCTAssertEqual(durations.fadeIn, fadeIn)
-        XCTAssertEqual(durations.fadeOut, fadeOut)
-        XCTAssertEqual(durations.progress, progress)
+        XCTAssertEqual(animationDurations.fadeIn, fadeIn)
+        XCTAssertEqual(animationDurations.fadeOut, fadeOut)
+        XCTAssertEqual(animationDurations.progress, progress)
     }
 }
