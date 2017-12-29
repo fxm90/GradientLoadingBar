@@ -2,7 +2,7 @@
 # * http://www.objc.io/issue-6/travis-ci.html
 # * https://github.com/supermarin/xcpretty#usage
 
-osx_image: xcode9
+osx_image: xcode9.2
 language: objective-c
 cache: cocoapods
 podfile: Example/Podfile
@@ -10,5 +10,5 @@ before_install:
 - gem install cocoapods # Since Travis is not always on latest version
 - pod install --repo-update --project-directory=Example # "--repo-update" Fixes pod out of sync
 script:
-- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/GradientLoadingBar.xcworkspace -scheme GradientLoadingBar-Example -destination "platform=iOS Simulator,name=iPhone 7,OS=10.3.1" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO | xcpretty
+- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/GradientLoadingBar.xcworkspace -scheme GradientLoadingBar-Example -destination "platform=iOS Simulator,name=iPhone 7,OS=11.2" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO | xcpretty
 - pod lib lint
