@@ -9,37 +9,43 @@
 import XCTest
 @testable import GradientLoadingBar
 
+// MARK: - Test case
+
+@available(iOS, introduced: 11.0, message: "iOS 11.0 is required for this test case")
 class UIViewHasTopSafeAreaInsetTests: XCTestCase {
 
-    @available(iOS, introduced: 11.0, message: "iOS 11.0 is required for this test case")
     func testHasTopSafeAreaInsetTestsShouldReturnTrue() {
-        let view = SafeAreaView(insets: UIEdgeInsets(top: 1.0, left: 0.0, bottom: 0.0, right: 0.0))
-        XCTAssertTrue(view.hasTopSafeAreaInset)
+        let safeAreaView = SafeAreaViewMock(frame: .zero)
+        safeAreaView.safeAreaInsets = UIEdgeInsets(top: 1.0, left: 0.0, bottom: 0.0, right: 0.0)
+
+        XCTAssertTrue(safeAreaView.hasTopSafeAreaInset)
     }
 
-    @available(iOS, introduced: 11.0, message: "iOS 11.0 is required for this test case")
     func testHasTopSafeAreaInsetTestsShouldReturnFalse() {
-        let view = SafeAreaView(insets: UIEdgeInsets(top: 0.0, left: 1.0, bottom: 1.0, right: 1.0))
-        XCTAssertFalse(view.hasTopSafeAreaInset)
+        let safeAreaView = SafeAreaViewMock(frame: .zero)
+        safeAreaView.safeAreaInsets = UIEdgeInsets(top: 0.0, left: 1.0, bottom: 1.0, right: 1.0)
+
+        XCTAssertFalse(safeAreaView.hasTopSafeAreaInset)
     }
 }
 
-// MARK: - Helper
+// MARK: - Helper: Create UIView with `safeAreaInsets` programmatically
 
-private class SafeAreaView: UIView {
-    let insets: UIEdgeInsets
-
-    init(insets: UIEdgeInsets) {
-        self.insets = insets
-
-        super.init(frame: .zero)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+@available(iOS, introduced: 11.0, message: "iOS 11.0 is required for this test case")
+private class SafeAreaViewMock: UIView {
+    private var customSafeAreaInsets: UIEdgeInsets?
 
     override var safeAreaInsets: UIEdgeInsets {
-        return insets
+        get {
+            guard let customSafeAreaInsets = customSafeAreaInsets else {
+                return super.safeAreaInsets
+            }
+
+            return customSafeAreaInsets
+        }
+
+        set {
+            customSafeAreaInsets = newValue
+        }
     }
 }

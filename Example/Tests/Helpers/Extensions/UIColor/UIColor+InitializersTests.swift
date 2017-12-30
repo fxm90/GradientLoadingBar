@@ -9,6 +9,8 @@
 import XCTest
 @testable import GradientLoadingBar
 
+// MARK: - Test case
+
 class UIColorInitializersTests: XCTestCase {
 
     func testColorFromAbsoluteRGB() {
@@ -94,7 +96,7 @@ class UIColorInitializersTests: XCTestCase {
     }
 }
 
-// MARK: - Helper to get absolute RGBA values.
+// MARK: - Helper: Get absolute RGBA values.
 
 fileprivate extension UIColor {
     struct AbsoluteRGBA {
@@ -123,7 +125,7 @@ fileprivate extension UIColor {
     }
 }
 
-// MARK: - Helper to convert hex number as string to integer.
+// MARK: - Helper: Convert hex number as string to integer.
 
 fileprivate extension String {
     func hexToDec() -> Int? {

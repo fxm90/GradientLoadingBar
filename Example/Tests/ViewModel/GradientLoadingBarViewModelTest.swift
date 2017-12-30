@@ -9,6 +9,8 @@
 import XCTest
 @testable import GradientLoadingBar
 
+// MARK: - Test case
+
 class GradientLoadingBarViewModelTest: XCTestCase {
     var viewModel: GradientLoadingBarViewModel!
     var delegateMock: GradientLoadingBarViewModelDelegateMock!
@@ -80,7 +82,7 @@ class GradientLoadingBarViewModelTest: XCTestCase {
     }
 }
 
-// MARK: - Helpers
+// MARK: - Helper: Validate delegate calls
 
 class GradientLoadingBarViewModelDelegateMock: GradientLoadingBarViewModelDelegate {
     private(set) var visiblityCounter = 0
