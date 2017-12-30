@@ -1,7 +1,7 @@
 GradientLoadingBar
 ====================
 
-![Swift3.0](https://img.shields.io/badge/Swift-3.0-green.svg?style=flat) [![CI Status](http://img.shields.io/travis/fxm90/GradientLoadingBar.svg?style=flat)](https://travis-ci.org/fxm90/GradientLoadingBar) [![Version](https://img.shields.io/cocoapods/v/GradientLoadingBar.svg?style=flat)](http://cocoapods.org/pods/GradientLoadingBar) [![License](https://img.shields.io/cocoapods/l/GradientLoadingBar.svg?style=flat)](http://cocoapods.org/pods/GradientLoadingBar) [![Platform](https://img.shields.io/cocoapods/p/GradientLoadingBar.svg?style=flat)](http://cocoapods.org/pods/GradientLoadingBar)
+![Swift4.0](https://img.shields.io/badge/Swift-4.0-green.svg?style=flat) [![CI Status](http://img.shields.io/travis/fxm90/GradientLoadingBar.svg?style=flat)](https://travis-ci.org/fxm90/GradientLoadingBar) [![Version](https://img.shields.io/cocoapods/v/GradientLoadingBar.svg?style=flat)](http://cocoapods.org/pods/GradientLoadingBar) [![License](https://img.shields.io/cocoapods/l/GradientLoadingBar.svg?style=flat)](http://cocoapods.org/pods/GradientLoadingBar) [![Platform](https://img.shields.io/cocoapods/p/GradientLoadingBar.svg?style=flat)](http://cocoapods.org/pods/GradientLoadingBar)
 
 ### Example
 An animated gradient loading bar.

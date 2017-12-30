@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [1.1.7] - 2017-12-30
 ### Changed
  - Adapt layout for iPhoneX
+ - Convert code to Swift 4
  - Refactor code to MVVM
 
 ## [1.1.6] - 2017-10-30
