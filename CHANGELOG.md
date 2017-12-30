@@ -7,6 +7,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [1.1.7] - 2017-12-30
+### Changed
+ - Adapt layout for iPhoneX
+ - Refactor code to MVVM
+
 ## [1.1.6] - 2017-10-30
 ### Added
  - Allow setting a custom superview
@@ -23,17 +28,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
  - Refactored project structure to match "pod lib create" / TravisCI integration
  - Added example project
 
-## [1.1.3] - 2017-25-09
+## [1.1.3] - 2017-09-25
 ### Fixed
  - Fix never adding gradient view to "keyWindow" if it is not available on first call to "show()"
 
-## [1.1.2] - 2017-27-08
+## [1.1.2] - 2017-08-27
 ### Added
  - Basic tests / TravisCI integration
  - Refactored extension for UIColor initializer
  - Changelog
 
-## [1.1.1] - 2017-18-08
+## [1.1.1] - 2017-08-18
 ### Fixed
  - Fix optical animation issue
  - Fix orientation change bug
@@ -41,15 +46,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
  - Refactor entire code
  - Lint code
 
-## [1.1.0] - 2017-28-02
+## [1.1.0] - 2017-02-28
 ### Changed
  - Allow changing gradient colors
 
-## [1.0.0] - 2016-28-12
+## [1.0.0] - 2016-12-28
 - Initial release
 
 
-[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.6...master
+[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.7...master
+[1.1.7]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.6...1.1.7
 [1.1.6]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.5...1.1.6
 [1.1.5]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.4...1.1.5
 [1.1.4]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.3...1.1.4
