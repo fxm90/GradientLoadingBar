@@ -25,7 +25,7 @@ final public class GradientView: UIView {
     let animationDurations: Durations
     
     /// Colors used for the gradient.
-    let gradientColors: GradientColors
+    let gradientColorList: [UIColor]
 
     // MARK: - Initializers
 
@@ -36,9 +36,9 @@ final public class GradientView: UIView {
     ///  - gradientColors:     Colors used for the gradient
     ///
     /// Returns: Instance with gradient view
-    init(animationDurations: Durations, gradientColors: GradientColors) {
+    init(animationDurations: Durations, gradientColorList: [UIColor]) {
         self.animationDurations = animationDurations
-        self.gradientColors = gradientColors
+        self.gradientColorList = gradientColorList
 
         super.init(frame: .zero)
 
@@ -59,11 +59,13 @@ final public class GradientView: UIView {
 
         // Simulate infinte animation - Therefore we'll reverse the colors and remove the first and last item
         // to prevent duplicate values at the "inner edges" destroying the infinite look.
-        var reversedColors = Array(gradientColors.reversed())
-        reversedColors.removeFirst()
-        reversedColors.removeLast()
+        var reversedColorList = Array(gradientColorList.reversed())
+        reversedColorList.removeFirst()
+        reversedColorList.removeLast()
 
-        gradientLayer.colors = gradientColors + reversedColors + gradientColors
+        let infinteColorList = gradientColorList + reversedColorList + gradientColorList
+        gradientLayer.colors = infinteColorList.map({ $0.cgColor })
+
         layer.insertSublayer(gradientLayer, at: 0)
     }
 

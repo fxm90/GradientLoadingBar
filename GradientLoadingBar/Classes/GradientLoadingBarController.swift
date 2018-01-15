@@ -13,9 +13,6 @@ import UIKit
 /// Typealias for controller to match pod name.
 public typealias GradientLoadingBar = GradientLoadingBarController
 
-/// Array with gradient colors.
-public typealias GradientColors = [CGColor]
-
 // MARK: - Controller
 
 open class GradientLoadingBarController {
@@ -32,14 +29,14 @@ open class GradientLoadingBarController {
         public static let durations = Durations(fadeIn: 0.33, fadeOut: 0.66, progress: 3.33)
 
         // iOS color palette
-        // From: http://www.cssscript.com/ios-style-gradient-progress-bar-with-pure-css-css3/
-        public static let gradientColors: GradientColors = [
-            UIColor(hex: "#4cd964").cgColor,
-            UIColor(hex: "#5ac8fa").cgColor,
-            UIColor(hex: "#007aff").cgColor,
-            UIColor(hex: "#34aadc").cgColor,
-            UIColor(hex: "#5856d6").cgColor,
-            UIColor(hex: "#ff2d55").cgColor
+        // From: https://codepen.io/marcobiedermann/pen/LExXWW
+        public static let gradientColors = [
+            UIColor(hex: "#4cd964"),
+            UIColor(hex: "#5ac8fa"),
+            UIColor(hex: "#007aff"),
+            UIColor(hex: "#34aadc"),
+            UIColor(hex: "#5856d6"),
+            UIColor(hex: "#ff2d55")
         ]
     }
 
@@ -72,23 +69,23 @@ open class GradientLoadingBarController {
     /// Creates a new gradient loading bar instance.
     ///
     /// Parameters:
-    ///  - height:         Height of the gradient bar
-    ///  - durations:      Configuration with durations for each animation
-    ///  - gradientColors: Colors used for the gradient
-    ///  - superview:      View containing the gradient bar
+    ///  - height:            Height of the gradient bar
+    ///  - durations:         Configuration with durations for each animation
+    ///  - gradientColorList: Colors used for the gradient
+    ///  - superview:         View containing the gradient bar
     ///
     /// Returns: Instance with gradient bar
     public init (
         height: Double = DefaultValues.height,
         durations: Durations = DefaultValues.durations,
-        gradientColors: GradientColors = DefaultValues.gradientColors,
+        gradientColorList: [UIColor] = DefaultValues.gradientColors,
         onView superview: UIView? = nil
     ) {
         self.height = height
 
         gradientView = GradientView(
             animationDurations: durations,
-            gradientColors: gradientColors
+            gradientColorList: gradientColorList
         )
 
         viewModel.delegate = self
@@ -141,20 +138,6 @@ open class GradientLoadingBarController {
         ])
     }
 
-    // MARK: - Helper to use class as a singleton
-
-    /// Saves the current instance as instance for singleton.
-    @available(*, deprecated, message: "use .shared instead")
-    public func saveInstance() {
-        type(of: self).shared = self
-    }
-
-    /// Singleton instance.
-    @available(*, deprecated, message: "use .shared instead")
-    public static func sharedInstance() -> GradientLoadingBar {
-        return shared
-    }
-
     // MARK: - Show / Hide (proxy methods to hide view model implementation)
 
     /// Fade in the gradient loading bar.
@@ -193,5 +176,58 @@ extension GradientLoadingBarController: GradientLoadingBarViewModelDelegate {
         } else {
             gradientView.hide()
         }
+    }
+}
+
+// MARK: - Deprecated methods
+
+extension GradientLoadingBarController {
+
+    /// Creates a new gradient loading bar instance.
+    ///
+    /// Note:
+    ///  - Deprecated!
+    ///  - Please use `init(height: Double, durations: Durations, gradientColorList: [UIColor], onView: UIView?)` instead
+    ///
+    /// Parameters:
+    ///  - height:         Height of the gradient bar
+    ///  - durations:      Configuration with durations for each animation
+    ///  - gradientColors: Colors used for the gradient
+    ///  - superview:      View containing the gradient bar
+    ///
+    /// Returns: Instance with gradient bar
+    @available(*, deprecated, message: "Please use `init(height: Double, durations: Durations, gradientColorList: [UIColor], onView: UIView?)` instead")
+    public convenience init (
+        height: Double = DefaultValues.height,
+        durations: Durations = DefaultValues.durations,
+        gradientColors: [CGColor],
+        onView superview: UIView? = nil
+        ) {
+        self.init(height: height,
+                  durations: durations,
+                  gradientColorList: gradientColors.map({ UIColor(cgColor: $0) }),
+                  onView: superview)
+    }
+
+    /// Saves the current instance for usage as singleton.
+    ///
+    /// Note:
+    ///  - Deprecated!
+    ///  - Please use `.shared` instead
+    ///
+    @available(*, deprecated, message: "Please use `.shared` instead")
+    public func saveInstance() {
+        type(of: self).shared = self
+    }
+
+    /// Singleton instance.
+    ///
+    /// Note:
+    ///  - Deprecated!
+    ///  - Please use `.shared` instead
+    ///
+    @available(*, deprecated, message: "Please use `.shared` instead")
+    public static func sharedInstance() -> GradientLoadingBar {
+        return shared
     }
 }

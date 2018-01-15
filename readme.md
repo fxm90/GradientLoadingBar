@@ -31,19 +31,19 @@ gradientLoadingBar.show()
 gradientLoadingBar.hide()
 ```
 ### Configuration
-You can overwrite the default configuration by calling the initializers with the optional parameters `height`, `durations`, `gradientColors` and `onView`:
+You can overwrite the default configuration by calling the initializers with the optional parameters `height`, `durations`, `gradientColorList` and `onView`:
 ```swift
 let gradientLoadingBar = GradientLoadingBar(
     height: 1.0,
     durations: Durations(fadeIn: 1.0, fadeOut: 2.0, progress: 3.0)
-    gradientColors: [
-        UIColor(hexString:"#4cd964").cgColor,
-        UIColor(hexString:"#ff2d55").cgColor
+    gradientColorList: [
+        UIColor(hex: "#4cd964"),
+        UIColor(hex: "#ff2d55")
     ]
     onView: self.view
 )
 ```
-For custom colors you'll have to pass an array with `CGColor` values. For creating those colors you can use all initializers for `UIColor`  mentioned here: [UIColor+Initializers.swift](https://gist.github.com/fxm90/1350d27abf92af3be59aaa9eb72c9310)
+For custom colors you'll have to pass an array with `UIColor` values. For creating those colors you can use all initializers for `UIColor`  mentioned here: [UIColor+Initializers.swift](https://gist.github.com/fxm90/1350d27abf92af3be59aaa9eb72c9310)
 
 For an example using the loading bar on a custom superview (e.g. an UIButton) see the example application. For further cusomization you can also subclass `GradientLoadingBar` and overwrite the method `setupConstraints()`. This also shown in the example application.
 
@@ -53,9 +53,9 @@ If you don't want to save the instance on a variable and use the singleton inste
 GradientLoadingBar.shared = GradientLoadingBar(
     height: 3.0,
     durations: Durations(fadeIn: 1.0, fadeOut: 2.0, progress: 3.00),
-    gradientColors: [
-        UIColor(hexString:"#4cd964").cgColor,
-        UIColor(hexString:"#ff2d55").cgColor
+    gradientColorList: [
+        UIColor(hex: "#4cd964"),
+        UIColor(hex: "#ff2d55")
     ]
 )
 ```
