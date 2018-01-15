@@ -35,7 +35,7 @@ public extension UIColor {
         )
     }
 
-    /// Create color from an hexadecimal inter value (e.g. 0xFFFFFF)
+    /// Create color from an hexadecimal integer value (e.g. 0xFFFFFF)
     ///
     /// Note:
     ///  - Based on: http://stackoverflow.com/a/24263296
@@ -61,21 +61,26 @@ public extension UIColor {
     ///  - hex: hexadecimal string for color
     ///
     /// Returns: UIColor instance.
-    convenience init(hexString: String) {
-        var normalizedHexString = hexString
+    convenience init(hex: String) {
+        var normalizedHexColor = hex
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .uppercased()
 
-        if normalizedHexString.hasPrefix("#") {
-            normalizedHexString.remove(at: normalizedHexString.startIndex)
+        if normalizedHexColor.hasPrefix("#") {
+            normalizedHexColor = String(normalizedHexColor.dropFirst())
         }
 
-        // Convert to hexadecimal integer
-        var hexValue: UInt32 = 0
-        Scanner(string: normalizedHexString).scanHexInt32(&hexValue)
+        // Convert to hexadecimal color (string) to integer
+        var hex: UInt32 = 0
+        Scanner(string: normalizedHexColor).scanHexInt32(&hex)
 
         self.init(
-            hex: Int(hexValue)
+            hex: Int(hex)
         )
+    }
+
+    @available(*, deprecated, message: "Please use `init(hex: String)` instead")
+    convenience init(hexString: String) {
+        self.init(hex: hexString)
     }
 }

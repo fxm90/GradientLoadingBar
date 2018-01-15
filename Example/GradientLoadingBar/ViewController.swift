@@ -98,5 +98,5 @@ class BottomGradientLoadingBar: GradientLoadingBar {
 // MARK: - Helper
 
 fileprivate extension UIColor {
-    static let aquaBlue = UIColor(hexString: "#4990e2")
+    static let aquaBlue = UIColor(hex: "#4990e2")
 }

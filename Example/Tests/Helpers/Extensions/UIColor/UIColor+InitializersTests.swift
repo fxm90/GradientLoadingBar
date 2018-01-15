@@ -9,8 +9,6 @@
 import XCTest
 @testable import GradientLoadingBar
 
-// MARK: - Test case
-
 class UIColorInitializersTests: XCTestCase {
 
     func testColorFromAbsoluteRGB() {
@@ -18,15 +16,19 @@ class UIColorInitializersTests: XCTestCase {
         let green = 20
         let blue = 30
 
-        let color = UIColor(absoluteRed: red, green: green, blue: blue)
-        if let colorValues = color.absoluteRGBA() {
-            XCTAssertEqual(colorValues.red, red)
-            XCTAssertEqual(colorValues.green, green)
-            XCTAssertEqual(colorValues.blue, blue)
-            XCTAssertEqual(colorValues.alpha, 255)
-        } else {
-            XCTFail("Could not get \"absoluteRGB()\" from color.")
+        let color = UIColor(absoluteRed: red,
+                            green: green,
+                            blue: blue)
+
+        guard let absoluteRGBA = color.absoluteRGBA else {
+            XCTFail("Expected to have valid color components at this point.")
+            return
         }
+
+        XCTAssertEqual(absoluteRGBA.red, red)
+        XCTAssertEqual(absoluteRGBA.green, green)
+        XCTAssertEqual(absoluteRGBA.blue, blue)
+        XCTAssertEqual(absoluteRGBA.alpha, 255)
     }
 
     func testColorFromAbsoluteRGBA() {
@@ -35,28 +37,33 @@ class UIColorInitializersTests: XCTestCase {
         let blue = 150
         let alpha = 200
 
-        let color = UIColor(absoluteRed: red, green: green, blue: blue, alpha: alpha)
-        if let colorValues = color.absoluteRGBA() {
-            XCTAssertEqual(colorValues.red, red)
-            XCTAssertEqual(colorValues.green, green)
-            XCTAssertEqual(colorValues.blue, blue)
-            XCTAssertEqual(colorValues.alpha, alpha)
-        } else {
-            XCTFail("Could not get \"absoluteRGB()\" from color.")
+        let color = UIColor(absoluteRed: red,
+                            green: green,
+                            blue: blue,
+                            alpha: alpha)
+
+        guard let absoluteRGBA = color.absoluteRGBA else {
+            XCTFail("Expected to have valid color components at this point.")
+            return
         }
+
+        XCTAssertEqual(absoluteRGBA.red, red)
+        XCTAssertEqual(absoluteRGBA.green, green)
+        XCTAssertEqual(absoluteRGBA.blue, blue)
+        XCTAssertEqual(absoluteRGBA.alpha, alpha)
     }
 
-    func testColorFromHex() {
+    func testColorFromHexInteger() {
         let color = UIColor(hex: 0x007AFF)
-
-        if let colorValues = color.absoluteRGBA() {
-            XCTAssertEqual(colorValues.red, 0)
-            XCTAssertEqual(colorValues.green, 122)
-            XCTAssertEqual(colorValues.blue, 255)
-            XCTAssertEqual(colorValues.alpha, 255)
-        } else {
-            XCTFail("Could not get \"absoluteRGB()\" from color.")
+        guard let absoluteRGBA = color.absoluteRGBA else {
+            XCTFail("Expected to have valid color components at this point.")
+            return
         }
+
+        XCTAssertEqual(absoluteRGBA.red, 0)
+        XCTAssertEqual(absoluteRGBA.green, 122)
+        XCTAssertEqual(absoluteRGBA.blue, 255)
+        XCTAssertEqual(absoluteRGBA.alpha, 255)
     }
 
     func testColorFromHexString() {
@@ -64,17 +71,16 @@ class UIColorInitializersTests: XCTestCase {
         let green = "7a"
         let blue = "ff"
 
-        let hexString = "\(red)\(green)\(blue)"
-        let color = UIColor(hexString: hexString)
-
-        if let colorValues = color.absoluteRGBA() {
-            XCTAssertEqual(colorValues.red, red.hexToDec())
-            XCTAssertEqual(colorValues.green, green.hexToDec())
-            XCTAssertEqual(colorValues.blue, blue.hexToDec())
-            XCTAssertEqual(colorValues.alpha, 255)
-        } else {
-            XCTFail("Could not get \"absoluteRGB()\" from color.")
+        let color = UIColor(hex: "\(red)\(green)\(blue)")
+        guard let absoluteRGBA = color.absoluteRGBA else {
+            XCTFail("Expected to have valid color components at this point.")
+            return
         }
+
+        XCTAssertEqual(absoluteRGBA.red, red.asHexadecimalNumber)
+        XCTAssertEqual(absoluteRGBA.green, green.asHexadecimalNumber)
+        XCTAssertEqual(absoluteRGBA.blue, blue.asHexadecimalNumber)
+        XCTAssertEqual(absoluteRGBA.alpha, 255)
     }
 
     func testColorFromHexStringWithPrefixedHash() {
@@ -82,17 +88,16 @@ class UIColorInitializersTests: XCTestCase {
         let green = "7a"
         let blue = "ff"
 
-        let hexString = "#\(red)\(green)\(blue)"
-        let color = UIColor(hexString: hexString)
-
-        if let colorValues = color.absoluteRGBA() {
-            XCTAssertEqual(colorValues.red, red.hexToDec())
-            XCTAssertEqual(colorValues.green, green.hexToDec())
-            XCTAssertEqual(colorValues.blue, blue.hexToDec())
-            XCTAssertEqual(colorValues.alpha, 255)
-        } else {
-            XCTFail("Could not get \"absoluteRGB()\" from color.")
+        let color = UIColor(hex: "#\(red)\(green)\(blue)")
+        guard let absoluteRGBA = color.absoluteRGBA else {
+            XCTFail("Expected to have valid color components at this point.")
+            return
         }
+
+        XCTAssertEqual(absoluteRGBA.red, red.asHexadecimalNumber)
+        XCTAssertEqual(absoluteRGBA.green, green.asHexadecimalNumber)
+        XCTAssertEqual(absoluteRGBA.blue, blue.asHexadecimalNumber)
+        XCTAssertEqual(absoluteRGBA.alpha, 255)
     }
 }
 
@@ -106,7 +111,7 @@ fileprivate extension UIColor {
         let alpha: Int
     }
 
-    func absoluteRGBA() -> AbsoluteRGBA? {
+    var absoluteRGBA: AbsoluteRGBA? {
         var red: CGFloat = 0
         var green: CGFloat = 0
         var blue: CGFloat = 0
@@ -128,7 +133,7 @@ fileprivate extension UIColor {
 // MARK: - Helper: Convert hex number as string to integer.
 
 fileprivate extension String {
-    func hexToDec() -> Int? {
+    var asHexadecimalNumber: Int? {
         return Int(self, radix: 16)
     }
 }
