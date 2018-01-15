@@ -34,11 +34,8 @@ class NotificationCenterObserveOnceTests: XCTestCase {
 
         notificationCenter.post(name: notificationName, object: nil)
 
-        if let receivedNotificationName = receivedNotificationName {
-            XCTAssertEqual(receivedNotificationName, notificationName)
-        } else {
-            XCTFail("Didn't received expected notification")
-        }
+        XCTAssertNotNil(receivedNotificationName, "Expected to have a valid `receivedNotificationName` in at this point")
+        XCTAssertEqual(receivedNotificationName!, notificationName)
     }
 
     func testNotificationReceivedJustOnce() {
@@ -67,5 +64,21 @@ class NotificationCenterObserveOnceTests: XCTestCase {
         XCTAssertEqual(addObserverCount, notificationQuantity)
 
         self.notificationCenter.removeObserver(observer)
+    }
+
+    func testClosureShouldNotBeTriggeredIfObserverRemovedManually() {
+        let notificationName = Notification.Name(rawValue: "foobar?_=\(Date().timeIntervalSince1970)")
+
+        var receivedNotificationName: Notification.Name?
+        let observer = notificationCenter.observeOnce(forName: notificationName) { (receivedNotification: Notification)  in
+            receivedNotificationName = receivedNotification.name
+        }
+
+        XCTAssertNotNil(observer, "Expected to have a valid `observer` in at this point")
+        notificationCenter.removeObserver(observer!)
+
+        notificationCenter.post(name: notificationName, object: nil)
+
+        XCTAssertNil(receivedNotificationName)
     }
 }

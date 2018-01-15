@@ -23,10 +23,10 @@ extension NotificationCenter {
     ///  - queue:  The operation queue to which block should be added.
     ///  - block:  The block to be executed when the notification is received.
     ///
-    func observeOnce(forName name: NSNotification.Name?,
+    @discardableResult func observeOnce(forName name: NSNotification.Name?,
                      object obj: Any? = nil,
                      queue: OperationQueue? = nil,
-                     using block: @escaping (Notification) -> Swift.Void) {
+                     using block: @escaping (Notification) -> Swift.Void) -> NSObjectProtocol? {
 
         var observer: NSObjectProtocol?
         observer = addObserver(forName: name,
@@ -39,5 +39,7 @@ extension NotificationCenter {
 
             block(notification)
         }
+
+        return observer
     }
 }

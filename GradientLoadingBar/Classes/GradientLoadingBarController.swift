@@ -43,10 +43,7 @@ open class GradientLoadingBarController {
         ]
     }
 
-    // MARK: - Properties
-
-    /// View model containing logic for showing / hiding gradient view.
-    private let viewModel = GradientLoadingBarViewModel()
+    // MARK: - Public properties
 
     /// Boolean flag, true if gradient view is currently visible, otherwise false.
     public var isVisible: Bool {
@@ -63,7 +60,12 @@ open class GradientLoadingBarController {
     public private(set) var superview: UIView?
     
     /// Singleton instance.
-    public static var shared = GradientLoadingBar()
+    public static var shared: GradientLoadingBar = GradientLoadingBar()
+
+    // MARK: - Private properties
+
+    /// View model containing logic for the gradient view.
+    private let viewModel = GradientLoadingBarViewModel()
 
     // MARK: - Initializers
 
@@ -80,19 +82,25 @@ open class GradientLoadingBarController {
         height: Double = DefaultValues.height,
         durations: Durations = DefaultValues.durations,
         gradientColors: GradientColors = DefaultValues.gradientColors,
-        onView superview: UIView? = UIApplication.shared.keyWindow
+        onView superview: UIView? = nil
     ) {
         self.height = height
-        self.superview = superview
 
         gradientView = GradientView(
             animationDurations: durations,
             gradientColors: gradientColors
         )
 
-        addGradientViewToSuperview()
-
         viewModel.delegate = self
+
+        if let superview = superview {
+            // We have a custom superview given from the user, therefore add gradient view immediatly.
+            self.superview = superview
+            addGradientViewToSuperview()
+        } else {
+            // No superview given, let the view model notify us when `keyWindow` becomes available.
+            viewModel.setupObserverForKeyWindow()
+        }
     }
 
     deinit {
@@ -104,19 +112,8 @@ open class GradientLoadingBarController {
     // MARK: - Layout
 
     private func addGradientViewToSuperview() {
-        guard let superview = superview else {
-            // If initializer is called in "appDelegate" key window will not be available, so we setup an observer
-            // to add "gradientView" to key window (by saving it as superview) when it's ready.
-            NotificationCenter.default.observeOnce(forName: .UIWindowDidBecomeKey) { (_ notification) in
-                self.superview = UIApplication.shared.keyWindow
-                self.addGradientViewToSuperview()
-            }
+        guard let superview = superview else { return }
 
-            // Stop here and wait for observer to finish.
-            return
-        }
-
-        // Superview is available here, so we can safely add and layout gradient view
         gradientView.translatesAutoresizingMaskIntoConstraints = false
         superview.addSubview(gradientView)
 
@@ -179,6 +176,17 @@ open class GradientLoadingBarController {
 // MARK: - GradientLoadingBarViewModelDelegate
 
 extension GradientLoadingBarController: GradientLoadingBarViewModelDelegate {
+    func viewModel(_ viewModel: GradientLoadingBarViewModel, didUpdateKeyWindow keyWindow: UIView) {
+        guard superview == nil else {
+            // The viewmodel informed us eventhough we already have a valid superview.
+            // This isn't supposed to happen, therefore safely exit here.
+            return
+        }
+
+        superview = keyWindow
+        addGradientViewToSuperview()
+    }
+
     func viewModel(_ viewModel: GradientLoadingBarViewModel, didUpdateVisibility visible: Bool) {
         if visible {
             gradientView.show()
