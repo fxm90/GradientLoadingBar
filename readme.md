@@ -5,7 +5,7 @@ GradientLoadingBar
 
 ### Example
 An animated gradient loading bar.
-Inspired by [iOS Style Gradient Progress Bar with Pure CSS/CSS3](http://www.cssscript.com/ios-style-gradient-progress-bar-with-pure-css-css3/).
+Inspired by [iOS Style Gradient Progress Bar with Pure CSS/CSS3](https://codepen.io/marcobiedermann/pen/LExXWW).
 
 ![Example](http://felix.hamburg/files/github/gradient-loading-bar/screen.gif)
 
@@ -48,10 +48,10 @@ For custom colors you'll have to pass an array with `UIColor` values. For creati
 For an example using the loading bar on a custom superview (e.g. an `UIButton` or `UINavigationBar` ) see the example application. For further cusomization you can also subclass `GradientLoadingBar` and overwrite the method `setupConstraints()`. This also shown in the __example application__.
 
 ##### – Shown underneath navigation bar
-![Example](http://felix.hamburg/files/github/gradient-loading-bar/navigation-bar-50.jpg)
+![Example](http://felix.hamburg/files/github/gradient-loading-bar/navigation-bar.jpg)
 
 ##### – Shown on custom superview
-![Example](http://felix.hamburg/files/github/gradient-loading-bar/uibutton-50.jpg)
+![Example](http://felix.hamburg/files/github/gradient-loading-bar/uibutton.jpg)
 
 #### Custom shared instance
 If you don't want to save the instance on a variable and use the singleton instead, you can use the static `shared` variable. Add the following code to your app delegate `didFinishLaunchingWithOptions` method:
