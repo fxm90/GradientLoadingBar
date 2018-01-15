@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ifT-FE-PM5">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Gradient Loading Bar Example-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="GradientLoadingBar_Example" customModuleProvider="target" sceneMemberID="viewController">
@@ -23,92 +21,122 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Hrq-tB-Sk3" userLabel="Top Stack View">
-                                <rect key="frame" x="24" y="285.5" width="327" height="40"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="gNE-5F-gHL">
+                                <rect key="frame" x="16" y="257.5" width="343" height="152"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6V-cT-b8Q">
-                                        <rect key="frame" x="0.0" y="0.0" width="98.5" height="40"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
-                                        <state key="normal" title="Show"/>
-                                        <connections>
-                                            <action selector="onShowButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="waN-Bz-Apv"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vPX-Aq-vYS">
-                                        <rect key="frame" x="114.5" y="0.0" width="98" height="40"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
-                                        <state key="normal" title="Toggle"/>
-                                        <connections>
-                                            <action selector="onToggleButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="WR3-PO-oRU"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mLp-ey-yd5">
-                                        <rect key="frame" x="228.5" y="0.0" width="98.5" height="40"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
-                                        <state key="normal" title="Hide"/>
-                                        <connections>
-                                            <action selector="onHideButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="I90-ag-8WI"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Hrq-tB-Sk3" userLabel="Top Stack View">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6V-cT-b8Q">
+                                                <rect key="frame" x="0.0" y="0.0" width="103.5" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                                <state key="normal" title="Show"/>
+                                                <connections>
+                                                    <action selector="onShowButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="waN-Bz-Apv"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vPX-Aq-vYS">
+                                                <rect key="frame" x="119.5" y="0.0" width="104" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                                <state key="normal" title="Toggle"/>
+                                                <connections>
+                                                    <action selector="onToggleButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="WR3-PO-oRU"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mLp-ey-yd5">
+                                                <rect key="frame" x="239.5" y="0.0" width="103.5" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                                <state key="normal" title="Hide"/>
+                                                <connections>
+                                                    <action selector="onHideButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="I90-ag-8WI"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="MKv-F0-eqc"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="TF8-vY-FS6" userLabel="Middle Stack View">
+                                        <rect key="frame" x="0.0" y="56" width="343" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nLx-up-nbV">
+                                                <rect key="frame" x="0.0" y="0.0" width="163.5" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                                <state key="normal" title="Custom Superview"/>
+                                                <connections>
+                                                    <action selector="onCustomSuperviewButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="XL2-h0-V4U"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5BO-7V-Cdp">
+                                                <rect key="frame" x="179.5" y="0.0" width="163.5" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                                <state key="normal" title="Custom Constraints"/>
+                                                <connections>
+                                                    <action selector="onCustomContraintsButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="NO0-cd-ZnA"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="5hR-ML-RUw"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="w9E-Bk-dxu" userLabel="Bottom Stack View">
+                                        <rect key="frame" x="0.0" y="112" width="343" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mji-5a-EWr">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                                <state key="normal" title="Toggle on Navigation Bar"/>
+                                                <connections>
+                                                    <action selector="onNavigationBarButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Zb3-XU-b4I"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="fEh-7D-CeZ"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="MKv-F0-eqc"/>
-                                </constraints>
-                            </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gradient Loading Bar Sample" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yyG-X7-TqU">
-                                <rect key="frame" x="24" y="44" width="327" height="24"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
-                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="TF8-vY-FS6" userLabel="Bottom Stack View">
-                                <rect key="frame" x="24" y="341.5" width="327" height="40"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nLx-up-nbV">
-                                        <rect key="frame" x="0.0" y="0.0" width="155.5" height="40"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
-                                        <state key="normal" title="Custom Superview"/>
-                                        <connections>
-                                            <action selector="onCustomSuperviewButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="XL2-h0-V4U"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5BO-7V-Cdp">
-                                        <rect key="frame" x="171.5" y="0.0" width="155.5" height="40"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
-                                        <state key="normal" title="Custom Constraints"/>
-                                        <connections>
-                                            <action selector="onCustomContraintsButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="NO0-cd-ZnA"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="5hR-ML-RUw"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="yyG-X7-TqU" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="24" id="Cgi-K1-QvI"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="yyG-X7-TqU" secondAttribute="trailing" constant="8" id="Kzx-UG-MZ8"/>
-                            <constraint firstItem="Hrq-tB-Sk3" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="8" id="RYo-pg-jMG"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="TF8-vY-FS6" secondAttribute="trailing" constant="8" id="SNM-wT-Nwp"/>
-                            <constraint firstItem="yyG-X7-TqU" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="8" id="Tux-QM-4Y2"/>
-                            <constraint firstItem="TF8-vY-FS6" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="8" id="cQs-f1-hNL"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Hrq-tB-Sk3" secondAttribute="trailing" constant="8" id="dlt-Lu-gam"/>
-                            <constraint firstItem="Hrq-tB-Sk3" firstAttribute="bottom" secondItem="kh9-bI-dsS" secondAttribute="centerY" constant="-8" id="f6U-Tr-ynV"/>
-                            <constraint firstItem="TF8-vY-FS6" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="centerY" constant="8" id="gGc-gt-mgZ"/>
+                            <constraint firstItem="gNE-5F-gHL" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="BPt-uC-1h8"/>
+                            <constraint firstAttribute="trailing" secondItem="gNE-5F-gHL" secondAttribute="trailing" constant="16" id="EZi-qz-apu"/>
+                            <constraint firstItem="gNE-5F-gHL" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="vdH-87-IYZ"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Gradient Loading Bar Example" id="b5J-DN-EQb"/>
                     <connections>
                         <outlet property="customContraintsButton" destination="5BO-7V-Cdp" id="JDw-cO-jsm"/>
                         <outlet property="customSuperviewButton" destination="nLx-up-nbV" id="WvW-bJ-aIg"/>
                         <outlet property="hideButton" destination="mLp-ey-yd5" id="sn9-wz-PhX"/>
+                        <outlet property="navigationBarButton" destination="Mji-5a-EWr" id="Wxo-IB-dhr"/>
                         <outlet property="showButton" destination="W6V-cT-b8Q" id="Dhf-Cl-DXz"/>
                         <outlet property="toggleButton" destination="vPX-Aq-vYS" id="lY1-n6-kvK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="476" y="133.5832083958021"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tNj-ke-ZYA">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ifT-FE-PM5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="whC-bc-OlF">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="XbR-lo-4bL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zjr-g8-8Je" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-359" y="134"/>
         </scene>
     </scenes>
 </document>

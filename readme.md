@@ -45,7 +45,13 @@ let gradientLoadingBar = GradientLoadingBar(
 ```
 For custom colors you'll have to pass an array with `UIColor` values. For creating those colors you can use all initializers for `UIColor`  mentioned here: [UIColor+Initializers.swift](https://gist.github.com/fxm90/1350d27abf92af3be59aaa9eb72c9310)
 
-For an example using the loading bar on a custom superview (e.g. an UIButton) see the example application. For further cusomization you can also subclass `GradientLoadingBar` and overwrite the method `setupConstraints()`. This also shown in the example application.
+For an example using the loading bar on a custom superview (e.g. an `UIButton` or `UINavigationBar` ) see the example application. For further cusomization you can also subclass `GradientLoadingBar` and overwrite the method `setupConstraints()`. This also shown in the __example application__.
+
+##### – Shown underneath navigation bar
+![Example](http://felix.hamburg/files/github/gradient-loading-bar/navigation-bar-50.jpg)
+
+##### – Shown on custom superview
+![Example](http://felix.hamburg/files/github/gradient-loading-bar/uibutton-50.jpg)
 
 #### Custom shared instance
 If you don't want to save the instance on a variable and use the singleton instead, you can use the static `shared` variable. Add the following code to your app delegate `didFinishLaunchingWithOptions` method:

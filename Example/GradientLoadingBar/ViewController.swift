@@ -18,15 +18,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var customSuperviewButton: UIButton!
     @IBOutlet weak var customContraintsButton: UIButton!
 
+    @IBOutlet weak var navigationBarButton: UIButton!
+
     var customSuperviewLoadingBar: GradientLoadingBar?
     var customConstraintsLoadingBar: BottomGradientLoadingBar?
+    var navigationLoadingBar: BottomGradientLoadingBar?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
         // Style buttons
-        let basicButtonList = [showButton, toggleButton, hideButton]
+        let basicButtonList = [showButton, toggleButton, hideButton, navigationBarButton]
         basicButtonList.forEach { (button: UIButton!) in
             button.layer.cornerRadius = 4.0
             button.tintColor = UIColor.white
@@ -50,6 +53,11 @@ class ViewController: UIViewController {
         // Add custom gradient loading bar to button.
         customConstraintsLoadingBar = BottomGradientLoadingBar(onView: customContraintsButton)
         customContraintsButton.clipsToBounds = true
+
+        // Add custom gradient loading bar to navigation bar
+        if let navigationBar = navigationController?.navigationBar {
+            navigationLoadingBar = BottomGradientLoadingBar(onView: navigationBar)
+        }
     }
 
     // MARK: - User actions
@@ -76,6 +84,12 @@ class ViewController: UIViewController {
         guard let customConstraintsLoadingBar = customConstraintsLoadingBar else { return }
 
         customConstraintsLoadingBar.toggle()
+    }
+
+    @IBAction func onNavigationBarButtonTouchUpInside(_ sender: Any) {
+        guard let navigationLoadingBar = navigationLoadingBar else { return }
+
+        navigationLoadingBar.toggle()
     }
 }
 
