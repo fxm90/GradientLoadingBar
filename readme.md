@@ -17,17 +17,13 @@ GradientLoadingBar can be added to your project using [CocoaPods](https://cocoap
 pod 'GradientLoadingBar', '~> 1.0'
 ```
 ### How to use
-To get started you need to import `GradientLoadingBar`. To show it, simply call the `show()` method and after you're done with your operations call `hide()`.
+To get started you'll have to import `GradientLoadingBar` into your file. To show the bar, simply call the `show()` method and after you're done with your operations call `hide()`.
 ```swift
-// Create instance
 let gradientLoadingBar = GradientLoadingBar()
-
-// Show loading bar
 gradientLoadingBar.show()
 
 // Do e.g. server calls etc.
 
-// Hide loading bar
 gradientLoadingBar.hide()
 ```
 ### Configuration
@@ -43,18 +39,24 @@ let gradientLoadingBar = GradientLoadingBar(
     onView: self.view
 )
 ```
-For custom colors you'll have to pass an array with `UIColor` values. For creating those colors you can use all initializers for `UIColor`  mentioned here: [UIColor+Initializers.swift](https://gist.github.com/fxm90/1350d27abf92af3be59aaa9eb72c9310)
+For using custom colors you'll have to pass an array with `UIColor` values. For creating those colors you can use all initializers for `UIColor` mentioned here: [UIColor+Initializers.swift](https://gist.github.com/fxm90/1350d27abf92af3be59aaa9eb72c9310)
 
-For an example using the loading bar on a custom superview (e.g. an `UIButton` or `UINavigationBar` ) see the example application. For further cusomization you can also subclass `GradientLoadingBar` and overwrite the method `setupConstraints()`. This also shown in the __example application__.
+For an example using the loading bar on a custom superview (e.g. an `UIButton` or `UINavigationBar` ) see the example application. For further customization you can also subclass `GradientLoadingBar` and overwrite the method `setupConstraints()`. This also shown in the __example application__.
 
-##### – Shown underneath navigation bar
+#### – Shown underneath navigation bar
 ![Example](http://felix.hamburg/files/github/gradient-loading-bar/navigation-bar.jpg)
 
-##### – Shown on custom superview
+#### – Shown on custom superview
 ![Example](http://felix.hamburg/files/github/gradient-loading-bar/uibutton.jpg)
 
-#### Custom shared instance
-If you don't want to save the instance on a variable and use the singleton instead, you can use the static `shared` variable. Add the following code to your app delegate `didFinishLaunchingWithOptions` method:
+#### – Custom shared instance (Singleton)
+If you need the loading bar on different parts of your app, you can use the given static `shared` variable:
+```swift
+GradientLoadingBar.shared.show()
+// Do e.g. server calls etc.
+GradientLoadingBar.shared.hide()
+```
+If you wish to customize the shared instance, you can add the following code e.g. to your app delegate `didFinishLaunchingWithOptions` method and overwrite the `shared` variable:
 ```swift
 GradientLoadingBar.shared = GradientLoadingBar(
     height: 3.0,
@@ -65,7 +67,6 @@ GradientLoadingBar.shared = GradientLoadingBar(
     ]
 )
 ```
-After that you can use `GradientLoadingBar.shared` to get the instance.
 
 ### Usage with PromiseKit
 Check out [my GitHub Gist](https://gist.github.com/fxm90/698554e8335f34e0c6ab95194a4678fb) on how to easily use GradientLoadingBar with [PromiseKit](http://promisekit.org/).
