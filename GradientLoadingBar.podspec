@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
 
   s.description      = <<-DESC
 An animated gradient loading bar.
-Inspired by http://www.cssscript.com/ios-style-gradient-progress-bar-with-pure-css-css3/
+Inspired by https://codepen.io/marcobiedermann/pen/LExXWW
                        DESC
 
   s.homepage         = 'https://github.com/fxm90/GradientLoadingBar'
