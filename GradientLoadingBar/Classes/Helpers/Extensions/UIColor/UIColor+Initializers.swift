@@ -41,7 +41,7 @@ public extension UIColor {
     ///  - Based on: http://stackoverflow.com/a/24263296
     ///
     /// Parameters:
-    ///  - hex: hexadecimal inter for color
+    ///  - hex: Hexadecimal integer for color
     ///
     /// Returns: UIColor instance.
     convenience init(hex: Int) {
@@ -58,7 +58,7 @@ public extension UIColor {
     ///  - Based on: http://stackoverflow.com/a/27203691
     ///
     /// Parameters:
-    ///  - hex: hexadecimal string for color
+    ///  - hex: Hexadecimal string for color
     ///
     /// Returns: UIColor instance.
     convenience init(hex: String) {
