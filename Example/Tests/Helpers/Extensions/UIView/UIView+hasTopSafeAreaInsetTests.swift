@@ -29,7 +29,7 @@ class UIViewHasTopSafeAreaInsetTests: XCTestCase {
     }
 }
 
-// MARK: - Helper: Create UIView with `safeAreaInsets` programmatically
+// MARK: - Helper: UIView with `safeAreaInsets` programmatically
 
 @available(iOS, introduced: 11.0, message: "iOS 11.0 is required for this test case")
 private class SafeAreaViewMock: UIView {

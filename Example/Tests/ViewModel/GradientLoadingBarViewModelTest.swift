@@ -42,7 +42,7 @@ class GradientLoadingBarViewModelTest: XCTestCase {
         super.tearDown()
     }
 
-    // MARK: - Test
+    // MARK: - Test `keyWindow` did update
 
     func testSetupObserverForKeyWindowShouldCallDelegateImmediately() {
         let keyWindow = UIWindow()

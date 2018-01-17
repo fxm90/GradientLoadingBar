@@ -27,18 +27,22 @@ class GradientLoadingBarTests: XCTestCase {
         super.tearDown()
     }
 
+    // MARK: - Test initializer
+
     func testInit() {
         XCTAssertEqual(superview.subviews.count, 1)
-        XCTAssertEqual(superview.subviews[0], gradientLoadingBar.gradientView)
+        XCTAssertEqual(superview.subviews.first, gradientLoadingBar.gradientView)
     }
 
     func testDeinit() {
         XCTAssertEqual(superview.subviews.count, 1)
-        XCTAssertEqual(superview.subviews[0], gradientLoadingBar.gradientView)
+        XCTAssertEqual(superview.subviews.first, gradientLoadingBar.gradientView)
 
         gradientLoadingBar = nil
         XCTAssertEqual(superview.subviews.count, 0)
     }
+
+    // MARK: - Test visibility methods
 
     func testShow() {
         gradientLoadingBar.show()
