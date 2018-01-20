@@ -7,6 +7,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [1.1.8] - 2018-20-01
+### Added
+ - Further documentation
+ - Further examples
+### Changed
+ - Refactorings (moved all logic into view model)
+ - Moved `swiftlint` as dependency from podfile to `.travis.yml`, so it's only required for CI and not for running the example application.
+
 ## [1.1.7] - 2017-12-30
 ### Changed
  - Adapt layout for iPhoneX
@@ -55,7 +63,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial release
 
 
-[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.7...master
+[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.8...master
+[1.1.8]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.7...1.1.8
 [1.1.7]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.6...1.1.7
 [1.1.6]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.5...1.1.6
 [1.1.5]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.4...1.1.5

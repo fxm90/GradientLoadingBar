@@ -1,5 +1,5 @@
 PODS:
-  - GradientLoadingBar (1.1.7)
+  - GradientLoadingBar (1.1.8)
 
 DEPENDENCIES:
   - GradientLoadingBar (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  GradientLoadingBar: 72dde6b54d857eaae7c6ef8dd1f7a6d79a9f4156
+  GradientLoadingBar: 6b0474bdfd852f55b0f6578b2b95a445f873387c
 
 PODFILE CHECKSUM: 1d80983f514bad6faf2cba60763ce0f60c671f8e
 
