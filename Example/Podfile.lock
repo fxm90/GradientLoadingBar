@@ -1,19 +1,16 @@
 PODS:
-  - GradientLoadingBar (1.1.3)
-  - SwiftLint (0.22.0)
+  - GradientLoadingBar (1.1.7)
 
 DEPENDENCIES:
   - GradientLoadingBar (from `../`)
-  - SwiftLint
 
 EXTERNAL SOURCES:
   GradientLoadingBar:
     :path: ../
 
 SPEC CHECKSUMS:
-  GradientLoadingBar: 6ab1e4025fdcbdc2a8c85e0a62663c23ab7233d0
-  SwiftLint: 1134786caedd2caab0560d2f36b76414a5a56808
+  GradientLoadingBar: 72dde6b54d857eaae7c6ef8dd1f7a6d79a9f4156
 
-PODFILE CHECKSUM: e0d0b1a0e282841ea073c71d203e50b0435aa820
+PODFILE CHECKSUM: 1d80983f514bad6faf2cba60763ce0f60c671f8e
 
 COCOAPODS: 1.3.1

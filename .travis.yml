@@ -1,14 +1,18 @@
-# references:
-# * http://www.objc.io/issue-6/travis-ci.html
-# * https://github.com/supermarin/xcpretty#usage
+#
+# travis.yml
+# Created by Felix Mau (http://felix.hamburg)
+#
+# Based on:
+#  - http://www.mokacoding.com/blog/travis-ci-ios-testing/
+#
 
-osx_image: xcode9
+osx_image: xcode9.2
 language: objective-c
-cache: cocoapods
 podfile: Example/Podfile
 before_install:
-- gem install cocoapods # Since Travis is not always on latest version
-- pod install --repo-update --project-directory=Example # "--repo-update" Fixes pod out of sync
+- brew install swiftlint
+- pod install --project-directory=Example
 script:
-- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/GradientLoadingBar.xcworkspace -scheme GradientLoadingBar-Example -destination "platform=iOS Simulator,name=iPhone 7,OS=11.0" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO | xcpretty
-- pod lib lint
+- ./Scripts/swift-lint.sh
+- ./Scripts/test.sh
+- ./Scripts/pod-lint.sh
