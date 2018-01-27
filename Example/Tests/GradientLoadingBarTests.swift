@@ -6,8 +6,8 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import XCTest
 @testable import GradientLoadingBar
+import XCTest
 
 class GradientLoadingBarTests: XCTestCase {
     var superview: UIView!
@@ -61,7 +61,7 @@ class GradientLoadingBarTests: XCTestCase {
     }
 
     func testToggle() {
-        for i in 1...100 {
+        for i in 1 ... 100 {
             gradientLoadingBar.toggle()
 
             // Visible on first iteration, after first call to toggle.

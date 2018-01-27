@@ -24,14 +24,14 @@ extension NotificationCenter {
     ///  - block:  The block to be executed when the notification is received.
     ///
     @discardableResult func observeOnce(forName name: NSNotification.Name?,
-                     object obj: Any? = nil,
-                     queue: OperationQueue? = nil,
-                     using block: @escaping (Notification) -> Swift.Void) -> NSObjectProtocol? {
+                                        object obj: Any? = nil,
+                                        queue: OperationQueue? = nil,
+                                        using block: @escaping (Notification) -> Swift.Void) -> NSObjectProtocol? {
 
         var observer: NSObjectProtocol?
         observer = addObserver(forName: name,
                                object: obj,
-                               queue: queue) { [weak self] (notification) in
+                               queue: queue) { [weak self] notification in
             defer {
                 // Remove observer, so closure will be executed just once
                 self?.removeObserver(observer!)

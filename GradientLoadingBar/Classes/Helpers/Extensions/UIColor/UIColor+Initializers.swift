@@ -46,9 +46,9 @@ public extension UIColor {
     /// Returns: UIColor instance.
     convenience init(hex: Int) {
         self.init(
-            absoluteRed: (hex >> 16) & 0xff,
-            green: (hex >> 8) & 0xff,
-            blue: hex & 0xff
+            absoluteRed: (hex >> 16) & 0xFF,
+            green: (hex >> 8) & 0xFF,
+            blue: hex & 0xFF
         )
     }
 

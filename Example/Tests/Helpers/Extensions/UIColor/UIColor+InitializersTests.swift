@@ -6,8 +6,8 @@
 //  Copyright © 2017 Felix Mau. All rights reserved.
 //
 
-import XCTest
 @testable import GradientLoadingBar
+import XCTest
 
 class UIColorInitializersTests: XCTestCase {
 
@@ -117,7 +117,7 @@ fileprivate extension UIColor {
         var blue: CGFloat = 0
         var alpha: CGFloat = 0
 
-        guard self.getRed(&red, green: &green, blue: &blue, alpha: &alpha) else {
+        guard getRed(&red, green: &green, blue: &blue, alpha: &alpha) else {
             return nil
         }
 

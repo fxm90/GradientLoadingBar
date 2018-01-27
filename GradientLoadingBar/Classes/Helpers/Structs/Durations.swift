@@ -14,10 +14,10 @@ public struct Durations {
 
     /// Duration (in sec.) for fade in animation
     let fadeIn: Double
-    
+
     /// Duration (in sec.) for fade out animation
     let fadeOut: Double
-    
+
     /// Duration (in sec.) for progress animation
     let progress: Double
 
@@ -25,7 +25,7 @@ public struct Durations {
 
     // Self-written initializer is required to allow public access
     // Source: http://stackoverflow.com/a/26224873/3532505
-    
+
     /// Handles durations for `GradientLoadingBar`
     ///
     /// Parameters:

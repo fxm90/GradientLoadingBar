@@ -55,7 +55,7 @@ open class GradientLoadingBarController {
 
     /// Superview that the gradient view is attached to.
     public private(set) var superview: UIView?
-    
+
     /// Singleton instance.
     public static var shared: GradientLoadingBar = GradientLoadingBar()
 
@@ -75,7 +75,7 @@ open class GradientLoadingBarController {
     ///  - superview:         View containing the gradient bar
     ///
     /// Returns: Instance with gradient bar
-    public init (
+    public init(
         height: Double = DefaultValues.height,
         durations: Durations = DefaultValues.durations,
         gradientColorList: [UIColor] = DefaultValues.gradientColors,
@@ -159,7 +159,7 @@ open class GradientLoadingBarController {
 // MARK: - GradientLoadingBarViewModelDelegate
 
 extension GradientLoadingBarController: GradientLoadingBarViewModelDelegate {
-    func viewModel(_ viewModel: GradientLoadingBarViewModel, didUpdateKeyWindow keyWindow: UIView) {
+    func viewModel(_: GradientLoadingBarViewModel, didUpdateKeyWindow keyWindow: UIView) {
         guard superview == nil else {
             // The viewmodel informed us eventhough we already have a valid superview.
             // This isn't supposed to happen, therefore safely exit here.
@@ -170,7 +170,7 @@ extension GradientLoadingBarController: GradientLoadingBarViewModelDelegate {
         addGradientViewToSuperview()
     }
 
-    func viewModel(_ viewModel: GradientLoadingBarViewModel, didUpdateVisibility visible: Bool) {
+    func viewModel(_: GradientLoadingBarViewModel, didUpdateVisibility visible: Bool) {
         if visible {
             gradientView.show()
         } else {
@@ -197,12 +197,12 @@ extension GradientLoadingBarController {
     ///
     /// Returns: Instance with gradient bar
     @available(*, deprecated, message: "Please use `init(height: Double, durations: Durations, gradientColorList: [UIColor], onView: UIView?)` instead")
-    public convenience init (
+    public convenience init(
         height: Double = DefaultValues.height,
         durations: Durations = DefaultValues.durations,
         gradientColors: [CGColor],
         onView superview: UIView? = nil
-        ) {
+    ) {
         self.init(height: height,
                   durations: durations,
                   gradientColorList: gradientColors.map({ UIColor(cgColor: $0) }),

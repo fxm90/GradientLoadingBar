@@ -6,8 +6,8 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import XCTest
 @testable import GradientLoadingBar
+import XCTest
 
 // MARK: - Test case
 
@@ -127,11 +127,11 @@ class GradientLoadingBarViewModelDelegateMock: GradientLoadingBarViewModelDelega
         }
     }
 
-    func viewModel(_ viewModel: GradientLoadingBarViewModel, didUpdateKeyWindow keyWindow: UIView) {
+    func viewModel(_: GradientLoadingBarViewModel, didUpdateKeyWindow keyWindow: UIView) {
         self.keyWindow = keyWindow
     }
 
-    func viewModel(_ viewModel: GradientLoadingBarViewModel, didUpdateVisibility visible: Bool) {
+    func viewModel(_: GradientLoadingBarViewModel, didUpdateVisibility visible: Bool) {
         isVisible = visible
     }
 }

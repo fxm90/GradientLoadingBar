@@ -6,8 +6,8 @@
 //  Copyright © 2017 Felix Mau. All rights reserved.
 //
 
-import XCTest
 @testable import GradientLoadingBar
+import XCTest
 
 class NotificationCenterObserveOnceTests: XCTestCase {
     var notificationCenter: NotificationCenter!
@@ -28,7 +28,7 @@ class NotificationCenterObserveOnceTests: XCTestCase {
         let notificationName = Notification.Name(rawValue: "foobar?_=\(Date().timeIntervalSince1970)")
 
         var receivedNotificationName: Notification.Name?
-        notificationCenter.observeOnce(forName: notificationName) { (receivedNotification: Notification)  in
+        notificationCenter.observeOnce(forName: notificationName) { (receivedNotification: Notification) in
             receivedNotificationName = receivedNotification.name
         }
 
@@ -43,7 +43,7 @@ class NotificationCenterObserveOnceTests: XCTestCase {
 
         // Setup a counter, to validate closure is executed just once
         var observeOnceCount = 0
-        notificationCenter.observeOnce(forName: notificationName) { (_: Notification)  in
+        notificationCenter.observeOnce(forName: notificationName) { (_: Notification) in
             observeOnceCount += 1
         }
 
@@ -56,21 +56,21 @@ class NotificationCenterObserveOnceTests: XCTestCase {
         // Trigger multiple notifications
         let notificationQuantity = 5
         for _ in 1 ... notificationQuantity {
-            self.notificationCenter.post(name: notificationName, object: nil)
+            notificationCenter.post(name: notificationName, object: nil)
         }
 
         // Validate counters
         XCTAssertEqual(observeOnceCount, 1)
         XCTAssertEqual(addObserverCount, notificationQuantity)
 
-        self.notificationCenter.removeObserver(observer)
+        notificationCenter.removeObserver(observer)
     }
 
     func testClosureShouldNotBeTriggeredIfObserverRemovedManually() {
         let notificationName = Notification.Name(rawValue: "foobar?_=\(Date().timeIntervalSince1970)")
 
         var receivedNotificationName: Notification.Name?
-        let observer = notificationCenter.observeOnce(forName: notificationName) { (receivedNotification: Notification)  in
+        let observer = notificationCenter.observeOnce(forName: notificationName) { (receivedNotification: Notification) in
             receivedNotificationName = receivedNotification.name
         }
 

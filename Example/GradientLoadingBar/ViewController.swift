@@ -6,19 +6,19 @@
 //  Copyright (c) 2017 fxm90. All rights reserved.
 //
 
-import UIKit
 import GradientLoadingBar
+import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var showButton: UIButton!
-    @IBOutlet weak var toggleButton: UIButton!
-    @IBOutlet weak var hideButton: UIButton!
+    @IBOutlet var showButton: UIButton!
+    @IBOutlet var toggleButton: UIButton!
+    @IBOutlet var hideButton: UIButton!
 
-    @IBOutlet weak var customSuperviewButton: UIButton!
-    @IBOutlet weak var customContraintsButton: UIButton!
+    @IBOutlet var customSuperviewButton: UIButton!
+    @IBOutlet var customContraintsButton: UIButton!
 
-    @IBOutlet weak var navigationBarButton: UIButton!
+    @IBOutlet var navigationBarButton: UIButton!
 
     var customSuperviewLoadingBar: GradientLoadingBar?
     var customConstraintsLoadingBar: BottomGradientLoadingBar?
@@ -62,31 +62,31 @@ class ViewController: UIViewController {
 
     // MARK: - User actions
 
-    @IBAction func onShowButtonTouchUpInside(_ sender: Any) {
+    @IBAction func onShowButtonTouchUpInside(_: Any) {
         GradientLoadingBar.shared.show()
     }
 
-    @IBAction func onToggleButtonTouchUpInside(_ sender: Any) {
+    @IBAction func onToggleButtonTouchUpInside(_: Any) {
         GradientLoadingBar.shared.toggle()
     }
 
-    @IBAction func onHideButtonTouchUpInside(_ sender: Any) {
+    @IBAction func onHideButtonTouchUpInside(_: Any) {
         GradientLoadingBar.shared.hide()
     }
 
-    @IBAction func onCustomSuperviewButtonTouchUpInside(_ sender: Any) {
+    @IBAction func onCustomSuperviewButtonTouchUpInside(_: Any) {
         guard let customSuperviewLoadingBar = customSuperviewLoadingBar else { return }
 
         customSuperviewLoadingBar.toggle()
     }
 
-    @IBAction func onCustomContraintsButtonTouchUpInside(_ sender: Any) {
+    @IBAction func onCustomContraintsButtonTouchUpInside(_: Any) {
         guard let customConstraintsLoadingBar = customConstraintsLoadingBar else { return }
 
         customConstraintsLoadingBar.toggle()
     }
 
-    @IBAction func onNavigationBarButtonTouchUpInside(_ sender: Any) {
+    @IBAction func onNavigationBarButtonTouchUpInside(_: Any) {
         guard let navigationLoadingBar = navigationLoadingBar else { return }
 
         navigationLoadingBar.toggle()
