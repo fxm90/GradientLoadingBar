@@ -5,6 +5,10 @@ use_frameworks!
 target 'GradientLoadingBar_Example' do
   pod 'GradientLoadingBar', :path => '../'
 
+  # Development pods
+  pod 'SwiftFormat/CLI'
+  pod 'SwiftLint'
+
   target 'GradientLoadingBar_Tests' do
     inherit! :search_paths
 

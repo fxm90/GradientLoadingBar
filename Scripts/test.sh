@@ -8,8 +8,11 @@
 #  - https://www.objc.io/issues/6-build-tools/travis-ci/
 #
 
+#!/bin/bash
+cd Example/
+
 xcodebuild \
-  -workspace Example/GradientLoadingBar.xcworkspace \
+  -workspace GradientLoadingBar.xcworkspace \
   -scheme GradientLoadingBar-Example \
   -enableCodeCoverage YES \
   -sdk iphonesimulator \

@@ -3,5 +3,17 @@
 # Created by Felix Mau (http://felix.hamburg)
 #
 
-# Run "swiftlint" and break build on any warnings
-cd Example && swiftlint --strict
+#!/bin/bash
+cd Example/
+
+# Path config
+PODS_ROOT="Pods"
+SWIFTLINT="${PODS_ROOT}/SwiftLint/swiftlint"
+
+if [ ! -f "$SWIFTLINT" ]; then
+    echo "warning: SwiftLint not installed!"
+    exit 1
+fi
+
+# Run "swiftlint" and break build on any warnings.
+$SWIFTLINT --strict

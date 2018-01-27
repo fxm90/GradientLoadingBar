@@ -1,4 +1,11 @@
+opt_in_rules:
+  - empty_count
+
 line_length: 160
 
-excluded: # paths to ignore during linting. Takes precedence over `included`.
+included:
+  - ./
+  - ../GradientLoadingBar
+
+excluded:
   - GradientLoadingBar/AppDelegate.swift
