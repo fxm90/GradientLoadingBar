@@ -18,7 +18,6 @@
 		970738881FA7286400930D92 /* NotificationCenter+ObserveOnceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970738861FA7286400930D92 /* NotificationCenter+ObserveOnceTests.swift */; };
 		974E3F1C1FF2AA4400C96A59 /* DurationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974E3F161FF2A85600C96A59 /* DurationsTests.swift */; };
 		974E3F221FF2DEAA00C96A59 /* GradientLoadingBarViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974E3F211FF2DEAA00C96A59 /* GradientLoadingBarViewModelTest.swift */; };
-		974E3F301FF6B9C000C96A59 /* UIView+hasTopSafeAreaInsetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974E3F2B1FF6B97800C96A59 /* UIView+hasTopSafeAreaInsetTests.swift */; };
 		975731651F8423A90009548B /* GradientLoadingBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975731631F84237C0009548B /* GradientLoadingBarTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,7 +51,6 @@
 		970738861FA7286400930D92 /* NotificationCenter+ObserveOnceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+ObserveOnceTests.swift"; sourceTree = "<group>"; };
 		974E3F161FF2A85600C96A59 /* DurationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationsTests.swift; sourceTree = "<group>"; };
 		974E3F211FF2DEAA00C96A59 /* GradientLoadingBarViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLoadingBarViewModelTest.swift; sourceTree = "<group>"; };
-		974E3F2B1FF6B97800C96A59 /* UIView+hasTopSafeAreaInsetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+hasTopSafeAreaInsetTests.swift"; sourceTree = "<group>"; };
 		975731631F84237C0009548B /* GradientLoadingBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLoadingBarTests.swift; sourceTree = "<group>"; };
 		C06CA4DFA1DCB931095ABD3D /* GradientLoadingBar.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GradientLoadingBar.podspec; path = ../GradientLoadingBar.podspec; sourceTree = "<group>"; };
 		F76834BE9E43CA11377EC030 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -181,7 +179,6 @@
 			children = (
 				970738851FA7286400930D92 /* NotificationCenter */,
 				970738831FA7286400930D92 /* UIColor */,
-				974E3F2A1FF6B97800C96A59 /* UIView */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -200,14 +197,6 @@
 				974E3F211FF2DEAA00C96A59 /* GradientLoadingBarViewModelTest.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		974E3F2A1FF6B97800C96A59 /* UIView */ = {
-			isa = PBXGroup;
-			children = (
-				974E3F2B1FF6B97800C96A59 /* UIView+hasTopSafeAreaInsetTests.swift */,
-			);
-			path = UIView;
 			sourceTree = "<group>";
 		};
 		BFC08F9E633527E553EDA250 /* Pods */ = {
@@ -485,7 +474,6 @@
 				974E3F221FF2DEAA00C96A59 /* GradientLoadingBarViewModelTest.swift in Sources */,
 				975731651F8423A90009548B /* GradientLoadingBarTests.swift in Sources */,
 				974E3F1C1FF2AA4400C96A59 /* DurationsTests.swift in Sources */,
-				974E3F301FF6B9C000C96A59 /* UIView+hasTopSafeAreaInsetTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
