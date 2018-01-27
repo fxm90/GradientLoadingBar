@@ -1,5 +1,5 @@
 PODS:
-  - GradientLoadingBar (1.1.8)
+  - GradientLoadingBar (1.1.9)
   - SwiftFormat/CLI (0.32.2)
   - SwiftLint (0.24.2)
 
@@ -13,7 +13,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  GradientLoadingBar: 6b0474bdfd852f55b0f6578b2b95a445f873387c
+  GradientLoadingBar: 82d33086e86cad5093cca159d24fddd589c91a6d
   SwiftFormat: 9db2ffa51139d7aea21a4eb90a7f7158a34cb6b5
   SwiftLint: 2aa21b96c8d13396a051bc1cb659d2ce1e0075b0
 
