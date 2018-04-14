@@ -61,11 +61,11 @@ class GradientLoadingBarTests: XCTestCase {
     }
 
     func testToggle() {
-        for i in 1 ... 100 {
+        for idx in 1 ... 100 {
             gradientLoadingBar.toggle()
 
             // Visible on first iteration, after first call to toggle.
-            let isVisible = (i % 2) == 1
+            let isVisible = (idx % 2) == 1
 
             XCTAssertEqual(gradientLoadingBar.isVisible, isVisible)
             XCTAssertEqual(superview.subviews.count, 1)

@@ -104,12 +104,12 @@ class GradientLoadingBarViewModelTest: XCTestCase {
     }
 
     func testToggleShouldUpdateVisibility() {
-        for i in 1 ... 5 {
+        for idx in 1 ... 5 {
             viewModel.toggle()
 
-            let isOdd = i % 2 == 1
+            let isOdd = idx % 2 == 1
             XCTAssertEqual(delegateMock.isVisible, isOdd)
-            XCTAssertEqual(delegateMock.visiblityCounter, i)
+            XCTAssertEqual(delegateMock.visiblityCounter, idx)
         }
     }
 }
