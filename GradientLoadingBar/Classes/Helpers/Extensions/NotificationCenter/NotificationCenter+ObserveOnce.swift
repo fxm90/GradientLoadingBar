@@ -10,7 +10,6 @@ import Foundation
 
 // Source: https://gist.github.com/fxm90/68e2cc3cd6b63751c225b1e1249088cc
 extension NotificationCenter {
-
     /// Adds an observer to the given notification center, which fires just once.
     ///
     /// Note:
@@ -27,7 +26,6 @@ extension NotificationCenter {
                                         object obj: Any? = nil,
                                         queue: OperationQueue? = nil,
                                         using block: @escaping (Notification) -> Swift.Void) -> NSObjectProtocol? {
-
         var observer: NSObjectProtocol?
         observer = addObserver(forName: name,
                                object: obj,

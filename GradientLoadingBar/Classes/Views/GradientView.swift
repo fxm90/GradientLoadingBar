@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 public final class GradientView: UIView {
-
     /// Animation-Keys for each animation
     enum AnimationKeys: String {
         case fadeIn
@@ -126,7 +125,6 @@ public final class GradientView: UIView {
 // MARK: - CAAnimationDelegate (used to automatically trigger progress animations)
 
 extension GradientView: CAAnimationDelegate {
-
     public func animationDidStart(_ anim: CAAnimation) {
         guard anim == gradientLayer.animation(forKey: AnimationKeys.fadeIn.rawValue) else {
             // We're only interested in the "fadeIn" animation, so stop here

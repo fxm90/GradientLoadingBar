@@ -12,7 +12,6 @@ import XCTest
 // MARK: - Test case
 
 class GradientLoadingBarViewModelTest: XCTestCase {
-
     var sharedApplicationMock: SharedApplicationMock!
     var notificationCenter: NotificationCenter!
 
@@ -117,7 +116,6 @@ class GradientLoadingBarViewModelTest: XCTestCase {
 // MARK: - Helper: Validate delegate calls
 
 class GradientLoadingBarViewModelDelegateMock: GradientLoadingBarViewModelDelegate {
-
     private(set) var keyWindow: UIView?
 
     private(set) var visiblityCounter = 0

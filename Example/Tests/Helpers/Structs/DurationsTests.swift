@@ -10,7 +10,6 @@
 import XCTest
 
 class DurationsTests: XCTestCase {
-
     func testInitializer() {
         let fadeIn = 0.1
         let fadeOut = 0.2

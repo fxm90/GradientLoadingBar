@@ -10,7 +10,6 @@
 import XCTest
 
 class UIColorInitializersTests: XCTestCase {
-
     func testColorFromAbsoluteRGB() {
         let red = 10
         let green = 20

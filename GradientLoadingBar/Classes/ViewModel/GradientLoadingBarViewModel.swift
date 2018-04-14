@@ -9,7 +9,6 @@ import Foundation
 
 /// Classes implementing the `GradientLoadingBarViewModelDelegate` protocol get notified about visibility changes.
 protocol GradientLoadingBarViewModelDelegate: class {
-
     /// Informs the delegate that the `keyWindow` is available.
     ///
     /// - Parameters:

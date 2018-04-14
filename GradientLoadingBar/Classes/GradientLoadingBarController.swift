@@ -21,7 +21,6 @@ open class GradientLoadingBarController {
 
     /// Struct used for default parameters in initialization
     public struct DefaultValues {
-
         /// Height of gradient bar.
         public static let height = 2.5
 
@@ -182,7 +181,6 @@ extension GradientLoadingBarController: GradientLoadingBarViewModelDelegate {
 // MARK: - Deprecated methods
 
 extension GradientLoadingBarController {
-
     /// Creates a new gradient loading bar instance.
     ///
     /// Note:

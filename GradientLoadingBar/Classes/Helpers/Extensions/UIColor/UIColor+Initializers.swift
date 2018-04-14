@@ -11,7 +11,6 @@ import UIKit
 
 // Source: https://gist.github.com/fxm90/1350d27abf92af3be59aaa9eb72c9310
 public extension UIColor {
-
     /// Create color from RGB(A)
     ///
     /// Parameters:

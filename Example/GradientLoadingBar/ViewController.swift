@@ -10,7 +10,6 @@ import GradientLoadingBar
 import UIKit
 
 class ViewController: UIViewController {
-
     @IBOutlet var showButton: UIButton!
     @IBOutlet var toggleButton: UIButton!
     @IBOutlet var hideButton: UIButton!
