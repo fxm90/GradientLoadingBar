@@ -7,6 +7,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [1.1.10] - 2018-14-04
+### Changed
+ - Updates for Swift 4.1
+ - Formatted code 
+
 ## [1.1.9] - 2018-27-01
 ### Changed
  - Formatted code
@@ -67,7 +72,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial release
 
 
-[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.9...master
+[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.10...master
+[1.1.10]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.9...1.1.10
 [1.1.9]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.8...1.1.9
 [1.1.8]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.7...1.1.8
 [1.1.7]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.6...1.1.7
