@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [1.1.11] - 2018-04-06
+### Changed
+ - Carthage Support
+
 ## [1.1.10] - 2018-14-04
 ### Changed
  - Updates for Swift 4.1
@@ -72,7 +76,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial release
 
 
-[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.10...master
+[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.11...master
+[1.1.11]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.9...1.1.11
 [1.1.10]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.9...1.1.10
 [1.1.9]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.8...1.1.9
 [1.1.8]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.7...1.1.8
