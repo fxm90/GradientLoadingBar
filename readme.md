@@ -11,10 +11,17 @@ A customizable animated gradient loading bar. Inspired by [iOS 7 Progress Bar fr
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ### Integration
+##### CocoaPods
 GradientLoadingBar can be added to your project using [CocoaPods](https://cocoapods.org/) by adding the following line to your Podfile:
 ```
 pod 'GradientLoadingBar', '~> 1.0'
 ```
+##### Carthage
+To integrate GradientLoadingBar into your Xcode project using Carthage, specify it in your Cartfile:
+```
+github "fxm90/GradientLoadingBar" ~> 1.0
+```
+Run carthage update to build the framework and drag the built GradientLoadingBar.framework into your Xcode project.
 ### How to use
 To get started you'll have to import `GradientLoadingBar` into your file. To show the bar, simply call the `show()` method and after you're done with your operations call `hide()`.
 ```swift
