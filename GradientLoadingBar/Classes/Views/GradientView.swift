@@ -84,12 +84,12 @@ public final class GradientView: UIView {
     // MARK: - Show / Hide
 
     /// Helper to toggle gradient layer visibility.
-    private func updateGradientLayerVisibility(fromValue: CGFloat, toValue: CGFloat, duration: TimeInterval, animationKey: String) {
+    private func updateGradientLayerVisibility(fromOpacity: CGFloat, toOpacity: CGFloat, duration: TimeInterval, animationKey: String) {
         let animation = CABasicAnimation(keyPath: "opacity")
         animation.delegate = self
 
-        animation.fromValue = fromValue
-        animation.toValue = toValue
+        animation.fromValue = fromOpacity
+        animation.toValue = toOpacity
 
         animation.duration = duration
 
@@ -104,8 +104,8 @@ public final class GradientView: UIView {
         // Remove possible existing fade-out animation
         gradientLayer.removeAnimation(forKey: AnimationKeys.fadeOut.rawValue)
 
-        updateGradientLayerVisibility(fromValue: 0.0,
-                                      toValue: 1.0,
+        updateGradientLayerVisibility(fromOpacity: 0.0,
+                                      toOpacity: 1.0,
                                       duration: animationDurations.fadeIn,
                                       animationKey: AnimationKeys.fadeIn.rawValue)
     }
@@ -115,8 +115,8 @@ public final class GradientView: UIView {
         // Remove possible existing fade-in animation
         gradientLayer.removeAnimation(forKey: AnimationKeys.fadeIn.rawValue)
 
-        updateGradientLayerVisibility(fromValue: 1.0,
-                                      toValue: 0.0,
+        updateGradientLayerVisibility(fromOpacity: 1.0,
+                                      toOpacity: 0.0,
                                       duration: animationDurations.fadeOut,
                                       animationKey: AnimationKeys.fadeOut.rawValue)
     }
