@@ -47,17 +47,14 @@ class GradientLoadingBarTests: XCTestCase {
     func testShow() {
         gradientLoadingBar.show()
         XCTAssertTrue(gradientLoadingBar.isVisible)
-        XCTAssertEqual(superview.subviews.count, 1)
     }
 
     func testHide() {
         gradientLoadingBar.show()
         XCTAssertTrue(gradientLoadingBar.isVisible)
-        XCTAssertEqual(superview.subviews.count, 1)
 
         gradientLoadingBar.hide()
         XCTAssertFalse(gradientLoadingBar.isVisible)
-        XCTAssertEqual(superview.subviews.count, 1)
     }
 
     func testToggle() {
@@ -68,7 +65,6 @@ class GradientLoadingBarTests: XCTestCase {
             let isVisible = (idx % 2) == 1
 
             XCTAssertEqual(gradientLoadingBar.isVisible, isVisible)
-            XCTAssertEqual(superview.subviews.count, 1)
         }
     }
 }
