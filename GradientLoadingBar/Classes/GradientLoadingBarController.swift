@@ -50,7 +50,7 @@ open class GradientLoadingBarController {
     public let gradientView: GradientView
 
     /// Height of gradient bar.
-    public private(set) var height = 0.0
+    public let height: Double
 
     /// Superview that the gradient view is attached to.
     public private(set) var superview: UIView?
