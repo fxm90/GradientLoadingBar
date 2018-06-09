@@ -60,7 +60,7 @@ class GradientLoadingBarViewModelTest: XCTestCase {
         let keyWindow = UIWindow()
         sharedApplicationMock.keyWindow = keyWindow
 
-        notificationCenter.post(name: .UIWindowDidBecomeKey,
+        notificationCenter.post(name: UIWindow.didBecomeKeyNotification,
                                 object: nil)
 
         XCTAssertEqual(delegateMock.keyWindow, keyWindow)
