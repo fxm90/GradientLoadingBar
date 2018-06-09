@@ -50,6 +50,7 @@ class GradientLoadingBarTests: XCTestCase {
     }
 
     func testHide() {
+        // Start by showing the gradient loading bar, so we'll notice the change.
         gradientLoadingBar.show()
         XCTAssertTrue(gradientLoadingBar.isVisible)
 
