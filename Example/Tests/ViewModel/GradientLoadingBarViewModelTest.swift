@@ -24,10 +24,10 @@ class GradientLoadingBarViewModelTest: XCTestCase {
         sharedApplicationMock = SharedApplicationMock()
         notificationCenter = NotificationCenter()
 
-        delegateMock = GradientLoadingBarViewModelDelegateMock()
-
         viewModel = GradientLoadingBarViewModel(sharedApplication: sharedApplicationMock,
                                                 notificationCenter: notificationCenter)
+
+        delegateMock = GradientLoadingBarViewModelDelegateMock()
         viewModel.delegate = delegateMock
     }
 
@@ -85,7 +85,9 @@ class GradientLoadingBarViewModelTest: XCTestCase {
     }
 
     func testHideShouldUpdateVisibility() {
+        // Start by showing the gradient loading bar, so we'll notice the change.
         viewModel.show()
+
         viewModel.hide()
 
         XCTAssertFalse(delegateMock.isVisible)
@@ -93,7 +95,9 @@ class GradientLoadingBarViewModelTest: XCTestCase {
     }
 
     func testHideShouldUpdateVisibilityJustOnce() {
+        // Start by showing the gradient loading bar, so we'll notice the change.
         viewModel.show()
+
         for _ in 1 ... 3 {
             viewModel.hide()
         }
