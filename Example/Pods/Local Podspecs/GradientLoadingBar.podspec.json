@@ -16,8 +16,14 @@
     "git": "https://github.com/fxm90/GradientLoadingBar.git",
     "tag": "1.1.11"
   },
+  "social_media_url": "https://twitter.com/iamfelixm",
   "platforms": {
     "ios": "9.0"
   },
-  "source_files": "GradientLoadingBar/Classes/**/*"
+  "source_files": "GradientLoadingBar/Classes/**/*",
+  "dependencies": {
+    "Observable": [
+
+    ]
+  }
 }

@@ -1,0 +1,6 @@
+framework module Observable {
+  umbrella header "Observable-umbrella.h"
+
+  export *
+  module * { export * }
+}

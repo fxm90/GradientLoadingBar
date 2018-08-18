@@ -369,10 +369,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-GradientLoadingBar_Example/Pods-GradientLoadingBar_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GradientLoadingBar/GradientLoadingBar.framework",
+				"${BUILT_PRODUCTS_DIR}/Observable/Observable.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GradientLoadingBar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Observable.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -424,7 +426,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "SWIFTFORMAT=\"${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat\"\nif [ ! -f \"$SWIFTFORMAT\" ]; then\n    echo \"warning: SwiftFormat not installed!\"\n    exit 1\nfi\n\n$SWIFTFORMAT ../ --disable \"trailingCommas\"";
+			shellScript = "SWIFTFORMAT=\"${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat\"\nif [ ! -f \"$SWIFTFORMAT\" ]; then\n    echo \"warning: SwiftFormat not installed!\"\n    exit 1\nfi\n\n$SWIFTFORMAT ../ --disable \"sortedImports, trailingCommas\" --exclude \"${PODS_ROOT}\" --wraparguments \"afterfirst\"\n";
 		};
 		972EE1CA201CA5E5001F603C /* Swiftformat */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -452,7 +454,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "SWIFTLINT=\"${PODS_ROOT}/SwiftLint/swiftlint\"\nif [ ! -f \"$SWIFTLINT\" ]; then\n    echo \"warning: SwiftLint not installed!\"\n    exit 1\nfi\n\n$SWIFTLINT";
+			shellScript = "SWIFTLINT=\"${PODS_ROOT}/SwiftLint/swiftlint\"\nif [ ! -f \"$SWIFTLINT\" ]; then\n    echo \"warning: SwiftLint not installed!\"\n    exit 1\nfi\n\n$SWIFTLINT\n";
 		};
 		97C4F18C1F7F8E7E00739B14 /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;

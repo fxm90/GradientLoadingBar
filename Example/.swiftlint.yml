@@ -8,4 +8,4 @@ included:
   - ../GradientLoadingBar
 
 excluded:
-  - GradientLoadingBar/AppDelegate.swift
+  - Pods

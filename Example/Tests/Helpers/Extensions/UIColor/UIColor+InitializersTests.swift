@@ -120,12 +120,10 @@ fileprivate extension UIColor {
             return nil
         }
 
-        return AbsoluteRGBA(
-            red: Int(red * 255.0),
-            green: Int(green * 255.0),
-            blue: Int(blue * 255.0),
-            alpha: Int(alpha * 255.0)
-        )
+        return AbsoluteRGBA(red: Int(red * 255.0),
+                            green: Int(green * 255.0),
+                            blue: Int(blue * 255.0),
+                            alpha: Int(alpha * 255.0))
     }
 }
 
