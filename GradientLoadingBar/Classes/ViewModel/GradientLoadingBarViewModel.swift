@@ -6,99 +6,79 @@
 //
 
 import Foundation
-
-/// Classes implementing the `GradientLoadingBarViewModelDelegate` protocol get notified about visibility changes.
-protocol GradientLoadingBarViewModelDelegate: class {
-    /// Informs the delegate that the `keyWindow` is available.
-    ///
-    /// - Parameters:
-    ///   - viewModel: The view model related to the gradient view.
-    ///   - visible: The new key window that the gradient view should be added to.
-    func viewModel(_ viewModel: GradientLoadingBarViewModel, didUpdateKeyWindow keyWindow: UIView)
-
-    /// Informs the delegate about the new visible state of the gradient view.
-    ///
-    /// - Parameters:
-    ///   - viewModel: The view model related to the gradient view.
-    ///   - visible: The new visibility state of the gradient view.
-    func viewModel(_ viewModel: GradientLoadingBarViewModel, didUpdateVisibility visible: Bool)
-}
+import Observable
 
 /// The `GradientLoadingBarViewModel` class is responsible for the visibility state of the gradient view.
 class GradientLoadingBarViewModel {
-
     // MARK: - Public properties
 
-    weak var delegate: GradientLoadingBarViewModelDelegate?
+    /// Boolean flag determinating whether gradient view is currently visible.
+    private(set) var isVisible = Observable(false)
 
-    /// Boolean flag, true if gradient view is currently visible, otherwise false.
-    private(set) var isVisible = false {
-        didSet {
-            // Prevent calling delegate with same visibility state.
-            if isVisible != oldValue {
-                delegate?.viewModel(self, didUpdateVisibility: isVisible)
-            }
-        }
-    }
+    /// Boolean flag determinating whether gradient view is currently visible.
+    private(set) var superview: Observable<UIView?> = Observable(nil)
 
     // MARK: - Private properties
 
-    /// Observer waiting for `keyWindow` to be ready
-    var keyWindowIsAvailableObserver: NSObjectProtocol?
+    // MARK: - Dependencies
 
-    // Dependencies
-    let sharedApplication: UIApplicationProtocol
-    let notificationCenter: NotificationCenter
+    private let sharedApplication: UIApplicationProtocol
+    private let notificationCenter: NotificationCenter
 
-    init(sharedApplication: UIApplicationProtocol = UIApplication.shared,
-         notificationCenter: NotificationCenter = NotificationCenter.default
-    ) {
+    // MARK: - Constructor
+
+    init(superview: UIView?, sharedApplication: UIApplicationProtocol = UIApplication.shared, notificationCenter: NotificationCenter = .default) {
         self.sharedApplication = sharedApplication
         self.notificationCenter = notificationCenter
-    }
 
-    deinit {
-        if let keyWindowIsAvailableObserver = keyWindowIsAvailableObserver {
-            notificationCenter.removeObserver(keyWindowIsAvailableObserver)
+        if let superview = superview {
+            self.superview.value = superview
+        } else {
+            // If the initializer is called from `appDelegate`, the key window is not available yet.
+            // Therefore we setup an observer to inform the listeners when it's ready.
+            notificationCenter.addObserver(self,
+                                           selector: #selector(didReceiveUiWindowDidBecomeKeyNotification(_:)),
+                                           name: UIWindow.didBecomeKeyNotification,
+                                           object: nil)
         }
     }
 
-    // MARK: - Handle `keyWindow` availability
+    // MARK: - Private methods
 
-    func setupObserverForKeyWindow() {
-        guard let keyWindow = sharedApplication.keyWindow else {
-            // If the controller initializer is called in `appDelegate` key window will not be available,
-            // so we setup an observer to inform the delegate when it's ready.
-            keyWindowIsAvailableObserver = notificationCenter.observeOnce(forName: UIWindow.didBecomeKeyNotification) { _ in
-                self.setupObserverForKeyWindow()
-            }
+    @objc private func didReceiveUiWindowDidBecomeKeyNotification(_: Notification) {
+        guard let keyWindow = sharedApplication.keyWindow else { return }
 
-            return
-        }
+        // Prevent informing the listeners multiple times.
+        notificationCenter.removeObserver(self)
 
-        delegate?.viewModel(self, didUpdateKeyWindow: keyWindow)
+        superview.value = keyWindow
     }
 
-    // MARK: - Visibility methods
+    // MARK: - Public methods
 
-    /// Fade in the gradient loading bar.
+    /// Fades in the gradient loading bar.
     func show() {
-        isVisible = true
+        guard !isVisible.value else { return }
+
+        isVisible.value = true
     }
 
-    /// Fade out the gradient loading bar.
+    /// Fades out the gradient loading bar.
     func hide() {
-        isVisible = false
+        guard isVisible.value else { return }
+
+        isVisible.value = false
     }
 
     /// Toggle visiblity of gradient loading bar.
     func toggle() {
-        isVisible = !isVisible
+        isVisible.value.toggle()
     }
 }
 
-// MARK: - Helper: Allow mocking `UIApplication` in tests
+// MARK: - Helper
 
+/// This allows mocking `UIApplication` in tests.
 protocol UIApplicationProtocol {
     var keyWindow: UIWindow? { get }
 }

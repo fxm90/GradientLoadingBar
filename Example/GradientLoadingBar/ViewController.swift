@@ -95,9 +95,7 @@ class ViewController: UIViewController {
 // MARK: - Custom Gradient Loading Bar
 
 class BottomGradientLoadingBar: GradientLoadingBar {
-    override func setupConstraints() {
-        guard let superview = superview else { return }
-
+    override func setupConstraints(superview: UIView) {
         NSLayoutConstraint.activate([
             gradientView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
             gradientView.trailingAnchor.constraint(equalTo: superview.trailingAnchor),

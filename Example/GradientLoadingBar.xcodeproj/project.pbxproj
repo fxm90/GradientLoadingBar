@@ -14,11 +14,9 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		77357BD34CFF2778341F80E8 /* Pods_GradientLoadingBar_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03CD5D69D7C3FBBDBF5FABBB /* Pods_GradientLoadingBar_Example.framework */; };
 		8020C040972E902A8CCAA9E7 /* Pods_GradientLoadingBar_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434E3C8A6E245A38C2831E73 /* Pods_GradientLoadingBar_Tests.framework */; };
-		970738871FA7286400930D92 /* UIColor+InitializersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970738841FA7286400930D92 /* UIColor+InitializersTests.swift */; };
-		970738881FA7286400930D92 /* NotificationCenter+ObserveOnceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970738861FA7286400930D92 /* NotificationCenter+ObserveOnceTests.swift */; };
-		974E3F1C1FF2AA4400C96A59 /* DurationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974E3F161FF2A85600C96A59 /* DurationsTests.swift */; };
-		974E3F221FF2DEAA00C96A59 /* GradientLoadingBarViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974E3F211FF2DEAA00C96A59 /* GradientLoadingBarViewModelTest.swift */; };
-		975731651F8423A90009548B /* GradientLoadingBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975731631F84237C0009548B /* GradientLoadingBarTests.swift */; };
+		970738871FA7286400930D92 /* UIColor+InitializersTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970738841FA7286400930D92 /* UIColor+InitializersTestCase.swift */; };
+		974E3F1C1FF2AA4400C96A59 /* DurationsTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974E3F161FF2A85600C96A59 /* DurationsTestCase.swift */; };
+		974E3F221FF2DEAA00C96A59 /* GradientLoadingBarViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974E3F211FF2DEAA00C96A59 /* GradientLoadingBarViewModelTestCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,11 +45,9 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* GradientLoadingBar_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GradientLoadingBar_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		970738841FA7286400930D92 /* UIColor+InitializersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+InitializersTests.swift"; sourceTree = "<group>"; };
-		970738861FA7286400930D92 /* NotificationCenter+ObserveOnceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+ObserveOnceTests.swift"; sourceTree = "<group>"; };
-		974E3F161FF2A85600C96A59 /* DurationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationsTests.swift; sourceTree = "<group>"; };
-		974E3F211FF2DEAA00C96A59 /* GradientLoadingBarViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLoadingBarViewModelTest.swift; sourceTree = "<group>"; };
-		975731631F84237C0009548B /* GradientLoadingBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLoadingBarTests.swift; sourceTree = "<group>"; };
+		970738841FA7286400930D92 /* UIColor+InitializersTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+InitializersTestCase.swift"; sourceTree = "<group>"; };
+		974E3F161FF2A85600C96A59 /* DurationsTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationsTestCase.swift; sourceTree = "<group>"; };
+		974E3F211FF2DEAA00C96A59 /* GradientLoadingBarViewModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLoadingBarViewModelTestCase.swift; sourceTree = "<group>"; };
 		C06CA4DFA1DCB931095ABD3D /* GradientLoadingBar.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GradientLoadingBar.podspec; path = ../GradientLoadingBar.podspec; sourceTree = "<group>"; };
 		F76834BE9E43CA11377EC030 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		FECB95A4857728345199461F /* Pods-GradientLoadingBar_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GradientLoadingBar_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GradientLoadingBar_Tests/Pods-GradientLoadingBar_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -126,7 +122,6 @@
 				972B29D21F7F88F6009D9F89 /* Helpers */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 				974E3F201FF2DE7A00C96A59 /* ViewModel */,
-				975731631F84237C0009548B /* GradientLoadingBarTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -149,22 +144,6 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		970738831FA7286400930D92 /* UIColor */ = {
-			isa = PBXGroup;
-			children = (
-				970738841FA7286400930D92 /* UIColor+InitializersTests.swift */,
-			);
-			path = UIColor;
-			sourceTree = "<group>";
-		};
-		970738851FA7286400930D92 /* NotificationCenter */ = {
-			isa = PBXGroup;
-			children = (
-				970738861FA7286400930D92 /* NotificationCenter+ObserveOnceTests.swift */,
-			);
-			path = NotificationCenter;
-			sourceTree = "<group>";
-		};
 		972B29D21F7F88F6009D9F89 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,8 +156,7 @@
 		972B29D31F7F88F6009D9F89 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				970738851FA7286400930D92 /* NotificationCenter */,
-				970738831FA7286400930D92 /* UIColor */,
+				970738841FA7286400930D92 /* UIColor+InitializersTestCase.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -186,7 +164,7 @@
 		974E3F151FF2A85600C96A59 /* Structs */ = {
 			isa = PBXGroup;
 			children = (
-				974E3F161FF2A85600C96A59 /* DurationsTests.swift */,
+				974E3F161FF2A85600C96A59 /* DurationsTestCase.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -194,7 +172,7 @@
 		974E3F201FF2DE7A00C96A59 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				974E3F211FF2DEAA00C96A59 /* GradientLoadingBarViewModelTest.swift */,
+				974E3F211FF2DEAA00C96A59 /* GradientLoadingBarViewModelTestCase.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -501,11 +479,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				970738871FA7286400930D92 /* UIColor+InitializersTests.swift in Sources */,
-				970738881FA7286400930D92 /* NotificationCenter+ObserveOnceTests.swift in Sources */,
-				974E3F221FF2DEAA00C96A59 /* GradientLoadingBarViewModelTest.swift in Sources */,
-				975731651F8423A90009548B /* GradientLoadingBarTests.swift in Sources */,
-				974E3F1C1FF2AA4400C96A59 /* DurationsTests.swift in Sources */,
+				970738871FA7286400930D92 /* UIColor+InitializersTestCase.swift in Sources */,
+				974E3F221FF2DEAA00C96A59 /* GradientLoadingBarViewModelTestCase.swift in Sources */,
+				974E3F1C1FF2AA4400C96A59 /* DurationsTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
