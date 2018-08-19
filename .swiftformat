@@ -1,0 +1,7 @@
+# file options
+--exclude "Example/Pods/"
+
+# rules
+--enable "blankLinesAroundMark"
+--disable "sortedImports,trailingCommas"
+--wraparguments "afterfirst"
