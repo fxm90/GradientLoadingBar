@@ -6,8 +6,8 @@
 #  - http://www.mokacoding.com/blog/travis-ci-ios-testing/
 #
 
-osx_image: xcode9.2
-language: objective-c
+osx_image: xcode10
+language: swift
 podfile: Example/Podfile
 before_install:
 - pod install --repo-update --project-directory=Example
