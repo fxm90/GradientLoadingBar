@@ -18,7 +18,7 @@ fi
 # Run "swiftformat" with same config as in xcode as well as:
 #  --dryrun: run in "dry" mode (without actually changing any files)
 #  --verbose: display detailed formatting output and warnings/errors
-SWIFT_FORMAT_RESULT="$($SWIFTFORMAT ../ --disable "trailingCommas" --dryrun --verbose)"
+SWIFT_FORMAT_RESULT="$($SWIFTFORMAT ../ --enable "blankLinesAroundMark" --disable "sortedImports, trailingCommas" --wraparguments "afterfirst" --exclude "${PODS_ROOT}" --dryrun --verbose)"
 echo "$SWIFT_FORMAT_RESULT"
 
 # Successful build if "0" files would have been updated
