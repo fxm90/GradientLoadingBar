@@ -26,7 +26,6 @@ protocol GradientLoadingBarViewModelDelegate: class {
 
 /// The `GradientLoadingBarViewModel` class is responsible for the visibility state of the gradient view.
 class GradientLoadingBarViewModel {
-
     // MARK: - Public properties
 
     weak var delegate: GradientLoadingBarViewModelDelegate?
@@ -51,8 +50,7 @@ class GradientLoadingBarViewModel {
     let notificationCenter: NotificationCenter
 
     init(sharedApplication: UIApplicationProtocol = UIApplication.shared,
-         notificationCenter: NotificationCenter = NotificationCenter.default
-    ) {
+         notificationCenter: NotificationCenter = NotificationCenter.default) {
         self.sharedApplication = sharedApplication
         self.notificationCenter = notificationCenter
     }

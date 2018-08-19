@@ -26,12 +26,10 @@ public extension UIColor {
         let normalizedBlue = CGFloat(blue) / 255.0
         let normalizedAlpha = CGFloat(alpha) / 255.0
 
-        self.init(
-            red: normalizedRed,
-            green: normalizedGreen,
-            blue: normalizedBlue,
-            alpha: normalizedAlpha
-        )
+        self.init(red: normalizedRed,
+                  green: normalizedGreen,
+                  blue: normalizedBlue,
+                  alpha: normalizedAlpha)
     }
 
     /// Create color from an hexadecimal integer value (e.g. 0xFFFFFF)
@@ -44,11 +42,9 @@ public extension UIColor {
     ///
     /// Returns: UIColor instance.
     convenience init(hex: Int) {
-        self.init(
-            absoluteRed: (hex >> 16) & 0xFF,
-            green: (hex >> 8) & 0xFF,
-            blue: hex & 0xFF
-        )
+        self.init(absoluteRed: (hex >> 16) & 0xFF,
+                  green: (hex >> 8) & 0xFF,
+                  blue: hex & 0xFF)
     }
 
     /// Create color from an hexadecimal string value (e.g. "#FFFFFF" / "FFFFFF")
@@ -73,9 +69,7 @@ public extension UIColor {
         var hex: UInt32 = 0
         Scanner(string: normalizedHexColor).scanHexInt32(&hex)
 
-        self.init(
-            hex: Int(hex)
-        )
+        self.init(hex: Int(hex))
     }
 
     @available(*, deprecated, message: "Please use `init(hex: String)` instead")

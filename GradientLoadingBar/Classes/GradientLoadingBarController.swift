@@ -16,7 +16,6 @@ public typealias GradientLoadingBar = GradientLoadingBarController
 // MARK: - Controller
 
 open class GradientLoadingBarController {
-
     // MARK: - Types
 
     /// Struct used for default parameters in initialization
@@ -74,18 +73,14 @@ open class GradientLoadingBarController {
     ///  - superview:         View containing the gradient bar
     ///
     /// Returns: Instance with gradient bar
-    public init(
-        height: Double = DefaultValues.height,
-        durations: Durations = DefaultValues.durations,
-        gradientColorList: [UIColor] = DefaultValues.gradientColors,
-        onView superview: UIView? = nil
-    ) {
+    public init(height: Double = DefaultValues.height,
+                durations: Durations = DefaultValues.durations,
+                gradientColorList: [UIColor] = DefaultValues.gradientColors,
+                onView superview: UIView? = nil) {
         self.height = height
 
-        gradientView = GradientView(
-            animationDurations: durations,
-            gradientColorList: gradientColorList
-        )
+        gradientView = GradientView(animationDurations: durations,
+                                    gradientColorList: gradientColorList)
 
         viewModel.delegate = self
 
@@ -195,12 +190,10 @@ extension GradientLoadingBarController {
     ///
     /// Returns: Instance with gradient bar
     @available(*, deprecated, message: "Please use `init(height: Double, durations: Durations, gradientColorList: [UIColor], onView: UIView?)` instead")
-    public convenience init(
-        height: Double = DefaultValues.height,
-        durations: Durations = DefaultValues.durations,
-        gradientColors: [CGColor],
-        onView superview: UIView? = nil
-    ) {
+    public convenience init(height: Double = DefaultValues.height,
+                            durations: Durations = DefaultValues.durations,
+                            gradientColors: [CGColor],
+                            onView superview: UIView? = nil) {
         self.init(height: height,
                   durations: durations,
                   gradientColorList: gradientColors.map({ UIColor(cgColor: $0) }),

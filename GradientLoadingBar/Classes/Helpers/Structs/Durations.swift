@@ -9,7 +9,6 @@
 import Foundation
 
 public struct Durations {
-
     // MARK: - Properties
 
     /// Duration (in sec.) for fade in animation
