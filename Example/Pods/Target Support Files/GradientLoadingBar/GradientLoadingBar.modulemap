@@ -1,0 +1,6 @@
+framework module GradientLoadingBar {
+  umbrella header "GradientLoadingBar-umbrella.h"
+
+  export *
+  module * { export * }
+}
