@@ -13,40 +13,14 @@ import UIKit
 public typealias GradientLoadingBar = GradientLoadingBarController
 
 open class GradientLoadingBarController {
-    // MARK: - Types
-
-    /// Struct used for default parameters in initialization
-    public struct DefaultValues {
-        /// Height of gradient bar.
-        public static let height = 2.5
-
-        /// Configuration with durations for each animation.
-        public static let durations = Durations(fadeIn: 0.33, fadeOut: 0.66, progress: 3.33)
-
-        // iOS color palette
-        // From: https://codepen.io/marcobiedermann/pen/LExXWW
-        public static let gradientColors = [
-            UIColor(hex: "#4cd964"),
-            UIColor(hex: "#5ac8fa"),
-            UIColor(hex: "#007aff"),
-            UIColor(hex: "#34aadc"),
-            UIColor(hex: "#5856d6"),
-            UIColor(hex: "#ff2d55")
-        ]
-    }
-
     // MARK: - Public properties
 
-    /// Boolean flag, true if gradient view is currently visible, otherwise false.
-    public var isVisible: Bool {
-        return viewModel.isVisible.value
-    }
+    /// The height of the gradient bar.
+    /// Notice: Has to be public to allow overwriting `setupConstraints()`
+    public let height: Double
 
     /// View containing the gradient layer.
     public let gradientView: GradientView
-
-    /// Height of gradient bar.
-    public let height: Double
 
     /// Singleton instance.
     public static var shared = GradientLoadingBar()
@@ -64,23 +38,26 @@ open class GradientLoadingBarController {
     /// Creates a new gradient loading bar instance.
     ///
     /// Parameters:
-    ///  - height:            Height of the gradient bar
-    ///  - durations:         Configuration with durations for each animation
-    ///  - gradientColorList: Colors used for the gradient
-    ///  - superview:         View containing the gradient bar
+    ///  - height:                     Height of the gradient bar
+    ///  - durations:                  Configuration with durations for each animation
+    ///  - gradientColorList:          Colors used for the gradient
+    ///  - shouldHandleSafeAreaInsets: Flag whether the top layout constraint should respect `safeAreaLayoutGuide`
+    ///  - superview:                  View containing the gradient bar
     ///
     /// Returns: Instance with gradient bar
-    public init(height: Double = DefaultValues.height,
-                durations: Durations = DefaultValues.durations,
-                gradientColorList: [UIColor] = DefaultValues.gradientColors,
+    public init(height: Double = 2.5,
+                durations: Durations = .default,
+                gradientColorList: [UIColor] = UIColor.defaultGradientColorList,
                 onView superview: UIView? = nil) {
         self.height = height
 
-        gradientView = GradientView(animationDurations: durations,
+        gradientView = GradientView(progressAnimationDuration: durations.progress,
                                     gradientColorList: gradientColorList)
+        gradientView.isHidden = true
+        gradientView.clipsToBounds = true
 
-        viewModel = GradientLoadingBarViewModel(superview: superview)
-
+        viewModel = GradientLoadingBarViewModel(superview: superview,
+                                                durations: durations)
         bindViewModelToView()
     }
 
@@ -93,30 +70,41 @@ open class GradientLoadingBarController {
     // MARK: - Private methods
 
     private func bindViewModelToView() {
-        viewModel.isVisible.observe { [weak self] nextValue, _ in
-            if nextValue {
-                self?.gradientView.show()
-            } else {
-                self?.gradientView.hide()
-            }
+        viewModel.isVisible.observeDistinct { [weak self] nextValue, _ in
+            self?.updateGradientViewVisibility(nextValue)
         }.add(to: &disposal)
 
-        viewModel.superview.observe { [weak self] nextValue, _ in
-            guard self?.gradientView.superview == nil else {
-                // The viewmodel informed us eventhough we already have a valid superview. This isn't supposed to happen, therefore we safely exit here.
-                return
-            }
-
-            guard let superview = nextValue else {
-                // We've got an invalid superview, therefore we safely exit here.
-                return
-            }
-
-            self?.addGradientView(to: superview)
+        viewModel.superview.observeDistinct { [weak self] nextValue, _ in
+            self?.addGradientView(to: nextValue)
         }.add(to: &disposal)
     }
 
-    private func addGradientView(to superview: UIView) {
+    private func updateGradientViewVisibility(_ animatedVisibilityUpdate: GradientLoadingBarViewModel.AnimatedVisibilityUpdate) {
+        let isHidden = animatedVisibilityUpdate.isHidden
+        if !isHidden {
+            gradientView.isHidden = false
+        }
+
+        UIView.animate(withDuration: animatedVisibilityUpdate.duration, animations: {
+            self.gradientView.alpha = animatedVisibilityUpdate.alpha
+        }, completion: { isFinished in
+            if isFinished && isHidden {
+                self.gradientView.isHidden = true
+            }
+        })
+    }
+
+    private func addGradientView(to superview: UIView?) {
+        guard gradientView.superview == nil else {
+            // The viewmodel informed us eventhough we already have a valid superview.
+            return
+        }
+
+        guard let superview = superview else {
+            // We've received an invalid superview.
+            return
+        }
+
         gradientView.translatesAutoresizingMaskIntoConstraints = false
         superview.addSubview(gradientView)
 
@@ -127,16 +115,8 @@ open class GradientLoadingBarController {
 
     /// Apply layout contraints for gradient loading view.
     open func setupConstraints(superview: UIView) {
-        let superViewTopAnchor: NSLayoutYAxisAnchor
-        if #available(iOS 11.0, *) {
-            // Handle iPhone X Layout, so gradient view is underneath the status bar
-            superViewTopAnchor = superview.safeAreaLayoutGuide.topAnchor
-        } else {
-            superViewTopAnchor = superview.topAnchor
-        }
-
         NSLayoutConstraint.activate([
-            gradientView.topAnchor.constraint(equalTo: superViewTopAnchor),
+            gradientView.topAnchor.constraint(equalTo: superview.topAnchor),
             gradientView.heightAnchor.constraint(equalToConstant: CGFloat(height)),
 
             gradientView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
@@ -160,6 +140,49 @@ open class GradientLoadingBarController {
     }
 }
 
+// MARK: - Safe Area Gradient Loading Bar
+
+///
+open class SafeAreaGradientLoadingBar: GradientLoadingBar {
+    // MARK: - Public properties
+
+    // override public static var shared = SafeAreaGradientLoadingBar() as GradientLoadingBar
+
+    // MARK: - Public methods
+
+    open override func setupConstraints(superview: UIView) {
+        let superViewTopAnchor: NSLayoutYAxisAnchor
+        if #available(iOS 11.0, *) {
+            superViewTopAnchor = superview.safeAreaLayoutGuide.topAnchor
+        } else {
+            superViewTopAnchor = superview.topAnchor
+        }
+
+        NSLayoutConstraint.activate([
+            gradientView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
+            gradientView.trailingAnchor.constraint(equalTo: superview.trailingAnchor),
+
+            gradientView.topAnchor.constraint(equalTo: superViewTopAnchor),
+            gradientView.heightAnchor.constraint(equalToConstant: CGFloat(height))
+        ])
+    }
+}
+
+// MARK: - Bottom Gradient Loading Bar
+
+///
+open class BottomGradientLoadingBar: GradientLoadingBar {
+    open override func setupConstraints(superview: UIView) {
+        NSLayoutConstraint.activate([
+            gradientView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
+            gradientView.trailingAnchor.constraint(equalTo: superview.trailingAnchor),
+
+            gradientView.bottomAnchor.constraint(equalTo: superview.bottomAnchor),
+            gradientView.heightAnchor.constraint(equalToConstant: CGFloat(height))
+        ])
+    }
+}
+
 // MARK: - Deprecated methods
 
 extension GradientLoadingBarController {
@@ -177,8 +200,8 @@ extension GradientLoadingBarController {
     ///
     /// Returns: Instance with gradient bar
     @available(*, deprecated, message: "Please use `init(height: Double, durations: Durations, gradientColorList: [UIColor], onView: UIView?)` instead")
-    public convenience init(height: Double = DefaultValues.height,
-                            durations: Durations = DefaultValues.durations,
+    public convenience init(height: Double = 2.5,
+                            durations: Durations = .default,
                             gradientColors: [CGColor],
                             onView superview: UIView? = nil) {
         self.init(height: height,

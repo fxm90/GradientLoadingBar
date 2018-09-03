@@ -13,10 +13,20 @@ public final class GradientView: UIView {
     // MARK: - Types
 
     /// Animation-Keys for each animation
-    enum AnimationKeys: String {
-        case fadeIn
-        case fadeOut
-        case progress
+    static let progressAnimationKey = "GradientView--progressAnimation"
+
+    // MARK: - Public properties
+
+    public override var isHidden: Bool {
+        didSet {
+            super.isHidden = isHidden
+
+            if isHidden {
+                stopProgressAnimation()
+            } else {
+                startProgressAnimation()
+            }
+        }
     }
 
     // MARK: - Private properties
@@ -24,8 +34,8 @@ public final class GradientView: UIView {
     /// Layer holding the gradient.
     private let gradientLayer = CAGradientLayer()
 
-    /// Configuration with durations for each animation.
-    private let animationDurations: Durations
+    /// Duration for the progress animation.
+    private let progressAnimationDuration: TimeInterval
 
     /// Colors used for the gradient.
     private let gradientColorList: [UIColor]
@@ -35,12 +45,12 @@ public final class GradientView: UIView {
     /// Initializes a new gradient view (holding the `CALayer` used for the gradient)
     ///
     /// Parameters:
-    ///  - animationDurations: Configuration with durations for each animation
-    ///  - gradientColors:     Colors used for the gradient
+    ///  - progressAnimationDuration: Duration for the progress animation.
+    ///  - gradientColorList:         Colors used for the gradient.
     ///
     /// Returns: Instance with gradient view
-    init(animationDurations: Durations, gradientColorList: [UIColor]) {
-        self.animationDurations = animationDurations
+    init(progressAnimationDuration: TimeInterval, gradientColorList: [UIColor]) {
+        self.progressAnimationDuration = progressAnimationDuration
         self.gradientColorList = gradientColorList
 
         super.init(frame: .zero)
@@ -52,11 +62,27 @@ public final class GradientView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - Layout
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+
+        // Unfortunately CGLayer is not affected by autolayout, so any change in the size of the view will not change the gradient layer.
+        // That's why we'll have to update the frame here manually.
+        // Three times of the width in order to apply normal, reversed and normal gradient to simulate infinte animation
+        gradientLayer.frame = CGRect(x: 0, y: 0, width: 3 * bounds.size.width, height: bounds.size.height)
+
+        gradientLayer.anchorPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.position = CGPoint(x: 0, y: 0)
+    }
+
+    public override func point(inside _: CGPoint, with _: UIEvent?) -> Bool {
+        // Passing all touches to the next view (if any), in the view stack.
+        //
+        return false
+    }
+
+    // MARK: - Private methods
 
     private func setupGradientLayer() {
-        gradientLayer.opacity = 0.0
-
         gradientLayer.startPoint = .zero
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
 
@@ -72,87 +98,22 @@ public final class GradientView: UIView {
         layer.insertSublayer(gradientLayer, at: 0)
     }
 
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-
-        // Unfortunately CGLayer is not affected by autolayout, so any change in the size of the view will not change the gradient layer.
-        // That's why we'll have to update the frame here manually.
-
-        // Three times of the width in order to apply normal, reversed and normal gradient to simulate infinte animation
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: 3 * bounds.size.width, height: bounds.size.height)
-
-        gradientLayer.anchorPoint = CGPoint(x: 0, y: 0)
-        gradientLayer.position = CGPoint(x: 0, y: 0)
-    }
-
-    // MARK: - Show / Hide
-
-    /// Helper to toggle gradient layer visibility.
-    private func updateGradientLayerVisibility(fromOpacity: CGFloat, toOpacity: CGFloat, duration: TimeInterval, animationKey: String) {
-        let animation = CABasicAnimation(keyPath: "opacity")
-        animation.delegate = self
-
-        animation.fromValue = fromOpacity
-        animation.toValue = toOpacity
-
-        animation.duration = duration
-
-        animation.fillMode = .forwards
-        animation.isRemovedOnCompletion = false
-
-        gradientLayer.add(animation, forKey: animationKey)
-    }
-
-    /// Fades in gradient view
-    public func show() {
-        // Remove possible existing fade-out animation
-        gradientLayer.removeAnimation(forKey: AnimationKeys.fadeOut.rawValue)
-
-        updateGradientLayerVisibility(fromOpacity: 0.0,
-                                      toOpacity: 1.0,
-                                      duration: animationDurations.fadeIn,
-                                      animationKey: AnimationKeys.fadeIn.rawValue)
-    }
-
-    /// Fades out gradient view
-    public func hide() {
-        // Remove possible existing fade-in animation
-        gradientLayer.removeAnimation(forKey: AnimationKeys.fadeIn.rawValue)
-
-        updateGradientLayerVisibility(fromOpacity: 1.0,
-                                      toOpacity: 0.0,
-                                      duration: animationDurations.fadeOut,
-                                      animationKey: AnimationKeys.fadeOut.rawValue)
-    }
-}
-
-// MARK: - CAAnimationDelegate
-
-extension GradientView: CAAnimationDelegate {
-    public func animationDidStart(_ anim: CAAnimation) {
-        guard anim == gradientLayer.animation(forKey: AnimationKeys.fadeIn.rawValue) else {
-            // We're only interested in the "fadeIn" animation, so exit here.
-            return
-        }
-
-        // Start progress animation together with start of fade-in animation
+    ///
+    private func startProgressAnimation() {
+        // Start progress animation together with start of fade-in animation.
         let animation = CABasicAnimation(keyPath: "position")
 
         animation.fromValue = CGPoint(x: -2 * bounds.size.width, y: 0)
         animation.toValue = CGPoint.zero
-        animation.duration = animationDurations.progress
+        animation.duration = progressAnimationDuration
         animation.repeatCount = Float.infinity
 
-        gradientLayer.add(animation, forKey: AnimationKeys.progress.rawValue)
+        gradientLayer.add(animation, forKey: GradientView.progressAnimationKey)
     }
 
-    public func animationDidStop(_ anim: CAAnimation, finished _: Bool) {
-        guard anim == gradientLayer.animation(forKey: AnimationKeys.fadeOut.rawValue) else {
-            // We're only interested in the "fadeOut" animation, so exit here.
-            return
-        }
-
-        // Stop progress animation together with finished fade-out animation
-        gradientLayer.removeAnimation(forKey: AnimationKeys.progress.rawValue)
+    ///
+    private func stopProgressAnimation() {
+        // Stop progress animation together with finished fade-out animation.
+        gradientLayer.removeAnimation(forKey: GradientView.progressAnimationKey)
     }
 }

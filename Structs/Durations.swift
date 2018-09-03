@@ -11,7 +11,12 @@ import Foundation
 /// Animation durations for fade-in / fade-out and progress animations.
 /// All values are in seconds.
 public struct Durations {
-    // MARK: - Properties
+    // MARK: - Config
+
+    ///
+    public static let `default` = Durations(fadeIn: 0.33, fadeOut: 0.66, progress: 3.33)
+
+    // MARK: - Public Properties
 
     /// Duration (in sec.) for fade in animation
     let fadeIn: Double

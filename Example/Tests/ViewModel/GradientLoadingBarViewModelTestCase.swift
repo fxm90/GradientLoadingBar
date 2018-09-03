@@ -15,6 +15,7 @@ import XCTest
 
 class GradientLoadingBarViewModelTestCase: XCTestCase {
     private var superview: UIView!
+    private var durations: Durations!
     private var sharedApplicationMock: SharedApplicationMock!
     private var notificationCenter: NotificationCenter!
 
@@ -24,10 +25,15 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
         super.setUp()
 
         superview = UIView()
+        durations = Durations(fadeIn: 1.2,
+                              fadeOut: 3.4,
+                              progress: 5.6)
+
         sharedApplicationMock = SharedApplicationMock()
         notificationCenter = NotificationCenter()
 
         viewModel = GradientLoadingBarViewModel(superview: superview,
+                                                durations: durations,
                                                 sharedApplication: sharedApplicationMock,
                                                 notificationCenter: notificationCenter)
     }
@@ -36,6 +42,7 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
         viewModel = nil
 
         superview = nil
+        durations = nil
         notificationCenter = nil
         sharedApplicationMock = nil
 
@@ -56,6 +63,7 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
     func testListenerForSuperviewShouldBeInformedAfterUIWindowDidBecomeKeyNotification() {
         // Given
         let viewModel = GradientLoadingBarViewModel(superview: nil,
+                                                    durations: durations,
                                                     sharedApplication: sharedApplicationMock,
                                                     notificationCenter: notificationCenter)
 
@@ -74,13 +82,14 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
         }.add(to: &disposal)
 
         // When
-        notificationCenter.post(name: UIWindow.didBecomeKeyNotification,
+        notificationCenter.post(name: .UIWindowDidBecomeKey,
                                 object: nil)
     }
 
     func testListenerForSuperviewShouldBeInformedAfterUIWindowDidBecomeKeyNotificationJustOnce() {
         // Given
         let viewModel = GradientLoadingBarViewModel(superview: nil,
+                                                    durations: durations,
                                                     sharedApplication: sharedApplicationMock,
                                                     notificationCenter: notificationCenter)
 
@@ -101,7 +110,7 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
 
         // When
         for _ in 1 ... 3 {
-            notificationCenter.post(name: UIWindow.didBecomeKeyNotification,
+            notificationCenter.post(name: .UIWindowDidBecomeKey,
                                     object: nil)
         }
 
@@ -115,7 +124,7 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
         viewModel.show()
 
         // Then
-        XCTAssertTrue(viewModel.isVisible.value)
+        XCTAssertTrue(viewModel.isVisible.value.isHidden)
     }
 
     func testShowShouldUpdateVisibilityJustOnce() {
@@ -133,7 +142,7 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
         }
 
         // Then
-        XCTAssertTrue(viewModel.isVisible.value)
+        XCTAssertTrue(viewModel.isVisible.value.isHidden)
         XCTAssertEqual(visiblityCounter, 2, "After the initial call to the observer, we expect it to be notified just one more time.")
     }
 
@@ -145,7 +154,7 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
         // When
         viewModel.hide()
 
-        XCTAssertFalse(viewModel.isVisible.value)
+        XCTAssertFalse(viewModel.isVisible.value.isHidden)
     }
 
     func testHideShouldUpdateVisibilityJustOnce() {
@@ -166,7 +175,7 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
         }
 
         // Then
-        XCTAssertFalse(viewModel.isVisible.value)
+        XCTAssertFalse(viewModel.isVisible.value.isHidden)
         XCTAssertEqual(visiblityCounter, 2, "After the initial call to the observer, we expect it to be notified just one more time.")
     }
 
@@ -175,7 +184,7 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
             viewModel.toggle()
 
             let isOdd = idx % 2 == 1
-            XCTAssertEqual(viewModel.isVisible.value, isOdd)
+            XCTAssertEqual(viewModel.isVisible.value.isHidden, isOdd)
         }
     }
 }

@@ -10,15 +10,35 @@ import Observable
 
 /// The `GradientLoadingBarViewModel` class is responsible for the visibility state of the gradient view.
 class GradientLoadingBarViewModel {
+    // MARK: - Types
+
+    ///
+    struct AnimatedVisibilityUpdate: Equatable {
+        ///
+        static let zero = AnimatedVisibilityUpdate(duration: 0.0, alpha: 0.0, isHidden: true)
+
+        /// The duration for the visibility update.
+        let duration: TimeInterval
+
+        /// New alpha value.
+        let alpha: CGFloat
+
+        /// Boolean flag, whether the view should be hidden after the animation is finished.
+        let isHidden: Bool
+    }
+
     // MARK: - Public properties
 
     /// Boolean flag determinating whether gradient view is currently visible.
-    private(set) var isVisible = Observable(false)
+    let isVisible: Observable<AnimatedVisibilityUpdate> = Observable(.zero)
 
     /// Boolean flag determinating whether gradient view is currently visible.
-    private(set) var superview: Observable<UIView?> = Observable(nil)
+    let superview: Observable<UIView?> = Observable(nil)
 
     // MARK: - Private properties
+
+    /// Configuration with durations for each animation.
+    private let durations: Durations
 
     // MARK: - Dependencies
 
@@ -27,7 +47,11 @@ class GradientLoadingBarViewModel {
 
     // MARK: - Constructor
 
-    init(superview: UIView?, sharedApplication: UIApplicationProtocol = UIApplication.shared, notificationCenter: NotificationCenter = .default) {
+    init(superview: UIView?,
+         durations: Durations,
+         sharedApplication: UIApplicationProtocol = UIApplication.shared,
+         notificationCenter: NotificationCenter = .default) {
+        self.durations = durations
         self.sharedApplication = sharedApplication
         self.notificationCenter = notificationCenter
 
@@ -38,7 +62,7 @@ class GradientLoadingBarViewModel {
             // Therefore we setup an observer to inform the listeners when it's ready.
             notificationCenter.addObserver(self,
                                            selector: #selector(didReceiveUiWindowDidBecomeKeyNotification(_:)),
-                                           name: UIWindow.didBecomeKeyNotification,
+                                           name: .UIWindowDidBecomeKey,
                                            object: nil)
         }
     }
@@ -51,6 +75,7 @@ class GradientLoadingBarViewModel {
         // Prevent informing the listeners multiple times.
         notificationCenter.removeObserver(self)
 
+        //
         superview.value = keyWindow
     }
 
@@ -58,21 +83,25 @@ class GradientLoadingBarViewModel {
 
     /// Fades in the gradient loading bar.
     func show() {
-        guard !isVisible.value else { return }
-
-        isVisible.value = true
+        isVisible.value = AnimatedVisibilityUpdate(duration: durations.fadeIn,
+                                                   alpha: 1.0,
+                                                   isHidden: false)
     }
 
     /// Fades out the gradient loading bar.
     func hide() {
-        guard isVisible.value else { return }
-
-        isVisible.value = false
+        isVisible.value = AnimatedVisibilityUpdate(duration: durations.fadeOut,
+                                                   alpha: 0.0,
+                                                   isHidden: true)
     }
 
     /// Toggle visiblity of gradient loading bar.
     func toggle() {
-        isVisible.value.toggle()
+        if isVisible.value.isHidden {
+            show()
+        } else {
+            hide()
+        }
     }
 }
 
