@@ -22,6 +22,7 @@
 		6E44A75E5276817BB08F4F73C2990FFB /* UIColor+Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF45528DA03D1112CBFCB0C3C2CC5D5 /* UIColor+Initializers.swift */; };
 		85AB74790BFEF71ECBF8E4E0E474EE1D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF6AA5B777CE6872A2AC92643E0F757 /* Foundation.framework */; };
 		8F4564D8D28F3E6B247AC23E5056A66A /* Observable-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3131299175A2E33CBF0F769C12C56D84 /* Observable-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		97261F2F213DA6A300F57E8D /* BottomGradientLoadingBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97261F2E213DA6A300F57E8D /* BottomGradientLoadingBarController.swift */; };
 		97DCD2C821329F760063390D /* UIColor+DefaultGradientColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DCD2C721329F760063390D /* UIColor+DefaultGradientColors.swift */; };
 		97FA5959213184BB00CCD446 /* Observable+ObserveDistinct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FA5958213184BB00CCD446 /* Observable+ObserveDistinct.swift */; };
 		9FDB4DBD4970F733BC1D1920C105F50D /* Observable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C47C72A5BD1CE40555C3CA440845A93E /* Observable.framework */; };
@@ -84,6 +85,7 @@
 		92A830507050E1BD2B0BDFF09D9D3B54 /* Observable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Observable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		94987193A3C956E52823A639B1A63FE9 /* Pods_GradientLoadingBar_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GradientLoadingBar_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		97261F2E213DA6A300F57E8D /* BottomGradientLoadingBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BottomGradientLoadingBarController.swift; path = GradientLoadingBar/Classes/BottomGradientLoadingBarController.swift; sourceTree = "<group>"; };
 		97DCD2C721329F760063390D /* UIColor+DefaultGradientColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+DefaultGradientColors.swift"; sourceTree = "<group>"; };
 		97FA5958213184BB00CCD446 /* Observable+ObserveDistinct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Observable+ObserveDistinct.swift"; sourceTree = "<group>"; };
 		9A04D73ADF1F86BA48555BCA8C37357F /* Pods-GradientLoadingBar_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GradientLoadingBar_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				06A09E03ECBCBDC050671661FC8AE063 /* GradientLoadingBarController.swift */,
+				97261F2E213DA6A300F57E8D /* BottomGradientLoadingBarController.swift */,
 				5B86B3E4B046CE8CEE7CB92D250BF78D /* Extensions */,
 				B17F5509E43F875711A13CD2968D398C /* Structs */,
 				1BA5227236DF21EEF1E76FB43C7CA971 /* Support Files */,
@@ -553,6 +556,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55656C05E84FBAA439434628CAE0807C /* Durations.swift in Sources */,
+				97261F2F213DA6A300F57E8D /* BottomGradientLoadingBarController.swift in Sources */,
 				C5CDCD73BBA932C6431C08C26F7A3F27 /* GradientLoadingBar-dummy.m in Sources */,
 				59D5281FED73053EB4FC2B7C18BB549A /* GradientLoadingBarController.swift in Sources */,
 				97DCD2C821329F760063390D /* UIColor+DefaultGradientColors.swift in Sources */,

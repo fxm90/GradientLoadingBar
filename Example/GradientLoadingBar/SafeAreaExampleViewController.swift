@@ -12,7 +12,7 @@ import GradientLoadingBar
 class SafeAreaExampleViewController: UIViewController {
     // MARK: - Private properties
 
-    let safeAreaGradientLoadingBar = SafeAreaGradientLoadingBar()
+    let safeAreaGradientLoadingBar = GradientLoadingBar(isRelativeToSafeArea: false)
 
     // MARK: - Public methods
 
