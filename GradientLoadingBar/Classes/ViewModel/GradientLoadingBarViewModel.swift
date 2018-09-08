@@ -12,9 +12,10 @@ import Observable
 class GradientLoadingBarViewModel {
     // MARK: - Types
 
-    ///
+    /// This struct contains all infomation that are required for an animated visibility update
+    /// of the loading bar.
     struct AnimatedVisibilityUpdate: Equatable {
-        ///
+        /// Initialies the struct with everything set to zero / hidden.
         static let zero = AnimatedVisibilityUpdate(duration: 0.0, alpha: 0.0, isHidden: true)
 
         /// The duration for the visibility update.
@@ -56,9 +57,10 @@ class GradientLoadingBarViewModel {
         self.notificationCenter = notificationCenter
 
         if let superview = superview {
+            // We have a valid key window » Use it as superview.
             self.superview.value = superview
         } else {
-            // If the initializer is called from `appDelegate`, the key window is not available yet.
+            // If the initializer is called from `appDelegate`, where the key window is not available yet.
             // Therefore we setup an observer to inform the listeners when it's ready.
             notificationCenter.addObserver(self,
                                            selector: #selector(didReceiveUiWindowDidBecomeKeyNotification(_:)),
@@ -75,7 +77,7 @@ class GradientLoadingBarViewModel {
         // Prevent informing the listeners multiple times.
         notificationCenter.removeObserver(self)
 
-        //
+        // Now that we have a valid key window, we can use it as superview.
         superview.value = keyWindow
     }
 
@@ -108,7 +110,7 @@ class GradientLoadingBarViewModel {
 // MARK: - Helper
 
 /// This allows mocking `UIApplication` in tests.
-protocol UIApplicationProtocol {
+protocol UIApplicationProtocol: class {
     var keyWindow: UIWindow? { get }
 }
 

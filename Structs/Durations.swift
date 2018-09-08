@@ -13,18 +13,18 @@ import Foundation
 public struct Durations {
     // MARK: - Config
 
-    ///
+    /// The default durations for the loading bar.
     public static let `default` = Durations(fadeIn: 0.33, fadeOut: 0.66, progress: 3.33)
 
     // MARK: - Public Properties
 
-    /// Duration (in sec.) for fade in animation
+    /// Duration (in sec.) for fade in animation.
     let fadeIn: Double
 
-    /// Duration (in sec.) for fade out animation
+    /// Duration (in sec.) for fade out animation.
     let fadeOut: Double
 
-    /// Duration (in sec.) for progress animation
+    /// Duration (in sec.) for progress animation.
     let progress: Double
 
     // MARK: - Initializers
@@ -32,14 +32,14 @@ public struct Durations {
     // Self-written initializer is required to allow public access
     // Source: http://stackoverflow.com/a/26224873/3532505
 
-    /// Handles durations for `GradientLoadingBar`
+    /// Handles durations for `GradientLoadingBar`.
     ///
     /// Parameters:
-    ///  - fadeIn:   Duration (in sec.) for fade in animation
-    ///  - fadeOut:  Duration (in sec.) for fade out animation
-    ///  - progress: Duration (in sec.) for progress animation
+    ///  - fadeIn:   Duration (in sec.) for fade in animation.
+    ///  - fadeOut:  Duration (in sec.) for fade out animation.
+    ///  - progress: Duration (in sec.) for progress animation.
     ///
-    /// Returns: Instance on durations
+    /// Returns: Instance of durations.
     public init(fadeIn: Double = 0.0, fadeOut: Double = 0.0, progress: Double = 0.0) {
         self.fadeIn = fadeIn
         self.fadeOut = fadeOut

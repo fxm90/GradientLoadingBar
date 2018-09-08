@@ -107,7 +107,7 @@ public final class GradientView: UIView {
         animation.toValue = CGPoint.zero
         animation.duration = progressAnimationDuration
         animation.repeatCount = Float.infinity
-        
+
         // Prevent stopping animation on disappearing view, and then coming back.
         animation.isRemovedOnCompletion = false
 
