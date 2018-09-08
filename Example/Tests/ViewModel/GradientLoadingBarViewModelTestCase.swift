@@ -52,7 +52,7 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
     // MARK: - Test `superview`
 
     func testListenerForSuperviewShouldBeInformedImmediately() {
-        // WHen
+        // When
         _ = viewModel.superview.observe { [weak self] nextValue, _ in
             // Then
             XCTAssertNotNil(nextValue)
@@ -96,7 +96,7 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
         let keyWindow = UIWindow()
         sharedApplicationMock.keyWindow = keyWindow
 
-        var visiblityCounter = 0
+        var observerCounter = 0
 
         var disposal = Disposal()
         viewModel.superview.observe { nextValue, _ in
@@ -105,7 +105,7 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
                 return
             }
 
-            visiblityCounter += 1
+            observerCounter += 1
         }.add(to: &disposal)
 
         // When
@@ -114,7 +114,7 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
                                     object: nil)
         }
 
-        XCTAssertEqual(visiblityCounter, 1)
+        XCTAssertEqual(observerCounter, 1)
     }
 
     // MARK: - Test visibility
@@ -124,26 +124,10 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
         viewModel.show()
 
         // Then
-        XCTAssertTrue(viewModel.isVisible.value.isHidden)
-    }
+        let receivedAnimatedVisibilityUpdate = viewModel.isVisible.value
+        let expectedAnimatedVisibilityUpdate = makeAnimatedVisibilityUpdateForStateIsVisible
 
-    func testShowShouldUpdateVisibilityJustOnce() {
-        // Given
-        var visiblityCounter = 0
-
-        var disposal = Disposal()
-        viewModel.isVisible.observe { _, _ in
-            visiblityCounter += 1
-        }.add(to: &disposal)
-
-        // When
-        for _ in 1 ... 10 {
-            viewModel.show()
-        }
-
-        // Then
-        XCTAssertTrue(viewModel.isVisible.value.isHidden)
-        XCTAssertEqual(visiblityCounter, 2, "After the initial call to the observer, we expect it to be notified just one more time.")
+        XCTAssertEqual(receivedAnimatedVisibilityUpdate, expectedAnimatedVisibilityUpdate)
     }
 
     func testHideShouldUpdateVisibility() {
@@ -154,42 +138,56 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
         // When
         viewModel.hide()
 
-        XCTAssertFalse(viewModel.isVisible.value.isHidden)
-    }
-
-    func testHideShouldUpdateVisibilityJustOnce() {
-        // Given
-        // Start by showing the gradient loading bar, so we'll notice the change.
-        viewModel.show()
-
-        var visiblityCounter = 0
-
-        var disposal = Disposal()
-        viewModel.isVisible.observe { _, _ in
-            visiblityCounter += 1
-        }.add(to: &disposal)
-
-        // When
-        for _ in 1 ... 10 {
-            viewModel.hide()
-        }
-
         // Then
-        XCTAssertFalse(viewModel.isVisible.value.isHidden)
-        XCTAssertEqual(visiblityCounter, 2, "After the initial call to the observer, we expect it to be notified just one more time.")
+        let receivedAnimatedVisibilityUpdate = viewModel.isVisible.value
+        let expectedAnimatedVisibilityUpdate = makeAnimatedVisibilityUpdateForStateIsHidden
+
+        XCTAssertEqual(receivedAnimatedVisibilityUpdate, expectedAnimatedVisibilityUpdate)
     }
 
     func testToggleShouldUpdateVisibility() {
+        // Given
         for idx in 1 ... 5 {
+            // When
             viewModel.toggle()
 
-            let isOdd = idx % 2 == 1
-            XCTAssertEqual(viewModel.isVisible.value.isHidden, isOdd)
+            // Then
+            let receivedAnimatedVisibilityUpdate = viewModel.isVisible.value
+            let expectedAnimatedVisibilityUpdate: GradientLoadingBarViewModel.AnimatedVisibilityUpdate
+
+            let viewShouldBeHidden = idx % 2 == 0
+            if viewShouldBeHidden {
+                expectedAnimatedVisibilityUpdate = makeAnimatedVisibilityUpdateForStateIsHidden
+            } else {
+                expectedAnimatedVisibilityUpdate = makeAnimatedVisibilityUpdateForStateIsVisible
+            }
+
+            XCTAssertEqual(receivedAnimatedVisibilityUpdate, expectedAnimatedVisibilityUpdate)
         }
     }
 }
 
-// MARK: - Helper: Mock for `UIApplication`
+// MARK: - Helpers
+
+extension GradientLoadingBarViewModelTestCase {
+    /// Returns an object for animated visibility updates from state visible to hidden.
+    var makeAnimatedVisibilityUpdateForStateIsHidden: GradientLoadingBarViewModel.AnimatedVisibilityUpdate {
+        // swiftlint:disable:previous identifier_name
+        return GradientLoadingBarViewModel.AnimatedVisibilityUpdate(duration: durations.fadeOut,
+                                                                    alpha: 0.0,
+                                                                    isHidden: true)
+    }
+
+    /// Returns an object for animated visibility updates from state hidden to visible.
+    var makeAnimatedVisibilityUpdateForStateIsVisible: GradientLoadingBarViewModel.AnimatedVisibilityUpdate {
+        // swiftlint:disable:previous identifier_name
+        return GradientLoadingBarViewModel.AnimatedVisibilityUpdate(duration: durations.fadeIn,
+                                                                    alpha: 1.0,
+                                                                    isHidden: false)
+    }
+}
+
+// MARK: - Mocks
 
 class SharedApplicationMock: UIApplicationProtocol {
     var keyWindow: UIWindow?
