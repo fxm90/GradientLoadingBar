@@ -31,7 +31,7 @@
                                     <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Basic Example" prompt="Gradient Loading Bar" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="always" id="kSM-Tb-O8e"/>
+                                    <navigationItem title="🏡 Basic Example" prompt="Gradient Loading Bar" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="always" id="kSM-Tb-O8e"/>
                                 </items>
                                 <connections>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="TbW-eG-GAT"/>
@@ -109,7 +109,7 @@
                             <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vUY-8I-ztr" userLabel="Navigation Bar">
                                 <rect key="frame" x="0.0" y="20" width="375" height="130"/>
                                 <items>
-                                    <navigationItem title="Navigation Bar Example" prompt="Gradient Loading Bar" largeTitleDisplayMode="always" id="Xgn-TU-GiE"/>
+                                    <navigationItem title="💡 Navigation Bar Example" prompt="Gradient Loading Bar" largeTitleDisplayMode="always" id="Xgn-TU-GiE"/>
                                 </items>
                                 <connections>
                                     <outlet property="delegate" destination="sEh-Tc-lv1" id="37c-xg-1ug"/>
@@ -196,7 +196,7 @@
                                     <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Safe Area Example" prompt="Gradient Loading Bar" largeTitleDisplayMode="always" id="xuH-OM-7Aj"/>
+                                    <navigationItem title="📲 Safe Area Example" prompt="Gradient Loading Bar" largeTitleDisplayMode="always" id="xuH-OM-7Aj"/>
                                 </items>
                                 <connections>
                                     <outlet property="delegate" destination="G0W-Ta-C7r" id="DGD-4U-jfA"/>
@@ -277,7 +277,7 @@
                             <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bs6-mY-v3z" userLabel="Navigation Bar">
                                 <rect key="frame" x="0.0" y="20" width="375" height="130"/>
                                 <items>
-                                    <navigationItem title="Advanced Example" prompt="Gradient Loading Bar" largeTitleDisplayMode="always" id="kYk-ST-73y"/>
+                                    <navigationItem title="🚀 Advanced Example" prompt="Gradient Loading Bar" largeTitleDisplayMode="always" id="kYk-ST-73y"/>
                                 </items>
                                 <connections>
                                     <outlet property="delegate" destination="l28-cg-vu8" id="gIY-Ta-u93"/>
