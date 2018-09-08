@@ -13,12 +13,12 @@ class AdvancedExampleViewController: UIViewController {
     // MARK: - Outlets
 
     @IBOutlet var customSuperviewButton: BlueBorderedButton!
-    @IBOutlet var customGradientColorsButton: BlueBorderedButton!
+    @IBOutlet var customColorsButton: BlueBorderedButton!
 
     // MARK: - Private properties
 
     private var buttonGradientLoadingBar: GradientLoadingBar?
-    private var customGradientColorsGradientLoadingBar: GradientLoadingBar?
+    private var customColorsGradientLoadingBar: GradientLoadingBar?
 
     // MARK: - Public methods
 
@@ -29,15 +29,15 @@ class AdvancedExampleViewController: UIViewController {
                                                       onView: customSuperviewButton)
 
         // Source: https://color.adobe.com/Pink-Flamingo-color-theme-10343714/
-        customGradientColorsGradientLoadingBar = BottomGradientLoadingBar(height: 3.0,
-                                                                          gradientColorList: [
-                                                                              UIColor(hex: "#f2526e"),
-                                                                              UIColor(hex: "#f17a97"),
-                                                                              UIColor(hex: "#f3bcc8"),
-                                                                              UIColor(hex: "#6dddf2"),
-                                                                              UIColor(hex: "#c1f0f4")
-                                                                          ],
-                                                                          onView: customGradientColorsButton)
+        customColorsGradientLoadingBar = BottomGradientLoadingBar(height: 3.0,
+                                                                  gradientColorList: [
+                                                                      UIColor(hex: "#f2526e"),
+                                                                      UIColor(hex: "#f17a97"),
+                                                                      UIColor(hex: "#f3bcc8"),
+                                                                      UIColor(hex: "#6dddf2"),
+                                                                      UIColor(hex: "#c1f0f4")
+                                                                  ],
+                                                                  onView: customColorsButton)
     }
 
     @IBAction func customSuperviewButtonTouchUpInside(_: Any) {
@@ -45,7 +45,7 @@ class AdvancedExampleViewController: UIViewController {
     }
 
     @IBAction func customGradientColorsButtonTouchUpInside(_: Any) {
-        customGradientColorsGradientLoadingBar?.toggle()
+        customColorsGradientLoadingBar?.toggle()
     }
 }
 

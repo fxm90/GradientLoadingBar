@@ -283,11 +283,11 @@
                                     <outlet property="delegate" destination="l28-cg-vu8" id="gIY-Ta-u93"/>
                                 </connections>
                             </navigationBar>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="U9H-uQ-uml">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="U9H-uQ-uml">
                                 <rect key="frame" x="16" y="150" width="343" height="468"/>
                                 <subviews>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCv-N4-HyQ" customClass="BlueBorderedButton" customModule="GradientLoadingBar_Example" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="214" width="138.5" height="40"/>
+                                        <rect key="frame" x="0.0" y="214" width="163.5" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="dRO-9l-Y6y"/>
                                         </constraints>
@@ -298,12 +298,12 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4T-ew-NT3" userLabel="Custom Colors Button" customClass="BlueBorderedButton" customModule="GradientLoadingBar_Example" customModuleProvider="target">
-                                        <rect key="frame" x="154.5" y="214" width="188.5" height="40"/>
+                                        <rect key="frame" x="179.5" y="214" width="163.5" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="0Ni-Bh-WPG"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
-                                        <state key="normal" title="Custom Gradient Colors"/>
+                                        <state key="normal" title="Custom Colors"/>
                                         <connections>
                                             <action selector="customGradientColorsButtonTouchUpInside:" destination="l28-cg-vu8" eventType="touchUpInside" id="eeU-Lu-Jg0"/>
                                         </connections>
@@ -325,7 +325,7 @@
                     <tabBarItem key="tabBarItem" title="Advanced Example" image="rocket" id="SyM-zw-tlg"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="customGradientColorsButton" destination="v4T-ew-NT3" id="Z7N-mY-X4b"/>
+                        <outlet property="customColorsButton" destination="v4T-ew-NT3" id="Z7N-mY-X4b"/>
                         <outlet property="customSuperviewButton" destination="xCv-N4-HyQ" id="Mxt-nu-ZS3"/>
                     </connections>
                 </viewController>
