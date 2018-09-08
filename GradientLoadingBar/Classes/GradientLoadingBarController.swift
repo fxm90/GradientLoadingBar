@@ -53,7 +53,7 @@ open class GradientLoadingBarController {
                 durations: Durations = .default,
                 gradientColorList: [UIColor] = UIColor.defaultGradientColorList,
                 isRelativeToSafeArea: Bool = true,
-                onView superview: UIView? = nil) {
+                onView superview: UIView? = UIApplication.shared.keyWindow) {
         self.height = height
         self.isRelativeToSafeArea = isRelativeToSafeArea
 
