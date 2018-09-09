@@ -69,20 +69,19 @@ public final class GradientView: UIView {
         // That's why we'll have to update the frame here manually.
         // Three times of the width in order to apply normal, reversed and normal gradient to simulate infinte animation
         gradientLayer.frame = CGRect(x: 0, y: 0, width: 3 * bounds.size.width, height: bounds.size.height)
-
-        gradientLayer.anchorPoint = CGPoint(x: 0, y: 0)
-        gradientLayer.position = CGPoint(x: 0, y: 0)
+        gradientLayer.position = .zero
     }
 
     public override func point(inside _: CGPoint, with _: UIEvent?) -> Bool {
         // Passing all touches to the next view (if any), in the view stack.
-        //
         return false
     }
 
     // MARK: - Private methods
 
     private func setupGradientLayer() {
+        gradientLayer.anchorPoint = .zero
+        
         gradientLayer.startPoint = .zero
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
 
@@ -98,9 +97,7 @@ public final class GradientView: UIView {
         layer.insertSublayer(gradientLayer, at: 0)
     }
 
-    ///
     private func startProgressAnimation() {
-        // Start progress animation together with start of fade-in animation.
         let animation = CABasicAnimation(keyPath: "position")
 
         animation.fromValue = CGPoint(x: -2 * bounds.size.width, y: 0)
@@ -114,9 +111,7 @@ public final class GradientView: UIView {
         gradientLayer.add(animation, forKey: GradientView.progressAnimationKey)
     }
 
-    ///
     private func stopProgressAnimation() {
-        // Stop progress animation together with finished fade-out animation.
         gradientLayer.removeAnimation(forKey: GradientView.progressAnimationKey)
     }
 }
