@@ -81,7 +81,7 @@ public final class GradientView: UIView {
 
     private func setupGradientLayer() {
         gradientLayer.anchorPoint = .zero
-        
+
         gradientLayer.startPoint = .zero
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
 
