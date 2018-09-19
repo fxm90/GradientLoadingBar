@@ -61,7 +61,7 @@ class GradientLoadingBarViewModel {
             // Therefore we setup an observer to inform the listeners when it's ready.
             notificationCenter.addObserver(self,
                                            selector: #selector(didReceiveUiWindowDidBecomeKeyNotification(_:)),
-                                           name: .UIWindowDidBecomeKey,
+                                           name: UIWindow.didBecomeKeyNotification,
                                            object: nil)
         }
     }

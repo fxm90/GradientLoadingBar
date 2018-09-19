@@ -83,7 +83,7 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
         }.add(to: &disposal)
 
         // When
-        notificationCenter.post(name: .UIWindowDidBecomeKey,
+        notificationCenter.post(name: UIWindow.didBecomeKeyNotification,
                                 object: nil)
     }
 
@@ -111,7 +111,7 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
 
         // When
         for _ in 1 ... 3 {
-            notificationCenter.post(name: .UIWindowDidBecomeKey,
+            notificationCenter.post(name: UIWindow.didBecomeKeyNotification,
                                     object: nil)
         }
 
