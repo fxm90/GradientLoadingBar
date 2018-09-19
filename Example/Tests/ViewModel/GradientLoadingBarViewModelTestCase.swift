@@ -53,11 +53,12 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
 
     func testListenerForSuperviewShouldBeInformedImmediately() {
         // When
-        _ = viewModel.superview.observe { [weak self] nextValue, _ in
+        var disposal = Disposal()
+        viewModel.superview.observe { [weak self] nextValue, _ in
             // Then
             XCTAssertNotNil(nextValue)
             XCTAssertEqual(nextValue, self?.superview)
-        }
+        }.add(to: &disposal)
     }
 
     func testListenerForSuperviewShouldBeInformedAfterUIWindowDidBecomeKeyNotification() {
@@ -174,7 +175,6 @@ extension GradientLoadingBarViewModelTestCase {
     var makeAnimatedVisibilityUpdateForStateIsHidden: GradientLoadingBarViewModel.AnimatedVisibilityUpdate {
         // swiftlint:disable:previous identifier_name
         return GradientLoadingBarViewModel.AnimatedVisibilityUpdate(duration: durations.fadeOut,
-                                                                    alpha: 0.0,
                                                                     isHidden: true)
     }
 
@@ -182,7 +182,6 @@ extension GradientLoadingBarViewModelTestCase {
     var makeAnimatedVisibilityUpdateForStateIsVisible: GradientLoadingBarViewModel.AnimatedVisibilityUpdate {
         // swiftlint:disable:previous identifier_name
         return GradientLoadingBarViewModel.AnimatedVisibilityUpdate(duration: durations.fadeIn,
-                                                                    alpha: 1.0,
                                                                     isHidden: false)
     }
 }

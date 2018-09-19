@@ -91,18 +91,13 @@ open class GradientLoadingBarController {
     }
 
     private func updateGradientViewVisibility(_ animatedVisibilityUpdate: GradientLoadingBarViewModel.AnimatedVisibilityUpdate) {
-        let isHidden = animatedVisibilityUpdate.isHidden
-        if !isHidden {
-            gradientView.isHidden = false
-        }
-
-        UIView.animate(withDuration: animatedVisibilityUpdate.duration, animations: {
-            self.gradientView.alpha = animatedVisibilityUpdate.alpha
-        }, completion: { isFinished in
-            if isFinished && isHidden {
-                self.gradientView.isHidden = true
-            }
-        })
+        UIView.transition(with: gradientView,
+                          duration: animatedVisibilityUpdate.duration,
+                          options: [.transitionCrossDissolve],
+                          animations: {
+                              self.gradientView.isHidden = animatedVisibilityUpdate.isHidden
+                          },
+                          completion: nil)
     }
 
     private func addGradientView(to superview: UIView?) {
