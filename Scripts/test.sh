@@ -1,6 +1,6 @@
 #
 # test.sh
-# Created by Felix Mau (http://felix.hamburg)
+# Created by Felix Mau (https://felix.hamburg)
 #
 # Based on:
 #  - http://www.mokacoding.com/blog/running-tests-from-the-terminal/

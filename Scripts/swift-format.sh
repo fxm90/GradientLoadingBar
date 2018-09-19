@@ -1,6 +1,6 @@
 #
 # swift-format.sh
-# Created by Felix Mau (http://felix.hamburg)
+# Created by Felix Mau (https://felix.hamburg)
 #
 
 #!/bin/bash
