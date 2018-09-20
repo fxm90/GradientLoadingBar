@@ -16,6 +16,6 @@ xcodebuild \
   -scheme GradientLoadingBar-Example \
   -enableCodeCoverage YES \
   -sdk iphonesimulator \
-  -destination 'platform=iOS Simulator,name=iPhone X,OS=11.2' \
+  -destination 'platform=iOS Simulator,name=iPhone XR,OS=12.0' \
   ONLY_ACTIVE_ARCH=NO \
   test | xcpretty && exit ${PIPESTATUS[0]}

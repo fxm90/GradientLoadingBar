@@ -6,7 +6,7 @@
 #  - http://www.mokacoding.com/blog/travis-ci-ios-testing/
 #
 
-osx_image: xcode9.4
+osx_image: xcode10
 language: swift
 podfile: Example/Podfile
 before_install:
