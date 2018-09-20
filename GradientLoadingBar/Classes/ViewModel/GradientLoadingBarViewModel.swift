@@ -60,7 +60,7 @@ class GradientLoadingBarViewModel {
             // If the initializer is called from `appDelegate`, where the key window is not available yet.
             // Therefore we setup an observer to inform the listeners when it's ready.
             notificationCenter.addObserver(self,
-                                           selector: #selector(didReceiveUiWindowDidBecomeKeyNotification(_:)),
+                                           selector: #selector(didReceiveUIWindowDidBecomeKeyNotification(_:)),
                                            name: UIWindow.didBecomeKeyNotification,
                                            object: nil)
         }
@@ -68,7 +68,7 @@ class GradientLoadingBarViewModel {
 
     // MARK: - Private methods
 
-    @objc private func didReceiveUiWindowDidBecomeKeyNotification(_: Notification) {
+    @objc private func didReceiveUIWindowDidBecomeKeyNotification(_: Notification) {
         guard let keyWindow = sharedApplication.keyWindow else { return }
 
         // Prevent informing the listeners multiple times.
