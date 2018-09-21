@@ -93,7 +93,7 @@ public final class GradientView: UIView {
 
         animation.duration = duration
 
-        animation.fillMode = kCAFillModeForwards
+        animation.fillMode = CAMediaTimingFillMode.forwards
         animation.isRemovedOnCompletion = false
 
         gradientLayer.add(animation, forKey: animationKey)
