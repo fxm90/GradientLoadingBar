@@ -67,6 +67,7 @@ The gradient colors are fully customizable. Do do this, you'll have to pass an a
 
 #### – Parameter `isRelativeToSafeArea`
 With this parameter you can configure, whether the loading bar should be positioned relative to the safe area (defaults to `true`).
+
 Example with `isRelativeToSafeArea` set to `true`
 [![Example][basic-example--thumbnail]][basic-example]
 
@@ -77,6 +78,7 @@ Example with `isRelativeToSafeArea` set to `false`
 
 #### – Parameter `onView` 
 With this parameter you can pass a custom superview to the gradient loading bar.
+
 E.g. Loading bar shown on `UINavigationBar`
 [![Example][navigation-bar-example--thumbnail]][navigation-bar-example]
 
