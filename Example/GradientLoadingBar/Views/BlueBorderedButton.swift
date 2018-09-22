@@ -27,10 +27,10 @@ class BlueBorderedButton: UIButton {
 
     private func commonInit() {
         backgroundColor = .clear
-        tintColor = .aquaBlue
+        tintColor = UIColor.CustomColors.blue
 
         layer.cornerRadius = 4.0
-        layer.borderColor = UIColor.aquaBlue.cgColor
+        layer.borderColor = UIColor.CustomColors.blue.cgColor
         layer.borderWidth = 1.0
     }
 }

@@ -14,7 +14,6 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		77357BD34CFF2778341F80E8 /* Pods_GradientLoadingBar_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03CD5D69D7C3FBBDBF5FABBB /* Pods_GradientLoadingBar_Example.framework */; };
 		8020C040972E902A8CCAA9E7 /* Pods_GradientLoadingBar_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434E3C8A6E245A38C2831E73 /* Pods_GradientLoadingBar_Tests.framework */; };
-		970738871FA7286400930D92 /* UIColor+InitializersTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970738841FA7286400930D92 /* UIColor+InitializersTestCase.swift */; };
 		972CFBCC2138849A006F14C9 /* SafeAreaExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972CFBCB2138849A006F14C9 /* SafeAreaExampleViewController.swift */; };
 		97464E6721372BCD0097183A /* AdvancedExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97464E6621372BCD0097183A /* AdvancedExampleViewController.swift */; };
 		97464E6921372C010097183A /* NavigationBarExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97464E6821372C010097183A /* NavigationBarExampleViewController.swift */; };
@@ -52,7 +51,6 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* GradientLoadingBar_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GradientLoadingBar_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		970738841FA7286400930D92 /* UIColor+InitializersTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+InitializersTestCase.swift"; sourceTree = "<group>"; };
 		972CFBCB2138849A006F14C9 /* SafeAreaExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaExampleViewController.swift; sourceTree = "<group>"; };
 		97464E6621372BCD0097183A /* AdvancedExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedExampleViewController.swift; sourceTree = "<group>"; };
 		97464E6821372C010097183A /* NavigationBarExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarExampleViewController.swift; sourceTree = "<group>"; };
@@ -175,7 +173,6 @@
 		972B29D31F7F88F6009D9F89 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				970738841FA7286400930D92 /* UIColor+InitializersTestCase.swift */,
 				97FA595A213184DF00CCD446 /* Observable+ObserveDistinctTestCase.swift */,
 			);
 			path = Extensions;
@@ -522,7 +519,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				970738871FA7286400930D92 /* UIColor+InitializersTestCase.swift in Sources */,
 				974E3F221FF2DEAA00C96A59 /* GradientLoadingBarViewModelTestCase.swift in Sources */,
 				974E3F1C1FF2AA4400C96A59 /* DurationsTestCase.swift in Sources */,
 				97FA595B213184DF00CCD446 /* Observable+ObserveDistinctTestCase.swift in Sources */,

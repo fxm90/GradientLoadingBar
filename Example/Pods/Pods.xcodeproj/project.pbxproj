@@ -21,10 +21,10 @@
 		85AB74790BFEF71ECBF8E4E0E474EE1D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF6AA5B777CE6872A2AC92643E0F757 /* Foundation.framework */; };
 		8F4564D8D28F3E6B247AC23E5056A66A /* Observable-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3131299175A2E33CBF0F769C12C56D84 /* Observable-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		97261F2F213DA6A300F57E8D /* BottomGradientLoadingBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97261F2E213DA6A300F57E8D /* BottomGradientLoadingBarController.swift */; };
-		97B6F5F52143F2A0008CFEA5 /* UIColor+Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B6F5F02143F29F008CFEA5 /* UIColor+Initializers.swift */; };
-		97B6F5F62143F2A0008CFEA5 /* UIColor+DefaultGradientColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B6F5F12143F29F008CFEA5 /* UIColor+DefaultGradientColors.swift */; };
+		97B6F5F62143F2A0008CFEA5 /* UIColor+DefaultValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B6F5F12143F29F008CFEA5 /* UIColor+DefaultValues.swift */; };
 		97B6F5F72143F2A0008CFEA5 /* Observable+ObserveDistinct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B6F5F22143F29F008CFEA5 /* Observable+ObserveDistinct.swift */; };
 		97B6F5F82143F2A0008CFEA5 /* Durations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B6F5F42143F2A0008CFEA5 /* Durations.swift */; };
+		97DE5E862156774F00766FDA /* UIColor+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DE5E852156774F00766FDA /* UIColor+CustomColors.swift */; };
 		9FDB4DBD4970F733BC1D1920C105F50D /* Observable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C47C72A5BD1CE40555C3CA440845A93E /* Observable.framework */; };
 		AB3A9CC5A95BFB9B88345250A55CB9B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF6AA5B777CE6872A2AC92643E0F757 /* Foundation.framework */; };
 		C5CDCD73BBA932C6431C08C26F7A3F27 /* GradientLoadingBar-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD0086F8B0C17E13326B0E8980BBD99 /* GradientLoadingBar-dummy.m */; };
@@ -84,10 +84,10 @@
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		94987193A3C956E52823A639B1A63FE9 /* Pods_GradientLoadingBar_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GradientLoadingBar_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97261F2E213DA6A300F57E8D /* BottomGradientLoadingBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BottomGradientLoadingBarController.swift; path = GradientLoadingBar/Classes/BottomGradientLoadingBarController.swift; sourceTree = "<group>"; };
-		97B6F5F02143F29F008CFEA5 /* UIColor+Initializers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Initializers.swift"; sourceTree = "<group>"; };
-		97B6F5F12143F29F008CFEA5 /* UIColor+DefaultGradientColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+DefaultGradientColors.swift"; sourceTree = "<group>"; };
+		97B6F5F12143F29F008CFEA5 /* UIColor+DefaultValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+DefaultValues.swift"; sourceTree = "<group>"; };
 		97B6F5F22143F29F008CFEA5 /* Observable+ObserveDistinct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Observable+ObserveDistinct.swift"; sourceTree = "<group>"; };
 		97B6F5F42143F2A0008CFEA5 /* Durations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Durations.swift; sourceTree = "<group>"; };
+		97DE5E852156774F00766FDA /* UIColor+CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColors.swift"; sourceTree = "<group>"; };
 		9A04D73ADF1F86BA48555BCA8C37357F /* Pods-GradientLoadingBar_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GradientLoadingBar_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		9AC0D5BE1D3E0BD55B9098C545D90E0E /* Observable.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Observable.xcconfig; sourceTree = "<group>"; };
 		A7EE3290A69260383C55CBE340D72011 /* Pods-GradientLoadingBar_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GradientLoadingBar_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -283,8 +283,8 @@
 		97B6F5EF2143F29F008CFEA5 /* UIColor */ = {
 			isa = PBXGroup;
 			children = (
-				97B6F5F02143F29F008CFEA5 /* UIColor+Initializers.swift */,
-				97B6F5F12143F29F008CFEA5 /* UIColor+DefaultGradientColors.swift */,
+				97B6F5F12143F29F008CFEA5 /* UIColor+DefaultValues.swift */,
+				97DE5E852156774F00766FDA /* UIColor+CustomColors.swift */,
 			);
 			path = UIColor;
 			sourceTree = "<group>";
@@ -559,13 +559,13 @@
 			files = (
 				97261F2F213DA6A300F57E8D /* BottomGradientLoadingBarController.swift in Sources */,
 				C5CDCD73BBA932C6431C08C26F7A3F27 /* GradientLoadingBar-dummy.m in Sources */,
-				97B6F5F52143F2A0008CFEA5 /* UIColor+Initializers.swift in Sources */,
 				59D5281FED73053EB4FC2B7C18BB549A /* GradientLoadingBarController.swift in Sources */,
 				14E34F2FC56CDB341B8CD173401FF66F /* GradientLoadingBarViewModel.swift in Sources */,
+				97DE5E862156774F00766FDA /* UIColor+CustomColors.swift in Sources */,
 				97B6F5F82143F2A0008CFEA5 /* Durations.swift in Sources */,
 				410C32527DA1C36AD0EB1F734DF30F63 /* GradientView.swift in Sources */,
 				97B6F5F72143F2A0008CFEA5 /* Observable+ObserveDistinct.swift in Sources */,
-				97B6F5F62143F2A0008CFEA5 /* UIColor+DefaultGradientColors.swift in Sources */,
+				97B6F5F62143F2A0008CFEA5 /* UIColor+DefaultValues.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

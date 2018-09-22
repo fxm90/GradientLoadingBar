@@ -27,7 +27,7 @@ class BlueFilledButton: UIButton {
 
     private func commonInit() {
         tintColor = .white
-        backgroundColor = .aquaBlue
+        backgroundColor = UIColor.CustomColors.blue
 
         layer.cornerRadius = 4.0
     }
