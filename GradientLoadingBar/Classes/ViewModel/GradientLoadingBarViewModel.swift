@@ -16,7 +16,7 @@ class GradientLoadingBarViewModel {
     /// of the loading bar.
     struct AnimatedVisibilityUpdate: Equatable {
         /// Initialies the struct with values set to zero / hidden.
-        static let zero = AnimatedVisibilityUpdate(duration: 0.0, isHidden: true)
+        static let immediatelyHidden = AnimatedVisibilityUpdate(duration: 0.0, isHidden: true)
 
         /// The duration for the visibility update.
         let duration: TimeInterval
@@ -28,7 +28,7 @@ class GradientLoadingBarViewModel {
     // MARK: - Public properties
 
     /// Boolean flag determinating whether gradient view is currently visible.
-    let isVisible: Observable<AnimatedVisibilityUpdate> = Observable(.zero)
+    let isVisible: Observable<AnimatedVisibilityUpdate> = Observable(.immediatelyHidden)
 
     /// Boolean flag determinating whether gradient view is currently visible.
     let superview: Observable<UIView?> = Observable(nil)
@@ -57,7 +57,7 @@ class GradientLoadingBarViewModel {
             // We have a valid key window » Use it as superview.
             self.superview.value = superview
         } else {
-            // If the initializer is called from `appDelegate`, where the key window is not available yet.
+            // The initializer is called from `appDelegate`, where the key window is not available yet.
             // Therefore we setup an observer to inform the listeners when it's ready.
             notificationCenter.addObserver(self,
                                            selector: #selector(didReceiveUIWindowDidBecomeKeyNotification(_:)),
