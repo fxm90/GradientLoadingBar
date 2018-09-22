@@ -67,7 +67,7 @@ class GradientLoadingBarViewModel {
         guard let keyWindow = sharedApplication.keyWindow else {
             // If the controller initializer is called in `appDelegate` key window will not be available,
             // so we setup an observer to inform the delegate when it's ready.
-            keyWindowIsAvailableObserver = notificationCenter.observeOnce(forName: .UIWindowDidBecomeKey) { _ in
+            keyWindowIsAvailableObserver = notificationCenter.observeOnce(forName: UIWindow.didBecomeKeyNotification) { _ in
                 self.setupObserverForKeyWindow()
             }
 
