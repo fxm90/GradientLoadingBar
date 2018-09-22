@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [1.1.12] - 2018-21-09
+### Changed
+- Updates for Swift 4.2
+
 ## [1.1.11] - 2018-04-06
 ### Changed
  - Carthage Support
