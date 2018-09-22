@@ -7,9 +7,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
-## [1.1.12] - 2018-21-09
+## [1.1.12] - 2018-22-09
 ### Changed
 - Updates for Swift 4.2
+- Refactored to observables
+- Removed `UIColor` initializers, as they're not required for the project to work (and it's not very common to use hex color codes in iOS)
+   - If you need them in your project, feel free to copy & paste to following file into you project: https://gist.github.com/fxm90/1350d27abf92af3be59aaa9eb72c9310
 
 ## [1.1.11] - 2018-04-06
 ### Changed
@@ -80,8 +83,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial release
 
 
-[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.11...master
-[1.1.11]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.9...1.1.11
+[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.12...master
+[1.1.12]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.11...1.1.12
+[1.1.11]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.10...1.1.11
 [1.1.10]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.9...1.1.10
 [1.1.9]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.8...1.1.9
 [1.1.8]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.7...1.1.8

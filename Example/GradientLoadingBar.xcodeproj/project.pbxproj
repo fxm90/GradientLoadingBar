@@ -243,7 +243,6 @@
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
 				1A66A3C243446BE65EBE3AAE /* [CP] Embed Pods Frameworks */,
-				E3CF36B5598601D100CC228C /* [CP] Copy Pods Resources */,
 				972EE1C9201CA5C4001F603C /* Swiftformat */,
 				9753E83D1F80F7D300EF2822 /* Swiftlint */,
 			);
@@ -264,8 +263,6 @@
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
-				03F306D55F7F32557FC7D435 /* [CP] Embed Pods Frameworks */,
-				8340BA30C3E863337E7EDA14 /* [CP] Copy Pods Resources */,
 				972EE1CA201CA5E5001F603C /* Swiftformat */,
 				97C4F18C1F7F8E7E00739B14 /* Swiftlint */,
 			);
@@ -340,21 +337,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		03F306D55F7F32557FC7D435 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GradientLoadingBar_Tests/Pods-GradientLoadingBar_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		04A6606B8779F59C5BA953A7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -391,21 +373,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GradientLoadingBar_Example/Pods-GradientLoadingBar_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8340BA30C3E863337E7EDA14 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GradientLoadingBar_Tests/Pods-GradientLoadingBar_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8A80B9B4778F0A3D30371790 /* [CP] Check Pods Manifest.lock */ = {
@@ -481,21 +448,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "SWIFTLINT=\"${PODS_ROOT}/SwiftLint/swiftlint\"\nif [ ! -f \"$SWIFTLINT\" ]; then\n    echo \"warning: SwiftLint not installed!\"\n    exit 1\nfi\n\n$SWIFTLINT";
-		};
-		E3CF36B5598601D100CC228C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GradientLoadingBar_Example/Pods-GradientLoadingBar_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
