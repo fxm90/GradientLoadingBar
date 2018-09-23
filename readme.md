@@ -82,6 +82,7 @@ With this parameter you can pass a custom superview to the gradient loading bar.
 E.g. Loading bar shown on `UINavigationBar`
 [![Example][navigation-bar-example--thumbnail]][navigation-bar-example]
 
+
 E.g. Loading bar shown on `UIButton`
 [![Example][advanced-example--thumbnail]][advanced-example]
 
@@ -118,14 +119,14 @@ Felix Mau (contact(@)felix.hamburg)
 
 GradientLoadingBar is available under the MIT license. See the LICENSE file for more info.
 
-[basic-example]: https://felix.hamburg/files/github/gradient-loading-bar/basic-example.jpg
+[basic-example]: https://felix.hamburg/files/github/gradient-loading-bar/basic-example.png
 [basic-example--thumbnail]: https://felix.hamburg/files/github/gradient-loading-bar/basic-example--thumbnail.png
 
-[safe-area-example]: https://felix.hamburg/files/github/gradient-loading-bar/safe-area-example.jpg
+[safe-area-example]: https://felix.hamburg/files/github/gradient-loading-bar/safe-area-example.png
 [safe-area-example--thumbnail]: https://felix.hamburg/files/github/gradient-loading-bar/safe-area-example--thumbnail.png
 
-[advanced-example]: https://felix.hamburg/files/github/gradient-loading-bar/advanced-example.jpg
+[advanced-example]: https://felix.hamburg/files/github/gradient-loading-bar/advanced-example.png
 [advanced-example--thumbnail]: https://felix.hamburg/files/github/gradient-loading-bar/advanced-example--thumbnail.png
 
-[navigation-bar-example]: https://felix.hamburg/files/github/gradient-loading-bar/navigation-bar-example.jpg
+[navigation-bar-example]: https://felix.hamburg/files/github/gradient-loading-bar/navigation-bar-example.png
 [navigation-bar-example--thumbnail]: https://felix.hamburg/files/github/gradient-loading-bar/navigation-bar-example--thumbnail.png
