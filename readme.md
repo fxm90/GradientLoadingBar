@@ -63,7 +63,7 @@ These are the default duration values:
 `public static let default = Durations(fadeIn: 0.33, fadeOut: 0.66, progress: 3.33)`
 
 #### – Parameter `gradientColorList`
-The gradient colors are fully customizable. Do do this, you'll have to pass an array of type `UIColor`.
+The gradient colors are fully customizable. Therefore, you'll have to pass an array of type `UIColor`.
 
 #### – Parameter `isRelativeToSafeArea`
 With this parameter you can configure, whether the loading bar should be positioned relative to the safe area (defaults to `true`).

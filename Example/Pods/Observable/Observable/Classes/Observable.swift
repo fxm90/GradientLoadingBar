@@ -1,25 +1,44 @@
 import Foundation
 
-public final class Observable<T> {
+public class ImmutableObservable<T> {
+
     public typealias Observer = (T, T?) -> Void
 
-    private var observers: [Int: Observer] = [:]
+    private var observers: [Int: (Observer, DispatchQueue?)] = [:]
     private var uniqueID = (0...).makeIterator()
 
-    public var value: T {
+    fileprivate let lock: Lock = Mutex()
+
+    fileprivate var _value: T {
         didSet {
-            observers.values.forEach { $0(value, oldValue) }
+            observers.values.forEach { observer, dispatchQueue in
+                
+                if let dispatchQueue = dispatchQueue {
+                    dispatchQueue.async {
+                        observer(self.value, oldValue)
+                    }
+                } else {
+                    observer(value, oldValue)
+                }
+            }
         }
     }
 
-    public init(_ value: T) {
-        self.value = value
+    public var value: T {
+        return _value
     }
 
-    public func observe(_ observer: @escaping Observer) -> Disposable {
-        guard let id = uniqueID.next() else { fatalError("There should always be a next unique id") }
+    public init(_ value: T) {
+        self._value = value
+    }
 
-        observers[id] = observer
+    public func observe(_ queue: DispatchQueue? = nil, _ observer: @escaping Observer) -> Disposable {
+        lock.lock()
+        defer { lock.unlock() }
+        
+        let id = uniqueID.next()!
+
+        observers[id] = (observer, queue)
         observer(value, nil)
 
         let disposable = Disposable { [weak self] in
@@ -31,5 +50,19 @@ public final class Observable<T> {
 
     public func removeAllObservers() {
         observers.removeAll()
+    }
+}
+
+public class Observable<T>: ImmutableObservable<T> {
+
+    public override var value: T {
+        get {
+            return _value
+        }
+        set {
+            lock.lock()
+            defer { lock.unlock() }
+            _value = newValue
+        }
     }
 }

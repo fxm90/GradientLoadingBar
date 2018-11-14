@@ -1,9 +1,9 @@
 PODS:
   - GradientLoadingBar (1.1.12):
     - Observable
-  - Observable (1.3.3)
-  - SwiftFormat/CLI (0.35.2)
-  - SwiftLint (0.27.0)
+  - Observable (1.4.0)
+  - SwiftFormat/CLI (0.35.7)
+  - SwiftLint (0.28.0)
 
 DEPENDENCIES:
   - GradientLoadingBar (from `../`)
@@ -22,9 +22,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   GradientLoadingBar: 534869c76a9c5fc2419bb207491de56158d01a0d
-  Observable: 360b0132cef970a50bc69611df7fcbda46e91c34
-  SwiftFormat: d26c78821785f8c1d029323658c93a977cdf31bf
-  SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
+  Observable: 4b2ee25de74d007d57acdff801925e39f9613544
+  SwiftFormat: d97eadc55d4e02d04cf1f03b8a2d6ff5b6cdb2fd
+  SwiftLint: 088cfacb75b45970017e62b7524d506776d60148
 
 PODFILE CHECKSUM: 55891446b31c0884d45a4c65f1b52d307ff274bc
 
