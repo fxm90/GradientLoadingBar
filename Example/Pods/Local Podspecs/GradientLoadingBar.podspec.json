@@ -23,7 +23,7 @@
   "source_files": "GradientLoadingBar/Classes/**/*",
   "dependencies": {
     "Observable": [
-
+      "~> 1.4"
     ]
   }
 }
