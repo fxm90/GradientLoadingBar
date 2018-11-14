@@ -1,4 +1,1 @@
-# Currently I have to specify the exact commit for the merge of my pull request for carthage support, as the latest tag "1.3.3"
-# is before that commit. 
-# Todo: Change this after the relase of the next version.
-github "roberthein/Observable" "067c7c45d445929229067fe77f82c0a0a7f60b14"
+github "roberthein/Observable" ~> 1.4
