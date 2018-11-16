@@ -27,13 +27,21 @@ class GradientLoadingBarViewModel {
 
     // MARK: - Public properties
 
-    /// Boolean flag determinating whether gradient view is currently visible.
-    let isVisible: Observable<AnimatedVisibilityUpdate> = Observable(.immediatelyHidden)
+    public var isVisible: ImmutableObservable<AnimatedVisibilityUpdate> {
+        return isVisibleSubject
+    }
 
-    /// Boolean flag determinating whether gradient view is currently visible.
-    let superview: Observable<UIView?> = Observable(nil)
+    public var superview: ImmutableObservable<UIView?> {
+        return superviewSubject
+    }
 
     // MARK: - Private properties
+
+    /// Boolean flag determinating whether gradient view is currently visible.
+    private let isVisibleSubject: Observable<AnimatedVisibilityUpdate> = Observable(.immediatelyHidden)
+
+    /// Boolean flag determinating whether gradient view is currently visible.
+    private let superviewSubject: Observable<UIView?> = Observable(nil)
 
     /// Configuration with durations for each animation.
     private let durations: Durations
@@ -55,7 +63,7 @@ class GradientLoadingBarViewModel {
 
         if let superview = superview {
             // We have a valid key window » Use it as superview.
-            self.superview.value = superview
+            superviewSubject.value = superview
         } else {
             // The initializer is called from `appDelegate`, where the key window is not available yet.
             // Therefore we setup an observer to inform the listeners when it's ready.
@@ -75,21 +83,21 @@ class GradientLoadingBarViewModel {
         notificationCenter.removeObserver(self)
 
         // Now that we have a valid key window, we can use it as superview.
-        superview.value = keyWindow
+        superviewSubject.value = keyWindow
     }
 
     // MARK: - Public methods
 
     /// Fades in the gradient loading bar.
     func show() {
-        isVisible.value = AnimatedVisibilityUpdate(duration: durations.fadeIn,
-                                                   isHidden: false)
+        isVisibleSubject.value = AnimatedVisibilityUpdate(duration: durations.fadeIn,
+                                                          isHidden: false)
     }
 
     /// Fades out the gradient loading bar.
     func hide() {
-        isVisible.value = AnimatedVisibilityUpdate(duration: durations.fadeOut,
-                                                   isHidden: true)
+        isVisibleSubject.value = AnimatedVisibilityUpdate(duration: durations.fadeOut,
+                                                          isHidden: true)
     }
 
     /// Toggle visiblity of gradient loading bar.
