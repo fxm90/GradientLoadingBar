@@ -14,6 +14,7 @@
 		46F1D88FAAA91F410C65394ECC7A35B3 /* ImmutableObservable+ObserveDistinct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E04E6839B56E2F3DF0E7D6D4CE4587 /* ImmutableObservable+ObserveDistinct.swift */; };
 		56C5756027B6183789AAEDAA034898EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF6AA5B777CE6872A2AC92643E0F757 /* Foundation.framework */; };
 		5D17C443B0D130409A0061CAA3135F4D /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E083092CBF60F2715011C9F23574CEB /* Observable.swift */; };
+		6472AE1121C539CE005136AB /* UIView+AnimateIsHidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6472AE1021C539CE005136AB /* UIView+AnimateIsHidden.swift */; };
 		702687732292B0A5467611ABE3235A5E /* GradientLoadingBar-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C77FF1F97A82FCF962866FDFCCEC815A /* GradientLoadingBar-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70A0CB6A2CF7C49476957311EE9361D5 /* GradientLoadingBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A0E52383499D7C94419615A3D44D30 /* GradientLoadingBarViewModel.swift */; };
 		7399D5E1913A41B58106EEF101D679EB /* GradientLoadingBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F37D59113AF72B27D91148CF1DEE78 /* GradientLoadingBarController.swift */; };
@@ -85,6 +86,7 @@
 		4E083092CBF60F2715011C9F23574CEB /* Observable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Observable.swift; path = Observable/Classes/Observable.swift; sourceTree = "<group>"; };
 		4EA1BBF3794426F3B290CEB82BF684D9 /* readme.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 		5C876D770BB7FFBD4F9A28FD6ABF273F /* Observable.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Observable.modulemap; sourceTree = "<group>"; };
+		6472AE1021C539CE005136AB /* UIView+AnimateIsHidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AnimateIsHidden.swift"; sourceTree = "<group>"; };
 		6B955E6ED6F1FC3FAAD1C08036A4E384 /* Pods-GradientLoadingBar_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GradientLoadingBar_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		6BD04847FCD93EA8DB873ED60D7DAFE9 /* Pods-GradientLoadingBar_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GradientLoadingBar_Tests-dummy.m"; sourceTree = "<group>"; };
 		73D656E1C8C87EBD3FE5CBD3C6F027A3 /* GradientLoadingBar.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = GradientLoadingBar.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -236,6 +238,22 @@
 			path = UIColor;
 			sourceTree = "<group>";
 		};
+		6472AE0E21C53990005136AB /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				6472AE1021C539CE005136AB /* UIView+AnimateIsHidden.swift */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		6472AE0F21C539A1005136AB /* ImmutableObservable */ = {
+			isa = PBXGroup;
+			children = (
+				90E04E6839B56E2F3DF0E7D6D4CE4587 /* ImmutableObservable+ObserveDistinct.swift */,
+			);
+			path = ImmutableObservable;
+			sourceTree = "<group>";
+		};
 		6A73B38F5663B1B6B865F61667DCA74E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -319,8 +337,9 @@
 		AAF09E1378672EA2ABB0AA649D9BA955 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				90E04E6839B56E2F3DF0E7D6D4CE4587 /* ImmutableObservable+ObserveDistinct.swift */,
+				6472AE0F21C539A1005136AB /* ImmutableObservable */,
 				5D711B9F2FBE838218E22B5B035BD344 /* UIColor */,
+				6472AE0E21C53990005136AB /* UIView */,
 			);
 			name = Extensions;
 			path = GradientLoadingBar/Classes/Extensions;
@@ -583,6 +602,7 @@
 				FD23014D31C0F9AEC2D1B14BAE6C1D78 /* GradientView.swift in Sources */,
 				46F1D88FAAA91F410C65394ECC7A35B3 /* ImmutableObservable+ObserveDistinct.swift in Sources */,
 				A66B6B59B5AE2102D6743D16AC41A78A /* UIColor+CustomColors.swift in Sources */,
+				6472AE1121C539CE005136AB /* UIView+AnimateIsHidden.swift in Sources */,
 				A54BE415D946676E2596F0E88F2E2B5F /* UIColor+DefaultValues.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
