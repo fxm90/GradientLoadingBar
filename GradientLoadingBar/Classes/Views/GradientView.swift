@@ -19,8 +19,6 @@ public final class GradientView: UIView {
 
     public override var isHidden: Bool {
         didSet {
-            super.isHidden = isHidden
-
             if isHidden {
                 stopProgressAnimation()
             } else {
