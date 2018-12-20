@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Source: https://gist.github.com/fxm90/723b5def31b46035cd92a641e3b184f6
 extension UIView {
     // MARK: - Config
 
