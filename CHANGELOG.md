@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [1.1.14] - 2018-20-12
+### Changed
+- Fix fade-out animation not working in iOS 12 (https://openradar.appspot.com/46753872)
+
 ## [1.1.13] - 2018-14-11
 ### Changed
 - Adapt code to support new version from dependency `Observable`
@@ -87,7 +91,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial release
 
 
-[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.13...master
+[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.14...master
+[1.1.13]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.13...1.1.14
 [1.1.13]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.12...1.1.13
 [1.1.12]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.11...1.1.12
 [1.1.11]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.10...1.1.11
