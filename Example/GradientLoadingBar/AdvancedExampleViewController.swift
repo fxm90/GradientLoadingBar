@@ -2,8 +2,8 @@
 //  AdvancedExampleViewController.swift
 //  GradientLoadingBar_Example
 //
-//  Created by Felix Mau on 29.08.18.
-//  Copyright © 2018 CocoaPods. All rights reserved.
+//  Created by Felix Mau on 08/30/18.
+//  Copyright © 2018 Felix Mau. All rights reserved.
 //
 
 import UIKit
@@ -12,8 +12,8 @@ import GradientLoadingBar
 class AdvancedExampleViewController: UIViewController {
     // MARK: - Outlets
 
-    @IBOutlet var customSuperviewButton: BlueBorderedButton!
-    @IBOutlet var customColorsButton: BlueBorderedButton!
+    @IBOutlet private var customSuperviewButton: BlueBorderedButton!
+    @IBOutlet private var customColorsButton: BlueBorderedButton!
 
     // MARK: - Private properties
 

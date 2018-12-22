@@ -1,9 +1,9 @@
 //
-//  BlueButton.swift
+//  BlueFilledButton.swift
 //  GradientLoadingBar_Example
 //
-//  Created by Felix Mau on 29.08.18.
-//  Copyright © 2018 CocoaPods. All rights reserved.
+//  Created by Felix Mau on 08/29/18.
+//  Copyright © 2018 Felix Mau. All rights reserved.
 //
 
 import UIKit

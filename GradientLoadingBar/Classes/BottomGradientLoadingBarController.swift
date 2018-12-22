@@ -2,7 +2,8 @@
 //  BottomGradientLoadingBarController.swift
 //  GradientLoadingBar
 //
-//  Created by Felix Mau on 03.09.18.
+//  Created by Felix Mau on 09/03/18.
+//  Copyright © 2018 Felix Mau. All rights reserved.
 //
 
 import Foundation

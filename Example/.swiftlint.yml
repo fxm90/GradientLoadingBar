@@ -1,5 +1,38 @@
+#
+# Based on:
+#  - https://gist.github.com/tweetjay/1b7f00b6f312a5a2cf7b5676420b9b0c
+#  - https://github.com/brandenr/swiftlintconfig
+#
+
 opt_in_rules:
-  - empty_count
+  - empty_count                # Prefer checking isEmpty over comparing count to zero.
+  - force_unwrapping           # Force unwrapping should be avoided.
+  - anyobject_protocol         # Prefer using AnyObject over class for class-only protocols.
+  - empty_xctest_method        # Empty XCTest method should be avoided.
+  - lower_acl_than_parent      # Ensure definitions have a lower access control level than their enclosing parent
+  - overridden_super_call      # Some overridden methods should always call super
+  - prohibited_super_call      # Some methods should not call super, e.g. `UIViewController.loadView()`
+  - unused_import              # All imported modules should be required to make the file compile.
+  - unused_private_declaration # Private declarations should be referenced in that file.
+  - explicit_init              # Explicitly calling .init() should be avoided.
+  - closure_spacing            # Closure expressions should have a single space inside each brace.
+  - private_outlet             # IBOutlets should be private to avoid leaking UIKit to higher layers.
+  - operator_usage_whitespace  # Operators should be surrounded by a single whitespace when they are being used.
+  - first_where                # Prefer using `.first(where:)` over `.filter { }.first` in collections.
+  - object_literal             # Prefer object literals over image and color inits.
+  - fatal_error_message        # A fatalError call should have a message.
+  - missing_docs               # Declarations should be documented.
+  - file_header                # Header comments should be consistent with project patterns. 
+
+file_header:
+  required_pattern: |
+                    \/\/
+                    \/\/  SWIFTLINT_CURRENT_FILENAME
+                    \/\/  (GradientLoadingBar|GradientLoadingBar_Example)
+                    \/\/
+                    \/\/  Created by .*? on \d{1,2}\/\d{1,2}\/\d{2}\.
+                    \/\/  Copyright © \d{4} .*?\. All rights reserved\.
+                    \/\/
 
 line_length: 160
 
@@ -9,3 +42,25 @@ included:
 
 excluded:
   - Pods
+
+custom_rules:
+  comments_space:
+    name: "Space After Comment"
+    regex: '(^ *//\w+)'
+    message: "There should be a space after //."
+    severity: warning
+  empty_line_after_guard:
+    name: "Empty Line After Guard"
+    regex: '(^ *guard[ a-zA-Z0-9=?.\(\),><!]*\{[ a-zA-Z0-9=?.\(\),><!]*\}\n *(?!(?:return|guard))\S+)'
+    message: "There should be an empty line after a guard."
+    severity: warning
+  empty_line_after_super:
+    name: "Empty Line After Super"
+    regex: '(^ *super\.[ a-zA-Z0-9=?.\(\)\{\}:,><!]*\n *(?!(?:\}|return))\S+)'
+    message: "There should be an empty line after super."
+    severity: warning
+  unnecessary_type:
+    name: "Unnecessary Type"
+    regex: '[ a-zA-Z0-9]*(?:let|var) [ a-zA-Z0-9]*: ([a-zA-Z0-9]*)[\? ]*= \1'
+    message: "Type Definition Not Needed."
+    severity: warning

@@ -2,7 +2,8 @@
 //  GradientLoadingBarViewModel.swift
 //  GradientLoadingBar
 //
-//  Created by Felix Mau on 26.12.17.
+//  Created by Felix Mau on 12/26/17.
+//  Copyright © 2017 Felix Mau. All rights reserved.
 //
 
 import Foundation
@@ -27,11 +28,11 @@ class GradientLoadingBarViewModel {
 
     // MARK: - Public properties
 
-    public var isVisible: ImmutableObservable<AnimatedVisibilityUpdate> {
+    var isVisible: ImmutableObservable<AnimatedVisibilityUpdate> {
         return isVisibleSubject
     }
 
-    public var superview: ImmutableObservable<UIView?> {
+    var superview: ImmutableObservable<UIView?> {
         return superviewSubject
     }
 
@@ -113,7 +114,7 @@ class GradientLoadingBarViewModel {
 // MARK: - Helper
 
 /// This allows mocking `UIApplication` in tests.
-protocol UIApplicationProtocol: class {
+protocol UIApplicationProtocol: AnyObject {
     var keyWindow: UIWindow? { get }
 }
 

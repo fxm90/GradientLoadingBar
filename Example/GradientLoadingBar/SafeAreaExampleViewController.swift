@@ -2,8 +2,8 @@
 //  SafeAreaExampleViewController.swift
 //  GradientLoadingBar_Example
 //
-//  Created by Felix Mau on 30.08.18.
-//  Copyright © 2018 CocoaPods. All rights reserved.
+//  Created by Felix Mau on 08/30/18.
+//  Copyright © 2018 Felix Mau. All rights reserved.
 //
 
 import UIKit

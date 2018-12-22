@@ -2,7 +2,7 @@
 //  GradientLoadingBarController.swift
 //  GradientLoadingBar
 //
-//  Created by Felix Mau on 11.12.16.
+//  Created by Felix Mau on 12/11/16.
 //  Copyright © 2016 Felix Mau. All rights reserved.
 //
 
@@ -12,6 +12,7 @@ import UIKit
 /// Typealias for controller to match pod name.
 public typealias GradientLoadingBar = GradientLoadingBarController
 
+/// The `GradientLoadingBarController` mediates between the `GradientLoadingBarViewModel` and the corresponding `GradientView`.
 open class GradientLoadingBarController {
     // MARK: - Public properties
 

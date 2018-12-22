@@ -2,7 +2,7 @@
 //  GradientView.swift
 //  GradientLoadingBar
 //
-//  Created by Felix Mau on 10.12.16.
+//  Created by Felix Mau on 12/10/16.
 //  Copyright © 2016 Felix Mau. All rights reserved.
 //
 

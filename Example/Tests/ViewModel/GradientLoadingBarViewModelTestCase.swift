@@ -1,9 +1,9 @@
 //
 //  GradientLoadingBarViewModelTestCase.swift
-//  GradientLoadingBar_Tests
+//  GradientLoadingBar_Example
 //
-//  Created by Felix Mau on 26.12.17.
-//  Copyright © 2017 CocoaPods. All rights reserved.
+//  Created by Felix Mau on 12/26/17.
+//  Copyright © 2017 Felix Mau. All rights reserved.
 //
 
 import Observable
