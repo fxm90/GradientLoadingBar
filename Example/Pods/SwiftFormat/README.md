@@ -598,6 +598,19 @@ Here are all the rules that SwiftFormat currently applies, and the effects that 
   }
 ```
 
+***isEmpty*** - replaces `count == 0` checks with `isEmpty`, which is preferred for performance reasons (disabled by default because SwiftFormat is not able to check that the isEmpty property is actually available in all cases):
+
+```diff
+- if foo.count == 0 {
++ if foo.isEmpty {
+
+- if foo.count > 0 {
++ if !foo.isEmpty {
+
+- if foo?.count == 0 {
++ if foo?.isEmpty == true {
+```
+
 ***linebreakAtEndOfFile*** - ensures that the last line of the file is empty:
        
 ***linebreaks*** - normalizes all linebreaks to use the same character, depending on the `--linebreaks` option (`cr`, `crlf` or `lf`).
@@ -661,6 +674,13 @@ Here are all the rules that SwiftFormat currently applies, and the effects that 
 ```diff
 - if case .foo(var /* unused */ _) = bar {}
 + if case .foo( /* unused */ _) = bar {}
+```
+
+***redundantLetError*** - removes redundant `let error` from `catch` statements, where it is declared implicitly:
+
+```diff
+- do { ... } catch let error { log(error) }
++ do { ... } catch { log(error) }
 ```
 
 ***redundantNilInit*** - removes unnecessary nil initialization of Optional vars (which are nil by default anyway):
@@ -738,16 +758,32 @@ var foo: Int? = 0
 ***redundantSelf*** - removes or inserts `self` prefix from class and instance member references, depending on the `--self` option:
 
 ```diff
-  init(foo: Int, bar: Int) {
+  func foobar(foo: Int, bar: Int) {
     self.foo = foo
     self.bar = bar
 -   self.baz = 42
   }
 
-  init(foo: Int, bar: Int) {
+  func foobar(foo: Int, bar: Int) {
     self.foo = foo
     self.bar = bar
 +   baz = 42
+  }  
+```
+
+There is also an option to always use explicit `self` but *only* inside `init`, by using `--self init-only`:
+
+```diff
+  init(foo: Int, bar: Int) {
+    self.foo = foo
+    self.bar = bar
+-   baz = 42
+  }
+
+  init(foo: Int, bar: Int) {
+    self.foo = foo
+    self.bar = bar
++   self.baz = 42
   }  
 ```
     
@@ -789,7 +825,7 @@ return;
 goto(fail)
 ```
 
-***sortedImports*** - rearranges import statements so that they are sorted:
+***sortedImports*** - rearranges import statements so that they are sorted. Use the `--importgrouping` option to configure how to group `@testable import`s (alphabetically (default), testable-top or testable-bottom).
 
 ```diff
 - import Foo
@@ -949,7 +985,7 @@ goto(fail)
 + @IBOutlet var label: UILabel!
 ```
 
-***trailingClosures*** - converts the last closure argument in a function call to trailing closure syntax where possible:
+***trailingClosures*** - converts the last closure argument in a function call to trailing closure syntax where possible (disabled by default because it can introduce ambiguity that prevents code from compiling):
 
 ```diff
 - DispatchQueue.main.async(execute: {
@@ -1075,6 +1111,28 @@ Or for `--wrapcollections beforefirst`:
     baz,
 +   quuz
 ]
+```
+
+***andOperator*** - replaces the `&&` operator with `,` inside `if`, `guard` and `while` conditions:
+
+```diff
+- if true && true {
++ if true, true {
+```
+
+```diff
+- guard true && true else {
++ guard true, true else {
+```
+
+```diff
+- if functionReturnsBool() && true {
++ if functionReturnsBool(), true {
+```
+
+```diff
+- if functionReturnsBool() && variable {
++ if functionReturnsBool(), variable {
 ```
 
 
