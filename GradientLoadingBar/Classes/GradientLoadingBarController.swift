@@ -17,11 +17,11 @@ open class GradientLoadingBarController {
     // MARK: - Public properties
 
     /// The height of the gradient bar.
-    /// Notice: Has to be public to allow overwriting `setupConstraints()`
+    ///  - Note: Has to be public to allow overwriting `setupConstraints()`
     public let height: Double
 
     /// Flag whether the top layout constraint should respect `safeAreaLayoutGuide`.
-    /// Notice: Has to be public to allow overwriting `setupConstraints()`
+    ///  - Note: Has to be public to allow overwriting `setupConstraints()`
     public let isRelativeToSafeArea: Bool
 
     /// View containing the gradient layer.
@@ -43,11 +43,11 @@ open class GradientLoadingBarController {
     /// Creates a new gradient loading bar instance.
     ///
     /// Parameters:
-    ///  - height:               Height of the gradient bar
-    ///  - durations:            Configuration with durations for each animation
-    ///  - gradientColorList:    Colors used for the gradient
-    ///  - isRelativeToSafeArea: Flag whether the top layout constraint should respect `safeAreaLayoutGuide`
-    ///  - superview:            View containing the gradient bar
+    ///  - height:               Height of the gradient bar.
+    ///  - durations:            Configuration with durations for each animation.
+    ///  - gradientColorList:    Colors used for the gradient.
+    ///  - isRelativeToSafeArea: Flag whether the top layout constraint should respect `safeAreaLayoutGuide`.
+    ///  - superview:            Optional custom view containing the gradient bar.
     ///
     /// Returns: Instance with gradient bar
     public init(height: Double = 2.5,
@@ -154,10 +154,6 @@ open class GradientLoadingBarController {
 extension GradientLoadingBarController {
     /// Creates a new gradient loading bar instance.
     ///
-    /// Note:
-    ///  - Deprecated!
-    ///  - Please use `init(height: Double, durations: Durations, gradientColorList: [UIColor], onView: UIView?)` instead
-    ///
     /// Parameters:
     ///  - height:         Height of the gradient bar
     ///  - durations:      Configuration with durations for each animation
@@ -177,22 +173,12 @@ extension GradientLoadingBarController {
     }
 
     /// Saves the current instance for usage as singleton.
-    ///
-    /// Note:
-    ///  - Deprecated!
-    ///  - Please use `.shared` instead
-    ///
     @available(*, deprecated, message: "Please use `.shared` instead")
     public func saveInstance() {
         type(of: self).shared = self
     }
 
     /// Singleton instance.
-    ///
-    /// Note:
-    ///  - Deprecated!
-    ///  - Please use `.shared` instead
-    ///
     @available(*, deprecated, message: "Please use `.shared` instead")
     public static func sharedInstance() -> GradientLoadingBar {
         return shared
