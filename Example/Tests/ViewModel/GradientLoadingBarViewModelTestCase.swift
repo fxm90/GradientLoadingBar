@@ -6,12 +6,10 @@
 //  Copyright © 2017 Felix Mau. All rights reserved.
 //
 
-import Observable
 import XCTest
+import Observable
 
 @testable import GradientLoadingBar
-
-// MARK: - Test case
 
 class GradientLoadingBarViewModelTestCase: XCTestCase {
     private var superview: UIView!
@@ -49,19 +47,32 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
         super.tearDown()
     }
 
-    // MARK: - Test `superview`
+    // MARK: - Test observable `superview`
 
-    func testListenerForSuperviewShouldBeInformedImmediately() {
-        // When
-        var disposal = Disposal()
-        viewModel.superview.observe { [weak self] nextValue, _ in
-            // Then
-            XCTAssertNotNil(nextValue)
-            XCTAssertEqual(nextValue, self?.superview)
-        }.add(to: &disposal)
+    func testInitializerShouldSetupSuperviewObservableWithCustomSuperview() {
+        // Then
+        XCTAssertEqual(viewModel.superview.value,
+                       superview,
+                       "We passed a custom superview to the view-model in `setUp()`, and therfore expect this view to be the superview.")
     }
 
-    func testListenerForSuperviewShouldBeInformedAfterUIWindowDidBecomeKeyNotification() {
+    func testInitializerShouldSetupSuperviewObservableWithKeyWindow() {
+        // Given
+        let keyWindow = UIWindow()
+        sharedApplicationMock.keyWindow = keyWindow
+
+        // When
+        let viewModel = GradientLoadingBarViewModel(superview: nil,
+                                                    durations: durations,
+                                                    sharedApplication: sharedApplicationMock,
+                                                    notificationCenter: notificationCenter)
+
+        // Then
+        XCTAssertEqual(viewModel.superview.value,
+                       keyWindow)
+    }
+
+    func testInitializerShouldSetupSuperviewObservableAfterUIWindowDidBecomeKeyNotification() {
         // Given
         let viewModel = GradientLoadingBarViewModel(superview: nil,
                                                     durations: durations,
@@ -69,39 +80,29 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
                                                     notificationCenter: notificationCenter)
 
         let keyWindow = UIWindow()
-        sharedApplicationMock.keyWindow = keyWindow
-
-        var disposal = Disposal()
-        viewModel.superview.observe { nextValue, _ in
-            guard let nextValue = nextValue else {
-                // Skip initial call to observer.
-                return
-            }
-
-            // Then
-            XCTAssertEqual(nextValue, keyWindow)
-        }.add(to: &disposal)
 
         // When
+        sharedApplicationMock.keyWindow = keyWindow
         notificationCenter.post(name: UIWindow.didBecomeKeyNotification,
                                 object: nil)
+
+        // Then
+        XCTAssertEqual(viewModel.superview.value,
+                       keyWindow)
     }
 
-    func testListenerForSuperviewShouldBeInformedAfterUIWindowDidBecomeKeyNotificationJustOnce() {
+    func testInitializerShouldSetupSuperviewObservableAfterUIWindowDidBecomeKeyNotificationJustOnce() {
         // Given
         let viewModel = GradientLoadingBarViewModel(superview: nil,
                                                     durations: durations,
                                                     sharedApplication: sharedApplicationMock,
                                                     notificationCenter: notificationCenter)
-
-        let keyWindow = UIWindow()
-        sharedApplicationMock.keyWindow = keyWindow
 
         var observerCounter = 0
 
         var disposal = Disposal()
-        viewModel.superview.observe { nextValue, _ in
-            guard nextValue != nil else {
+        viewModel.superview.observe { newSuperview, _ in
+            guard newSuperview != nil else {
                 // Skip initial call to observer.
                 return
             }
@@ -111,49 +112,55 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
 
         // When
         for _ in 1 ... 3 {
+            sharedApplicationMock.keyWindow = UIWindow()
             notificationCenter.post(name: UIWindow.didBecomeKeyNotification,
                                     object: nil)
         }
 
+        // Then
         XCTAssertEqual(observerCounter, 1)
     }
 
-    // MARK: - Test visibility
+    // MARK: - Test observable `animatedVisibilityUpdate`
 
-    func testShowShouldUpdateVisibility() {
+    func testInitializerShouldSetupAnimatedVisibilityUpdateObservableWithImmediatelyHidden() {
+        // Then
+        let receivedAnimatedVisibilityUpdate = viewModel.animatedVisibilityUpdate.value
+        let expectedAnimatedVisibilityUpdate = GradientLoadingBarViewModel.AnimatedVisibilityUpdate.immediatelyHidden
+
+        XCTAssertEqual(receivedAnimatedVisibilityUpdate, expectedAnimatedVisibilityUpdate)
+    }
+
+    func testShowShouldUpdateAnimatedVisibilityUpdateObservable() {
         // When
         viewModel.show()
 
         // Then
-        let receivedAnimatedVisibilityUpdate = viewModel.isVisible.value
+        let receivedAnimatedVisibilityUpdate = viewModel.animatedVisibilityUpdate.value
         let expectedAnimatedVisibilityUpdate = makeAnimatedVisibilityUpdateForStateIsVisible
 
         XCTAssertEqual(receivedAnimatedVisibilityUpdate, expectedAnimatedVisibilityUpdate)
     }
 
-    func testHideShouldUpdateVisibility() {
-        // Given
-        // Start by showing the gradient loading bar, so we'll notice the change.
-        viewModel.show()
-
+    func testHideShouldUpdateAnimatedVisibilityUpdateObservable() {
         // When
         viewModel.hide()
 
         // Then
-        let receivedAnimatedVisibilityUpdate = viewModel.isVisible.value
+        let receivedAnimatedVisibilityUpdate = viewModel.animatedVisibilityUpdate.value
         let expectedAnimatedVisibilityUpdate = makeAnimatedVisibilityUpdateForStateIsHidden
 
         XCTAssertEqual(receivedAnimatedVisibilityUpdate, expectedAnimatedVisibilityUpdate)
     }
 
-    func testToggleShouldUpdateVisibility() {
+    func testToggleShouldUpdateAnimatedVisibilityUpdateObservable() {
         // Given
         for idx in 1 ... 5 {
             // When
             viewModel.toggle()
 
             // Then
-            let receivedAnimatedVisibilityUpdate = viewModel.isVisible.value
+            let receivedAnimatedVisibilityUpdate = viewModel.animatedVisibilityUpdate.value
             let expectedAnimatedVisibilityUpdate: GradientLoadingBarViewModel.AnimatedVisibilityUpdate
 
             let viewShouldBeHidden = idx % 2 == 0
