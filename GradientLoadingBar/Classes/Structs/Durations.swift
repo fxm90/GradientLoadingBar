@@ -8,8 +8,7 @@
 
 import Foundation
 
-/// Animation durations for fade-in / fade-out and progress animations.
-/// All values are in seconds.
+/// Datamodel for durations for fade-in-, fade-out- and progress-animation.
 public struct Durations {
     // MARK: - Config
 
