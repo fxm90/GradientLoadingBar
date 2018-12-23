@@ -62,10 +62,14 @@ class GradientLoadingBarViewModel {
         self.notificationCenter = notificationCenter
 
         if let superview = superview {
-            // We have a valid key window » Use it as superview.
+            // We have a custom superview.
             superviewSubject.value = superview
+        } else if let keyWindow = sharedApplication.keyWindow {
+            // We have a valid key window.
+            superviewSubject.value = keyWindow
         } else {
-            // The initializer is called from `appDelegate`, where the key window is not available yet.
+            // The key window is not available yet. This happens, if the initializer is called from
+            // `UIApplicationDelegate.application(_:didFinishLaunchingWithOptions:)`.
             // Therefore we setup an observer to inform the listeners when it's ready.
             notificationCenter.addObserver(self,
                                            selector: #selector(didReceiveUIWindowDidBecomeKeyNotification(_:)),
