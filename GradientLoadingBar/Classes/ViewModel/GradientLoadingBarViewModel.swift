@@ -16,7 +16,8 @@ class GradientLoadingBarViewModel {
     /// This struct contains all infomation that are required for an animated visibility update of the loading bar.
     struct AnimatedVisibilityUpdate: Equatable {
         /// Initialize the struct with values set to zero / hidden.
-        static let immediatelyHidden = AnimatedVisibilityUpdate(duration: 0.0, isHidden: true)
+        static let immediatelyHidden = AnimatedVisibilityUpdate(duration: 0.0,
+                                                                isHidden: true)
 
         /// The duration for the visibility update.
         let duration: TimeInterval

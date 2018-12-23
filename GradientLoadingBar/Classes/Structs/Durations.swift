@@ -14,7 +14,9 @@ public struct Durations {
     // MARK: - Config
 
     /// The default durations for the loading bar.
-    public static let `default` = Durations(fadeIn: 0.33, fadeOut: 0.66, progress: 3.33)
+    public static let `default` = Durations(fadeIn: 0.33,
+                                            fadeOut: 0.66,
+                                            progress: 3.33)
 
     // MARK: - Public Properties
 
