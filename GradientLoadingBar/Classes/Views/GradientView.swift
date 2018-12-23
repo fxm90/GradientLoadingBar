@@ -12,13 +12,14 @@ import UIKit
 public final class GradientView: UIView {
     // MARK: - Types
 
-    /// Animation-Keys for each animation
-    static let progressAnimationKey = "GradientView--progressAnimation"
+    /// Animation-Key for the progress animation.
+    private static let progressAnimationKey = "GradientView--progressAnimation"
 
     // MARK: - Public properties
 
     public override var isHidden: Bool {
         didSet {
+            // Update our progress animation accordingly.
             if isHidden {
                 stopProgressAnimation()
             } else {
@@ -63,8 +64,9 @@ public final class GradientView: UIView {
     public override func layoutSubviews() {
         super.layoutSubviews()
 
-        // Unfortunately CGLayer is not affected by autolayout, so any change in the size of the view will not change the gradient layer.
+        // Unfortunately `CALayer` is not affected by autolayout, so any change in the size of the view will not change the gradient layer.
         // That's why we'll have to update the frame here manually.
+
         // Three times of the width in order to apply normal, reversed and normal gradient to simulate infinte animation
         gradientLayer.frame = CGRect(x: 0, y: 0, width: 3 * bounds.size.width, height: bounds.size.height)
         gradientLayer.position = .zero
@@ -101,10 +103,8 @@ public final class GradientView: UIView {
         animation.fromValue = CGPoint(x: -2 * bounds.size.width, y: 0)
         animation.toValue = CGPoint.zero
         animation.duration = progressAnimationDuration
-        animation.repeatCount = Float.infinity
-
-        // Prevent stopping animation on disappearing view, and then coming back.
         animation.isRemovedOnCompletion = false
+        animation.repeatCount = Float.infinity
 
         gradientLayer.add(animation, forKey: GradientView.progressAnimationKey)
     }
