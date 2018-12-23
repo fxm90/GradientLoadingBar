@@ -82,18 +82,14 @@ open class GradientLoadingBarController {
     }
 
     private func bindViewModelToView() {
-        viewModel.isVisible.observeDistinct { [weak self] nextValue, _ in
-            self?.updateGradientViewVisibility(nextValue)
+        viewModel.animatedVisibilityUpdate.observeDistinct { [weak self] newAnimatedVisibilityUpdate, _ in
+            self?.gradientView.animate(isHidden: newAnimatedVisibilityUpdate.isHidden,
+                                       duration: newAnimatedVisibilityUpdate.duration)
         }.add(to: &disposal)
 
-        viewModel.superview.observeDistinct { [weak self] nextValue, _ in
-            self?.addGradientView(to: nextValue)
+        viewModel.superview.observeDistinct { [weak self] newSuperview, _ in
+            self?.addGradientView(to: newSuperview)
         }.add(to: &disposal)
-    }
-
-    private func updateGradientViewVisibility(_ animatedVisibilityUpdate: GradientLoadingBarViewModel.AnimatedVisibilityUpdate) {
-        gradientView.animate(isHidden: animatedVisibilityUpdate.isHidden,
-                             duration: animatedVisibilityUpdate.duration)
     }
 
     private func addGradientView(to superview: UIView?) {
