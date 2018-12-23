@@ -1,6 +1,6 @@
 //
 //  Observable+ObserveDistinctTestCase.swift
-//  GradientLoadingBar_Example
+//  GradientLoadingBar_Tests
 //
 //  Created by Felix Mau on 08/25/18.
 //  Copyright © 2018 Felix Mau. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  GradientLoadingBarViewModelTestCase.swift
-//  GradientLoadingBar_Example
+//  GradientLoadingBar_Tests
 //
 //  Created by Felix Mau on 12/26/17.
 //  Copyright © 2017 Felix Mau. All rights reserved.
