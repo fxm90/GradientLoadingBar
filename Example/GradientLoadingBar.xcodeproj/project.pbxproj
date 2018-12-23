@@ -17,7 +17,6 @@
 		972CFBCC2138849A006F14C9 /* SafeAreaExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972CFBCB2138849A006F14C9 /* SafeAreaExampleViewController.swift */; };
 		97464E6721372BCD0097183A /* AdvancedExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97464E6621372BCD0097183A /* AdvancedExampleViewController.swift */; };
 		97464E6921372C010097183A /* NavigationBarExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97464E6821372C010097183A /* NavigationBarExampleViewController.swift */; };
-		974E3F1C1FF2AA4400C96A59 /* DurationsTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974E3F161FF2A85600C96A59 /* DurationsTestCase.swift */; };
 		974E3F221FF2DEAA00C96A59 /* GradientLoadingBarViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974E3F211FF2DEAA00C96A59 /* GradientLoadingBarViewModelTestCase.swift */; };
 		97B6F5FE2143F31F008CFEA5 /* UIColor+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B6F5FA2143F31F008CFEA5 /* UIColor+CustomColors.swift */; };
 		97B6F5FF2143F31F008CFEA5 /* BlueFilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B6F5FC2143F31F008CFEA5 /* BlueFilledButton.swift */; };
@@ -54,7 +53,6 @@
 		972CFBCB2138849A006F14C9 /* SafeAreaExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaExampleViewController.swift; sourceTree = "<group>"; };
 		97464E6621372BCD0097183A /* AdvancedExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedExampleViewController.swift; sourceTree = "<group>"; };
 		97464E6821372C010097183A /* NavigationBarExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarExampleViewController.swift; sourceTree = "<group>"; };
-		974E3F161FF2A85600C96A59 /* DurationsTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationsTestCase.swift; sourceTree = "<group>"; };
 		974E3F211FF2DEAA00C96A59 /* GradientLoadingBarViewModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLoadingBarViewModelTestCase.swift; sourceTree = "<group>"; };
 		97B6F5FA2143F31F008CFEA5 /* UIColor+CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColors.swift"; sourceTree = "<group>"; };
 		97B6F5FC2143F31F008CFEA5 /* BlueFilledButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlueFilledButton.swift; sourceTree = "<group>"; };
@@ -165,7 +163,6 @@
 			isa = PBXGroup;
 			children = (
 				972B29D31F7F88F6009D9F89 /* Extensions */,
-				974E3F151FF2A85600C96A59 /* Structs */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -176,14 +173,6 @@
 				97FA595A213184DF00CCD446 /* Observable+ObserveDistinctTestCase.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		974E3F151FF2A85600C96A59 /* Structs */ = {
-			isa = PBXGroup;
-			children = (
-				974E3F161FF2A85600C96A59 /* DurationsTestCase.swift */,
-			);
-			path = Structs;
 			sourceTree = "<group>";
 		};
 		974E3F201FF2DE7A00C96A59 /* ViewModel */ = {
@@ -472,7 +461,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				974E3F221FF2DEAA00C96A59 /* GradientLoadingBarViewModelTestCase.swift in Sources */,
-				974E3F1C1FF2AA4400C96A59 /* DurationsTestCase.swift in Sources */,
 				97FA595B213184DF00CCD446 /* Observable+ObserveDistinctTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
