@@ -8,7 +8,7 @@ A customizable animated gradient loading bar. Inspired by [iOS 7 Progress Bar fr
 
 ![Example](http://felix.hamburg/files/github/gradient-loading-bar/screen.gif)
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+To run the example project, clone the repo, and open the workspace from the Example directory.
 
 ### Integration
 ##### CocoaPods
