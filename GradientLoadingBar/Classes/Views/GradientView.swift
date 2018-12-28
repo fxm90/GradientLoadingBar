@@ -69,7 +69,6 @@ public final class GradientView: UIView {
 
         // Three times of the width in order to apply normal, reversed and normal gradient to simulate infinte animation
         gradientLayer.frame = CGRect(x: 0, y: 0, width: 3 * bounds.size.width, height: bounds.size.height)
-        gradientLayer.position = .zero
     }
 
     public override func point(inside _: CGPoint, with _: UIEvent?) -> Bool {
