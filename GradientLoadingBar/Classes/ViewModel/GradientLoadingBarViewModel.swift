@@ -69,9 +69,9 @@ class GradientLoadingBarViewModel {
             // We have a valid key window.
             superviewSubject.value = keyWindow
         } else {
-            // The key window is not available yet. This happens, if the initializer is called from
+            // The key window is not available yet. This can happen, if the initializer is called from
             // `UIApplicationDelegate.application(_:didFinishLaunchingWithOptions:)`.
-            // Therefore we setup an observer to inform the listeners when it's ready.
+            // Therefore we setup an observer to inform the view model when a `UIWindow` object becomes the key window.
             notificationCenter.addObserver(self,
                                            selector: #selector(didReceiveUIWindowDidBecomeKeyNotification(_:)),
                                            name: UIWindow.didBecomeKeyNotification,
