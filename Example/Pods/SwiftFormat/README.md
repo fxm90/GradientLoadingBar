@@ -1,6 +1,5 @@
 [![Travis](https://img.shields.io/travis/nicklockwood/SwiftFormat.svg)](https://travis-ci.org/nicklockwood/SwiftFormat)
 [![Coveralls](https://coveralls.io/repos/github/nicklockwood/SwiftFormat/badge.svg)](https://coveralls.io/github/nicklockwood/SwiftFormat)
-[![Swift 3.4](https://img.shields.io/badge/swift-3.4-orange.svg?style=flat)](https://developer.apple.com/swift)
 [![Swift 4.2](https://img.shields.io/badge/swift-4.2-red.svg?style=flat)](https://developer.apple.com/swift)
 [![License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://opensource.org/licenses/MIT)
 [![Twitter](https://img.shields.io/badge/twitter-@nicklockwood-blue.svg)](http://twitter.com/nicklockwood)
@@ -14,17 +13,20 @@ Table of Contents
     - [Command-line tool](#command-line-tool)
     - [Xcode source editor extension](#xcode-source-editor-extension)
     - [Xcode build phase](#xcode-build-phase)
+    - [Via Applescript](#via-applescript)
     - [VSCode plugin](#vscode-plugin)
     - [Git pre-commit hook](#git-pre-commit-hook)
     - [On CI using Danger](#on-ci-using-danger)
-- [Usage](#so-what-does-swiftformat-actually-do)
+- [Configuration](#configuration)
     - [Options](#options)
     - [Rules](#rules)
-    - [Config](#config)
+    - [Swift version](#swift-version)
+    - [Config file](#config-file)
+    - [Globs](#globs)
     - [Linting](#linting)
+    - [Cache](#cache)
+    - [File headers](#file-headers)
 - [FAQ](#faq)
-- [Cache](#cache)
-- [File headers](#file-headers)
 - [Known issues](#known-issues)
 - [Credits](#credits)
 
@@ -32,19 +34,18 @@ Table of Contents
 What is this?
 ----------------
 
-SwiftFormat is a code library and command-line tool for reformatting swift code.
+SwiftFormat is a code library and command-line tool for reformatting swift code on macOS or Linux.
 
-It applies a set of rules to the formatting and space around the code, leaving the behavior intact.
-
+SwiftFormat goes above and beyond what you might expect from a code formatter. In addition to adjusting white space it can insert or remove implicit `self`, remove redundant parentheses, and correct many other deviations from the standard Swift idioms.
 
 Why would I want to do that?
 -----------------------------
 
 Many programmers have a preferred style for formatting their code, and others seem entirely blind to the existing formatting conventions of a project (to the enragement of their colleagues).
 
-When collaborating on a project, it can be helpful to agree on a common coding style, but enforcing that manually is tedious and error-prone, and can lead to bad feeling if some participants take it more seriously than others.
+When collaborating on a project, it can be helpful to agree on a common coding style, but enforcing that manually is tedious and error-prone, and can lead to arguments if some participants take it more seriously than others.
 
-Having a tool to automatically enforce a common style eliminates those issues, and lets you focus on the *operation* of the code, not its presentation.
+Having a tool to automatically enforce a common style eliminates those issues, and lets you focus on the behavior of the code, not its presentation.
 
 
 How do I install it?
@@ -63,26 +64,34 @@ Command-line tool
 
 **Installation:**
 
-You can install the `swiftformat` command-line tool using [Homebrew](http://brew.sh/). Assuming you already have Homebrew installed, just type:
+You can install the `swiftformat` command-line tool on macOS using [Homebrew](http://brew.sh/). Assuming you already have Homebrew installed, just type:
 
 ```bash
-> brew update
-> brew install swiftformat
+$ brew update
+$ brew install swiftformat
 ```
 
-Alternatively, you can install the tool using [Mint](https://github.com/yonaskolb/Mint) as follows:
+Alternatively, you can install the tool on macOS or Linux by using [Mint](https://github.com/yonaskolb/Mint) as follows:
 
 ```bash
-> mint install nicklockwood/SwiftFormat
+$ mint install nicklockwood/SwiftFormat
 ```
     
 And then run it using:
 
 ```bash
-> mint run swiftformat
+$ mint run swiftformat
 ```
 
-If you are installing SwiftFormat into your project directory, you can use [CocoaPods](https://cocoapods.org/) to automatically install the swiftformat binary along with your other pods - see the Xcode build phase instructions below for details.
+Or if you prefer, you can check out and build SwiftFormat manually on macOS or Linux as follows:
+
+```bash
+$ git clone https://github.com/nicklockwood/SwiftFormat
+$ cd SwiftFormat
+$ swift build -c release
+```
+
+If you are installing SwiftFormat into your project directory, you can use [CocoaPods](https://cocoapods.org/) on macOS to automatically install the swiftformat binary along with your other pods - see the Xcode build phase instructions below for details.
 
 If you would prefer not to use a package manager, you can build the command-line app manually:
 
@@ -101,7 +110,7 @@ If you would prefer not to use a package manager, you can build the command-line
 If you followed the installation instructions above, you can now just type
 
 ```bash
-> swiftformat .
+$ swiftformat .
 ```
     
 (that's a space and then a period after the command) in the terminal to format any Swift files in the current directory.
@@ -122,7 +131,7 @@ To use it safely, do the following:
 
     If you used `--inferoptions` to generate a suggested set of options in step 3, you should copy and paste them into the command, either before or after the path(s) to your source files.
     
-    If you have created a [configuration file](#config), you can specify its path using `--config "/path/to/your/config-file/".
+    If you have created a [config file](#config-file), you can specify its path using `--config "/path/to/your/config-file/".
 
 5. Press enter to begin formatting. Once the formatting is complete, use your source control system to check the changes, and verify that no undesirable changes have been introduced. If they have, revert the changes, tweak the options and try again.
 
@@ -133,7 +142,7 @@ Following these instructions *should* ensure that you avoid catastrophic data lo
 If you prefer, you can also use unix pipes to include swiftformat as part of a command chain. For example, this is an alternative way to format a file:
 
 ```bash
-> cat /path/to/file.swift | swiftformat --output /path/to/file.swift
+$ cat /path/to/file.swift | swiftformat --output /path/to/file.swift
 ```
     
 Omitting the `--output /path/to/file.swift` will print the formatted file to `stdout`.
@@ -154,7 +163,7 @@ In Xcode, you'll find a SwiftFormat option under the Editor menu. You can use th
 
 You can configure the formatting [rules](#rules) and [options](#options) used by the Xcode source editor extension using the host application. There is currently no way to override these per-project, however you can import and export different configurations using the File menu. You will need to do this again each time you switch project.
 
-The format of the configuration file is described in the [Config section](#config) below.
+The format of the configuration file is described in the [Config section](#config-file) below.
 
 **Note:** SwiftFormat for Xcode cannot automatically detect changes to an imported configuration file. If you update the `.swiftformat` file for your project, you will need to manually re-import that file into SwiftFormat for Xcode in order for the Xcode source editor extension to use the new configuration.
 
@@ -178,7 +187,7 @@ To set up SwiftFormat as an Xcode build phase, do the following:
     "${SRCROOT}/path/to/swiftformat" "${SRCROOT}/path/to/your/swift/code/"
     ```
         
-	Both paths should be relative to the directory containing your Xcode project. If you are installing SwiftFormat as a Cocoapod, the swiftformat path will be
+	Both paths should be relative to the directory containing your Xcode project. If you are installing SwiftFormat using Cocoapods, the path will be
 
     ```bash
     "${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat"
@@ -198,6 +207,20 @@ fi
 
 This is not recommended for shared projects however, as different team members using different versions of SwiftFormat may result in noise in the commits as code gets reformatted inconsistently.
 
+Via AppleScript
+----------------
+
+To run swiftformat on the frontmost Xcode document (project or workspace) you can use the following AppleScript:
+
+```applescript
+tell application "Xcode"
+	set frontWindow to the first window
+	set myPath to path of document of frontWindow
+	do shell script "cd " & myPath & ";cd ..; /usr/local/bin/swiftformat ."
+end tell
+```
+
+Some Apps you can trigger this from are [BetterTouchTool](https://folivora.ai), [Alfred](https://www.alfredapp.com) or [Keyboard Maestro](https://www.keyboardmaestro.com/main/). Another option is to define a QuickAction for Xcode via Automator and then assign a keyboard shortcut for it in the System Preferences.
 
 VSCode plugin
 --------------
@@ -247,10 +270,8 @@ To setup SwiftFormat to be used by your continuous integration system using [Dan
     
     **NOTE:** It is recommended to add the `swiftformat` binary to your project directory to ensure the same version is used each time (see the [Xcode build phase](#xcode-build-phase) instructions above).
 
-So what does SwiftFormat actually do?
---------------------------------------
-
-SwiftFormat first converts the source file into tokens, then iteratively applies a set of rules to the tokens to adjust the formatting. The tokens are then converted back into text.
+Configuration
+-------------
 
 SwiftFormat's configuration is split between **rules** and **options**. Rules are functions in the SwiftFormat library that apply changes to the code. Options are settings that control the behavior of the rules. 
 
@@ -260,7 +281,7 @@ Options
 
 The options available in SwiftFormat can be displayed using the `--help` command-line argument. The default value for each option is indicated in the help text.
 
-Rules are configured by adding `--[rulename] [value]` to your command-line arguments, or by creating a [config file](#config) as explained below.
+Rules are configured by adding `--[rulename] [value]` to your command-line arguments, or by creating a [config file](#config-file) as explained below.
 
 A given option may affect multiple rules. See the [Rules](#rules) section below for details about which options affect which rule.
 
@@ -308,9 +329,40 @@ let bar = baz // rule(s) will be re-enabled for this line
 
 There is no need to manually re-enable a rule after using the `next` directive.
 
-**Note:** The `swiftformat:enable` directives only serves to counter a previous `swiftformat:disable` directive in the same file. It is not possible to use `swiftformat:enable` to enable a rule that was not already enabled when formatting started.
+**NOTE:** The `swiftformat:enable` directives only serves to counter a previous `swiftformat:disable` directive in the same file. It is not possible to use `swiftformat:enable` to enable a rule that was not already enabled when formatting started.
 
 Here are all the rules that SwiftFormat currently applies, and the effects that they have:
+
+***andOperator*** - replaces the `&&` operator with `,` inside `if`, `guard` and `while` conditions:
+
+```diff
+- if true && true {
++ if true, true {
+```
+
+```diff
+- guard true && true else {
++ guard true, true else {
+```
+
+```diff
+- if functionReturnsBool() && true {
++ if functionReturnsBool(), true {
+```
+
+```diff
+- if functionReturnsBool() && variable {
++ if functionReturnsBool(), variable {
+```
+
+***anyObjectProtocol*** - replaces `class` with `AnyObject` in protocol definitions, as recommended in modern Swift guidelines:
+
+```diff
+- protocol Foo: class {}
++ protocol Foo: AnyObject {}
+```
+
+**NOTE:** The guideline to use `AnyObject` instead of `class` was only introduced in Swift 4.1, so the `anyObjectProtocol` rule is disabled unless the [swift version](#swift-version) is set to 4.1 or above.
 
 ***blankLinesAtEndOfScope*** - removes trailing blank lines from inside braces, brackets, parens or chevrons:
 
@@ -598,7 +650,7 @@ Here are all the rules that SwiftFormat currently applies, and the effects that 
   }
 ```
 
-***isEmpty*** - replaces `count == 0` checks with `isEmpty`, which is preferred for performance reasons (disabled by default because SwiftFormat is not able to check that the isEmpty property is actually available in all cases):
+***isEmpty*** - replaces `count == 0` checks with `isEmpty`, which is preferred for performance reasons (especially for Strings where count has O(n) complexity):
 
 ```diff
 - if foo.count == 0 {
@@ -631,7 +683,17 @@ Here are all the rules that SwiftFormat currently applies, and the effects that 
 + let big = 123_456.123
 ```
 
-***ranges*** - controls the spacing around range operators. By default, a space is added, but this can be configured using the `--ranges` option (`spaced` (default) or `nospace`).
+***ranges*** - controls the spacing around range operators. By default, a space is added, but this can be configured using the `--ranges` option (`spaced` (default) or `nospace`):
+
+```diff
+- for i in 0..<5 {}
++ for i in 0 ..< 5 {}
+```
+
+```diff
+- if (0...5).contains(i) {}
++ if (0 ... 5).contains(i) {}
+```
 
 ***redundantBackticks*** - removes unnecessary escaping of identifiers using backticks, e.g. in cases where the escaped word is not a keyword, or is not ambiguous in that context:
 
@@ -643,6 +705,19 @@ Here are all the rules that SwiftFormat currently applies, and the effects that 
 ```diff
 - func foo(with `default`: Int) {}
 + func foo(with default: Int) {}
+```
+
+***redundantBreak*** - removes redundant `break` statements from inside switch cases:
+
+```diff
+  switch foo {
+    case bar:
+        print("bar")
+-       break
+    default:
+        print("default")
+-       break
+  }
 ```
 
 ***redundantGet*** - removes unnecessary `get { }` clauses from inside read-only computed properties:
@@ -659,21 +734,52 @@ Here are all the rules that SwiftFormat currently applies, and the effects that 
   }
 ```
 
+***redundantExtensionACL*** - removes access control level keywords from extension members when the access level matches the extension itself:
+
+```diff
+  var foo: Int {
+-   get {
+-     return 5
+-   }
+  }
+
+  var foo: Int {
++   return 5
+  }
+```
+
+***redundantFileprivate*** - replaces `fileprivate` access control keyword with `private` when they are equivalent, e.g. for top-level constants, functions or types within a file:
+
+```diff
+-  fileprivate let someConstant = "someConstant"
++  private let someConstant = "someConstant"
+```
+
+In Swift 4 and above, `fileprivate` can also be replaced with `private` for members that are only accessed from extensions in the same file:
+
+```diff
+  class Foo {
+-   fileprivate var foo = "foo"
++   private var foo = "foo"
+  }
+  
+  extension Foo {
+    func bar() {
+      print(self.foo)
+    }
+  }
+```
+
 ***redundantLet*** - removes redundant `let` or `var` from ignored variables in bindings (which is a warning in Xcode):
 
 ```diff
-- let _ = resultIgnorableFunction()
-+ _ = resultIgnorableFunction()
-```
-
-```diff
-- if case (let foo, let _) = bar {}
-+ if case (let foo, _) = bar {}
-```
-
-```diff
-- if case .foo(var /* unused */ _) = bar {}
-+ if case .foo( /* unused */ _) = bar {}
+  public extension URL {
+-   public func queryParameter(_ name: String) -> String { ... }
+  }
+  
+  public extension URL {
++   func queryParameter(_ name: String) -> String { ... }
+  }
 ```
 
 ***redundantLetError*** - removes redundant `let error` from `catch` statements, where it is declared implicitly:
@@ -698,6 +804,23 @@ let foo: Int? = nil
 ```diff
 // doesn't affect non-nil initialization
 var foo: Int? = 0
+```
+
+***redundantObjc*** - removes unnecessary `@objc` annotation from properties and functions:
+
+```diff
+- @objc @IBOutlet var label: UILabel!
++ @IBOutlet var label: UILabel!
+```
+
+```diff
+- @IBAction @objc func goBack() {}
++ @IBOutlet func goBack() {}
+```
+
+```diff
+- @objc @NSManaged private var foo: String?
++ @NSManaged private var foo: String?
 ```
 
 ***redundantParens*** - removes unnecessary parens from expressions and branch conditions:
@@ -770,6 +893,8 @@ var foo: Int? = 0
 +   baz = 42
   }  
 ```
+
+In the rare case of functions with`@autoclosure` arguments, `self` may be required at the call site, but SwiftFormat is unable to detect this automatically. You can use the `--selfrequired` command-line option to specify a list of such methods, and the `redundantSelf` rule will then ignore them. An example of such a method is the `expect()` function in the [Nimble](https://github.com/Quick/Nimble) unit testing framework, which is common enough that it is excluded by default.
 
 There is also an option to always use explicit `self` but *only* inside `init`, by using `--self init-only`:
 
@@ -957,7 +1082,7 @@ goto(fail)
 ***spaceInsideParens*** - removes the space inside `( ... )`:
 
 ```diff
-- ( a, b )
+- ( a, b)
 + (a, b)
 ```
 
@@ -977,6 +1102,16 @@ goto(fail)
 - convenience private init() 
 + private convenience init()
 ```
+
+***strongifiedSelf*** - replaces ``self`` with self when using the common `guard let `self` = self` pattern for strongifying weak self references:
+
+```diff
+- guard let `self` = self else { return }
++ guard let self = self else { return }
+```
+
+**NOTE:** assignment to un-escaped `self` is only supported in Swift 4.2 and above, so the `strongifiedSelf` rule is disabled unless the [swift version](#swift-version) is set to 4.2 or above.
+
 
 ***strongOutlets*** - removes the `weak` specifier from `@IBOutlet` properties, as per [Apple's recommendation](https://developer.apple.com/videos/play/wwdc2015/407/):
 
@@ -1029,6 +1164,23 @@ goto(fail)
 + // MARK: - UIScrollViewDelegate
 ```
 
+***typeSugar*** - replaces Array, Dictionary and Optional types with their shorthand forms:
+
+```diff
+- var foo: Array<String>
++ var foo: [String]
+```
+
+```diff
+- var foo: Dictionary<String, Int>
++ var foo: [String: Int]
+```
+
+```diff
+- var foo: Optional<(Int) -> Void>
++ var foo: ((Int) -> Void)?
+```
+
 ***unusedArguments*** - marks unused arguments in functions and closures with `_` to make it clear they aren't used. Use the `--stripunusedargs` option to configure which argument types are affected (`always` (default), `closure-only` or `unnamed-only`).
 
 ```diff
@@ -1064,7 +1216,7 @@ goto(fail)
 ***void*** - standardizes the use of `Void` vs an empty tuple `()` to represent empty argument lists and return values, depending on the `--empty` option (`void` (default) or `tuple`).
 
 ```diff
-- let foo: () -> (
+- let foo: () -> ()
 + let foo: () -> Void
 ```
 
@@ -1113,31 +1265,21 @@ Or for `--wrapcollections beforefirst`:
 ]
 ```
 
-***andOperator*** - replaces the `&&` operator with `,` inside `if`, `guard` and `while` conditions:
 
-```diff
-- if true && true {
-+ if true, true {
-```
+Swift version
+-------------
 
-```diff
-- guard true && true else {
-+ guard true, true else {
-```
+Most SwiftFormat rules are version-agnostic, but a few rules only apply to certain Swift versions. These rules will be disabled automatically if the Swift version is not specified, so to enable them you should specify the version of Swift that is used by your project.
 
-```diff
-- if functionReturnsBool() && true {
-+ if functionReturnsBool(), true {
-```
+You can specify the Swift version one of two ways:
 
-```diff
-- if functionReturnsBool() && variable {
-+ if functionReturnsBool(), variable {
-```
+The preferred option is to add a `.swift-version` file to your project directory. This is a text file that should contain the minimum Swift version supported by your project. This file applies hierarchically. If you have submodules in your project that use a different Swift version, you can add separate `.swift-version` files to those directories.
+
+The other option to specify the Swift version using the `--swiftversion` command line argument. Note that this will be overridden by any `.swift-version` files encountered while processing.
 
 
-Config
-------
+Config file
+-----------
 
 Although it is possible to configure SwiftFormat directly by using the command-line [options](#options) and [rules](#rules) detailed above, it is sometimes more convenient to create a configuration file, which can be added to your project and shared with other developers.
 
@@ -1149,11 +1291,17 @@ A SwiftFormat configuration file consists of one or more command-line options, s
 --disable elseOnSameLine,semicolons
 ```
 
-While formatting, SwiftFormat will automatically check inside each subdirectory for the presence of a ".swiftformat" file and will apply any options that it finds there to the files in that directory.
+While formatting, SwiftFormat will automatically check inside each subdirectory for the presence of a `.swiftformat` file and will apply any options that it finds there to the files in that directory.
 
-This allows you to override certain rules or formatting options just for a particular directory of files. You can also specify excluded files relative to that directory using `--exclude`, which may be more convenient than specifying them at the top-level.
+This allows you to override certain rules or formatting options just for a particular directory of files. You can also specify excluded files relative to that directory using `--exclude`, which may be more convenient than specifying them at the top-level:
 
-Files named ".swiftformat" will be processed automatically, however you can select an additional configuration file to use for formatting using the `--config "path/to/config/file"` command-line argument. A configuration file selected using `--config` does not need to be named ".swiftformat", and can be located outside of the project directory.
+```
+--exclude Pods,Generated
+```
+
+The `--exclude` option takes a comma-delimited list of file or directory paths to exclude from formatting. Excluded paths are relative to the config file containing the `--exclude` command. The excluded paths can include wildcards, specified using Unix "Glob" syntax, as [documented below](#globs).
+
+Config files named ".swiftformat" will be processed automatically, however you can select an additional configuration file to use for formatting using the `--config "path/to/config/file"` command-line argument. A configuration file selected using `--config` does not need to be named ".swiftformat", and can be located outside of the project directory.
 
 The config file format is designed to be human editable. You may include blank lines for readability, and can also add comments using a hash prefix (#), e.g.
 
@@ -1172,9 +1320,44 @@ The config file format is designed to be human editable. You may include blank l
 If you would prefer not to edit the configuration file by hand, you can use the [SwiftFormat for Xcode](#xcode-source-editor-extension) app to edit the configuration and export a configuration file. Alternatively, you can use the swiftformat command-line-tool's `--inferoptions` command to generate a config file from your existing project, like this:
 
 ```bash
-> cd /path/to/project
-> swiftformat --inferoptions . --output .swiftformat
+$ cd /path/to/project
+$ swiftformat --inferoptions . --output .swiftformat
 ```
+
+Globs
+-----
+
+When excluding files from formatting using the `--exclude` option, you may wish to make use of wildcard paths (aka "Globs") to match all files that match a particular naming convention without having to manually list them all.
+
+SwiftFormat's glob syntax is based on Ruby's implementation, which varies slightly from the Unix standard. The following patterns are supported:
+
+* `*` - A single star matches zero or more characters in a filename, but *not* a `/`.
+
+* `**` - A double star will match anything, including one or more `/`.
+
+* `?` - A question mark will match any single character except `/`.
+
+* `[abc]` - Matches any single character inside the brackets.
+
+* `[a-z]` - Matches a single character in the specified range in the brackets.
+
+* `{foo,bar}` - Matches any one of the comma-delimited strings inside the braces.
+    
+Examples:
+
+* `foo.swift` - Matches the file "foo.swift" in the same directory as the config file.
+
+* `*.swift` - Matches any swift file in the same directory as the config file.
+
+* `foo/bar.swift` - Matches the file "bar.swift" in the directory "foo".
+
+* `**/foo.swift` - Matches any file named "foo.swift" in the project.
+
+* `**/*.swift` - Matches any swift file in the project.
+
+* `**/Generated` - Matches any folder called `Generated` in the project.
+
+* `**/*_generated.swift` - Matches any Swift file with the suffix "_generated" in the project.
 
 
 Linting
@@ -1182,12 +1365,12 @@ Linting
 
 SwiftFormat is primarily designed as a formatter rather than a linter, i.e. it is designed to fix your code rather than tell you what's wrong with it. However, sometimes it can be useful to verify that code has been formatted in a context where it is not desirable to actually change it.
 
-A typical example would be as part of a CI (Continuous Integration) process, where you may wish to have an automated script that checks committed code for style violations. While you could use a separate tool such as [SwiftLint](https://github.com/realm/SwiftLint) for this, it makes sense to be able to validate the formatting against the exact same rules as you are using to apply it.
+A typical example would be as part of a CI (Continuous Integration) process, where you may wish to have an automated script that checks committed code for style violations. While you can use a separate tool such as [SwiftLint](https://github.com/realm/SwiftLint) for this, it makes sense to be able to validate the formatting against the exact same rules as you are using to apply it.
 
 In order to run SwiftFormat as a linter, you can use the `--lint` command-line option:
 
 ```bash
-> swiftformat --lint path/to/project
+$ swiftformat --lint path/to/project
 ```
 
 This works exactly the same way as when running in format mode, and all the same configuration options apply, however no files will be modified. SwiftFormat will simply format each file in memory and then compare the result against the input. If any formatting changes would have been applied, it will report an error.
@@ -1197,93 +1380,12 @@ The `--lint` option is very similar to `--dryrun`, except that `--lint` will ret
 By default, `--lint` will only report the number of files that were changed, but you can use the additional `--verbose` flag to display a detailed report about which specific rules were applied to which specific files.
 
 
-FAQ
------
-
-There haven't been many questions yet, but here's what I'd like to think people are wondering:
-
-
-*Q. What versions of Swift are supported?*
-
-> A. The framework compiles on Swift 3.x or 4.x and can format programs written in Swift 3.x or 4.x. Swift 2.x is no longer actively supported. If you are still using Swift 2.x, and find that SwiftFormat breaks your code, the best solution is probably to revert to an earlier SwiftFormat release, or enable only a small subset of rules.
-
-
-*Q. I don't like how SwiftFormat formatted my code*
-
-> A. That's not a question (but see below).
-
-
-*Q. How can I modify the formatting rules?*
-
-> A. Many configuration options are exposed in the command-line interface or .swiftformat configuration file. You can either set these manually, or use the `--inferoptions` argument to automatically generate the configuration from your existing project.
-
-> If there is a rule that you don't like, and which cannot be configured to your liking via the command-line options, you can disable the rule by using the `--disable` argument, followed by the name of the rule. You can display a list of all rules using the `--rules` argument, and their behaviors are documented above this section in the README.
-
-> If you are using the Xcode source editor extension, rules and options can be configured using the [SwiftFormat for Xcode](#xcode-source-editor-extension) host application. Unfortunately, due to limitation of the Extensions API, there is no way to configure these on a per-project basis.
-
-> If the options you want aren't exposed, and disabling the rule doesn't solve the problem, the rules are implemented as functions in the file `Rules.swift`, so you can modify them and build a new version of the command-line tool. If you think your changes might be generally useful, make a pull request.
-
-
-*Q. Why can't I set the indent width or choose between tabs/spaces in the [SwiftFormat for Xcode](#xcode-source-editor-extension) options?*
-
-> Indent width and tabs/spaces can be configured in Xcode on a per project-basis. You'll find the option under "Text Settings" in the right-hand sidebar.
-
-
-*Q. After applying SwiftFormat, my code won't compile. Is that a bug?*
-
-> A. SwiftFormat should never break your code. Check the known issues below, and if it's not already listed there, or the suggested workaround doesn't solve your problem, please [raise an issue on Github](https://github.com/nicklockwood/SwiftFormat/issues).
-
-
-*Q. Why did you write yet another Swift formatting tool?*
-
-> A. Surprisingly, there really aren't that many other options out there, and none of them currently support all the rules I wanted. The only other comparable ones I'm aware of are Realm's [SwiftLint](https://github.com/realm/SwiftLint) and Jintin's [Swimat](https://github.com/Jintin/Swimat) - you might want to try those if SwiftFormat doesn't meet your requirements.
-
-
-*Q. Does it use SourceKit?*
-
-> A. No.
-
-
-*Q. Why would you write a parser from scratch instead of just using SourceKit?*
-
-> A. The fact that there aren't already dozens of full-featured Swift formatters using SourceKit would suggest that the "just" isn't warranted.
-
-
-*Q. You wrote a Swift parser from scratch!? Are you a wizard?*
-
-> A. Yes. Yes I am.
-
-
-*Q. How does it work?*
-
-> A. First it loops through the source file character-by-character and breaks it into tokens, such as `number`, `identifier`, `linebreak`, etc. That's handled by the functions in `Tokenizer.swift`.
-
-> Next, it applies a series of formatting rules to the token array, such as removing whitespace at the end of a line, or ensuring each opening brace appears on the same line as the preceding non-space token. The rules are defined as methods of the `FormatRules` class in `Rules.swift`, and are detected automatically using runtime magic. Each rule is designed to be independent of the others, so they can be enabled or disabled individually.
-
-> Rules are applied recursively until no changes are detected. Finally, the modified token array is stitched back together to re-generate the source file.
-
-
-*Q. Why aren't you using regular expressions?*
-
-> A. See https://xkcd.com/1171/ for details.
-
-
-*Q. Can I use SwiftFormat to lint my code without changing it?*
-
-> A. Yes, see the [linting](#linting) section above for details.
-
-
-*Q. Can I use the `SwiftFormat.framework` inside another app?*
-
-> A. Yes, the SwiftFormat framework can be included in an app or test target, and used for many kinds of parsing and processing of Swift source code besides formatting. The SwiftFormat framework is available as a [CocoaPod](https://cocoapods.org/pods/SwiftFormat) for easy integration.
-
-
 Cache
 ------
 
 SwiftFormat uses a cache file to avoid reformatting files that haven't changed. For a large project, this can significantly reduce processing time.
 
-By default, the cache is stored in `~/Library/Caches/com.charcoaldesign.swiftformat`. Use the command-line option `--cache ignore` to ignore the cached version and re-apply formatting to all files. Alternatively, you can use `--cache clear` to delete the cache (or you can just manually delete the cache file).
+By default, the cache is stored in `~/Library/Caches/com.charcoaldesign.swiftformat` on macOS, or `/var/tmp/com.charcoaldesign.swiftformat` on Linux. Use the command-line option `--cache ignore` to ignore the cached version and re-apply formatting to all files. Alternatively, you can use `--cache clear` to delete the cache (or you can just manually delete the cache file).
 
 The cache is shared between all projects. The file is fairly small, as it only stores the path and size for each file, not the contents. If you do start experiencing slowdown due to the cache growing too large, you might want to consider using a separate cache file for each project.
 
@@ -1314,25 +1416,101 @@ You can optionally include Swift comment markup in the template if you wish: `--
 
 If you do not include comment markup, each line in the template will be prepended with `//` and a single space.
 
-Finally, it is common practice to include the current year in a comment header copyright notice. To do that, use the following syntax:
+It is common practice to include the file name, creation date and/or the current year in a comment header copyright notice. To do that, you can use the following placeholders:
+
+* `{file}` - the name of the file
+* `{year}` - the current year
+* `{created}` - the date on which the file was created
+* `{created.year}` - the year in which the file was created
+
+For example, a header template of:
 
 ```bash
---header "Copyright (c) {year} Foobar Industries"
+--header "{file}\nCopyright (c) {year} Foobar Industries\nCreated by John Smith on {created}."
 ```
-    
-And the `{year}` token will be automatically replaced by the current year whenever SwiftFormat is applied (**Note:** the year is determined from the locale and timezone of the machine running the script).
+
+Will be formatted as:
+
+```swift
+// SomeFile.swift
+// Copyright (c) 2019 Foobar Industries
+// Created by John Smith on 01/02/2016.
+```
+
+**NOTE:** the `{year}` value and `{created}` date format are determined from the current locale and timezone of the machine running the script.
+
+
+FAQ
+-----
+
+*Q. How is this different from SwiftLint?*
+
+> A. SwiftLint is primarily designed to find and report code smells and style violations in your code. SwiftFormat is designed to fix them. While SwiftLint can autocorrect some issues, and SwiftFormat has some support for [linting](#linting), their primary goals are different.
+
+
+*Q. Can SwiftFormat and SwiftLint be used together?*
+
+> A. Absolutely! The style rules encouraged by both tools are quite similar, and SwiftFormat even fixes some style violations that SwiftLint warns about, but can't currently autocorrect.
+
+
+*Q. What platforms does SwiftFormat support?*
+
+> A. Swiftformat works on macOS 10.12 (Sierra) and above, and also runs on Ubuntu Linux.
+
+
+*Q. What versions of Swift are supported?*
+
+> A. The SwiftFormat framework and command-line tool can be compiled using Swift 4.0 and above, and can format programs written in Swift 3.x or 4.x. Swift 2.x is no longer actively supported. If you are still using Swift 2.x, and find that SwiftFormat breaks your code, the best solution is probably to revert to an earlier SwiftFormat release, or enable only a small subset of rules.
+
+
+*Q. SwiftFormat made changes I didn't want it to. How can I find out which rules to disable?*
+
+> A. If you run SwiftFormat using the `--verbose` option, it will tell you which rules were applied to each file. You can then selectively disable certain rules using the `--disable` argument (see below).
+
+
+*Q. How can I modify the formatting rules?*
+
+> A. Many configuration options are exposed in the command-line interface or `.swiftformat` configuration file. You can either set these manually, or use the `--inferoptions` argument to automatically generate the configuration from your existing project.
+
+> If there is a rule that you don't like, and which cannot be configured to your liking via the command-line options, you can disable one or more rules by using the `--disable` argument, followed by the name of the rules, separated by commas. You can display a list of all supported rules using the `--rules` argument, and their behaviors are documented above this section in the README.
+
+> If you are using the Xcode source editor extension, rules and options can be configured using the [SwiftFormat for Xcode](#xcode-source-editor-extension) host application. Unfortunately, due to limitation of the Extensions API, there is no way to configure these on a per-project basis.
+
+> If the options you want aren't exposed, and disabling the rule doesn't solve the problem, the rules are implemented in the file `Rules.swift`, so you can modify them and build a new version of the command-line tool. If you think your changes might be generally useful, make a pull request.
+
+
+*Q. Why can't I set the indent width or choose between tabs/spaces in the [SwiftFormat for Xcode](#xcode-source-editor-extension) options?*
+
+> Indent width and tabs/spaces can be configured in Xcode on a per project-basis. You'll find the option under "Text Settings" in the right-hand sidebar.
+
+
+*Q. After applying SwiftFormat, my code won't compile. Is that a bug?*
+
+> A. SwiftFormat should ideally never break your code. Check the known issues below, and if it's not already listed there, or the suggested workaround doesn't solve your problem, please [raise an issue on Github](https://github.com/nicklockwood/SwiftFormat/issues).
+
+
+*Q. Can I use SwiftFormat to lint my code without changing it?*
+
+> A. Yes, see the [linting](#linting) section above for details.
+
+
+*Q. Can I use the `SwiftFormat.framework` inside another app?*
+
+> A. Yes, the SwiftFormat framework can be included in an app or test target, and used for many kinds of parsing and processing of Swift source code besides formatting. The SwiftFormat framework is available as a [CocoaPod](https://cocoapods.org/pods/SwiftFormat) for easy integration.
 
 
 Known issues
 ---------------
 
-* When using the `--self remove` option, the `redundantSelf` rule will remove references to `self` in autoclosure arguments, which may change the meaning of the code, or cause it not to compile. To work around this issue, use the `// swiftformat:disable:next redundantSelf` comment directive to disable the rule for any affected lines of code (or just disable the `redundantSelf` rule completely). If you are using the `--self insert` option then this is not an issue.
+* When using the `--self remove` option, the `redundantSelf` rule will remove references to `self` in autoclosure arguments, which may change the meaning of the code, or cause it not to compile. To work around this issue, use the `--selfrequired` option to provide a comma-delimited list of methods to be excluded from the rule. The `expect()` function from the popular [Nimble](https://github.com/Quick/Nimble) unit testing framework is already excluded by default. If you are using the `--self insert` option then this is not an issue.
 
 * If you assign `SomeClass.self` to a variable and then instantiate an instance of the class using that variable, Swift requires that you use an explicit `.init()`, however the   `redundantInit` rule is not currently capable of detecting this situation and will remove the `.init`. To work around this issue, use the `// swiftformat:disable:next redundantInit` comment directive to disable the rule for any affected lines of code (or just disable the `redundantInit` rule completely).
 
 * The `--self insert` option can only recognize locally declared member variables, not ones inherited from superclasses or extensions in other files, so it cannot insert missing `self` references for those. Note that the reverse is not true: `--self remove` should remove *all* redundant `self` references.
 
 * The `trailingClosures` rule will sometimes generate ambiguous code that breaks your program. For this reason, the rule is disabled by default. It is recommended that you apply this rule manually and review the changes, rather than including it in an automated formatting process.
+
+* The `isEmpty` rule will convert `count == 0` to `isEmpty` even for types that do not have an `isEmpty` method, such as `NSArray`/`NSDictionary`/etc. Use of Objective-C collections in Swift code is pretty rare however, as the Swift-ObjC bridge converts them automatically.
 
 * Under rare circumstances, SwiftFormat may misinterpret a generic type followed by an `=` sign as a pair of `<` and `>=` expressions. For example, the following case would be handled incorrectly:
 
@@ -1347,7 +1525,7 @@ Known issues
     let foo: Dictionary<String, String>=["Hello": "World"]
     ```
 
-* If a file begins with a comment, the `stripHeaders` rule will remove it if is followed by a blank line. To avoid this, make sure that the first comment is directly followed by a line of code.
+* If a file begins with a comment, the `stripHeaders` rule will remove it if it is followed by a blank line. To avoid this, make sure that the first comment is directly followed by a line of code.
 
 * SwiftFormat currently reformats multiline comment blocks without regard for the original indenting. That means
 
@@ -1402,6 +1580,8 @@ Known issues
 * The formatted file cache is based on a hash of the file contents, so it's possible (though unlikely) that an edited file will have the exact same hash as the previously formatted version, causing SwiftFormat to incorrectly identify it as not having changed, and fail to update it.
 
     To fix this, you can use the command-line option `--cache ignore` to force SwiftFormat to ignore the cache for this run, or just type an extra space in the file (which SwiftFormat will then remove again when it applies the correct formatting).
+    
+* When running on Linux, the `--symlinks` option has no effect.
 
 
 Credits
@@ -1413,6 +1593,7 @@ Credits
 * [Romain Pouclet](https://github.com/palleas) - Homebrew formula
 * [Ali Akhtarzada](https://github.com/aliak00) - Several path-related CLI enhancements
 * [Yonas Kolb](https://github.com/yonaskolb) - Swift Package Manager integration
+* [Wolfgang Lutz](https://github.com/Lutzifer) - AppleScript integration instructions
 * [Nick Lockwood](https://github.com/nicklockwood) - Everything else
 
 ([Full list of contributors](https://github.com/nicklockwood/SwiftFormat/graphs/contributors))

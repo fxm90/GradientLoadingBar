@@ -21,7 +21,7 @@ To integrate GradientLoadingBar into your Xcode project using [Carthage](https:/
 ```
 github "fxm90/GradientLoadingBar" ~> 1.0
 ```
-Run carthage update to build the framework and drag the built `GradientLoadingBar.framework` (as well as the dependency [`Observable.framework`](https://github.com/roberthein/Observable)) into your Xcode project.
+Run carthage update to build the framework and drag the built `GradientLoadingBar.framework` into your Xcode project.
 
 ### How to use
 To get started you'll have to import `GradientLoadingBar` into your file. To show the loading bar, simply call the `show()` method and after you're done with your operations call `hide()`.

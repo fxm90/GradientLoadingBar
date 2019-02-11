@@ -41,5 +41,4 @@ Inspired by https://codepen.io/marcobiedermann/pen/LExXWW
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 
-  s.dependency 'Observable', '~> 1.4'
 end

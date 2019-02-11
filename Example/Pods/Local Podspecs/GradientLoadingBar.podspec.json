@@ -20,10 +20,5 @@
   "platforms": {
     "ios": "9.0"
   },
-  "source_files": "GradientLoadingBar/Classes/**/*",
-  "dependencies": {
-    "Observable": [
-      "~> 1.4"
-    ]
-  }
+  "source_files": "GradientLoadingBar/Classes/**/*"
 }
