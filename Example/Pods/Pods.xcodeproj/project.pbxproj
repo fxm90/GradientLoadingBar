@@ -217,7 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				27810AFA66EEB9E1D13EDAD15AD52FE2 /* Extensions */,
-				64E0F5A52211B6480066D00D /* Feature */,
+				64E0F5A52211B6480066D00D /* Features */,
 				4660D1E702B3D84E997AF8A7102A8A7A /* Pod */,
 				04419D4B33396FCF086D7C4BCEC7303A /* Support Files */,
 			);
@@ -233,14 +233,14 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		64E0F5A52211B6480066D00D /* Feature */ = {
+		64E0F5A52211B6480066D00D /* Features */ = {
 			isa = PBXGroup;
 			children = (
 				64E0F5A62211B6480066D00D /* GradientLoadingBar */,
 				64E0F5AF2211B6480066D00D /* Observable */,
 			);
-			name = Feature;
-			path = GradientLoadingBar/Classes/Feature;
+			name = Features;
+			path = GradientLoadingBar/Classes/Features;
 			sourceTree = "<group>";
 		};
 		64E0F5A62211B6480066D00D /* GradientLoadingBar */ = {
@@ -248,7 +248,7 @@
 			children = (
 				64E0F5A92211B6480066D00D /* GradientLoadingBarController.swift */,
 				64E0F5AA2211B6480066D00D /* BottomGradientLoadingBarController.swift */,
-				64E0F5AB2211B6480066D00D /* Structs */,
+				64E0F5AB2211B6480066D00D /* Helpers */,
 				64E0F5A72211B6480066D00D /* ViewModel */,
 				64E0F5AD2211B6480066D00D /* Views */,
 			);
@@ -263,12 +263,12 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		64E0F5AB2211B6480066D00D /* Structs */ = {
+		64E0F5AB2211B6480066D00D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				64E0F5AC2211B6480066D00D /* Durations.swift */,
 			);
-			path = Structs;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		64E0F5AD2211B6480066D00D /* Views */ = {
