@@ -78,7 +78,7 @@ extension Observable where T: Equatable {
 
     // MARK: - Public methods
 
-    /// Informs the given observer on changes to our `value`, if the given filter matches.
+    /// Informs the given observer on changes to our `value`, only if the given filter matches.
     ///
     /// - Parameters:
     ///   - filter: The filer-closure, that must return `true` in order for the observer to be notified.
