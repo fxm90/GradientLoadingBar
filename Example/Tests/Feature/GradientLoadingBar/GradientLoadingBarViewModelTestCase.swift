@@ -11,12 +11,16 @@ import XCTest
 @testable import GradientLoadingBar
 
 class GradientLoadingBarViewModelTestCase: XCTestCase {
+    // MARK: - Private properties
+
     private var superview: UIView!
     private var durations: Durations!
     private var sharedApplicationMock: SharedApplicationMock!
     private var notificationCenter: NotificationCenter!
 
-    var viewModel: GradientLoadingBarViewModel!
+    private var viewModel: GradientLoadingBarViewModel!
+
+    // MARK: - Public methods
 
     override func setUp() {
         super.setUp()
@@ -97,7 +101,7 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
                                                     sharedApplication: sharedApplicationMock,
                                                     notificationCenter: notificationCenter)
 
-        var observerCounter = 0
+        let expectation = self.expectation(description: "Expected observer for superview to be informed just once.")
 
         var disposeBag = DisposeBag()
         viewModel.superview.subscribe { newSuperview, _ in
@@ -106,7 +110,7 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
                 return
             }
 
-            observerCounter += 1
+            expectation.fulfill()
         }.add(to: &disposeBag)
 
         // When
@@ -117,7 +121,7 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
         }
 
         // Then
-        XCTAssertEqual(observerCounter, 1)
+        wait(for: [expectation], timeout: 0.1)
     }
 
     // MARK: - Test observable `animatedVisibilityUpdate`
@@ -136,7 +140,7 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
 
         // Then
         let receivedAnimatedVisibilityUpdate = viewModel.animatedVisibilityUpdate.value
-        let expectedAnimatedVisibilityUpdate = makeAnimatedVisibilityUpdateForStateIsVisible
+        let expectedAnimatedVisibilityUpdate = makeAnimatedVisibilityUpdateForStateIsVisible()
 
         XCTAssertEqual(receivedAnimatedVisibilityUpdate, expectedAnimatedVisibilityUpdate)
     }
@@ -147,7 +151,7 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
 
         // Then
         let receivedAnimatedVisibilityUpdate = viewModel.animatedVisibilityUpdate.value
-        let expectedAnimatedVisibilityUpdate = makeAnimatedVisibilityUpdateForStateIsHidden
+        let expectedAnimatedVisibilityUpdate = makeAnimatedVisibilityUpdateForStateIsHidden()
 
         XCTAssertEqual(receivedAnimatedVisibilityUpdate, expectedAnimatedVisibilityUpdate)
     }
@@ -164,9 +168,9 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
 
             let viewShouldBeHidden = idx % 2 == 0
             if viewShouldBeHidden {
-                expectedAnimatedVisibilityUpdate = makeAnimatedVisibilityUpdateForStateIsHidden
+                expectedAnimatedVisibilityUpdate = makeAnimatedVisibilityUpdateForStateIsHidden()
             } else {
-                expectedAnimatedVisibilityUpdate = makeAnimatedVisibilityUpdateForStateIsVisible
+                expectedAnimatedVisibilityUpdate = makeAnimatedVisibilityUpdateForStateIsVisible()
             }
 
             XCTAssertEqual(receivedAnimatedVisibilityUpdate, expectedAnimatedVisibilityUpdate)
@@ -178,15 +182,13 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
 
 extension GradientLoadingBarViewModelTestCase {
     /// Returns an object for animated visibility updates from state visible to hidden.
-    var makeAnimatedVisibilityUpdateForStateIsHidden: GradientLoadingBarViewModel.AnimatedVisibilityUpdate {
-        // swiftlint:disable:previous identifier_name
+    func makeAnimatedVisibilityUpdateForStateIsHidden() -> GradientLoadingBarViewModel.AnimatedVisibilityUpdate {
         return GradientLoadingBarViewModel.AnimatedVisibilityUpdate(duration: durations.fadeOut,
                                                                     isHidden: true)
     }
 
     /// Returns an object for animated visibility updates from state hidden to visible.
-    var makeAnimatedVisibilityUpdateForStateIsVisible: GradientLoadingBarViewModel.AnimatedVisibilityUpdate {
-        // swiftlint:disable:previous identifier_name
+    func makeAnimatedVisibilityUpdateForStateIsVisible() -> GradientLoadingBarViewModel.AnimatedVisibilityUpdate {
         return GradientLoadingBarViewModel.AnimatedVisibilityUpdate(duration: durations.fadeIn,
                                                                     isHidden: false)
     }
