@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BlueBorderedButton: UIButton {
+final class BlueBorderedButton: UIButton {
     // MARK: - Initializer
 
     override init(frame: CGRect) {
