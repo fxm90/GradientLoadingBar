@@ -41,7 +41,7 @@ let gradientLoadingBar = GradientLoadingBar(
     height: 3.0,
     durations: Durations(fadeIn: 1.5, 
                          fadeOut: 2.0, 
-                         progress: 2.5)
+                         progress: 2.5),
     gradientColorList: [
         .red, .yellow, .green
     ],
