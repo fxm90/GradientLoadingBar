@@ -67,6 +67,7 @@ open class GradientLoadingBarController {
         bindViewModelToView()
     }
 
+    /// By providing a custom deinitializer we make sure to remove the corresponding `gradientView` from its superview.
     deinit {
         if gradientView.superview != nil {
             gradientView.removeFromSuperview()
