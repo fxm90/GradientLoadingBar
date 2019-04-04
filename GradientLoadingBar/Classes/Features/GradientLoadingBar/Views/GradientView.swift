@@ -91,7 +91,7 @@ public final class GradientView: UIView {
         reversedColorList.removeLast()
 
         let infinteColorList = gradientColorList + reversedColorList + gradientColorList
-        gradientLayer.colors = infinteColorList.map({ $0.cgColor })
+        gradientLayer.colors = infinteColorList.map { $0.cgColor }
 
         layer.insertSublayer(gradientLayer, at: 0)
     }
