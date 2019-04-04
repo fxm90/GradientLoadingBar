@@ -163,7 +163,7 @@ extension GradientLoadingBarController {
                             onView superview: UIView? = nil) {
         self.init(height: height,
                   durations: durations,
-                  gradientColorList: gradientColors.map({ UIColor(cgColor: $0) }),
+                  gradientColorList: gradientColors.map { UIColor(cgColor: $0) },
                   onView: superview)
     }
 
