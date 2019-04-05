@@ -15,7 +15,7 @@ extension UIView {
     // MARK: - Config
 
     /// The default duration for fading-animations, measured in seconds.
-    public static let defaultFadingAnimationDuration: TimeInterval = 1.0
+    static let defaultFadingAnimationDuration: TimeInterval = 1.0
 
     // MARK: - Public methods
 
@@ -28,7 +28,7 @@ extension UIView {
     ///                 argument that indicates whether or not the animations actually finished before the completion handler was called.
     ///
     /// - SeeAlso: https://developer.apple.com/documentation/uikit/uiview/1622515-animatewithduration
-    public func animate(isHidden: Bool, duration: TimeInterval = UIView.defaultFadingAnimationDuration, completion: ((Bool) -> Void)? = nil) {
+    func animate(isHidden: Bool, duration: TimeInterval = UIView.defaultFadingAnimationDuration, completion: ((Bool) -> Void)? = nil) {
         if isHidden {
             fadeOut(duration: duration,
                     completion: completion)
@@ -46,7 +46,7 @@ extension UIView {
     ///                 argument that indicates whether or not the animations actually finished before the completion handler was called.
     ///
     /// - SeeAlso: https://developer.apple.com/documentation/uikit/uiview/1622515-animatewithduration
-    public func fadeOut(duration: TimeInterval = UIView.defaultFadingAnimationDuration, completion: ((Bool) -> Void)? = nil) {
+    func fadeOut(duration: TimeInterval = UIView.defaultFadingAnimationDuration, completion: ((Bool) -> Void)? = nil) {
         UIView.animate(withDuration: duration,
                        animations: {
                            self.alpha = 0.0
@@ -69,7 +69,7 @@ extension UIView {
     ///                 argument that indicates whether or not the animations actually finished before the completion handler was called.
     ///
     /// - SeeAlso: https://developer.apple.com/documentation/uikit/uiview/1622515-animatewithduration
-    public func fadeIn(duration: TimeInterval = UIView.defaultFadingAnimationDuration, completion: ((Bool) -> Void)? = nil) {
+    func fadeIn(duration: TimeInterval = UIView.defaultFadingAnimationDuration, completion: ((Bool) -> Void)? = nil) {
         if isHidden {
             // Make sure our animation is visible.
             isHidden = false
