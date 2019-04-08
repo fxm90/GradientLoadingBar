@@ -7,7 +7,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
-## [1.1.15] - 2019-02-14
+## [1.1.16] - 2019-08-04
+### Changed
+- Changed access controll level for extensions to `internal` to avoid conflicts
+  - Added by [Emil Bellmann](https://github.com/emilrb) in Pull Request [#13](https://github.com/fxm90/GradientLoadingBar/pull/13).
+- Added support for Swift 5.0
+
+## [1.1.15] - 2019-14-02
 ### Changed
 - Remove dependency `Observable` in favour of a more lightweight implementation
 - Small internal refactorings and cleanup
@@ -96,7 +102,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial release
 
 
-[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.15...master
+[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.16...master
+[1.1.13]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.15...1.1.16
 [1.1.13]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.14...1.1.15
 [1.1.13]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.13...1.1.14
 [1.1.13]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.12...1.1.13
