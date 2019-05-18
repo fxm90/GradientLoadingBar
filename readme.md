@@ -1,11 +1,11 @@
 GradientLoadingBar
 ====================
 
-![Swift5.0](https://img.shields.io/badge/Swift-5.0-green.svg?style=flat) [![CI Status](http://img.shields.io/travis/fxm90/GradientLoadingBar.svg?style=flat)](https://travis-ci.org/fxm90/GradientLoadingBar) [![Version](https://img.shields.io/cocoapods/v/GradientLoadingBar.svg?style=flat)](http://cocoapods.org/pods/GradientLoadingBar) [![License](https://img.shields.io/cocoapods/l/GradientLoadingBar.svg?style=flat)](http://cocoapods.org/pods/GradientLoadingBar) [![Platform](https://img.shields.io/cocoapods/p/GradientLoadingBar.svg?style=flat)](http://cocoapods.org/pods/GradientLoadingBar)
+![Swift5.0](https://img.shields.io/badge/Swift-5.0-green.svg?style=flat) [![CI Status](http://img.shields.io/travis/fxm90/GradientLoadingBar.svg?style=flat)](https://travis-ci.org/fxm90/GradientLoadingBar) ![Code Coverage](https://img.shields.io/codecov/c/github/fxm90/GradientLoadingBar.svg?style=flat) ![Version](https://img.shields.io/cocoapods/v/GradientLoadingBar.svg?style=flat) ![License](https://img.shields.io/cocoapods/l/GradientLoadingBar.svg?style=flat) ![Platform](https://img.shields.io/cocoapods/p/GradientLoadingBar.svg?style=flat)
 
-### Example
 A customizable animated gradient loading bar. Inspired by [iOS 7 Progress Bar from Codepen](https://codepen.io/marcobiedermann/pen/LExXWW).
 
+### Example
 ![Example](http://felix.hamburg/files/github/gradient-loading-bar/screen.gif)
 
 To run the example project, clone the repo, and open the workspace from the Example directory.
