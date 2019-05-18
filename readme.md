@@ -3,9 +3,9 @@ GradientLoadingBar
 
 ![Swift5.0](https://img.shields.io/badge/Swift-5.0-green.svg?style=flat) [![CI Status](http://img.shields.io/travis/fxm90/GradientLoadingBar.svg?style=flat)](https://travis-ci.org/fxm90/GradientLoadingBar) [![Version](https://img.shields.io/cocoapods/v/GradientLoadingBar.svg?style=flat)](http://cocoapods.org/pods/GradientLoadingBar) [![License](https://img.shields.io/cocoapods/l/GradientLoadingBar.svg?style=flat)](http://cocoapods.org/pods/GradientLoadingBar) [![Platform](https://img.shields.io/cocoapods/p/GradientLoadingBar.svg?style=flat)](http://cocoapods.org/pods/GradientLoadingBar)
 
-### Example
 A customizable animated gradient loading bar. Inspired by [iOS 7 Progress Bar from Codepen](https://codepen.io/marcobiedermann/pen/LExXWW).
 
+### Example
 ![Example](http://felix.hamburg/files/github/gradient-loading-bar/screen.gif)
 
 To run the example project, clone the repo, and open the workspace from the Example directory.
@@ -21,7 +21,7 @@ To integrate GradientLoadingBar into your Xcode project using [Carthage](https:/
 ```
 github "fxm90/GradientLoadingBar" ~> 1.0
 ```
-Run carthage update to build the framework and drag the built `GradientLoadingBar.framework` into your Xcode project.
+Run carthage update to build the framework and drag the built `GradientLoadingBar.framework`, as well as the dependency `LightweightObservable.framework`, into your Xcode project.
 
 ### How to use
 To get started you'll have to import `GradientLoadingBar` into your file. To show the loading bar, simply call the `show()` method and after you're done with your operations call `hide()`.
