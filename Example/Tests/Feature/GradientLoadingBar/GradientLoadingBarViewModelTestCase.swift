@@ -8,6 +8,7 @@
 
 import XCTest
 
+@testable import LightweightObservable
 @testable import GradientLoadingBar
 
 class GradientLoadingBarViewModelTestCase: XCTestCase {
@@ -111,7 +112,7 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
             }
 
             expectation.fulfill()
-        }.add(to: &disposeBag)
+        }.disposed(by: &disposeBag)
 
         // When
         for _ in 1 ... 3 {

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import LightweightObservable
 
 /// The `GradientLoadingBarViewModel` class is responsible for the visibility state of the gradient view.
 class GradientLoadingBarViewModel {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LightweightObservable
 
 /// Typealias for controller to match pod name.
 public typealias GradientLoadingBar = GradientLoadingBarController
@@ -85,11 +86,11 @@ open class GradientLoadingBarController {
         viewModel.animatedVisibilityUpdate.subscribeDistinct { [weak self] newAnimatedVisibilityUpdate, _ in
             self?.gradientView.animate(isHidden: newAnimatedVisibilityUpdate.isHidden,
                                        duration: newAnimatedVisibilityUpdate.duration)
-        }.add(to: &disposeBag)
+        }.disposed(by: &disposeBag)
 
         viewModel.superview.subscribeDistinct { [weak self] newSuperview, _ in
             self?.addGradientView(to: newSuperview)
-        }.add(to: &disposeBag)
+        }.disposed(by: &disposeBag)
     }
 
     private func addGradientView(to superview: UIView?) {
