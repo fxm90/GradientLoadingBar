@@ -14,5 +14,7 @@ before_install:
 script:
 - ./Scripts/swift-format.sh
 - ./Scripts/swift-lint.sh
-- ./Scripts/test.sh
 - ./Scripts/pod-lint.sh
+- ./Scripts/test.sh
+after_success:
+- bash <(curl -s https://codecov.io/bash)
