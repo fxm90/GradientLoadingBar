@@ -4,7 +4,7 @@
   "summary": "A customizable animated gradient loading bar.",
   "description": "A customizable animated gradient loading bar.\nInspired by https://codepen.io/marcobiedermann/pen/LExXWW",
   "homepage": "https://github.com/fxm90/GradientLoadingBar",
-  "screenshots": "http://felix.hamburg/files/github/gradient-loading-bar/screen.gif",
+  "screenshots": "https://felix.hamburg/files/github/gradient-loading-bar/screen.gif",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -20,5 +20,10 @@
   "platforms": {
     "ios": "9.0"
   },
-  "source_files": "GradientLoadingBar/Classes/**/*"
+  "source_files": "GradientLoadingBar/Classes/**/*",
+  "dependencies": {
+    "LightweightObservable": [
+      "~> 1.0"
+    ]
+  }
 }

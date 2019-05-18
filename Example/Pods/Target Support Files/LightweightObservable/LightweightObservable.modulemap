@@ -1,0 +1,6 @@
+framework module LightweightObservable {
+  umbrella header "LightweightObservable-umbrella.h"
+
+  export *
+  module * { export * }
+}
