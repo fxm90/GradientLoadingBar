@@ -13,8 +13,8 @@
 cd Example/
 
 xcodebuild \
-  -workspace LightweightObservable.xcworkspace \
-  -scheme LightweightObservable-Example \
+  -workspace GradientLoadingBar.xcworkspace \
+  -scheme GradientLoadingBar-Example \
   -sdk iphonesimulator \
   -destination 'platform=iOS Simulator,name=iPhone XR,OS=12.2' \
   build test | xcpretty && exit ${PIPESTATUS[0]}
