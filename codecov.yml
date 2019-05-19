@@ -1,2 +1,13 @@
+#
+# codecov.yml
+# Created by Felix Mau (https://felix.hamburg)
+#
+# How to:
+#  - https://github.com/codecov/example-swift
+#
+# Documentation:
+#  - https://docs.codecov.io/docs/
+#
+
 ignore:
   - "Example" # ignore test coverage of example application
