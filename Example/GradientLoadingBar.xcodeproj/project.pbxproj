@@ -50,7 +50,7 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* GradientLoadingBar_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GradientLoadingBar_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		64E0F5BB2211B7D20066D00D /* GradientLoadingBarViewModelTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLoadingBarViewModelTestCase.swift; sourceTree = "<group>"; };
+		64E0F5BB2211B7D20066D00D /* GradientLoadingBarViewModelTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GradientLoadingBarViewModelTestCase.swift; path = Feature/GradientLoadingBar/GradientLoadingBarViewModelTestCase.swift; sourceTree = "<group>"; };
 		64E7F4242293E16B00BE5095 /* UIView+AnimateIsHiddenTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AnimateIsHiddenTestCase.swift"; sourceTree = "<group>"; };
 		972CFBCB2138849A006F14C9 /* SafeAreaExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaExampleViewController.swift; sourceTree = "<group>"; };
 		97464E6621372BCD0097183A /* AdvancedExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedExampleViewController.swift; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				64E7F4222293E16B00BE5095 /* Extensions */,
-				64E0F5B92211B7D20066D00D /* Feature */,
+				64E0F5BB2211B7D20066D00D /* GradientLoadingBarViewModelTestCase.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -157,22 +157,6 @@
 				F76834BE9E43CA11377EC030 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
-			sourceTree = "<group>";
-		};
-		64E0F5B92211B7D20066D00D /* Feature */ = {
-			isa = PBXGroup;
-			children = (
-				64E0F5BA2211B7D20066D00D /* GradientLoadingBar */,
-			);
-			path = Feature;
-			sourceTree = "<group>";
-		};
-		64E0F5BA2211B7D20066D00D /* GradientLoadingBar */ = {
-			isa = PBXGroup;
-			children = (
-				64E0F5BB2211B7D20066D00D /* GradientLoadingBarViewModelTestCase.swift */,
-			);
-			path = GradientLoadingBar;
 			sourceTree = "<group>";
 		};
 		64E7F4222293E16B00BE5095 /* Extensions */ = {
