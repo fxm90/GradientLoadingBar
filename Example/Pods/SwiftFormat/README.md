@@ -62,6 +62,8 @@ That depends. There are four ways you can use SwiftFormat:
 Command-line tool
 -------------------
 
+**NOTE:** if you are using any of the following methods to install SwiftFormat on macOS 10.14.3 or earlier and are experiencing a crash on launch, you may need to install the [Swift 5 Runtime Support for Command Line Tools](https://support.apple.com/kb/DL1998). See [known issues](#known-issues) for details.
+
 **Installation:**
 
 You can install the `swiftformat` command-line tool on macOS using [Homebrew](http://brew.sh/). Assuming you already have Homebrew installed, just type:
@@ -600,6 +602,8 @@ Q. I don't want to be surprised by new rules added when I upgrade SwiftFormat. H
 Known issues
 ---------------
 
+* When running a version of SwiftFormat built using Xcode 10.2 on macOS 10.14.3 or earlier, you may experience a crash with the error "dyld: Library not loaded: @rpath/libswiftCore.dylib". To fix this, you need to install the [Swift 5 Runtime Support for Command Line Tools](https://support.apple.com/kb/DL1998). These tools are included by default in macOS 10.14.4 and later.
+
 * When using the `--self remove` option, the `redundantSelf` rule will remove references to `self` in autoclosure arguments, which may change the meaning of the code, or cause it not to compile. To work around this issue, use the `--selfrequired` option to provide a comma-delimited list of methods to be excluded from the rule. The `expect()` function from the popular [Nimble](https://github.com/Quick/Nimble) unit testing framework is already excluded by default. If you are using the `--self insert` option then this is not an issue.
 
 * If you assign `SomeClass.self` to a variable and then instantiate an instance of the class using that variable, Swift requires that you use an explicit `.init()`, however the   `redundantInit` rule is not currently capable of detecting this situation and will remove the `.init`. To work around this issue, use the `// swiftformat:disable:next redundantInit` comment directive to disable the rule for any affected lines of code (or just disable the `redundantInit` rule completely).
@@ -609,19 +613,6 @@ Known issues
 * The `trailingClosures` rule can generate ambiguous code if a function has multiple optional closure arguments, or if multiple functions have signatures differing only by the name of the closure argument. For this reason, the rule is limited to anonymous closure arguments by default, with a whitelist for exceptions.
 
 * The `isEmpty` rule will convert `count == 0` to `isEmpty` even for types that do not have an `isEmpty` method, such as `NSArray`/`NSDictionary`/etc. Use of Foundation collections in Swift code is pretty rare, but just in case, the rule is disabled by default.
-
-* Under rare circumstances, SwiftFormat may misinterpret a generic type followed by an `=` sign as a pair of `<` and `>=` expressions. For example, the following case would be handled incorrectly:
-
-    ```swift
-    let foo: Dictionary<String, String>=["Hello": "World"]
-    ```    
-
-    To work around this, either manually add spaces around the `=` character to eliminate the ambiguity, or add a comment directive above that line in the file:
-    
-    ```swift
-    // swiftformat:disable:next spaceAroundOperators
-    let foo: Dictionary<String, String>=["Hello": "World"]
-    ```
 
 * If a file begins with a comment, the `stripHeaders` rule will remove it if it is followed by a blank line. To avoid this, make sure that the first comment is directly followed by a line of code.
          

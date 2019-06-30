@@ -3,6 +3,7 @@
 <p align="center">
 	<img src="https://img.shields.io/badge/Swift-5.0-green.svg?style=flat" alt="Swift Version" />
 	<img src="http://img.shields.io/travis/com/fxm90/LightweightObservable.svg?style=flat" alt="CI Status" />
+	<img src="https://img.shields.io/codecov/c/github/fxm90/LightweightObservable.svg?style=flat" alt="Code Coverage" />
 	<img src="https://img.shields.io/cocoapods/v/LightweightObservable.svg?style=flat" alt="Version" />
 	<img src="https://img.shields.io/cocoapods/l/LightweightObservable.svg?style=flat" alt="License" />
 	<img src="https://img.shields.io/cocoapods/p/LightweightObservable.svg?style=flat" alt="Platform" />
@@ -36,7 +37,63 @@ The framework provides two classes `Observable` and `Variable`:
  - `Observable`: Contains an immutable value, you only can subscribe to. This is useful in order to avoid side-effects on an internal API. 
  - `Variable`: Subclass of `Observable`, where you can modify the value as well.
 
-Feel free to check out the example application for a better understanding of this approach.
+So basically your view-model could look like this:
+```swift
+class TimeViewModel {
+    // MARK: - Public properties
+
+    /// The current time as a formatted string (**immutable**).
+    var formattedTime: Observable<String> {
+        return formattedTimeSubject.asObservable
+    }
+
+    // MARK: - Private properties
+
+    /// The current time as a formatted string (**mutable**).
+    private let formattedTimeSubject: Variable<String> = Variable("")
+
+    private var timer: Timer?
+
+    // MARK: - Initializer
+
+    init() {
+        // Update variable with current time every second.
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] _ in
+            self?.formattedTimeSubject.value = "\(Date())"
+        })
+    }
+```
+
+And your view controller like this:
+```swift
+class TimeViewController: UIViewController {
+    // MARK: - Outlets
+
+    @IBOutlet private var timeLabel: UILabel!
+
+    // MARK: - Private properties
+
+    /// The view model calculating the current time.
+    private let timeViewModel = TimeViewModel()
+
+    /// The dispose bag for this view controller. On it's deallocation, it removes the
+    /// subscribtion-closures from the corresponding observable-properties.
+    private var disposeBag = DisposeBag()
+
+    // MARK: - Public methods
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        timeViewModel.formattedTime.subscribe { [weak self] newFormattedTime, _ in
+            self?.timeLabel.text = newFormattedTime
+        }.disposed(by: &disposeBag)
+    }
+```
+
+Feel free to check out the example application for a better understanding of this approach 🙂
+
+#### Further details
 
 #### – Create a variable
 ```swift
