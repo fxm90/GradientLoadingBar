@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [1.1.17] - 2019-30-06
+### Changed
+ - Extract observable implementation into a framework (`LightweightObservable`) and added it as dependency.
+
 ## [1.1.16] - 2019-08-04
 ### Changed
 - Changed access controll level for extensions to `internal` to avoid conflicts
@@ -102,10 +106,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial release
 
 
-[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.16...master
-[1.1.13]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.15...1.1.16
-[1.1.13]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.14...1.1.15
-[1.1.13]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.13...1.1.14
+[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.17...master
+[1.1.17]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.16...1.1.17
+[1.1.16]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.15...1.1.16
+[1.1.15]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.14...1.1.15
+[1.1.14]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.13...1.1.14
 [1.1.13]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.12...1.1.13
 [1.1.12]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.11...1.1.12
 [1.1.11]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.10...1.1.11
