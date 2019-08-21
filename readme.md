@@ -24,15 +24,27 @@ github "fxm90/GradientLoadingBar" ~> 1.0
 Run carthage update to build the framework and drag the built `GradientLoadingBar.framework`, as well as the dependency `LightweightObservable.framework`, into your Xcode project.
 
 ### How to use
-To get started you'll have to import `GradientLoadingBar` into your file. To show the loading bar, simply call the `show()` method and after you're done with your operations call `hide()`.
+To get started, you'll have to import `GradientLoadingBar` into your file and save an instance of `GradientLoadingBar()` on a property of your view-controller. To show the loading bar, simply call the `show()` method and after your async operations did finish call the  `hide()` method.
 ```swift
-let gradientLoadingBar = GradientLoadingBar()
-gradientLoadingBar.show()
+class UserViewController: UIViewController {
 
-// Do e.g. server calls etc.
+    private let gradientLoadingBar = GradientLoadingBar()
+    
+    // ...
 
-// Be sure to call this on the main thread.
-gradientLoadingBar.hide()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        gradientLoadingBar.show()
+
+        // Load user data from server.
+        userService.loadUserData { [weak self] _ in 
+
+            // Be sure to call this on the main thread!
+            self?.gradientLoadingBar.hide()
+        }
+    }
+}
 ```
 ### Configuration
 You can overwrite the default configuration by calling the initializers with the optional parameters `height`, `durations`, `gradientColorList`, `isRelativeToSafeArea` and `onView`:
