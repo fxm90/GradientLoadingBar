@@ -145,39 +145,3 @@ open class GradientLoadingBarController {
         viewModel.toggle()
     }
 }
-
-// MARK: - Deprecated methods
-
-extension GradientLoadingBarController {
-    /// Creates a new gradient loading bar instance.
-    ///
-    /// Parameters:
-    ///  - height:         Height of the gradient bar
-    ///  - durations:      Configuration with durations for each animation
-    ///  - gradientColors: Colors used for the gradient
-    ///  - superview:      View containing the gradient bar
-    ///
-    /// Returns: Instance with gradient bar
-    @available(*, deprecated, message: "Please use `init(height: Double, durations: Durations, gradientColorList: [UIColor], onView: UIView?)` instead")
-    public convenience init(height: Double = 2.5,
-                            durations: Durations = .default,
-                            gradientColors: [CGColor],
-                            onView superview: UIView? = nil) {
-        self.init(height: height,
-                  durations: durations,
-                  gradientColorList: gradientColors.map { UIColor(cgColor: $0) },
-                  onView: superview)
-    }
-
-    /// Saves the current instance for usage as singleton.
-    @available(*, deprecated, message: "Please use `.shared` instead")
-    public func saveInstance() {
-        type(of: self).shared = self
-    }
-
-    /// Singleton instance.
-    @available(*, deprecated, message: "Please use `.shared` instead")
-    public static func sharedInstance() -> GradientLoadingBar {
-        return shared
-    }
-}
