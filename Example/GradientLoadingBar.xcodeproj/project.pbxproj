@@ -13,7 +13,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		64E0F5BF2211B7D20066D00D /* GradientLoadingBarViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E0F5BB2211B7D20066D00D /* GradientLoadingBarViewModelTestCase.swift */; };
-		64E7F4252293E16B00BE5095 /* UIView+AnimateIsHiddenTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E7F4242293E16B00BE5095 /* UIView+AnimateIsHiddenTestCase.swift */; };
+		64E7F4252293E16B00BE5095 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E7F4242293E16B00BE5095 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift */; };
 		77357BD34CFF2778341F80E8 /* Pods_GradientLoadingBar_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03CD5D69D7C3FBBDBF5FABBB /* Pods_GradientLoadingBar_Example.framework */; };
 		8020C040972E902A8CCAA9E7 /* Pods_GradientLoadingBar_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434E3C8A6E245A38C2831E73 /* Pods_GradientLoadingBar_Tests.framework */; };
 		972CFBCC2138849A006F14C9 /* SafeAreaExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972CFBCB2138849A006F14C9 /* SafeAreaExampleViewController.swift */; };
@@ -51,7 +51,7 @@
 		607FACE51AFB9204008FA782 /* GradientLoadingBar_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GradientLoadingBar_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64E0F5BB2211B7D20066D00D /* GradientLoadingBarViewModelTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLoadingBarViewModelTestCase.swift; sourceTree = "<group>"; };
-		64E7F4242293E16B00BE5095 /* UIView+AnimateIsHiddenTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AnimateIsHiddenTestCase.swift"; sourceTree = "<group>"; };
+		64E7F4242293E16B00BE5095 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift"; sourceTree = "<group>"; };
 		972CFBCB2138849A006F14C9 /* SafeAreaExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaExampleViewController.swift; sourceTree = "<group>"; };
 		97464E6621372BCD0097183A /* AdvancedExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedExampleViewController.swift; sourceTree = "<group>"; };
 		97464E6821372C010097183A /* NavigationBarExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarExampleViewController.swift; sourceTree = "<group>"; };
@@ -134,8 +134,8 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				64E7F4222293E16B00BE5095 /* Extensions */,
-				64E0F5BB2211B7D20066D00D /* GradientLoadingBarViewModelTestCase.swift */,
+				64C6B3E72313259500076A69 /* ViewModel */,
+				64E7F4222293E16B00BE5095 /* View */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -159,20 +159,20 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		64E7F4222293E16B00BE5095 /* Extensions */ = {
+		64C6B3E72313259500076A69 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				64E7F4232293E16B00BE5095 /* UIView */,
+				64E0F5BB2211B7D20066D00D /* GradientLoadingBarViewModelTestCase.swift */,
 			);
-			path = Extensions;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		64E7F4232293E16B00BE5095 /* UIView */ = {
+		64E7F4222293E16B00BE5095 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				64E7F4242293E16B00BE5095 /* UIView+AnimateIsHiddenTestCase.swift */,
+				64E7F4242293E16B00BE5095 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift */,
 			);
-			path = UIView;
+			path = View;
 			sourceTree = "<group>";
 		};
 		97B6F5F92143F31F008CFEA5 /* Extensions */ = {
@@ -453,7 +453,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64E0F5BF2211B7D20066D00D /* GradientLoadingBarViewModelTestCase.swift in Sources */,
-				64E7F4252293E16B00BE5095 /* UIView+AnimateIsHiddenTestCase.swift in Sources */,
+				64E7F4252293E16B00BE5095 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
