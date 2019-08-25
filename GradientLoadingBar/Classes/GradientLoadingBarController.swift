@@ -25,7 +25,7 @@ open class GradientLoadingBarController {
     public let isRelativeToSafeArea: Bool
 
     /// View containing the gradient layer.
-    public let gradientView = GradientView()
+    public let gradientView = GradientActivityIndicatorView()
 
     /// Singleton instance.
     public static var shared = GradientLoadingBar()

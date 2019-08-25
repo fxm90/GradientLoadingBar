@@ -1,5 +1,5 @@
 //
-//  GradientView.swift
+//  GradientActivityIndicatorView.swift
 //  GradientLoadingBar
 //
 //  Created by Felix Mau on 12/10/16.
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 @IBDesignable
-open class GradientView: UIView {
+open class GradientActivityIndicatorView: UIView {
     // MARK: - Types
 
     /// Animation-Key for the progress animation.
@@ -115,10 +115,10 @@ open class GradientView: UIView {
         animation.isRemovedOnCompletion = false
         animation.repeatCount = Float.infinity
 
-        gradientLayer.add(animation, forKey: GradientView.progressAnimationKey)
+        gradientLayer.add(animation, forKey: GradientActivityIndicatorView.progressAnimationKey)
     }
 
     private func stopProgressAnimation() {
-        gradientLayer.removeAnimation(forKey: GradientView.progressAnimationKey)
+        gradientLayer.removeAnimation(forKey: GradientActivityIndicatorView.progressAnimationKey)
     }
 }
