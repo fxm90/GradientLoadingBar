@@ -25,7 +25,7 @@ open class GradientLoadingBarController {
     public let isRelativeToSafeArea: Bool
 
     /// View containing the gradient layer.
-    public let gradientView: GradientView
+    public let gradientView = GradientView()
 
     /// Singleton instance.
     public static var shared = GradientLoadingBar()
@@ -58,8 +58,8 @@ open class GradientLoadingBarController {
         self.height = height
         self.isRelativeToSafeArea = isRelativeToSafeArea
 
-        gradientView = GradientView(progressAnimationDuration: durations.progress,
-                                    gradientColorList: gradientColorList)
+        gradientView.progressAnimationDuration = durations.progress
+        gradientView.gradientColorList = gradientColorList
 
         viewModel = GradientLoadingBarViewModel(superview: superview,
                                                 durations: durations)

@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 
-public final class GradientView: UIView {
+@IBDesignable
+open class GradientView: UIView {
     // MARK: - Types
 
     /// Animation-Key for the progress animation.
@@ -17,7 +18,7 @@ public final class GradientView: UIView {
 
     // MARK: - Public properties
 
-    public override var isHidden: Bool {
+    open override var isHidden: Bool {
         didSet {
             // Update our progress animation accordingly.
             if isHidden {
@@ -28,40 +29,62 @@ public final class GradientView: UIView {
         }
     }
 
-    // MARK: - Private properties
-
     /// Layer holding the gradient.
-    private let gradientLayer = CAGradientLayer()
+    var gradientLayer: CAGradientLayer = {
+        let layer = CAGradientLayer()
+
+        layer.anchorPoint = .zero
+        layer.startPoint = .zero
+        layer.endPoint = CGPoint(x: 1.0, y: 0.0)
+
+        return layer
+    }()
 
     /// Duration for the progress animation.
-    private let progressAnimationDuration: TimeInterval
+    var progressAnimationDuration = Durations.default.progress
 
     /// Colors used for the gradient.
-    private let gradientColorList: [UIColor]
+    var gradientColorList = UIColor.defaultGradientColorList {
+        didSet {
+            gradientLayer.colors = infinteColorList.map { $0.cgColor }
+        }
+    }
+
+    // MARK: - Private properties
+
+    /// Simulate infinte animation - Therefore we'll reverse the colors and remove the first and last item
+    /// to prevent duplicate values at the "inner edges" destroying the infinite look.
+    private var infinteColorList: [UIColor] {
+        guard gradientColorList.count > 2 else {
+            //
+            return gradientColorList
+        }
+
+        let reversedColorList = gradientColorList
+            .reversed()
+            .dropFirst()
+            .dropLast()
+
+        return gradientColorList + reversedColorList + gradientColorList
+    }
 
     // MARK: - Initializers
 
-    /// Initializes a new gradient view (holding the `CALayer` used for the gradient)
-    ///
-    /// Parameters:
-    ///  - progressAnimationDuration: Duration for the progress animation.
-    ///  - gradientColorList:         Colors used for the gradient.
-    ///
-    /// Returns: Instance with gradient view
-    init(progressAnimationDuration: TimeInterval, gradientColorList: [UIColor]) {
-        self.progressAnimationDuration = progressAnimationDuration
-        self.gradientColorList = gradientColorList
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
 
-        super.init(frame: .zero)
-
-        setupGradientLayer()
+        commonInit()
     }
 
-    public required init?(coder _: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+
+        commonInit()
     }
 
-    public override func layoutSubviews() {
+    // MARK: - Public methods
+
+    open override func layoutSubviews() {
         super.layoutSubviews()
 
         // Unfortunately `CALayer` is not affected by autolayout, so any change in the size of the view will not change the gradient layer.
@@ -71,28 +94,15 @@ public final class GradientView: UIView {
         gradientLayer.frame = CGRect(x: 0, y: 0, width: 3 * bounds.size.width, height: bounds.size.height)
     }
 
-    public override func point(inside _: CGPoint, with _: UIEvent?) -> Bool {
+    open override func point(inside _: CGPoint, with _: UIEvent?) -> Bool {
         // Passing all touches to the next view (if any), in the view stack.
         return false
     }
 
     // MARK: - Private methods
 
-    private func setupGradientLayer() {
-        gradientLayer.anchorPoint = .zero
-
-        gradientLayer.startPoint = .zero
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
-
-        // Simulate infinte animation - Therefore we'll reverse the colors and remove the first and last item
-        // to prevent duplicate values at the "inner edges" destroying the infinite look.
-        var reversedColorList = Array(gradientColorList.reversed())
-        reversedColorList.removeFirst()
-        reversedColorList.removeLast()
-
-        let infinteColorList = gradientColorList + reversedColorList + gradientColorList
+    private func commonInit() {
         gradientLayer.colors = infinteColorList.map { $0.cgColor }
-
         layer.insertSublayer(gradientLayer, at: 0)
     }
 
