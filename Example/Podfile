@@ -9,6 +9,18 @@ target 'GradientLoadingBar_Example' do
   pod 'SwiftFormat/CLI'
   pod 'SwiftLint'
 
+  # Fix issues with interface builder and cocoapods.
+  # Source: https://github.com/CocoaPods/CocoaPods/issues/7606#issuecomment-484294739
+  post_install do |installer|
+    installer.pods_project.build_configurations.each do |config|
+      next unless config.name == 'Debug'
+
+      config.build_settings['LD_RUNPATH_SEARCH_PATHS'] = [
+        '$(FRAMEWORK_SEARCH_PATHS)'
+      ]
+    end
+  end
+
   target 'GradientLoadingBar_Tests' do
     inherit! :search_paths
 
