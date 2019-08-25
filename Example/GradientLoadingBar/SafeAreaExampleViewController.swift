@@ -21,10 +21,6 @@ class SafeAreaExampleViewController: UIViewController {
         safeAreaGradientLoadingBar.show()
     }
 
-    @IBAction func toggleButtonTouchUpInside(_: Any) {
-        safeAreaGradientLoadingBar.toggle()
-    }
-
     @IBAction func hideButtonTouchUpInside(_: Any) {
         safeAreaGradientLoadingBar.hide()
     }

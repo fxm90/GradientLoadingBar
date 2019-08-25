@@ -17,11 +17,6 @@ class BasicExampleViewController: UIViewController {
         gradientLoadingBar.show()
     }
 
-    @IBAction func toggleButtonTouchUpInside(_: Any) {
-        let gradientLoadingBar = GradientLoadingBar.shared
-        gradientLoadingBar.toggle()
-    }
-
     @IBAction func hideButtonTouchUpInside(_: Any) {
         let gradientLoadingBar = GradientLoadingBar.shared
         gradientLoadingBar.hide()

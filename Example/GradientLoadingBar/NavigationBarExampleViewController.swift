@@ -16,26 +16,44 @@ class NavigationBarExampleViewController: UIViewController {
 
     // MARK: - Private properties
 
-    private var gradientLoadingBar: BottomGradientLoadingBar?
+    private var gradientProgressIndicatorView = GradientActivityIndicatorView()
 
     // MARK: - Public methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        gradientLoadingBar = BottomGradientLoadingBar(onView: navigationBar)
+        setupGradientProgressIndicatorView()
     }
 
     @IBAction func showButtonTouchUpInside(_: Any) {
-        gradientLoadingBar?.show()
+        gradientProgressIndicatorView.fadeIn()
     }
 
     @IBAction func toggleButtonTouchUpInside(_: Any) {
-        gradientLoadingBar?.toggle()
+        // gradientLoadingBar?.toggle()
     }
 
     @IBAction func hideButtonTouchUpInside(_: Any) {
-        gradientLoadingBar?.hide()
+        gradientProgressIndicatorView.fadeOut()
+    }
+
+    // MARK: - Private methods
+
+    private func setupGradientProgressIndicatorView() {
+        gradientProgressIndicatorView.alpha = 0.0
+        gradientProgressIndicatorView.isHidden = true
+
+        gradientProgressIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+        navigationBar.addSubview(gradientProgressIndicatorView)
+
+        NSLayoutConstraint.activate([
+            gradientProgressIndicatorView.leftAnchor.constraint(equalTo: navigationBar.leftAnchor),
+            gradientProgressIndicatorView.rightAnchor.constraint(equalTo: navigationBar.rightAnchor),
+
+            gradientProgressIndicatorView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor),
+            gradientProgressIndicatorView.heightAnchor.constraint(equalToConstant: 3.0)
+        ])
     }
 }
 
