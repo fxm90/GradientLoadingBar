@@ -14,10 +14,10 @@ class GradientLoadingBarViewModel {
     // MARK: - Types
 
     /// This struct contains all infomation regarding an animated visibility update of the loading bar.
-    struct AnimatedVisibilityUpdate: Equatable {
+    struct VisibilityAnimation: Equatable {
         /// Initialize the struct with values set to zero / hidden.
-        static let immediatelyHidden = AnimatedVisibilityUpdate(duration: 0.0,
-                                                                isHidden: true)
+        static let immediatelyHidden = VisibilityAnimation(duration: 0.0,
+                                                           isHidden: true)
 
         /// The duration for the visibility update.
         let duration: TimeInterval
@@ -29,8 +29,8 @@ class GradientLoadingBarViewModel {
     // MARK: - Public properties
 
     /// Observable for animated visibility updates for the gradient-view.
-    var animatedVisibilityUpdate: Observable<AnimatedVisibilityUpdate> {
-        return animatedVisibilityUpdateSubject.asObservable
+    var visibilityAnimation: Observable<VisibilityAnimation> {
+        return visibilityAnimationSubject.asObservable
     }
 
     /// Observable for the superview of the gradient-view.
@@ -38,14 +38,17 @@ class GradientLoadingBarViewModel {
         return superviewSubject.asObservable
     }
 
+    ///
+    var fadeInDuration = Double.GradientLoadingBarDefaults.fadeInDuration
+
+    ///
+    var fadeOutDuration = Double.GradientLoadingBarDefaults.fadeOutDuration
+
     // MARK: - Private properties
 
-    private let animatedVisibilityUpdateSubject: Variable<AnimatedVisibilityUpdate> = Variable(.immediatelyHidden)
+    private let visibilityAnimationSubject: Variable<VisibilityAnimation> = Variable(.immediatelyHidden)
 
     private let superviewSubject: Variable<UIView?> = Variable(nil)
-
-    /// Configuration with durations for fade-in / fade-out animations.
-    private let durations: Durations
 
     // MARK: - Dependencies
 
@@ -54,18 +57,12 @@ class GradientLoadingBarViewModel {
 
     // MARK: - Constructor
 
-    init(superview: UIView?,
-         durations: Durations,
-         sharedApplication: UIApplicationProtocol = UIApplication.shared,
+    init(sharedApplication: UIApplicationProtocol = UIApplication.shared,
          notificationCenter: NotificationCenter = .default) {
-        self.durations = durations
         self.sharedApplication = sharedApplication
         self.notificationCenter = notificationCenter
 
-        if let superview = superview {
-            // We have a custom superview.
-            superviewSubject.value = superview
-        } else if let keyWindow = sharedApplication.keyWindow {
+        if let keyWindow = sharedApplication.keyWindow {
             // We have a valid key window.
             superviewSubject.value = keyWindow
         } else {
@@ -95,23 +92,14 @@ class GradientLoadingBarViewModel {
 
     /// Fades in the gradient loading bar.
     func show() {
-        animatedVisibilityUpdateSubject.value = AnimatedVisibilityUpdate(duration: durations.fadeIn,
-                                                                         isHidden: false)
+        visibilityAnimationSubject.value = VisibilityAnimation(duration: fadeInDuration,
+                                                               isHidden: false)
     }
 
     /// Fades out the gradient loading bar.
     func hide() {
-        animatedVisibilityUpdateSubject.value = AnimatedVisibilityUpdate(duration: durations.fadeOut,
-                                                                         isHidden: true)
-    }
-
-    /// Toggle visiblity of gradient loading bar.
-    func toggle() {
-        if animatedVisibilityUpdateSubject.value.isHidden {
-            show()
-        } else {
-            hide()
-        }
+        visibilityAnimationSubject.value = VisibilityAnimation(duration: fadeOutDuration,
+                                                               isHidden: true)
     }
 }
 

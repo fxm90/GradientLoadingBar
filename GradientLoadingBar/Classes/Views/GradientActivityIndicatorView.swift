@@ -28,10 +28,10 @@ open class GradientActivityIndicatorView: UIView {
     }
 
     /// Duration for the progress animation.
-    var progressAnimationDuration = Durations.default.progress
+    public var progressAnimationDuration = Double.GradientLoadingBarDefaults.progressDuration
 
     /// Colors used for the gradient.
-    var gradientColorList = UIColor.defaultGradientColorList {
+    public var gradientColorList = UIColor.GradientLoadingBarDefaults.gradientColorList {
         didSet {
             gradientLayer.colors = infinteColorList.map { $0.cgColor }
         }
@@ -92,16 +92,20 @@ open class GradientActivityIndicatorView: UIView {
         return false
     }
 
+    open override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+
+        // Not sure why we need to set this again to make it work in the interface builder.
+        layer.masksToBounds = true
+    }
+
     // MARK: - Private methods
 
     private func commonInit() {
-        //
-        clipsToBounds = true
-
         gradientLayer.colors = infinteColorList.map { $0.cgColor }
         layer.insertSublayer(gradientLayer, at: 0)
-        
-        //
+        layer.masksToBounds = true
+
         startProgressAnimation()
     }
 
