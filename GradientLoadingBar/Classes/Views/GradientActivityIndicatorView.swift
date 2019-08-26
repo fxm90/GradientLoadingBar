@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LightweightObservable
 
 @IBDesignable
 open class GradientActivityIndicatorView: UIView {
@@ -19,36 +20,31 @@ open class GradientActivityIndicatorView: UIView {
 
     open override var isHidden: Bool {
         didSet {
-            if isHidden {
-                stopProgressAnimation()
-            } else {
-                startProgressAnimation()
-            }
+            viewModel.isHidden = isHidden
         }
     }
 
     /// Duration for the progress animation.
-    public var progressAnimationDuration = TimeInterval.GradientLoadingBar.progressDuration
+    public var progressAnimationDuration: TimeInterval {
+        get {
+            return viewModel.progressAnimationDuration
+        }
+        set {
+            viewModel.progressAnimationDuration = newValue
+        }
+    }
 
     /// Colors used for the gradient.
-    public var gradientColorList = UIColor.GradientLoadingBar.gradientColorList {
-        didSet {
-            gradientLayer.colors = infinteColorList.map { $0.cgColor }
+    public var gradientColors: [UIColor] {
+        get {
+            return viewModel.gradientColors
+        }
+        set {
+            viewModel.gradientColors = newValue
         }
     }
 
     // MARK: - Private properties
-
-    /// Simulate infinte animation - Therefore we'll reverse the colors and remove the first and last item
-    /// to prevent duplicate values at the "inner edges" destroying the infinite look.
-    private var infinteColorList: [UIColor] {
-        let reversedColorList = gradientColorList
-            .reversed()
-            .dropFirst()
-            .dropLast()
-
-        return gradientColorList + reversedColorList + gradientColorList
-    }
 
     /// Layer holding the gradient.
     private var gradientLayer: CAGradientLayer = {
@@ -60,6 +56,12 @@ open class GradientActivityIndicatorView: UIView {
 
         return layer
     }()
+
+    ///
+    private let viewModel = GradientActivityIndicatorViewModel()
+
+    /// The dispose bag for the observables.
+    private var disposeBag = DisposeBag()
 
     // MARK: - Initializers
 
@@ -102,21 +104,35 @@ open class GradientActivityIndicatorView: UIView {
     // MARK: - Private methods
 
     private func commonInit() {
-        gradientLayer.colors = infinteColorList.map { $0.cgColor }
         layer.insertSublayer(gradientLayer, at: 0)
         layer.masksToBounds = true
 
-        startProgressAnimation()
+        bindViewModelToView()
     }
 
-    private func startProgressAnimation() {
+    private func bindViewModelToView() {
+        viewModel.infinteGradientColors.subscribeDistinct { [weak self] newInfinteGradientColors, _ in
+            self?.gradientLayer.colors = newInfinteGradientColors
+        }.disposed(by: &disposeBag)
+
+        viewModel.animationState.subscribeDistinct { [weak self] newAnimationState, _ in
+            switch newAnimationState {
+            case .none:
+                self?.stopProgressAnimation()
+            case let .animating(duration):
+                self?.startProgressAnimation(duration: duration)
+            }
+        }.disposed(by: &disposeBag)
+    }
+
+    private func startProgressAnimation(duration: TimeInterval) {
         let animation = CABasicAnimation(keyPath: "position")
 
         animation.fromValue = CGPoint(x: -2 * bounds.size.width, y: 0)
         animation.toValue = CGPoint.zero
         animation.isRemovedOnCompletion = false
         animation.repeatCount = Float.infinity
-        animation.duration = progressAnimationDuration
+        animation.duration = duration
 
         gradientLayer.add(animation, forKey: GradientActivityIndicatorView.progressAnimationKey)
     }
