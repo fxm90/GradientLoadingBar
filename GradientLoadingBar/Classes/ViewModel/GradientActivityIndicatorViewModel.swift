@@ -53,9 +53,20 @@ class GradientActivityIndicatorViewModel {
 
     // MARK: - Private properties
 
-    private let infinteGradientColorsSubject: Variable<[CGColor]> = Variable([])
+    private let infinteGradientColorsSubject: Variable<[CGColor]>
 
-    private let animationStateSubject: Variable<AnimationState> = Variable(.none)
+    private let animationStateSubject: Variable<AnimationState>
+
+    // MARK: - Initializer
+
+    init() {
+        // As the view is visible initially, we need to set-up the observables accordingly.
+        animationStateSubject = Variable(.animating(duration: progressAnimationDuration))
+
+        // Small workaround as calls to `self.makeInfiniteGradientColors()` aren't allowed before all properties have been initialized.
+        infinteGradientColorsSubject = Variable([])
+        infinteGradientColorsSubject.value = makeInfiniteGradientColors()
+    }
 
     // MARK: - Private methods
 
