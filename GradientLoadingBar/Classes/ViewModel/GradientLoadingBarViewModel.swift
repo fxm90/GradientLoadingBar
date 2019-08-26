@@ -11,7 +11,6 @@ import LightweightObservable
 
 /// The `GradientLoadingBarViewModel` class is responsible for the visibility state of the gradient view.
 class GradientLoadingBarViewModel {
-    
     // MARK: - Public properties
 
     /// Observable for the superview of the gradient-view.

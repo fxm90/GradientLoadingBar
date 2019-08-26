@@ -119,6 +119,7 @@ open class GradientActivityIndicatorView: UIView {
             switch newAnimationState {
             case .none:
                 self?.stopProgressAnimation()
+
             case let .animating(duration):
                 self?.startProgressAnimation(duration: duration)
             }
