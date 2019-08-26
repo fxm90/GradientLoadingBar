@@ -18,11 +18,11 @@ class SafeAreaExampleViewController: UIViewController {
     // MARK: - Public methods
 
     @IBAction func showButtonTouchUpInside(_: Any) {
-        safeAreaGradientLoadingBar.show()
+        safeAreaGradientLoadingBar.fadeIn()
     }
 
     @IBAction func hideButtonTouchUpInside(_: Any) {
-        safeAreaGradientLoadingBar.hide()
+        safeAreaGradientLoadingBar.fadeOut()
     }
 }
 

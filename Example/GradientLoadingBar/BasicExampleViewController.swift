@@ -14,12 +14,12 @@ class BasicExampleViewController: UIViewController {
 
     @IBAction func showButtonTouchUpInside(_: Any) {
         let gradientLoadingBar = GradientLoadingBar.shared
-        gradientLoadingBar.show()
+        gradientLoadingBar.fadeIn()
     }
 
     @IBAction func hideButtonTouchUpInside(_: Any) {
         let gradientLoadingBar = GradientLoadingBar.shared
-        gradientLoadingBar.hide()
+        gradientLoadingBar.fadeOut()
     }
 }
 
