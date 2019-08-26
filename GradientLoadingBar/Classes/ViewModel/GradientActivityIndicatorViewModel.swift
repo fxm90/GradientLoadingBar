@@ -53,9 +53,9 @@ class GradientActivityIndicatorViewModel {
 
     // MARK: - Private properties
 
-    private let infinteGradientColorsSubject: Variable<[CGColor]>
-
     private let animationStateSubject: Variable<AnimationState>
+    
+    private let infinteGradientColorsSubject: Variable<[CGColor]>
 
     // MARK: - Initializer
 
