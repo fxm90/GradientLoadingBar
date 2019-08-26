@@ -28,10 +28,10 @@ open class GradientActivityIndicatorView: UIView {
     }
 
     /// Duration for the progress animation.
-    public var progressAnimationDuration = Double.GradientLoadingBarDefaults.progressDuration
+    public var progressAnimationDuration = TimeInterval.GradientLoadingBar.progressDuration
 
     /// Colors used for the gradient.
-    public var gradientColorList = UIColor.GradientLoadingBarDefaults.gradientColorList {
+    public var gradientColorList = UIColor.GradientLoadingBar.gradientColorList {
         didSet {
             gradientLayer.colors = infinteColorList.map { $0.cgColor }
         }

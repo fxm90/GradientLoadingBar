@@ -39,10 +39,10 @@ class GradientLoadingBarViewModel {
     }
 
     ///
-    var fadeInDuration = Double.GradientLoadingBarDefaults.fadeInDuration
+    var fadeInDuration = TimeInterval.GradientLoadingBar.fadeInDuration
 
     ///
-    var fadeOutDuration = Double.GradientLoadingBarDefaults.fadeOutDuration
+    var fadeOutDuration = TimeInterval.GradientLoadingBar.fadeOutDuration
 
     // MARK: - Private properties
 

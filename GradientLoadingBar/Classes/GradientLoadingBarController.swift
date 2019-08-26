@@ -69,7 +69,7 @@ open class GradientLoadingBarController {
     ///
     /// Returns: Instance with gradient bar
     public init(height: Double = 2.5,
-                gradientColorList: [UIColor] = UIColor.GradientLoadingBarDefaults.gradientColorList,
+                gradientColorList: [UIColor] = UIColor.GradientLoadingBar.gradientColorList,
                 isRelativeToSafeArea: Bool = true) {
         self.height = height
         self.isRelativeToSafeArea = isRelativeToSafeArea
