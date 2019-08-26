@@ -12,10 +12,6 @@ import XCTest
 @testable import GradientLoadingBar
 
 class GradientLoadingBarViewModelTestCase: XCTestCase {
-    // MARK: - Types
-
-    typealias VisibilityAnimation = GradientLoadingBarViewModel.VisibilityAnimation
-
     // MARK: - Private properties
 
     private var sharedApplicationMock: SharedApplicationMock!
@@ -103,40 +99,6 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
 
         // Then
         wait(for: [expectation], timeout: 0.1)
-    }
-
-    // MARK: - Test observable `visibilityAnimation`
-
-    func testInitializerShouldSetupVisibilityAnimationObservableWithImmediatelyHidden() {
-        // Then
-        let receivedVisibilityAnimation = viewModel.visibilityAnimation.value
-        let expectedVisibilityAnimation = VisibilityAnimation.immediatelyHidden
-
-        XCTAssertEqual(receivedVisibilityAnimation, expectedVisibilityAnimation)
-    }
-
-    func testShowShouldUpdateVisibilityAnimationObservable() {
-        // When
-        viewModel.show()
-
-        // Then
-        let receivedVisibilityAnimation = viewModel.visibilityAnimation.value
-        let expectedVisibilityAnimation = VisibilityAnimation(duration: viewModel.fadeInDuration,
-                                                              isHidden: false)
-
-        XCTAssertEqual(receivedVisibilityAnimation, expectedVisibilityAnimation)
-    }
-
-    func testHideShouldUpdateVisibilityAnimationObservable() {
-        // When
-        viewModel.hide()
-
-        // Then
-        let receivedVisibilityAnimation = viewModel.visibilityAnimation.value
-        let expectedVisibilityAnimation = VisibilityAnimation(duration: viewModel.fadeOutDuration,
-                                                              isHidden: true)
-
-        XCTAssertEqual(receivedVisibilityAnimation, expectedVisibilityAnimation)
     }
 }
 
