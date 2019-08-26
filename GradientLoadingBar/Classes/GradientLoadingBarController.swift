@@ -64,17 +64,17 @@ open class GradientLoadingBarController {
     ///
     /// Parameters:
     ///  - height:               Height of the gradient bar.
-    ///  - gradientColorList:    Colors used for the gradient.
+    ///  - gradientColors:       Colors used for the gradient.
     ///  - isRelativeToSafeArea: Flag whether the top layout constraint should respect `safeAreaLayoutGuide`.
     ///
     /// Returns: Instance with gradient bar
     public init(height: Double = 2.5,
-                gradientColorList: [UIColor] = UIColor.GradientLoadingBar.gradientColorList,
+                gradientColors: [UIColor] = UIColor.GradientLoadingBar.gradientColors,
                 isRelativeToSafeArea: Bool = true) {
         self.height = height
         self.isRelativeToSafeArea = isRelativeToSafeArea
 
-        gradientView.gradientColorList = gradientColorList
+        gradientView.gradientColors = gradientColors
         gradientView.alpha = 0.0
         gradientView.isHidden = true
 
