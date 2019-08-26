@@ -24,26 +24,6 @@ open class GradientLoadingBarController {
     ///  - Note: Has to be public to allow overwriting `setupConstraints()`
     public let isRelativeToSafeArea: Bool
 
-    ///
-    public var fadeInDuration: Double {
-        get {
-            return viewModel.fadeInDuration
-        }
-        set {
-            viewModel.fadeInDuration = newValue
-        }
-    }
-
-    ///
-    public var fadeOutDuration: Double {
-        get {
-            return viewModel.fadeOutDuration
-        }
-        set {
-            viewModel.fadeOutDuration = newValue
-        }
-    }
-
     /// View containing the gradient layer.
     public let gradientView = GradientActivityIndicatorView()
 
@@ -92,11 +72,6 @@ open class GradientLoadingBarController {
     // MARK: - Private methods
 
     private func bindViewModelToView() {
-        viewModel.visibilityAnimation.subscribeDistinct { [weak self] newVisibilityAnimation, _ in
-            self?.gradientView.animate(isHidden: newVisibilityAnimation.isHidden,
-                                       duration: newVisibilityAnimation.duration)
-        }.disposed(by: &disposeBag)
-
         viewModel.superview.subscribeDistinct { [weak self] newSuperview, _ in
             self?.addGradientView(to: newSuperview)
         }.disposed(by: &disposeBag)
@@ -135,12 +110,12 @@ open class GradientLoadingBarController {
     }
 
     /// Fades in the gradient loading bar.
-    public func show() {
-        viewModel.show()
+    public func fadeIn(duration: TimeInterval = TimeInterval.GradientLoadingBar.fadeInDuration) {
+        gradientView.fadeIn(duration: duration)
     }
 
     /// Fades out the gradient loading bar.
-    public func hide() {
-        viewModel.hide()
+    public func fadeOut(duration: TimeInterval = TimeInterval.GradientLoadingBar.fadeOutDuration) {
+        gradientView.fadeOut(duration: duration)
     }
 }
