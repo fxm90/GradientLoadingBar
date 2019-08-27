@@ -26,8 +26,8 @@ class GradientActivityIndicatorViewModel {
     }
 
     ///
-    var infinteGradientColors: Observable<[CGColor]> {
-        return infinteGradientColorsSubject.asObservable
+    var gradientLayerColors: Observable<[CGColor]> {
+        return gradientLayerColorsSubject.asObservable
     }
 
     ///
@@ -44,7 +44,7 @@ class GradientActivityIndicatorViewModel {
     /// Colors used for the gradient.
     var gradientColors = UIColor.GradientLoadingBar.gradientColors {
         didSet {
-            infinteGradientColorsSubject.value = makeInfiniteGradientColors()
+            gradientLayerColorsSubject.value = makeGradientLayerColors()
         }
     }
 
@@ -55,7 +55,7 @@ class GradientActivityIndicatorViewModel {
 
     private let animationStateSubject: Variable<AnimationState>
 
-    private let infinteGradientColorsSubject: Variable<[CGColor]>
+    private let gradientLayerColorsSubject: Variable<[CGColor]>
 
     // MARK: - Initializer
 
@@ -63,16 +63,16 @@ class GradientActivityIndicatorViewModel {
         // As the view is visible initially, we need to set-up the observables accordingly.
         animationStateSubject = Variable(.animating(duration: progressAnimationDuration))
 
-        // Small workaround as calls to `self.makeInfiniteGradientColors()` aren't allowed before all properties have been initialized.
-        infinteGradientColorsSubject = Variable([])
-        infinteGradientColorsSubject.value = makeInfiniteGradientColors()
+        // Small workaround as calls to `self.makeGradientLayerColors()` aren't allowed before all properties have been initialized.
+        gradientLayerColorsSubject = Variable([])
+        gradientLayerColorsSubject.value = makeGradientLayerColors()
     }
 
     // MARK: - Private methods
 
     /// Simulate infinte animation - Therefore we'll reverse the colors and remove the first and last item
     /// to prevent duplicate values at the "inner edges" destroying the infinite look.
-    private func makeInfiniteGradientColors() -> [CGColor] {
+    private func makeGradientLayerColors() -> [CGColor] {
         let reversedColors = gradientColors
             .reversed()
             .dropFirst()

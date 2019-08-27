@@ -44,13 +44,13 @@ class GradientActivityIndicatorViewModelTestCase: XCTestCase {
         XCTAssertEqual(viewModel.animationState.value, expectedAnimationState)
     }
 
-    // MARK: - Test observable `infinteGradientColors`
+    // MARK: - Test observable `gradientLayerColors`
 
-    func testInitializerShouldSetInfinteGradientColorsBasedOnCurrentGradientColors() {
-        let extectedInfinteGradientColors =
-            makeInfiniteGradientColors(from: viewModel.gradientColors)
+    func testInitializerShouldSetGradientLayerColorsBasedOnCurrentGradientColors() {
+        let extectedGradientLayerColors =
+            makeGradientLayerColors(from: viewModel.gradientColors)
 
-        XCTAssertEqual(viewModel.infinteGradientColors.value, extectedInfinteGradientColors)
+        XCTAssertEqual(viewModel.gradientLayerColors.value, extectedGradientLayerColors)
     }
 
     // MARK: - Test setting property `isHidden`
@@ -80,7 +80,7 @@ class GradientActivityIndicatorViewModelTestCase: XCTestCase {
 
     // MARK: - Test setting property `gradientColors`
 
-    func testSettingGradientColorsShouldUpdateInfinteGradientColors() {
+    func testSettingGradientColorsShouldUpdateGradientLayerColors() {
         // Given
         let colors: [UIColor] = [.red, .yellow, .green]
 
@@ -88,17 +88,17 @@ class GradientActivityIndicatorViewModelTestCase: XCTestCase {
         viewModel.gradientColors = colors
 
         // Then
-        let extectedInfinteGradientColors =
-            makeInfiniteGradientColors(from: colors)
+        let extectedGradientLayerColors =
+            makeGradientLayerColors(from: colors)
 
-        XCTAssertEqual(viewModel.infinteGradientColors.value, extectedInfinteGradientColors)
+        XCTAssertEqual(viewModel.gradientLayerColors.value, extectedGradientLayerColors)
     }
 }
 
 // MARK: - Helpers
 
 extension GradientActivityIndicatorViewModelTestCase {
-    private func makeInfiniteGradientColors(from gradientColors: [UIColor]) -> [CGColor] {
+    private func makeGradientLayerColors(from gradientColors: [UIColor]) -> [CGColor] {
         let reversedColors = gradientColors
             .reversed()
             .dropFirst()

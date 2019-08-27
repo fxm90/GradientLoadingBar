@@ -111,8 +111,8 @@ open class GradientActivityIndicatorView: UIView {
     }
 
     private func bindViewModelToView() {
-        viewModel.infinteGradientColors.subscribeDistinct { [weak self] newInfinteGradientColors, _ in
-            self?.gradientLayer.colors = newInfinteGradientColors
+        viewModel.gradientLayerColors.subscribeDistinct { [weak self] newGradientLayerColors, _ in
+            self?.gradientLayer.colors = newGradientLayerColors
         }.disposed(by: &disposeBag)
 
         viewModel.animationState.subscribeDistinct { [weak self] newAnimationState, _ in
