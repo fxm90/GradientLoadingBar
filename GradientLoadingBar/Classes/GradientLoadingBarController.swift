@@ -110,12 +110,14 @@ open class GradientLoadingBarController {
     }
 
     /// Fades in the gradient loading bar.
-    public func fadeIn(duration: TimeInterval = TimeInterval.GradientLoadingBar.fadeInDuration) {
-        gradientView.fadeIn(duration: duration)
+    public func fadeIn(duration: TimeInterval = TimeInterval.GradientLoadingBar.fadeInDuration, completion: ((Bool) -> Void)? = nil) {
+        gradientView.fadeIn(duration: duration,
+                            completion: completion)
     }
 
     /// Fades out the gradient loading bar.
-    public func fadeOut(duration: TimeInterval = TimeInterval.GradientLoadingBar.fadeOutDuration) {
-        gradientView.fadeOut(duration: duration)
+    public func fadeOut(duration: TimeInterval = TimeInterval.GradientLoadingBar.fadeOutDuration, completion: ((Bool) -> Void)? = nil) {
+        gradientView.fadeOut(duration: duration,
+                             completion: completion)
     }
 }
