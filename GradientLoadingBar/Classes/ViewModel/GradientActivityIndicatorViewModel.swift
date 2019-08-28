@@ -9,7 +9,8 @@
 import Foundation
 import LightweightObservable
 
-class GradientActivityIndicatorViewModel {
+/// This view model contains all logic related to the `GradientActivityIndicatorView`.
+final class GradientActivityIndicatorViewModel {
     // MARK: - Types
 
     ///

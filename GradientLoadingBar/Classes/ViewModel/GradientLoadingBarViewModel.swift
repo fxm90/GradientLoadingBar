@@ -9,8 +9,9 @@
 import Foundation
 import LightweightObservable
 
-/// The `GradientLoadingBarViewModel` class is responsible for the visibility state of the gradient view.
-class GradientLoadingBarViewModel {
+/// This view model checks for the availability of the key-window,
+/// and adds it as a superview to the gradient-view.
+final class GradientLoadingBarViewModel {
     // MARK: - Public properties
 
     /// Observable for the superview of the gradient-view.
