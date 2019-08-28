@@ -55,8 +55,7 @@ open class GradientLoadingBarController {
         self.isRelativeToSafeArea = isRelativeToSafeArea
 
         gradientView.gradientColors = gradientColors
-        gradientView.alpha = 0.0
-        gradientView.isHidden = true
+        gradientView.fadeOut(duration: 0.0)
 
         viewModel = GradientLoadingBarViewModel()
         bindViewModelToView()
