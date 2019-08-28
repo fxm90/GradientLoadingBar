@@ -18,19 +18,10 @@ open class GradientActivityIndicatorView: UIView {
 
     // MARK: - Public properties
 
+    /// Boolean flag, whether the view is currently hidden.
     open override var isHidden: Bool {
         didSet {
             viewModel.isHidden = isHidden
-        }
-    }
-
-    /// Duration for the progress animation.
-    public var progressAnimationDuration: TimeInterval {
-        get {
-            return viewModel.progressAnimationDuration
-        }
-        set {
-            viewModel.progressAnimationDuration = newValue
         }
     }
 
@@ -41,6 +32,16 @@ open class GradientActivityIndicatorView: UIView {
         }
         set {
             viewModel.gradientColors = newValue
+        }
+    }
+
+    /// Duration for the progress animation.
+    public var progressAnimationDuration: TimeInterval {
+        get {
+            return viewModel.progressAnimationDuration
+        }
+        set {
+            viewModel.progressAnimationDuration = newValue
         }
     }
 
@@ -57,7 +58,7 @@ open class GradientActivityIndicatorView: UIView {
         return layer
     }()
 
-    ///
+    /// View model containing all logic related to this view.
     private let viewModel = GradientActivityIndicatorViewModel()
 
     /// The dispose bag for the observables.

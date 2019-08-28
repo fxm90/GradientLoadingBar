@@ -12,7 +12,7 @@ import LightweightObservable
 /// Typealias for controller to match pod name.
 public typealias GradientLoadingBar = GradientLoadingBarController
 
-/// The `GradientLoadingBarController` mediates between the `GradientLoadingBarViewModel` and the corresponding `GradientView`.
+/// The `GradientLoadingBarController` mediates between the `GradientLoadingBarViewModel` and the corresponding `GradientActivityIndicatorView`.
 open class GradientLoadingBarController {
     // MARK: - Public properties
 

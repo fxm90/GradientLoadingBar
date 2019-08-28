@@ -29,12 +29,12 @@ final class GradientActivityIndicatorViewModel {
         return progressAnimationStateSubject.asObservable
     }
 
-    ///
+    /// Observable color array for the gradient layer (of type `CGColor`).
     var gradientLayerColors: Observable<[CGColor]> {
         return gradientLayerColorsSubject.asObservable
     }
 
-    ///
+    /// Boolean flag, whether the view is currently hidden.
     var isHidden = false {
         didSet {
             if isHidden {
@@ -45,14 +45,14 @@ final class GradientActivityIndicatorViewModel {
         }
     }
 
-    /// Colors used for the gradient.
+    /// Color array used for the gradient (of type `UIColor`).
     var gradientColors = UIColor.GradientLoadingBar.gradientColors {
         didSet {
             gradientLayerColorsSubject.value = makeGradientLayerColors()
         }
     }
 
-    /// Duration for the progress animation.
+    /// The duration for the progress animation.
     var progressAnimationDuration = TimeInterval.GradientLoadingBar.progressDuration
 
     // MARK: - Private properties
@@ -74,9 +74,11 @@ final class GradientActivityIndicatorViewModel {
 
     // MARK: - Private methods
 
-    /// Simulate infinte animation - Therefore we'll reverse the colors and remove the first and last item
-    /// to prevent duplicate values at the "inner edges" destroying the infinite look.
+    /// Maps the current `gradientColors` given by the user as an array of `UIColor`,
+    /// to an array of type `CGColor`, so we can use it for our gradient layer.
     private func makeGradientLayerColors() -> [CGColor] {
+        // Simulate infinte animation - Therefore we'll reverse the colors and remove the first and last item
+        // to prevent duplicate values at the "inner edges" destroying the infinite look.
         let reversedColors = gradientColors
             .reversed()
             .dropFirst()
