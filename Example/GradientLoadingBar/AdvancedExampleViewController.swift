@@ -20,10 +20,8 @@ class AdvancedExampleViewController: UIViewController {
     // MARK: - Private properties
 
     // swiftlint:disable:next identifier_name
-    private let programaticallyGradientActivityIndicatorView: GradientActivityIndicatorView = {
+    private let pinkFlamingoGradientActivityIndicatorView: GradientActivityIndicatorView = {
         let gradientActivityIndicatorView = GradientActivityIndicatorView()
-        gradientActivityIndicatorView.alpha = 0.0
-        gradientActivityIndicatorView.isHidden = true
 
         // Source: https://color.adobe.com/Pink-Flamingo-color-theme-10343714/
         gradientActivityIndicatorView.gradientColors = [
@@ -38,10 +36,10 @@ class AdvancedExampleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupCustomColorsGradientActivityIndicatorView()
+        setupPinkFlamingoGradientActivityIndicatorView()
     }
 
-    @IBAction func interfaceBuilderButtonTouchUpInside(_: Any) {
+    @IBAction func addedViaInterfaceBuilderButtonTouchUpInside(_: Any) {
         if gradientActivityIndicatorView.isHidden {
             gradientActivityIndicatorView.fadeIn()
         } else {
@@ -49,26 +47,28 @@ class AdvancedExampleViewController: UIViewController {
         }
     }
 
-    @IBAction func programaticallyButtonTouchUpInside(_: Any) {
-        if programaticallyGradientActivityIndicatorView.isHidden {
-            programaticallyGradientActivityIndicatorView.fadeIn()
+    @IBAction func addedProgramaticallyButtonTouchUpInside(_: Any) {
+        if pinkFlamingoGradientActivityIndicatorView.isHidden {
+            pinkFlamingoGradientActivityIndicatorView.fadeIn()
         } else {
-            programaticallyGradientActivityIndicatorView.fadeOut()
+            pinkFlamingoGradientActivityIndicatorView.fadeOut()
         }
     }
 
     // MARK: - Private methods
 
-    func setupCustomColorsGradientActivityIndicatorView() {
-        programaticallyGradientActivityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
-        programaticallyButton.addSubview(programaticallyGradientActivityIndicatorView)
+    private func setupPinkFlamingoGradientActivityIndicatorView() {
+        pinkFlamingoGradientActivityIndicatorView.fadeOut(duration: 0)
+
+        pinkFlamingoGradientActivityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+        programaticallyButton.addSubview(pinkFlamingoGradientActivityIndicatorView)
 
         NSLayoutConstraint.activate([
-            programaticallyGradientActivityIndicatorView.leftAnchor.constraint(equalTo: programaticallyButton.leftAnchor),
-            programaticallyGradientActivityIndicatorView.rightAnchor.constraint(equalTo: programaticallyButton.rightAnchor),
+            pinkFlamingoGradientActivityIndicatorView.leftAnchor.constraint(equalTo: programaticallyButton.leftAnchor),
+            pinkFlamingoGradientActivityIndicatorView.rightAnchor.constraint(equalTo: programaticallyButton.rightAnchor),
 
-            programaticallyGradientActivityIndicatorView.bottomAnchor.constraint(equalTo: programaticallyButton.bottomAnchor),
-            programaticallyGradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: 3.0)
+            pinkFlamingoGradientActivityIndicatorView.bottomAnchor.constraint(equalTo: programaticallyButton.bottomAnchor),
+            pinkFlamingoGradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: 3.0)
         ])
     }
 }

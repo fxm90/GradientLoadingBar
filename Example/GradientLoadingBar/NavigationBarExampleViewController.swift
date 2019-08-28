@@ -30,10 +30,6 @@ class NavigationBarExampleViewController: UIViewController {
         gradientProgressIndicatorView.fadeIn()
     }
 
-    @IBAction func toggleButtonTouchUpInside(_: Any) {
-        // gradientLoadingBar?.toggle()
-    }
-
     @IBAction func hideButtonTouchUpInside(_: Any) {
         gradientProgressIndicatorView.fadeOut()
     }
@@ -41,8 +37,7 @@ class NavigationBarExampleViewController: UIViewController {
     // MARK: - Private methods
 
     private func setupGradientProgressIndicatorView() {
-        gradientProgressIndicatorView.alpha = 0.0
-        gradientProgressIndicatorView.isHidden = true
+        gradientProgressIndicatorView.fadeOut(duration: 0)
 
         gradientProgressIndicatorView.translatesAutoresizingMaskIntoConstraints = false
         navigationBar.addSubview(gradientProgressIndicatorView)
