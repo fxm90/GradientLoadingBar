@@ -13,17 +13,20 @@ import LightweightObservable
 final class GradientActivityIndicatorViewModel {
     // MARK: - Types
 
-    ///
-    enum AnimationState: Equatable {
+    /// State of the progress animation.
+    enum ProgressAnimationState: Equatable {
+        /// The progress animation is currently stopped.
         case none
+
+        /// The progress animation is currently running with the given duration.
         case animating(duration: TimeInterval)
     }
 
     // MARK: - Public properties
 
-    ///
-    var animationState: Observable<AnimationState> {
-        return animationStateSubject.asObservable
+    /// Observable state of the progress animation.
+    var progressAnimationState: Observable<ProgressAnimationState> {
+        return progressAnimationStateSubject.asObservable
     }
 
     ///
@@ -35,9 +38,9 @@ final class GradientActivityIndicatorViewModel {
     var isHidden = false {
         didSet {
             if isHidden {
-                animationStateSubject.value = .none
+                progressAnimationStateSubject.value = .none
             } else {
-                animationStateSubject.value = .animating(duration: progressAnimationDuration)
+                progressAnimationStateSubject.value = .animating(duration: progressAnimationDuration)
             }
         }
     }
@@ -54,7 +57,7 @@ final class GradientActivityIndicatorViewModel {
 
     // MARK: - Private properties
 
-    private let animationStateSubject: Variable<AnimationState>
+    private let progressAnimationStateSubject: Variable<ProgressAnimationState>
 
     private let gradientLayerColorsSubject: Variable<[CGColor]>
 
@@ -62,7 +65,7 @@ final class GradientActivityIndicatorViewModel {
 
     init() {
         // As the view is visible initially, we need to set-up the observables accordingly.
-        animationStateSubject = Variable(.animating(duration: progressAnimationDuration))
+        progressAnimationStateSubject = Variable(.animating(duration: progressAnimationDuration))
 
         // Small workaround as calls to `self.makeGradientLayerColors()` aren't allowed before all properties have been initialized.
         gradientLayerColorsSubject = Variable([])

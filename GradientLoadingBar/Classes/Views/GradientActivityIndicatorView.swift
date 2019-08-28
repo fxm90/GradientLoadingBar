@@ -115,30 +115,25 @@ open class GradientActivityIndicatorView: UIView {
             self?.gradientLayer.colors = newGradientLayerColors
         }.disposed(by: &disposeBag)
 
-        viewModel.animationState.subscribeDistinct { [weak self] newAnimationState, _ in
-            switch newAnimationState {
-            case .none:
-                self?.stopProgressAnimation()
-
-            case let .animating(duration):
-                self?.startProgressAnimation(duration: duration)
-            }
+        viewModel.progressAnimationState.subscribeDistinct { [weak self] newProgressAnimationState, _ in
+            self?.updateProgressAnimation(state: newProgressAnimationState)
         }.disposed(by: &disposeBag)
     }
 
-    private func startProgressAnimation(duration: TimeInterval) {
-        let animation = CABasicAnimation(keyPath: "position")
+    private func updateProgressAnimation(state progressAnimationState: GradientActivityIndicatorViewModel.ProgressAnimationState) {
+        switch progressAnimationState {
+        case .none:
+            gradientLayer.removeAnimation(forKey: GradientActivityIndicatorView.progressAnimationKey)
 
-        animation.fromValue = CGPoint(x: -2 * bounds.size.width, y: 0)
-        animation.toValue = CGPoint.zero
-        animation.isRemovedOnCompletion = false
-        animation.repeatCount = Float.infinity
-        animation.duration = duration
+        case let .animating(duration):
+            let animation = CABasicAnimation(keyPath: "position")
+            animation.fromValue = CGPoint(x: -2 * bounds.size.width, y: 0)
+            animation.toValue = CGPoint.zero
+            animation.isRemovedOnCompletion = false
+            animation.repeatCount = Float.infinity
+            animation.duration = duration
 
-        gradientLayer.add(animation, forKey: GradientActivityIndicatorView.progressAnimationKey)
-    }
-
-    private func stopProgressAnimation() {
-        gradientLayer.removeAnimation(forKey: GradientActivityIndicatorView.progressAnimationKey)
+            gradientLayer.add(animation, forKey: GradientActivityIndicatorView.progressAnimationKey)
+        }
     }
 }

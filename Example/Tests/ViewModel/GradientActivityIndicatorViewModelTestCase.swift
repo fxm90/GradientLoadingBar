@@ -15,7 +15,7 @@ import XCTest
 class GradientActivityIndicatorViewModelTestCase: XCTestCase {
     // MARK: - Types
 
-    typealias AnimationState = GradientActivityIndicatorViewModel.AnimationState
+    typealias ProgressAnimationState = GradientActivityIndicatorViewModel.ProgressAnimationState
 
     // MARK: - Private properties
 
@@ -37,11 +37,11 @@ class GradientActivityIndicatorViewModelTestCase: XCTestCase {
 
     // MARK: - Test observable `animationState`
 
-    func testInitializerShouldSetAnimationStateToAnimatingWithCurrentProgressDuration() {
-        let expectedAnimationState: AnimationState =
+    func testInitializerShouldSetProgressAnimationStateToAnimatingWithCurrentProgressDuration() {
+        let expectedProgressAnimationState: ProgressAnimationState =
             .animating(duration: viewModel.progressAnimationDuration)
 
-        XCTAssertEqual(viewModel.animationState.value, expectedAnimationState)
+        XCTAssertEqual(viewModel.progressAnimationState.value, expectedProgressAnimationState)
     }
 
     // MARK: - Test observable `gradientLayerColors`
@@ -55,15 +55,15 @@ class GradientActivityIndicatorViewModelTestCase: XCTestCase {
 
     // MARK: - Test setting property `isHidden`
 
-    func testSettingIsHiddenToTrueShouldSetAnimationStateToNone() {
+    func testSettingIsHiddenToTrueShouldSetProgressAnimationStateToNone() {
         // When
         viewModel.isHidden = true
 
         // Then
-        XCTAssertEqual(viewModel.animationState.value, .none)
+        XCTAssertEqual(viewModel.progressAnimationState.value, .none)
     }
 
-    func testSettingIsHiddenToFalseShouldSetAnimationStateToAnimatingWithCurrentProgressDuration() {
+    func testSettingIsHiddenToFalseShouldSetProgressAnimationStateToAnimatingWithCurrentProgressDuration() {
         // Given
         let progressAnimationDuration = 1.23
         viewModel.progressAnimationDuration = progressAnimationDuration
@@ -72,10 +72,10 @@ class GradientActivityIndicatorViewModelTestCase: XCTestCase {
         viewModel.isHidden = false
 
         // Then
-        let expectedAnimationState: AnimationState =
+        let expectedProgressAnimationState: ProgressAnimationState =
             .animating(duration: progressAnimationDuration)
 
-        XCTAssertEqual(viewModel.animationState.value, expectedAnimationState)
+        XCTAssertEqual(viewModel.progressAnimationState.value, expectedProgressAnimationState)
     }
 
     // MARK: - Test setting property `gradientColors`
