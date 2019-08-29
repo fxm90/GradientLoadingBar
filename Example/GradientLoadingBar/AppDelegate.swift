@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-        // Customize shared instance of `GradientLoadingBar`
+        // Example on how to customize the shared instance of `GradientLoadingBar`.
+        // We're gonna use the same height though ¯\_(ツ)_/¯
         let customGradientLoadingBar = GradientLoadingBar(height: 3.0)
         GradientLoadingBar.shared = customGradientLoadingBar
 

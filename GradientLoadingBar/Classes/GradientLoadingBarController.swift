@@ -62,16 +62,17 @@ open class GradientLoadingBarController {
 
     /// Creates a new gradient loading bar instance.
     ///
-    /// Parameters:
-    ///  - height:               Height of the gradient bar.
-    ///  - isRelativeToSafeArea: Flag whether the top layout constraint should respect `safeAreaLayoutGuide`.
+    /// - Parameters:
+    ///   - height:               Height of the gradient bar (defaults to `3.0`).
+    ///   - isRelativeToSafeArea: Flag whether the top layout constraint should respect `safeAreaLayoutGuide`.
     ///
-    /// Returns: Instance with gradient bar
-    public init(height: Double = 2.5,
+    /// - Returns: Instance of gradient loading bar.
+    public init(height: Double = 3,
                 isRelativeToSafeArea: Bool = true) {
         self.height = height
         self.isRelativeToSafeArea = isRelativeToSafeArea
 
+        // We don't want the view to be visibly initially.
         gradientView.fadeOut(duration: 0)
 
         bindViewModelToView()
