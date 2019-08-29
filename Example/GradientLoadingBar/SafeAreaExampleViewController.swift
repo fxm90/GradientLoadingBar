@@ -28,7 +28,7 @@ class SafeAreaExampleViewController: UIViewController {
 
 // MARK: - UIBarPositioningDelegate
 
-// Notice: Delegate is setted-up via storyboard.
+/// - Note: Delegate is setted-up via storyboard.
 extension SafeAreaExampleViewController: UINavigationBarDelegate {
     func position(for _: UIBarPositioning) -> UIBarPosition {
         return .topAttached

@@ -75,7 +75,7 @@ class AdvancedExampleViewController: UIViewController {
 
 // MARK: - UIBarPositioningDelegate
 
-// Notice: Delegate is setted-up via storyboard.
+/// - Note: Delegate is setted-up via storyboard.
 extension AdvancedExampleViewController: UINavigationBarDelegate {
     func position(for _: UIBarPositioning) -> UIBarPosition {
         return .topAttached
