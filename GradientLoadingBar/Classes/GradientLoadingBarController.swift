@@ -27,13 +27,23 @@ open class GradientLoadingBarController {
     /// View containing the gradient layer.
     public let gradientView = GradientActivityIndicatorView()
 
+    /// Colors used for the gradient.
+    public var gradientColors: [UIColor] {
+        get {
+            return gradientView.gradientColors
+        }
+        set {
+            gradientView.gradientColors = newValue
+        }
+    }
+
     /// Singleton instance.
     public static var shared = GradientLoadingBar()
 
     // MARK: - Private properties
 
     /// View model containing logic for the gradient view.
-    private let viewModel: GradientLoadingBarViewModel
+    private let viewModel = GradientLoadingBarViewModel()
 
     /// The dispose bag for the observables.
     private var disposeBag = DisposeBag()
@@ -44,20 +54,16 @@ open class GradientLoadingBarController {
     ///
     /// Parameters:
     ///  - height:               Height of the gradient bar.
-    ///  - gradientColors:       Colors used for the gradient.
     ///  - isRelativeToSafeArea: Flag whether the top layout constraint should respect `safeAreaLayoutGuide`.
     ///
     /// Returns: Instance with gradient bar
     public init(height: Double = 2.5,
-                gradientColors: [UIColor] = UIColor.GradientLoadingBar.gradientColors,
                 isRelativeToSafeArea: Bool = true) {
         self.height = height
         self.isRelativeToSafeArea = isRelativeToSafeArea
 
-        gradientView.gradientColors = gradientColors
         gradientView.fadeOut(duration: 0)
 
-        viewModel = GradientLoadingBarViewModel()
         bindViewModelToView()
     }
 
