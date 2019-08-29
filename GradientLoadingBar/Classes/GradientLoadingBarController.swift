@@ -37,6 +37,16 @@ open class GradientLoadingBarController {
         }
     }
 
+    /// Duration for the progress animation.
+    public var progressAnimationDuration: TimeInterval {
+        get {
+            return gradientView.progressAnimationDuration
+        }
+        set {
+            gradientView.progressAnimationDuration = newValue
+        }
+    }
+
     /// Singleton instance.
     public static var shared = GradientLoadingBar()
 
