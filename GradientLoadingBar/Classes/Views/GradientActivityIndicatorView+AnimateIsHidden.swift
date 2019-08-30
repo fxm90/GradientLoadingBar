@@ -11,11 +11,10 @@ import UIKit
 /// Helper methods to fade-in and -out the `GradientActivityIndicatorView` and update the `isHidden` flag
 /// accordingly, as the progress-animation is started and stopped based on this flag.
 ///
-/// We add these methods as public extensions on `GradientActivityIndicatorView` instead of `UIView`,
+/// - Note: We add these methods as public extensions on `GradientActivityIndicatorView` instead of `UIView`,
 /// in order to avoid conflicts with other frameworks.
 ///
-/// Source:
-///  - [Github Gist – UIView+AnimateIsHidden.swift](https://gist.github.com/fxm90/723b5def31b46035cd92a641e3b184f6)
+/// - SeeAlso: [Github Gist – UIView+AnimateIsHidden.swift](https://gist.github.com/fxm90/723b5def31b46035cd92a641e3b184f6)
 public extension GradientActivityIndicatorView {
     // MARK: - Public methods
 
