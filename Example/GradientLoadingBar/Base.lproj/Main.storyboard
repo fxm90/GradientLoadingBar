@@ -285,7 +285,7 @@
                                 <rect key="frame" x="16" y="151" width="343" height="467"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dTf-4j-4fr" customClass="GradientActivityIndicatorView" customModule="GradientLoadingBar">
-                                        <rect key="frame" x="0.0" y="200" width="343" height="3"/>
+                                        <rect key="frame" x="0.0" y="182.5" width="343" height="3"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="3" id="xmv-tK-5hF"/>
@@ -294,29 +294,40 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="3"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="wzq-Eo-AIU">
-                                        <rect key="frame" x="0.0" y="213.5" width="343" height="40"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6p6-Rh-h29" userLabel="Toggle Interface Builder Button" customClass="BlueBorderedButton" customModule="GradientLoadingBar_Example" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="189.5" width="343" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Nl1-iA-frJ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                        <state key="normal" title="Toggle bar from Interface Builder"/>
+                                        <connections>
+                                            <action selector="toggleInterfaceBuilderButtonTouchUpInside:" destination="l28-cg-vu8" eventType="touchUpInside" id="UD5-hy-1kf"/>
+                                        </connections>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wzq-Eo-AIU">
+                                        <rect key="frame" x="0.0" y="237.5" width="343" height="40"/>
                                         <subviews>
-                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JKA-wf-nyj" customClass="BlueBorderedButton" customModule="GradientLoadingBar_Example" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="163.5" height="40"/>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JKA-wf-nyj" userLabel="Toggle Programatically Button" customClass="BlueBorderedButton" customModule="GradientLoadingBar_Example" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="167.5" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="sKv-MC-7kH"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
-                                                <state key="normal" title="Added via Interface Builder"/>
+                                                <state key="normal" title="Toggle programatically"/>
                                                 <connections>
-                                                    <action selector="addedViaInterfaceBuilderButtonTouchUpInside:" destination="l28-cg-vu8" eventType="touchUpInside" id="LxY-q4-Lbo"/>
+                                                    <action selector="toggleProgramaticallyButtonTouchUpInside:" destination="l28-cg-vu8" eventType="touchUpInside" id="eAa-vL-S2C"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cbn-y8-lGV" userLabel="Custom Colors Button" customClass="BlueBorderedButton" customModule="GradientLoadingBar_Example" customModuleProvider="target">
-                                                <rect key="frame" x="179.5" y="0.0" width="163.5" height="40"/>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cbn-y8-lGV" userLabel="Toggle Custom Colors Button" customClass="BlueBorderedButton" customModule="GradientLoadingBar_Example" customModuleProvider="target">
+                                                <rect key="frame" x="175.5" y="0.0" width="167.5" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="emu-Jk-zMc"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
-                                                <state key="normal" title="Added programatically"/>
+                                                <state key="normal" title="Toggle custom colors"/>
                                                 <connections>
-                                                    <action selector="addedProgramaticallyButtonTouchUpInside:" destination="l28-cg-vu8" eventType="touchUpInside" id="wN5-5z-SMc"/>
+                                                    <action selector="toggleCustomColorsButtonTouchUpInside:" destination="l28-cg-vu8" eventType="touchUpInside" id="BZJ-7f-xNF"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -324,12 +335,15 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="6p6-Rh-h29" firstAttribute="bottom" secondItem="sJk-2n-yVK" secondAttribute="centerY" constant="-4" id="08q-Sj-IgC"/>
                                     <constraint firstItem="wzq-Eo-AIU" firstAttribute="leading" secondItem="sJk-2n-yVK" secondAttribute="leading" id="139-Ak-t87"/>
                                     <constraint firstItem="dTf-4j-4fr" firstAttribute="leading" secondItem="sJk-2n-yVK" secondAttribute="leading" id="1hs-3b-ifs"/>
                                     <constraint firstAttribute="trailing" secondItem="dTf-4j-4fr" secondAttribute="trailing" id="HYF-aZ-woN"/>
-                                    <constraint firstItem="wzq-Eo-AIU" firstAttribute="centerY" secondItem="sJk-2n-yVK" secondAttribute="centerY" id="IqE-ns-FHJ"/>
-                                    <constraint firstItem="dTf-4j-4fr" firstAttribute="centerY" secondItem="sJk-2n-yVK" secondAttribute="centerY" constant="-32" id="ZaX-90-tzj"/>
+                                    <constraint firstItem="wzq-Eo-AIU" firstAttribute="top" secondItem="sJk-2n-yVK" secondAttribute="centerY" constant="4" id="IqE-ns-FHJ"/>
+                                    <constraint firstItem="6p6-Rh-h29" firstAttribute="leading" secondItem="sJk-2n-yVK" secondAttribute="leading" id="YmY-v8-bdx"/>
+                                    <constraint firstAttribute="trailing" secondItem="6p6-Rh-h29" secondAttribute="trailing" id="fXg-JQ-gbI"/>
                                     <constraint firstAttribute="trailing" secondItem="wzq-Eo-AIU" secondAttribute="trailing" id="fcI-El-SAu"/>
+                                    <constraint firstItem="6p6-Rh-h29" firstAttribute="top" secondItem="dTf-4j-4fr" secondAttribute="bottom" constant="4" id="svm-uR-FjH"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -347,9 +361,9 @@
                     <tabBarItem key="tabBarItem" title="Advanced Example" image="rocket" id="SyM-zw-tlg"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="customColorsButton" destination="Cbn-y8-lGV" id="1ag-73-Mlh"/>
                         <outlet property="gradientActivityIndicatorView" destination="dTf-4j-4fr" id="OMu-fw-5cD"/>
-                        <outlet property="interfaceBuilderButton" destination="JKA-wf-nyj" id="7c6-5T-R8p"/>
-                        <outlet property="programaticallyButton" destination="Cbn-y8-lGV" id="6Np-Ed-c8S"/>
+                        <outlet property="programaticallyButton" destination="JKA-wf-nyj" id="JRN-do-tSa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fkr-pn-u5J" userLabel="First Responder" sceneMemberID="firstResponder"/>
