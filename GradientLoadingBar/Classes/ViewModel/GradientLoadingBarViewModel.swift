@@ -49,13 +49,15 @@ final class GradientLoadingBarViewModel {
         }
     }
 
+    deinit {
+        /// By providing a custom deinitializer we make sure to remove the corresponding `gradientView` from its superview.
+        superviewSubject.value = nil
+    }
+
     // MARK: - Private methods
 
     @objc private func didReceiveUIWindowDidBecomeKeyNotification(_: Notification) {
         guard let keyWindow = sharedApplication.keyWindow else { return }
-
-        // Prevent informing the listener multiple times.
-        notificationCenter.removeObserver(self)
 
         // Now that we have a valid key window, we can use it as superview.
         superviewSubject.value = keyWindow

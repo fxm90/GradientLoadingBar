@@ -17,8 +17,6 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
     private var sharedApplicationMock: SharedApplicationMock!
     private var notificationCenter: NotificationCenter!
 
-    private var viewModel: GradientLoadingBarViewModel!
-
     // MARK: - Public methods
 
     override func setUp() {
@@ -26,14 +24,9 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
 
         sharedApplicationMock = SharedApplicationMock()
         notificationCenter = NotificationCenter()
-
-        viewModel = GradientLoadingBarViewModel(sharedApplication: sharedApplicationMock,
-                                                notificationCenter: notificationCenter)
     }
 
     override func tearDown() {
-        viewModel = nil
-
         notificationCenter = nil
         sharedApplicationMock = nil
 
@@ -73,16 +66,22 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
                        keyWindow)
     }
 
-    func testInitializerShouldSetupSuperviewObservableAfterUIWindowDidBecomeKeyNotificationJustOnce() {
+    func testDeinitShouldResetSuperviewObservableToNil() {
         // Given
-        let viewModel = GradientLoadingBarViewModel(sharedApplication: sharedApplicationMock,
-                                                    notificationCenter: notificationCenter)
+        let keyWindow = UIWindow()
+        sharedApplicationMock.keyWindow = keyWindow
 
-        let expectation = self.expectation(description: "Expected observer for superview to be informed just once.")
+        // swiftlint:disable:next unnecessary_type
+        var viewModel: GradientLoadingBarViewModel? = GradientLoadingBarViewModel(sharedApplication: sharedApplicationMock,
+                                                                                  notificationCenter: notificationCenter)
+
+        let expectation = self.expectation(description: "Expected observer to be informed to reset superview to nil.")
 
         var disposeBag = DisposeBag()
-        viewModel.superview.subscribe { newSuperview, _ in
-            guard newSuperview != nil else {
+
+        // swiftlint:disable:next force_unwrapping
+        viewModel!.superview.subscribe { newSuperview, _ in
+            guard newSuperview == nil else {
                 // Skip initial call to observer.
                 return
             }
@@ -91,11 +90,7 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
         }.disposed(by: &disposeBag)
 
         // When
-        for _ in 1 ... 3 {
-            sharedApplicationMock.keyWindow = UIWindow()
-            notificationCenter.post(name: UIWindow.didBecomeKeyNotification,
-                                    object: nil)
-        }
+        viewModel = nil
 
         // Then
         wait(for: [expectation], timeout: 0.1)

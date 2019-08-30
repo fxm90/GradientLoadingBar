@@ -78,31 +78,24 @@ open class GradientLoadingBarController {
         bindViewModelToView()
     }
 
-    /// By providing a custom deinitializer we make sure to remove the corresponding `gradientView` from its superview.
-    deinit {
-        if gradientView.superview != nil {
-            gradientView.removeFromSuperview()
-        }
-    }
-
     // MARK: - Private methods
 
     private func bindViewModelToView() {
         viewModel.superview.subscribeDistinct { [weak self] newSuperview, _ in
-            self?.addGradientView(to: newSuperview)
+            self?.updateSuperview(newSuperview)
         }.disposed(by: &disposeBag)
     }
 
-    private func addGradientView(to superview: UIView?) {
-        guard let superview = superview else {
-            // We've received an invalid superview.
-            return
+    private func updateSuperview(_ superview: UIView?) {
+        // If the view’s superview is not nil, the superview releases the view.
+        gradientView.removeFromSuperview()
+
+        if let superview = superview {
+            gradientView.translatesAutoresizingMaskIntoConstraints = false
+            superview.addSubview(gradientView)
+
+            setupConstraints(superview: superview)
         }
-
-        gradientView.translatesAutoresizingMaskIntoConstraints = false
-        superview.addSubview(gradientView)
-
-        setupConstraints(superview: superview)
     }
 
     // MARK: - Public methods
