@@ -50,7 +50,7 @@ class GradientActivityIndicatorViewModelTestCase: XCTestCase {
         XCTAssertEqual(viewModel.gradientLayerAnimationFromValue.value, 0.0)
     }
 
-    func testInitializerShouldSetgradientLayerAnimationDurationToValueFromProgressAnimationDuration() {
+    func testInitializerShouldSetGradientLayerAnimationDurationToValueFromProgressAnimationDuration() {
         XCTAssertEqual(viewModel.gradientLayerAnimationDuration.value, viewModel.progressAnimationDuration)
     }
 
