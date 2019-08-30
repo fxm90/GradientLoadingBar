@@ -50,7 +50,8 @@ class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
         gradientActivityIndicatorView.isHidden = true
 
         // When
-        gradientActivityIndicatorView.animate(isHidden: false, duration: 0.1) { _ in
+        gradientActivityIndicatorView.animate(isHidden: false, duration: 0.1) { isFinished in
+            XCTAssertTrue(isFinished)
             expectation.fulfill()
         }
 
@@ -61,12 +62,36 @@ class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
         XCTAssertEqual(gradientActivityIndicatorView.alpha, 1.0, accuracy: CGFloat.ulpOfOne)
     }
 
+    func testAnimateIsHiddenWithInterruptionShouldShowViewAndCallCompletionHandler() {
+        // Given
+        let expectation = self.expectation(description: "Expect completion handler to be called.")
+
+        // Hide view to validate fade-in.
+        gradientActivityIndicatorView.alpha = 0.0
+        gradientActivityIndicatorView.isHidden = true
+
+        // When
+        gradientActivityIndicatorView.animate(isHidden: false, duration: 0.1) { isFinished in
+            XCTAssertFalse(isFinished)
+            expectation.fulfill()
+        }
+
+        // Cancel animation.
+        gradientActivityIndicatorView.layer.removeAllAnimations()
+
+        // Then
+        wait(for: [expectation], timeout: 0.2)
+
+        XCTAssertFalse(gradientActivityIndicatorView.isHidden)
+    }
+
     func testAnimateIsHiddenShouldHideViewAndCallCompletionHandler() {
         // Given
         let expectation = self.expectation(description: "Expect completion handler to be called.")
 
         // When
-        gradientActivityIndicatorView.animate(isHidden: true, duration: 0.1) { _ in
+        gradientActivityIndicatorView.animate(isHidden: true, duration: 0.1) { isFinished in
+            XCTAssertTrue(isFinished)
             expectation.fulfill()
         }
 
@@ -77,12 +102,13 @@ class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
         XCTAssertEqual(gradientActivityIndicatorView.alpha, 0.0, accuracy: CGFloat.ulpOfOne)
     }
 
-    func testAnimateIsHiddenWithCancelationShouldResetIsHiddenFlagAndCallCompletionHandler() {
+    func testAnimateIsHiddenWithInterruptionShouldNotHideViewAndCallCompletionHandler() {
         // Given
         let expectation = self.expectation(description: "Expect completion handler to be called.")
 
         // When
-        gradientActivityIndicatorView.animate(isHidden: true, duration: 0.1) { _ in
+        gradientActivityIndicatorView.animate(isHidden: true, duration: 0.1) { isFinished in
+            XCTAssertFalse(isFinished)
             expectation.fulfill()
         }
 
@@ -106,7 +132,8 @@ class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
         gradientActivityIndicatorView.isHidden = true
 
         // When
-        gradientActivityIndicatorView.fadeIn(duration: 0.1) { _ in
+        gradientActivityIndicatorView.fadeIn(duration: 0.1) { isFinished in
+            XCTAssertTrue(isFinished)
             expectation.fulfill()
         }
 
@@ -117,6 +144,29 @@ class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
         XCTAssertEqual(gradientActivityIndicatorView.alpha, 1.0, accuracy: CGFloat.ulpOfOne)
     }
 
+    func testFadeInWithInterruptionShouldShowViewAndCallCompletionHandler() {
+        // Given
+        let expectation = self.expectation(description: "Expect completion handler to be called.")
+
+        // Hide view to validate fade-in.
+        gradientActivityIndicatorView.alpha = 0.0
+        gradientActivityIndicatorView.isHidden = true
+
+        // When
+        gradientActivityIndicatorView.fadeIn(duration: 0.1) { isFinished in
+            XCTAssertFalse(isFinished)
+            expectation.fulfill()
+        }
+
+        // Cancel animation.
+        gradientActivityIndicatorView.layer.removeAllAnimations()
+
+        // Then
+        wait(for: [expectation], timeout: 0.2)
+
+        XCTAssertFalse(gradientActivityIndicatorView.isHidden)
+    }
+
     // MARK: - Test method `fadeOut()`
 
     func testFadeOutShouldHideViewAndCallCompletionHandler() {
@@ -124,7 +174,8 @@ class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
         let expectation = self.expectation(description: "Expect completion handler to be called.")
 
         // When
-        gradientActivityIndicatorView.fadeOut(duration: 0.1) { _ in
+        gradientActivityIndicatorView.fadeOut(duration: 0.1) { isFinished in
+            XCTAssertTrue(isFinished)
             expectation.fulfill()
         }
 
@@ -135,12 +186,13 @@ class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
         XCTAssertEqual(gradientActivityIndicatorView.alpha, 0.0, accuracy: CGFloat.ulpOfOne)
     }
 
-    func testFadeOutWithCancelationShouldResetIsHiddenFlagAndCallCompletionHandler() {
+    func testFadeOutWithInterruptionShouldNotHideViewAndCallCompletionHandler() {
         // Given
         let expectation = self.expectation(description: "Expect completion handler to be called.")
 
         // When
-        gradientActivityIndicatorView.fadeOut(duration: 0.1) { _ in
+        gradientActivityIndicatorView.fadeOut(duration: 0.1) { isFinished in
+            XCTAssertFalse(isFinished)
             expectation.fulfill()
         }
 
