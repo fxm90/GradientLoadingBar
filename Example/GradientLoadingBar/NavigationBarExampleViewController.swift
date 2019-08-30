@@ -16,7 +16,7 @@ class NavigationBarExampleViewController: UIViewController {
 
     // MARK: - Private properties
 
-    private var gradientProgressIndicatorView = GradientActivityIndicatorView()
+    private let gradientProgressIndicatorView = GradientActivityIndicatorView()
 
     // MARK: - Public methods
 
