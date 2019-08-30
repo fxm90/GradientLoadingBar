@@ -13,7 +13,7 @@ opt_in_rules:
   - overridden_super_call      # Some overridden methods should always call super
   - prohibited_super_call      # Some methods should not call super, e.g. `UIViewController.loadView()`
   - unused_import              # All imported modules should be required to make the file compile.
-  - unused_private_declaration # Private declarations should be referenced in that file.
+  - unused_declaration         # Declarations should be referenced at least once within all files linted.
   - explicit_init              # Explicitly calling .init() should be avoided.
   - closure_spacing            # Closure expressions should have a single space inside each brace.
   - private_outlet             # IBOutlets should be private to avoid leaking UIKit to higher layers.
