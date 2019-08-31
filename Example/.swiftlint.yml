@@ -65,22 +65,22 @@ excluded:
 
 custom_rules:
   comments_space:
-    name: "Space After Comment"
+    name: 'Space After Comment'
     regex: '(^ *//\w+)'
-    message: "There should be a space after //."
+    message: 'There should be a space after //.'
     severity: warning
   empty_line_after_guard:
-    name: "Empty Line After Guard"
+    name: 'Empty Line After Guard'
     regex: '(^ *guard[ a-zA-Z0-9=?.\(\),><!]*\{[ a-zA-Z0-9=?.\(\),><!]*\}\n *(?!(?:return|guard))\S+)'
-    message: "There should be an empty line after a guard."
+    message: 'There should be an empty line after a guard.'
     severity: warning
   empty_line_after_super:
-    name: "Empty Line After Super"
+    name: 'Empty Line After Super'
     regex: '(^ *super\.[ a-zA-Z0-9=?.\(\)\{\}:,><!]*\n *(?!(?:\}|return))\S+)'
-    message: "There should be an empty line after super."
+    message: 'There should be an empty line after super.'
     severity: warning
   unnecessary_type:
-    name: "Unnecessary Type"
+    name: 'Unnecessary Type'
     regex: '[ a-zA-Z0-9]*(?:let|var) [ a-zA-Z0-9]*: ([a-zA-Z0-9]*) *= \1'
-    message: "Type Definition Not Needed."
+    message: 'Type Definition Not Needed.'
     severity: warning
