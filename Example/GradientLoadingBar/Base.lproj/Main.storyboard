@@ -316,7 +316,7 @@
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                 <state key="normal" title="Toggle programatically"/>
                                                 <connections>
-                                                    <action selector="toggleProgramaticallyButtonTouchUpInside:" destination="l28-cg-vu8" eventType="touchUpInside" id="eAa-vL-S2C"/>
+                                                    <action selector="toggleProgrammaticallyButtonTouchUpInside:" destination="l28-cg-vu8" eventType="touchUpInside" id="tZg-ye-xbi"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cbn-y8-lGV" userLabel="Toggle Custom Colors Button" customClass="BlueBorderedButton" customModule="GradientLoadingBar_Example" customModuleProvider="target">
@@ -363,7 +363,7 @@
                     <connections>
                         <outlet property="customColorsButton" destination="Cbn-y8-lGV" id="1ag-73-Mlh"/>
                         <outlet property="gradientActivityIndicatorView" destination="dTf-4j-4fr" id="OMu-fw-5cD"/>
-                        <outlet property="programaticallyButton" destination="JKA-wf-nyj" id="JRN-do-tSa"/>
+                        <outlet property="programmaticallyButton" destination="JKA-wf-nyj" id="JRN-do-tSa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fkr-pn-u5J" userLabel="First Responder" sceneMemberID="firstResponder"/>

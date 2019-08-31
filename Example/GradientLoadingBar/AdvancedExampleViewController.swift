@@ -12,7 +12,7 @@ import GradientLoadingBar
 class AdvancedExampleViewController: UIViewController {
     // MARK: - Outlets
 
-    @IBOutlet private var programaticallyButton: BlueBorderedButton!
+    @IBOutlet private var programmaticallyButton: BlueBorderedButton!
     @IBOutlet private var customColorsButton: BlueBorderedButton!
 
     @IBOutlet private var gradientActivityIndicatorView: GradientActivityIndicatorView!
@@ -20,7 +20,7 @@ class AdvancedExampleViewController: UIViewController {
     // MARK: - Private properties
 
     // swiftlint:disable:next identifier_name
-    private let programaticallyGradientActivityIndicatorView = GradientActivityIndicatorView()
+    private let programmaticallyGradientActivityIndicatorView = GradientActivityIndicatorView()
 
     // swiftlint:disable:next identifier_name
     private let customColorsGradientActivityIndicatorView: GradientActivityIndicatorView = {
@@ -39,7 +39,7 @@ class AdvancedExampleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupProgramaticallyGradientActivityIndicatorView()
+        setupProgrammaticallyGradientActivityIndicatorView()
         setupCustomColorsGradientActivityIndicatorView()
     }
 
@@ -51,11 +51,11 @@ class AdvancedExampleViewController: UIViewController {
         }
     }
 
-    @IBAction func toggleProgramaticallyButtonTouchUpInside(_: Any) {
-        if programaticallyGradientActivityIndicatorView.isHidden {
-            programaticallyGradientActivityIndicatorView.fadeIn()
+    @IBAction func toggleProgrammaticallyButtonTouchUpInside(_: Any) {
+        if programmaticallyGradientActivityIndicatorView.isHidden {
+            programmaticallyGradientActivityIndicatorView.fadeIn()
         } else {
-            programaticallyGradientActivityIndicatorView.fadeOut()
+            programmaticallyGradientActivityIndicatorView.fadeOut()
         }
     }
 
@@ -69,18 +69,18 @@ class AdvancedExampleViewController: UIViewController {
 
     // MARK: - Private methods
 
-    private func setupProgramaticallyGradientActivityIndicatorView() {
-        programaticallyGradientActivityIndicatorView.fadeOut(duration: 0)
+    private func setupProgrammaticallyGradientActivityIndicatorView() {
+        programmaticallyGradientActivityIndicatorView.fadeOut(duration: 0)
 
-        programaticallyGradientActivityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
-        programaticallyButton.addSubview(programaticallyGradientActivityIndicatorView)
+        programmaticallyGradientActivityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+        programmaticallyButton.addSubview(programmaticallyGradientActivityIndicatorView)
 
         NSLayoutConstraint.activate([
-            programaticallyGradientActivityIndicatorView.leftAnchor.constraint(equalTo: programaticallyButton.leftAnchor),
-            programaticallyGradientActivityIndicatorView.rightAnchor.constraint(equalTo: programaticallyButton.rightAnchor),
+            programmaticallyGradientActivityIndicatorView.leftAnchor.constraint(equalTo: programmaticallyButton.leftAnchor),
+            programmaticallyGradientActivityIndicatorView.rightAnchor.constraint(equalTo: programmaticallyButton.rightAnchor),
 
-            programaticallyGradientActivityIndicatorView.topAnchor.constraint(equalTo: programaticallyButton.topAnchor),
-            programaticallyGradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: 3.0)
+            programmaticallyGradientActivityIndicatorView.topAnchor.constraint(equalTo: programmaticallyButton.topAnchor),
+            programmaticallyGradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: 3.0)
         ])
     }
 

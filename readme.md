@@ -42,7 +42,7 @@ Run carthage update to build the framework and drag the built `GradientLoadingBa
 ### How to use
 This framework provides two classes:
  - **GradientLoadingBar**: A controller, managing the visibility of the `GradientActivityIndicatorView` on the current key window.
- - **GradientActivityIndicatorView**: A `UIView` containing the gradient with the animation. Can be added as a subview to another view either inside the interface builder or programatically. Both ways are shown inside the example application.
+ - **GradientActivityIndicatorView**: A `UIView` containing the gradient with the animation. Can be added as a subview to another view either inside the interface builder or programmatically. Both ways are shown inside the example application.
 
 #### GradientLoadingBar
 To get started, import the module `GradientLoadingBar` into your file and save an instance of `GradientLoadingBar()` on a property of your view-controller. To show the loading bar, simply call the `fadeIn(duration:completion)` method and after your async operations have finished call the  `fadeOut(duration:completion)` method.
@@ -118,7 +118,7 @@ GradientLoadingBar.shared = GradientLoadingBar(height: 5.0)
 
 
 #### GradientActivityIndicatorView
-In case you don't want to add the loading bar onto the key-window, this framework provides the `GradientActivityIndicatorView`, which is a direct subclass of `UIView`. You can add the view to another view either inside the interface builder or programatically.
+In case you don't want to add the loading bar onto the key-window, this framework provides the `GradientActivityIndicatorView`, which is a direct subclass of `UIView`. You can add the view to another view either inside the interface builder or programmatically.
 
 E.g. View added as a subview to a `UINavigationBar`
 [![Example][navigation-bar-example--thumbnail]][navigation-bar-example]
