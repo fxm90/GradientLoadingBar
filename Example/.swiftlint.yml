@@ -1,28 +1,48 @@
 #
+# .swiftlint.yml
+# Created by Felix Mau (https://felix.hamburg)
+#
 # Based on:
 #  - https://gist.github.com/tweetjay/1b7f00b6f312a5a2cf7b5676420b9b0c
 #  - https://github.com/brandenr/swiftlintconfig
 #
 
 opt_in_rules:
-  - empty_count                # Prefer checking isEmpty over comparing count to zero.
-  - force_unwrapping           # Force unwrapping should be avoided.
-  - anyobject_protocol         # Prefer using AnyObject over class for class-only protocols.
-  - empty_xctest_method        # Empty XCTest method should be avoided.
-  - lower_acl_than_parent      # Ensure definitions have a lower access control level than their enclosing parent
-  - overridden_super_call      # Some overridden methods should always call super
-  - prohibited_super_call      # Some methods should not call super, e.g. `UIViewController.loadView()`
-  - unused_import              # All imported modules should be required to make the file compile.
-  - unused_declaration         # Declarations should be referenced at least once within all files linted.
-  - explicit_init              # Explicitly calling .init() should be avoided.
-  - closure_spacing            # Closure expressions should have a single space inside each brace.
-  - private_outlet             # IBOutlets should be private to avoid leaking UIKit to higher layers.
-  - operator_usage_whitespace  # Operators should be surrounded by a single whitespace when they are being used.
-  - first_where                # Prefer using `.first(where:)` over `.filter { }.first` in collections.
-  - object_literal             # Prefer object literals over image and color inits.
-  - fatal_error_message        # A fatalError call should have a message.
-  - missing_docs               # Declarations should be documented.
-  - file_header                # Header comments should be consistent with project patterns. 
+  - anyobject_protocol             # Prefer using `AnyObject` over class for class-only protocols.
+  - array_init                     # Prefer using `Array(seq)` over `seq.map { $0 }` to convert a sequence into an Array.
+  - block_based_kvo                # Prefer the new block based KVO API with keypaths when using Swift 3.2 or later.
+  - closure_spacing                # Closure expressions should have a single space inside each brace.
+  - contains_over_filter_count     # Prefer `contains` over comparing `filter(where:).count` to 0.
+  - contains_over_filter_is_empty  # Prefer `contains` over using `filter(where:).isEmpty`.
+  - contains_over_first_not_nil    # Prefer `contains` over `first(where:) != nil` and `firstIndex(where:) != nil`.
+  - empty_collection_literal       # Prefer checking `isEmpty` over comparing collection to an empty array or dictionary literal.
+  - empty_count                    # Prefer checking `isEmpty` over comparing count to zero.
+  - empty_parameters               # Prefer `() ->` over `Void ->`.
+  - empty_string                   # Prefer checking `isEmpty` over comparing string to an empty string literal.
+  - empty_xctest_method            # Empty XCTest method should be avoided.
+  - explicit_init                  # Explicitly calling .init() should be avoided.
+  - fatal_error_message            # A fatalError call should have a message.
+  - file_header                    # Header comments should be consistent with project patterns.
+  - first_where                    # Prefer using `.first(where:)` over `.filter { }.first` in collections.
+  - for_where                      # `where` clauses are preferred over a single `if` inside a `for`.
+  - force_unwrapping               # Force unwrapping should be avoided.
+  - is_disjoint                    # Prefer using `Set.isDisjoint(with:)` over `Set.intersection(_:).isEmpty`.
+  - last_where                     # Prefer using `.last(where:)` over `.filter { }.last` in collections.
+  - legacy_multiple                # Prefer using the `isMultiple(of:)` function instead of using the remainder operator (`%`).
+  - lower_acl_than_parent          # Ensure definitions have a lower access control level than their enclosing parent
+  - missing_docs                   # Declarations should be documented.
+  - object_literal                 # Prefer object literals over image and color inits.
+  - operator_usage_whitespace      # Operators should be surrounded by a single whitespace when they are being used.
+  - overridden_super_call          # Some overridden methods should always call super
+  - private_outlet                 # IBOutlets should be private to avoid leaking UIKit to higher layers.
+  - prohibited_super_call          # Some methods should not call super, e.g. `UIViewController.loadView()`
+  - sorted_first_last              # Prefer using `min()` or `max()` over `sorted().first` or `sorted().last`
+  - toggle_bool                    # Prefer `someBool.toggle()` over `someBool = !someBool`.
+  - unused_import                  # All imported modules should be required to make the file compile.
+  - unused_optional_binding        # Prefer `!= nil` over `let _ =`
+  - unused_declaration             # Declarations should be referenced at least once within all files linted.
+  - void_return                    # Prefer `-> Void` over `-> ()`.
+
 
 file_header:
   required_pattern: |
