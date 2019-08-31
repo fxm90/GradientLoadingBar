@@ -50,7 +50,7 @@ final class GradientLoadingBarViewModel {
     }
 
     deinit {
-        /// By providing a custom deinitializer we make sure to remove the corresponding `gradientView` from its superview.
+        /// By providing a custom deinitializer we make sure to remove the gradient-view from its superview.
         superviewSubject.value = nil
     }
 

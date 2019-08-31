@@ -78,6 +78,7 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
 
         var disposeBag = DisposeBag()
 
+        // As we've just initialized the view model it has to exist at this point, and therefore we can "safely" use force-unwrapping here.
         // swiftlint:disable:next force_unwrapping
         viewModel!.superview.subscribe { newSuperview, _ in
             guard newSuperview == nil else {

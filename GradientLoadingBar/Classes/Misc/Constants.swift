@@ -21,7 +21,7 @@ extension UIColor {
 }
 
 extension TimeInterval {
-    /// Nummeric default values.
+    /// Numeric default values.
     public struct GradientLoadingBar {
         /// The default duration for fading-in the loading bar, measured in seconds.
         public static let fadeInDuration = 0.33

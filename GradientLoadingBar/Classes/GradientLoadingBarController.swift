@@ -72,7 +72,7 @@ open class GradientLoadingBarController {
         self.height = height
         self.isRelativeToSafeArea = isRelativeToSafeArea
 
-        // We don't want the view to be visibly initially.
+        // We don't want the view to be visible initially.
         gradientView.fadeOut(duration: 0)
 
         bindViewModelToView()
