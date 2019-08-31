@@ -71,7 +71,6 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
         let keyWindow = UIWindow()
         sharedApplicationMock.keyWindow = keyWindow
 
-        // swiftlint:disable:next unnecessary_type
         var viewModel: GradientLoadingBarViewModel? = GradientLoadingBarViewModel(sharedApplication: sharedApplicationMock,
                                                                                   notificationCenter: notificationCenter)
 

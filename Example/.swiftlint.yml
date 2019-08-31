@@ -61,6 +61,6 @@ custom_rules:
     severity: warning
   unnecessary_type:
     name: "Unnecessary Type"
-    regex: '[ a-zA-Z0-9]*(?:let|var) [ a-zA-Z0-9]*: ([a-zA-Z0-9]*)[\? ]*= \1'
+    regex: '[ a-zA-Z0-9]*(?:let|var) [ a-zA-Z0-9]*: ([a-zA-Z0-9]*) *= \1'
     message: "Type Definition Not Needed."
     severity: warning
