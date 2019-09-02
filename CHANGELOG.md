@@ -7,6 +7,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [2.0.0] - 2019-02-09
+### Changed
+ - Splitted framework into two classes:
+  - **GradientLoadingBar**: A controller, managing the visibility of the `GradientActivityIndicatorView` on the current key window.
+  - **GradientActivityIndicatorView**: A `UIView` containing the gradient with the animation, with support for Interface Builder.
+
 ## [1.1.17] - 2019-30-06
 ### Changed
  - Extract observable implementation into a framework (`LightweightObservable`) and added it as dependency.
@@ -106,7 +112,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial release
 
 
-[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.17...master
+[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/2.0.0...master
+[1.1.17]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.17...2.0.0
 [1.1.17]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.16...1.1.17
 [1.1.16]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.15...1.1.16
 [1.1.15]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.14...1.1.15
