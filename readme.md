@@ -14,7 +14,7 @@ To run the example project, clone the repo, and open the workspace from the Exam
 ##### CocoaPods
 GradientLoadingBar can be added to your project using [CocoaPods](https://cocoapods.org/) by adding the following line to your Podfile:
 ```
-pod 'GradientLoadingBar', '~> 1.0'
+pod 'GradientLoadingBar', '~> 2.0'
 ```
 
 ###### Interface Builder Support
@@ -139,7 +139,7 @@ This property adjusts the duration of the animation moving the gradient from lef
 *To see all these screenshots in a real app, please have a look at the **example application**. For further customization you can also subclass `GradientLoadingBar` and overwrite the method `setupConstraints()`.*
 
 ### Author
-Felix Mau (contact(@)felix.hamburg)
+Felix Mau (me(@)felix.hamburg)
 
 ### License
 
