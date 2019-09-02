@@ -43,8 +43,8 @@ class NavigationBarExampleViewController: UIViewController {
         navigationBar.addSubview(gradientProgressIndicatorView)
 
         NSLayoutConstraint.activate([
-            gradientProgressIndicatorView.leftAnchor.constraint(equalTo: navigationBar.leftAnchor),
-            gradientProgressIndicatorView.rightAnchor.constraint(equalTo: navigationBar.rightAnchor),
+            gradientProgressIndicatorView.leadingAnchor.constraint(equalTo: navigationBar.leadingAnchor),
+            gradientProgressIndicatorView.trailingAnchor.constraint(equalTo: navigationBar.trailingAnchor),
 
             gradientProgressIndicatorView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor),
             gradientProgressIndicatorView.heightAnchor.constraint(equalToConstant: 3.0)

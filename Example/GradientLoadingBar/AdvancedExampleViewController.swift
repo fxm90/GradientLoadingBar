@@ -76,8 +76,8 @@ class AdvancedExampleViewController: UIViewController {
         programmaticallyButton.addSubview(programmaticallyGradientActivityIndicatorView)
 
         NSLayoutConstraint.activate([
-            programmaticallyGradientActivityIndicatorView.leftAnchor.constraint(equalTo: programmaticallyButton.leftAnchor),
-            programmaticallyGradientActivityIndicatorView.rightAnchor.constraint(equalTo: programmaticallyButton.rightAnchor),
+            programmaticallyGradientActivityIndicatorView.leadingAnchor.constraint(equalTo: programmaticallyButton.leadingAnchor),
+            programmaticallyGradientActivityIndicatorView.trailingAnchor.constraint(equalTo: programmaticallyButton.trailingAnchor),
 
             programmaticallyGradientActivityIndicatorView.topAnchor.constraint(equalTo: programmaticallyButton.topAnchor),
             programmaticallyGradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: 3.0)
@@ -91,8 +91,8 @@ class AdvancedExampleViewController: UIViewController {
         customColorsButton.addSubview(customColorsGradientActivityIndicatorView)
 
         NSLayoutConstraint.activate([
-            customColorsGradientActivityIndicatorView.leftAnchor.constraint(equalTo: customColorsButton.leftAnchor),
-            customColorsGradientActivityIndicatorView.rightAnchor.constraint(equalTo: customColorsButton.rightAnchor),
+            customColorsGradientActivityIndicatorView.leadingAnchor.constraint(equalTo: customColorsButton.leadingAnchor),
+            customColorsGradientActivityIndicatorView.trailingAnchor.constraint(equalTo: customColorsButton.trailingAnchor),
 
             customColorsGradientActivityIndicatorView.bottomAnchor.constraint(equalTo: customColorsButton.bottomAnchor),
             customColorsGradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: 3.0)
