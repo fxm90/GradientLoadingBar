@@ -18,7 +18,7 @@ open class GradientLoadingBarController {
 
     /// The height of the gradient bar.
     ///  - Note: Has to be public to allow overwriting `setupConstraints()`
-    public let height: Double
+    public let height: CGFloat
 
     /// Flag whether the top layout constraint should respect `safeAreaLayoutGuide`.
     ///  - Note: Has to be public to allow overwriting `setupConstraints()`
@@ -67,7 +67,7 @@ open class GradientLoadingBarController {
     ///   - isRelativeToSafeArea: Flag whether the top layout constraint should respect `safeAreaLayoutGuide`.
     ///
     /// - Returns: Instance of gradient loading bar.
-    public init(height: Double = 3,
+    public init(height: CGFloat = 3,
                 isRelativeToSafeArea: Bool = true) {
         self.height = height
         self.isRelativeToSafeArea = isRelativeToSafeArea
@@ -111,7 +111,7 @@ open class GradientLoadingBarController {
 
         NSLayoutConstraint.activate([
             gradientView.topAnchor.constraint(equalTo: superViewTopAnchor),
-            gradientView.heightAnchor.constraint(equalToConstant: CGFloat(height)),
+            gradientView.heightAnchor.constraint(equalToConstant: height),
 
             gradientView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
             gradientView.trailingAnchor.constraint(equalTo: superview.trailingAnchor)
