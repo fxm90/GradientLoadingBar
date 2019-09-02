@@ -75,10 +75,10 @@ let gradientLoadingBar = GradientLoadingBar(
 )
 ```
 
-###### – Parameter `height`
+###### – Parameter `height: CGFloat`
 By setting this parameter you can set the height for the loading bar (defaults to `3.0`)
 
-###### – Parameter `isRelativeToSafeArea`
+###### – Parameter `isRelativeToSafeArea: Bool`
 With this parameter you can configure, whether the loading bar should be positioned relative to the safe area (defaults to `true`).
 
 Example with `isRelativeToSafeArea` set to `true`
