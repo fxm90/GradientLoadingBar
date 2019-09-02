@@ -9,7 +9,7 @@
 import Foundation
 import LightweightObservable
 
-/// Classes implementing this delegate protocol get notified about animation changes.
+/// Classes implementing this delegate protocol will get notified about animation changes.
 ///
 /// - Note: Unfortunatly `LightweightObservable` doesn't support signals (yet), therefore we fallback to a delegate pattern
 ///         for the signal to restart the animation.

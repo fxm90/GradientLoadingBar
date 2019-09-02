@@ -42,7 +42,7 @@ Run carthage update to build the framework and drag the built `GradientLoadingBa
 ### How to use
 This framework provides two classes:
  - **GradientLoadingBar**: A controller, managing the visibility of the `GradientActivityIndicatorView` on the current key window.
- - **GradientActivityIndicatorView**: A `UIView` containing the gradient with the animation. Can be added as a subview to another view either inside the interface builder or programmatically. Both ways are shown inside the example application.
+ - **GradientActivityIndicatorView**: A `UIView` containing the gradient with the animation. It can be added as a subview to another view either inside the interface builder or programmatically. Both ways are shown inside the example application.
 
 #### GradientLoadingBar
 To get started, import the module `GradientLoadingBar` into your file and save an instance of `GradientLoadingBar()` on a property of your view-controller. To show the loading bar, simply call the `fadeIn(duration:completion)` method and after your async operations have finished call the  `fadeOut(duration:completion)` method.
@@ -59,7 +59,7 @@ class UserViewController: UIViewController {
         gradientLoadingBar.fadeIn()
         
         userService.loadUserData { [weak self] _ in 
-
+            // ...
             // Be sure to call this on the main thread!!
             self?.gradientLoadingBar.fadeOut()
         }
@@ -89,10 +89,10 @@ Example with `isRelativeToSafeArea` set to `false`
 [![Example][safe-area-example--thumbnail]][safe-area-example]
 
 ##### Properties
-###### – `gradientColors`
+###### – `gradientColors: [UIColor]`
 This property adjusts the gradient colors shown on the loading bar.
 
-###### – `progressAnimationDuration`
+###### – `progressAnimationDuration: TimeInterval`
 This property adjusts the duration of the animation moving the gradient from left to right.
 
 ##### Methods
@@ -130,10 +130,10 @@ E.g. View added as a subview to a `UIButton`
 **Note:** The progress-animation starts and stops according to the `isHidden` flag. Setting this flag to `false` will start the animation, setting this to `true` will stop the animation. Often you don't want to directly show / hide the view and instead smoothly fade it in or out. Therefore the view provides the methods `fadeIn(duration:completion)` and `fadeOut(duration:completion)`. Based on my [gist](https://gist.github.com/fxm90/723b5def31b46035cd92a641e3b184f6), these methods adjust the `alpha` value of the view and update the `isHidden` flag accordingly.
 
 ##### Properties
-###### – `gradientColors`
+###### – `gradientColors: [UIColor]`
 This property adjusts the gradient colors shown on the loading bar.
 
-###### – `progressAnimationDuration`
+###### – `progressAnimationDuration: TimeInterval`
 This property adjusts the duration of the animation moving the gradient from left to right.
 
 *To see all these screenshots in a real app, please have a look at the **example application**. For further customization you can also subclass `GradientLoadingBar` and overwrite the method `setupConstraints()`.*
