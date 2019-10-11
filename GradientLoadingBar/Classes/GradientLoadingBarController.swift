@@ -100,7 +100,7 @@ open class GradientLoadingBarController {
 
     // MARK: - Public methods
 
-    /// Apply layout contraints for gradient loading view.
+    /// Apply layout constraints for gradient loading view.
     open func setupConstraints(superview: UIView) {
         let superViewTopAnchor: NSLayoutYAxisAnchor
         if #available(iOS 11.0, *), isRelativeToSafeArea {
