@@ -45,28 +45,27 @@ open class GradientActivityIndicatorView: UIView {
         }
     }
 
+    /// In order to prevent adding another sublayer and keeping the frame up-to-date, we
+    /// simply overwrite the `layerClass` and use a `CAGradientLayer` for this view.
+    open override class var layerClass: AnyClass {
+        return CAGradientLayer.self
+    }
+
     // MARK: - Private properties
 
     /// The layer holding the gradient.
-    private let gradientLayer: CAGradientLayer = {
-        let layer = CAGradientLayer()
-        layer.anchorPoint = .zero
-        layer.startPoint = .zero
-        layer.endPoint = CGPoint(x: 1.0, y: 0.0)
+    private var gradientLayer: CAGradientLayer? {
+        return layer as? CAGradientLayer
+    }
 
-        return layer
-    }()
-
-    /// The progress animation.
+    /// The animation used to show the "progress".
     ///
-    /// - Note: `fromValue` and `duration` are updated from the view-model.
-    private let animation: CABasicAnimation = {
-        let animation = CABasicAnimation(keyPath: "position.x")
-        animation.fromValue = 0
-        animation.toValue = 0
+    /// - Note: The properties `values` and `duration` are set in the delegate of the view-model.
+    private let progressAnimation: CAKeyframeAnimation = {
+        let animation = CAKeyframeAnimation(keyPath: "locations")
         animation.isRemovedOnCompletion = false
         animation.repeatCount = Float.infinity
-        animation.duration = 0
+        animation.fillMode = .forwards
 
         return animation
     }()
@@ -93,70 +92,43 @@ open class GradientActivityIndicatorView: UIView {
 
     // MARK: - Public methods
 
-    open override func layoutSubviews() {
-        super.layoutSubviews()
-
-        viewModel.bounds = bounds
-    }
-
     open override func point(inside _: CGPoint, with _: UIEvent?) -> Bool {
         // Passing all touches to the next view (if any), in the view stack.
         return false
     }
 
-    open override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-
-        // Not sure why we need to set this again to make it work in the interface builder.
-        layer.masksToBounds = true
-    }
-
     // MARK: - Private methods
 
     private func commonInit() {
-        layer.insertSublayer(gradientLayer, at: 0)
-        layer.masksToBounds = true
+        gradientLayer?.startPoint = .zero
+        gradientLayer?.endPoint = CGPoint(x: 1.0, y: 0.0)
 
         viewModel.delegate = self
         bindViewModelToView()
     }
 
     private func bindViewModelToView() {
-        viewModel.isAnimatingProgress.subscribeDistinct { [weak self] newIsAnimatingProgress, _ in
-            self?.updateProgressAnimation(isAnimating: newIsAnimatingProgress)
-        }.disposed(by: &disposeBag)
-
-        viewModel.gradientLayerFrame.subscribeDistinct { [weak self] newGradientLayerFrame, _ in
-            self?.gradientLayer.frame = newGradientLayerFrame
-        }.disposed(by: &disposeBag)
-
-        viewModel.gradientLayerAnimationFromValue.subscribeDistinct { [weak self] newGradientLayerAnimationFromValue, _ in
-            self?.animation.fromValue = newGradientLayerAnimationFromValue
-        }.disposed(by: &disposeBag)
-
-        viewModel.gradientLayerAnimationDuration.subscribeDistinct { [weak self] newGradientLayerAnimationDuration, _ in
-            self?.animation.duration = newGradientLayerAnimationDuration
-        }.disposed(by: &disposeBag)
-
         viewModel.gradientLayerColors.subscribeDistinct { [weak self] newGradientLayerColors, _ in
-            self?.gradientLayer.colors = newGradientLayerColors
+            self?.gradientLayer?.colors = newGradientLayerColors
         }.disposed(by: &disposeBag)
-    }
 
-    private func updateProgressAnimation(isAnimating: Bool) {
-        if isAnimating {
-            gradientLayer.add(animation, forKey: GradientActivityIndicatorView.progressAnimationKey)
-        } else {
-            gradientLayer.removeAnimation(forKey: GradientActivityIndicatorView.progressAnimationKey)
-        }
+        viewModel.gradientLayerLocations.subscribe { [weak self] newGradientLayerLocations, _ in
+            self?.gradientLayer?.locations = newGradientLayerLocations
+        }.disposed(by: &disposeBag)
     }
 }
 
-// MARK: - `GradientActivityIndicatorViewModelDelegate` conformance
+// MARK: - `GradientActivityIndicatorViewModelDelegate`
 
 extension GradientActivityIndicatorView: GradientActivityIndicatorViewModelDelegate {
-    func restartAnimation() {
-        updateProgressAnimation(isAnimating: false)
-        updateProgressAnimation(isAnimating: true)
+    func startAnimatingLocations(values: GradientLocationAnimationMatrix, duration: TimeInterval) {
+        progressAnimation.values = values
+        progressAnimation.duration = duration
+
+        gradientLayer?.add(progressAnimation, forKey: GradientActivityIndicatorView.progressAnimationKey)
+    }
+
+    func stopAnimatingLocations() {
+        gradientLayer?.removeAnimation(forKey: GradientActivityIndicatorView.progressAnimationKey)
     }
 }

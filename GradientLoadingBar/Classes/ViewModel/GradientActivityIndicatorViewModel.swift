@@ -9,77 +9,82 @@
 import Foundation
 import LightweightObservable
 
+// MARK: - Types
+
+/// Array containing an array of locations, that are used to position the gradient colors during the animation:
+/// - The outer array defines each animation step.
+/// - The inner array defines the location of each gradient-color during this animation step.
+typealias GradientLocationAnimationMatrix = [[NSNumber]]
+
 /// Classes implementing this delegate protocol will get notified about animation changes.
 ///
-/// - Note: Unfortunatly `LightweightObservable` doesn't support signals (yet), therefore we fallback to a delegate pattern
-///         for the signal to restart the animation.
+/// - Note: Unfortunately `LightweightObservable` doesn't support signals (yet), therefore we fallback to a delegate pattern
+///         for the signal to start / stop the animation.
 protocol GradientActivityIndicatorViewModelDelegate: AnyObject {
-    /// Informs the delegate to restart the animation, as some related values have changed.
-    func restartAnimation()
+    /// Informs the delegate to start animating the locations of the gradient colors.
+    ///
+    /// - Parameters:
+    ///   - values: Array containing an array of locations, that are used to position the gradient colors.
+    ///   - duration: The entire duration to animate all locations with.
+    func startAnimatingLocations(values: GradientLocationAnimationMatrix, duration: TimeInterval)
+
+    /// Informs the delegate to stop animating the locations of the gradient colors.
+    func stopAnimatingLocations()
 }
 
-/// This view model contains all logic related to the `GradientActivityIndicatorView`.
+/// This view model contains all logic related to the `GradientActivityIndicatorView` and the corresponding animation.
+///
+/// # How to create the infinite animation
+/// Example for `gradientColors = [.red, .yellow, .green, .blue]`
+///
+/// Given the above `gradientColors` we can define three animation states:
+///  - Visible colors at the **start** of the animation:  `[.red, .yellow, .green, .blue]`
+///  - Visible colors in the **middle** of the animation: `[.blue, .green, .yellow, .red]` (inverted `gradientColors`)
+///  - Visible colors at the **end** of the animation:    `[.red, .yellow, .green, .blue]` (same as start `gradientColors`)
+///
+/// So first thing we're gonna do is to create a single array of all colors used in the above states.
+/// Therefore we'll duplicate the `gradientColors`, reverse them, and remove the first and last item of the reversed array in order to
+/// prevent duplicate values at the "inner edges" destroying the infinite look. Afterwards we can append the `gradientColors` again.
+///
+/// Given the above `gradientColors` our corresponding `gradientLayerColors` will look like this:
+/// `gradientLayerColors = [.red, .yellow, .green, .blue, .green, .yellow, .red, .yellow, .green, .blue]`
+///
+/// Now we can animate through all of the colors, by updating the `locations` property accordingly. Please have a look at the documentation
+/// for the method `makeGradientLocationAnimationMatrix()` for further details regarding the `locations` property.
+///
+/// As the colors at the start are the same as at the end, we can loop the animation without visual artefacts.
 final class GradientActivityIndicatorViewModel {
     // MARK: - Public properties
 
-    /// Observable state of the progress animation.
-    var isAnimatingProgress: Observable<Bool> {
-        return isAnimatingProgressSubject.asObservable
-    }
-
-    /// Observable frame of the gradient layer.
-    var gradientLayerFrame: Observable<CGRect> {
-        return gradientLayerFrameSubject.asObservable
-    }
-
-    /// Observable starting point (x) of the animation of the gradient layer.
-    var gradientLayerAnimationFromValue: Observable<CGFloat> {
-        return gradientLayerAnimationFromValueSubject.asObservable
-    }
-
-    /// Observable duration of the animation of the gradient layer.
-    var gradientLayerAnimationDuration: Observable<TimeInterval> {
-        return gradientLayerAnimationDurationSubject.asObservable
-    }
-
     /// Observable color array for the gradient layer (of type `CGColor`).
     var gradientLayerColors: Observable<[CGColor]> {
-        return gradientLayerColorsSubject.asObservable
+        gradientLayerColorsSubject.asObservable
     }
 
-    /// Boolean flag, whether the view is currently hidden.
-    var isHidden = false {
-        didSet {
-            isAnimatingProgressSubject.value = !isHidden
-        }
-    }
-
-    /// The bounds of the view.
-    var bounds: CGRect = .zero {
-        didSet {
-            // Three times of the width in order to apply normal, reversed and normal gradient to simulate infinte animation.
-            gradientLayerFrameSubject.value = CGRect(x: 0, y: 0, width: 3 * bounds.size.width, height: bounds.size.height)
-
-            // Update `fromValue` of animation accordingly.
-            gradientLayerAnimationFromValueSubject.value = -2 * bounds.size.width
-
-            updateProgressAnimationIfNeeded()
-        }
+    /// The (initial) color locations for the gradient layer.
+    var gradientLayerLocations: Observable<[NSNumber]> {
+        gradientLayerLocationsSubject.asObservable
     }
 
     /// Color array used for the gradient (of type `UIColor`).
     var gradientColors = UIColor.GradientLoadingBar.gradientColors {
         didSet {
             gradientLayerColorsSubject.value = makeGradientLayerColors()
+            gradientLayerLocationsSubject.value = makeGradientLocationAnimationMatrixInitialRow()
         }
     }
 
     /// The duration for the progress animation.
-    var progressAnimationDuration = TimeInterval.GradientLoadingBar.progressDuration {
-        didSet {
-            gradientLayerAnimationDurationSubject.value = progressAnimationDuration
+    var progressAnimationDuration = TimeInterval.GradientLoadingBar.progressDuration
 
-            updateProgressAnimationIfNeeded()
+    /// Boolean flag, whether the view is currently hidden.
+    var isHidden = false {
+        didSet {
+            if isHidden {
+                stopAnimatingLocations()
+            } else {
+                startAnimatingLocations()
+            }
         }
     }
 
@@ -87,33 +92,25 @@ final class GradientActivityIndicatorViewModel {
 
     // MARK: - Private properties
 
-    // As our view is initially visible, we also have to start the progress animation initially.
-    private let isAnimatingProgressSubject: Variable<Bool> = Variable(true)
+    private let gradientLayerColorsSubject: Variable<[CGColor]> = Variable([])
 
-    private let gradientLayerFrameSubject: Variable<CGRect> = Variable(.zero)
-
-    private let gradientLayerAnimationFromValueSubject: Variable<CGFloat> = Variable(0.0)
-
-    private let gradientLayerAnimationDurationSubject: Variable<TimeInterval>
-
-    private let gradientLayerColorsSubject: Variable<[CGColor]>
+    private let gradientLayerLocationsSubject: Variable<[NSNumber]> = Variable([])
 
     // MARK: - Initializer
 
     init() {
-        gradientLayerAnimationDurationSubject = Variable(progressAnimationDuration)
-
-        // Small workaround as calls to `self.makeGradientLayerColors()` aren't allowed before all properties have been initialized.
-        gradientLayerColorsSubject = Variable([])
         gradientLayerColorsSubject.value = makeGradientLayerColors()
+        gradientLayerLocationsSubject.value = makeGradientLocationAnimationMatrixInitialRow()
     }
 
     // MARK: - Private methods
 
-    /// Maps the current `gradientColors` given by the user as an array of `UIColor`,
-    /// to an array of type `CGColor`, so we can use it for our gradient layer.
+    /// Generates the colors used on the gradient-layer.
+    ///
+    /// Example for   `gradientColors      = [.red, .yellow, .green, .blue]`
+    /// and therefore `gradientLayerColors = [.red, .yellow, .green, .blue, .green, .yellow, .red, .yellow, .green, .blue]`
     private func makeGradientLayerColors() -> [CGColor] {
-        // Simulate infinte animation - Therefore we'll reverse the colors and remove the first and last item
+        // Simulate infinite animation - Therefore we'll reverse the colors and remove the first and last item
         // to prevent duplicate values at the "inner edges" destroying the infinite look.
         let reversedColors = gradientColors
             .reversed()
@@ -124,11 +121,89 @@ final class GradientActivityIndicatorViewModel {
         return infiniteGradientColors.map { $0.cgColor }
     }
 
-    /// Unfortunatly the only easy way to update a running `CABasicAnimation`, is to restart it.
-    /// Mutating a running animation throws an exception!!
-    private func updateProgressAnimationIfNeeded() {
-        guard isAnimatingProgress.value else { return }
+    /// Generates the locations for the gradient colors,
+    /// by placing them equally between zero and one.
+    ///
+    /// E.g. if we have `gradientColors = [.red, .yellow, .green, .blue]`
+    /// we need to position them as      `[ 0.0,  0.33,    0.66,   0.99]`.
+    private func makeGradientLocations() -> [NSNumber] {
+        let gradientColorsQuantity = gradientColors.count
+        let increaseBy = 1.0 / Double(gradientColorsQuantity - 1)
 
-        delegate?.restartAnimation()
+        var percentageLocations = [NSNumber](repeating: 1.0, count: gradientColorsQuantity)
+        for index in 0 ..< gradientColorsQuantity {
+            let value = increaseBy * Double(index)
+            percentageLocations[index] = NSNumber(value: value)
+        }
+
+        return percentageLocations
+    }
+
+    /// Generates the first row of the `locations` matrix for animating the current `gradientColors`.
+    /// We use this method to initialize the corresponding property, as the animation starts from these location values.
+    ///
+    /// Example for   `gradientColors      = [.red, .yellow, .green, .blue]`
+    /// and therefore `gradientLayerColors = [.red, .yellow, .green, .blue, .green, .yellow, .red, .yellow, .green, .blue]`
+    /// ```
+    ///  gradientLayerColors | .red | .yellow | .green | .blue | .green | .yellow | .red | .yellow | .green | .blue
+    ///  initialLocations    | 0    | 0       | 0      | 0     | 0      | 0       | 0    | 0.33    | 0.66   | 1
+    /// ```
+    private func makeGradientLocationAnimationMatrixInitialRow() -> [NSNumber] {
+        let gradientColorsQuantity = gradientColors.count
+        let gradientLayerColorsQuantity = gradientLayerColors.value.count
+
+        let startLocationsQuantity = gradientLayerColorsQuantity - gradientColorsQuantity
+        let startLocations = [NSNumber](repeating: 0.0, count: startLocationsQuantity)
+
+        let gradientLocations = makeGradientLocations()
+        return startLocations + gradientLocations
+    }
+
+    /// Generates the `locations` matrix for animating the current `gradientColors`.
+    ///
+    /// Example for   `gradientColors      = [.red, .yellow, .green, .blue]`
+    /// and therefore `gradientLayerColors = [.red, .yellow, .green, .blue, .green, .yellow, .red, .yellow, .green, .blue]`
+    /// ```
+    ///  i | .red | .yellow | .green | .blue | .green | .yellow | .red | .yellow | .green | .blue
+    ///  0 | 0    | 0       | 0      | 0     | 0      | 0       | 0    | 0.33    | 0.66   | 1
+    ///  1 | 0    | 0       | 0      | 0     | 0      | 0       | 0.33 | 0.66    | 1      | 1
+    ///  2 | 0    | 0       | 0      | 0     | 0      | 0.33    | 0.66 | 1       | 1      | 1
+    ///  3 | 0    | 0       | 0      | 0     | 0.33   | 0.66    | 1    | 1       | 1      | 1
+    ///  4 | 0    | 0       | 0      | 0.33  | 0.66   | 1       | 1    | 1       | 1      | 1
+    ///  5 | 0    | 0       | 0.33   | 0.66  | 1      | 1       | 1    | 1       | 1      | 1
+    ///  6 | 0    | 0.33    | 0.66   | 1     | 1      | 1       | 1    | 1       | 1      | 1
+    /// ```
+    private func makeGradientLocationAnimationMatrix() -> GradientLocationAnimationMatrix {
+        let gradientColorsQuantity = gradientColors.count
+        let gradientLayerColorsQuantity = gradientLayerColors.value.count
+
+        let gradientLocations = makeGradientLocations()
+
+        // As the matrix is zero based, we have to increase the value by one here.
+        let matrixHeight = gradientLayerColorsQuantity - gradientColorsQuantity + 1
+
+        var locationsMatrix = GradientLocationAnimationMatrix(repeating: [], count: matrixHeight)
+        for index in 0 ..< matrixHeight {
+            let startLocationsQuantity = gradientLayerColorsQuantity - gradientColorsQuantity - index
+            let startLocations = [NSNumber](repeating: 0.0, count: startLocationsQuantity)
+
+            let endLocationsQuantity = index
+            let endLocations = [NSNumber](repeating: 1.0, count: endLocationsQuantity)
+
+            locationsMatrix[index] = startLocations + gradientLocations + endLocations
+        }
+
+        return locationsMatrix
+    }
+
+    private func startAnimatingLocations() {
+        let gradientLocationAnimationMatrix = makeGradientLocationAnimationMatrix()
+
+        delegate?.startAnimatingLocations(values: gradientLocationAnimationMatrix,
+                                          duration: progressAnimationDuration)
+    }
+
+    private func stopAnimatingLocations() {
+        delegate?.stopAnimatingLocations()
     }
 }
