@@ -7,8 +7,8 @@
 //
 
 import XCTest
+import LightweightObservable
 
-@testable import LightweightObservable
 @testable import GradientLoadingBar
 
 class GradientLoadingBarViewModelTestCase: XCTestCase {
