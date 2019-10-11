@@ -12,32 +12,19 @@ To run the example project, clone the repo, and open the workspace from the Exam
 
 ### Integration
 ##### CocoaPods
-GradientLoadingBar can be added to your project using [CocoaPods](https://cocoapods.org/) by adding the following line to your Podfile:
-```
+[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate GradientLoadingBar into your Xcode project using CocoaPods, specify it in your `Podfile`:
+```ruby
 pod 'GradientLoadingBar', '~> 2.0'
 ```
 
-###### Interface Builder Support
-Unfortunatly the Interface Builder support is currently broken for Cocoapods frameworks. If you need Interface Builder support, add the following code to your Podfile and run `pod install` again. Afterwards you should be able to use the `GradientActivityIndicatorView` inside the Interface Builder :)
-```
-  post_install do |installer|
-    installer.pods_project.build_configurations.each do |config|
-      next unless config.name == 'Debug'
-
-      config.build_settings['LD_RUNPATH_SEARCH_PATHS'] = [
-        '$(FRAMEWORK_SEARCH_PATHS)'
-      ]
-    end
-  end
-  ```
-Source: [Cocoapods – Issue 7606](https://github.com/CocoaPods/CocoaPods/issues/7606#issuecomment-484294739)
 
 ##### Carthage
-To integrate GradientLoadingBar into your Xcode project using [Carthage](https://github.com/Carthage/Carthage), specify it in your Cartfile:
-```
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate GradientLoadingBar into your Xcode project using Carthage, specify it in your `Cartfile`:
+```ogdl
 github "fxm90/GradientLoadingBar" ~> 2.0
 ```
 Run carthage update to build the framework and drag the built `GradientLoadingBar.framework`, as well as the dependency `LightweightObservable.framework`, into your Xcode project.
+
 
 ### How to use
 This framework provides two classes:
@@ -50,15 +37,15 @@ To get started, import the module `GradientLoadingBar` into your file and save a
 class UserViewController: UIViewController {
 
     private let gradientLoadingBar = GradientLoadingBar()
-    
+
     // ...
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         gradientLoadingBar.fadeIn()
-        
-        userService.loadUserData { [weak self] _ in 
+
+        userService.loadUserData { [weak self] _ in
             // ...
             // Be sure to call this on the main thread!!
             self?.gradientLoadingBar.fadeOut()
@@ -137,6 +124,24 @@ This property adjusts the gradient colors shown on the loading bar.
 This property adjusts the duration of the animation moving the gradient from left to right.
 
 *To see all these screenshots in a real app, please have a look at the **example application**. For further customization you can also subclass `GradientLoadingBar` and overwrite the method `setupConstraints()`.*
+
+
+### Troubleshooting
+#### Interface Builder Support
+Unfortunatly the Interface Builder support is currently broken for Cocoapods frameworks. If you need Interface Builder support, add the following code to your Podfile and run `pod install` again. Afterwards you should be able to use the `GradientLoadingBar` inside the Interface Builder :)
+```
+  post_install do |installer|
+    installer.pods_project.build_configurations.each do |config|
+      next unless config.name == 'Debug'
+
+      config.build_settings['LD_RUNPATH_SEARCH_PATHS'] = [
+        '$(FRAMEWORK_SEARCH_PATHS)'
+      ]
+    end
+  end
+  ```
+Source: [Cocoapods – Issue 7606](https://github.com/CocoaPods/CocoaPods/issues/7606#issuecomment-484294739)
+
 
 ### Author
 Felix Mau (me(@)felix.hamburg)
