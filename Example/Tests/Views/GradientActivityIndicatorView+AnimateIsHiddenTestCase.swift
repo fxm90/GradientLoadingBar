@@ -24,7 +24,7 @@ class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
 
         // In order for UIView animations to be executed correctly, the corresponding view has to be attached to a visible window.
         // Therefore we're gonna use the current key-window, add our testing view here in `setUp()` and remove it later in `tearDown()`.
-        window = UIApplication.shared.keyWindow
+        window = UIApplication.shared.windows.first { $0.isKeyWindow }
 
         gradientActivityIndicatorView = GradientActivityIndicatorView()
         window.addSubview(gradientActivityIndicatorView)
