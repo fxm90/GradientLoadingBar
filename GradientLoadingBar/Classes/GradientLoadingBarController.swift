@@ -78,26 +78,6 @@ open class GradientLoadingBarController {
         bindViewModelToView()
     }
 
-    // MARK: - Private methods
-
-    private func bindViewModelToView() {
-        viewModel.superview.subscribeDistinct { [weak self] newSuperview, _ in
-            self?.updateSuperview(newSuperview)
-        }.disposed(by: &disposeBag)
-    }
-
-    private func updateSuperview(_ superview: UIView?) {
-        // If the view’s superview is not nil, the superview releases the view.
-        gradientView.removeFromSuperview()
-
-        if let superview = superview {
-            gradientView.translatesAutoresizingMaskIntoConstraints = false
-            superview.addSubview(gradientView)
-
-            setupConstraints(superview: superview)
-        }
-    }
-
     // MARK: - Public methods
 
     /// Apply layout constraints for gradient loading view.
@@ -128,5 +108,25 @@ open class GradientLoadingBarController {
     public func fadeOut(duration: TimeInterval = TimeInterval.GradientLoadingBar.fadeOutDuration, completion: ((Bool) -> Void)? = nil) {
         gradientView.fadeOut(duration: duration,
                              completion: completion)
+    }
+
+    // MARK: - Private methods
+
+    private func bindViewModelToView() {
+        viewModel.superview.subscribeDistinct { [weak self] newSuperview, _ in
+            self?.updateSuperview(newSuperview)
+        }.disposed(by: &disposeBag)
+    }
+
+    private func updateSuperview(_ superview: UIView?) {
+        // If the view’s superview is not nil, the superview releases the view.
+        gradientView.removeFromSuperview()
+
+        if let superview = superview {
+            gradientView.translatesAutoresizingMaskIntoConstraints = false
+            superview.addSubview(gradientView)
+
+            setupConstraints(superview: superview)
+        }
     }
 }
