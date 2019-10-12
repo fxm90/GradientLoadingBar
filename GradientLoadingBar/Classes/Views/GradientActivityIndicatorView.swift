@@ -105,6 +105,9 @@ open class GradientActivityIndicatorView: UIView {
 
         viewModel.delegate = self
         bindViewModelToView()
+
+        // As the view is visible initially, we might already have to start the animation.
+        viewModel.startAnimationIfNeeded()
     }
 
     private func bindViewModelToView() {

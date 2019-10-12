@@ -103,6 +103,14 @@ final class GradientActivityIndicatorViewModel {
         gradientLayerLocationsSubject.value = makeGradientLocationAnimationMatrixInitialRow()
     }
 
+    // MARK: - Public methods
+
+    func startAnimationIfNeeded() {
+        guard !isHidden else { return }
+
+        startAnimatingLocations()
+    }
+
     // MARK: - Private methods
 
     /// Generates the colors used on the gradient-layer.

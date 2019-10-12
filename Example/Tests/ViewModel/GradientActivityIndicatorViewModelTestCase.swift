@@ -158,6 +158,67 @@ class GradientActivityIndicatorViewModelTestCase: XCTestCase {
         XCTAssertEqual(delegateMock.invokedMethod, .startAnimatingLocations(values: expectedValues,
                                                                             duration: viewModel.progressAnimationDuration))
     }
+
+    // MARK: - Test method `startAnimationIfNeeded()`
+
+    func testStartAnimationIfNeededShouldNotInformDelegateAsViewIsHidden() {
+        // Given
+
+        // As setting the property `isHidden` is also calling the delegate, we have to reset it afterwards.
+        viewModel.isHidden = true
+        delegateMock.reset()
+
+        // When
+        viewModel.startAnimationIfNeeded()
+
+        // Then
+        XCTAssertNil(delegateMock.invokedMethod)
+    }
+
+    func testStartAnimationIfNeededShouldInformDelegateToStartAnimatingLocations() {
+        // Given
+
+        // As setting the property `isHidden` is also calling the delegate, we have to reset it afterwards.
+        viewModel.isHidden = false
+        delegateMock.reset()
+
+        // In order to simplify the matrix, we're gonna update the `gradientColors` first.
+        let gradientColors: [UIColor] = [.red, .yellow, .green]
+        viewModel.gradientColors = gradientColors
+
+        XCTAssertNil(delegateMock.invokedMethod,
+                     "Precondition failed – Expected delegate not to be informed at this point!")
+
+        // When
+        viewModel.startAnimationIfNeeded()
+
+        // Then
+        //
+        // `gradientColors      = [.red, .yellow, .green]`
+        // `gradientLayerColors = [.red, .yellow, .green, .yellow, .red, .yellow, .green]`
+        //
+        //  i | .red | .yellow | .green | .yellow | .red | .yellow | .green
+        //  0 | 0    | 0       | 0      | 0       | 0    | 0.5     | 1
+        //  1 | 0    | 0       | 0      | 0       | 0.5  | 1       | 1
+        //  2 | 0    | 0       | 0      | 0.5     | 1    | 1       | 1
+        //  3 | 0    | 0       | 0.5    | 1       | 1    | 1       | 1
+        //  4 | 0    | 0.5     | 1      | 1       | 1    | 1       | 1
+        //
+        let gradientLocationsMatrix = [
+            [0, 0, 0, 0, 0, 0.5, 1],
+            [0, 0, 0, 0, 0.5, 1, 1],
+            [0, 0, 0, 0.5, 1, 1, 1],
+            [0, 0, 0.5, 1, 1, 1, 1],
+            [0, 0.5, 1, 1, 1, 1, 1]
+        ]
+
+        let expectedValues = gradientLocationsMatrix.map {
+            $0.map { NSNumber(value: $0) }
+        }
+
+        XCTAssertEqual(delegateMock.invokedMethod, .startAnimatingLocations(values: expectedValues,
+                                                                            duration: viewModel.progressAnimationDuration))
+    }
 }
 
 // MARK: - Helpers
@@ -224,6 +285,12 @@ private class GradientActivityIndicatorViewModelDelegateMock: GradientActivityIn
     private(set) var invokedMethod: DelegateMethod?
 
     // MARK: - Public methods
+
+    func reset() {
+        invokedMethod = nil
+    }
+
+    // MARK: - `GradientActivityIndicatorViewModelDelegate`
 
     func startAnimatingLocations(values: GradientLocationAnimationMatrix, duration: TimeInterval) {
         invokedMethod = .startAnimatingLocations(values: values, duration: duration)
