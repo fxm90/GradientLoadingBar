@@ -20,24 +20,36 @@ To run the example project, clone the repo, and open the workspace from the Exam
 
 ### Integration
 ##### CocoaPods
-LightweightObservable can be added to your project using [CocoaPods](https://cocoapods.org/) by adding the following line to your Podfile:
-```
+[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate Lightweight Observable into your Xcode project using CocoaPods, specify it in your `Podfile`:
+```ruby
 pod 'LightweightObservable', '~> 1.0'
 ```
 
 ##### Carthage
-To integrate LightweightObservable into your Xcode project using [Carthage](https://github.com/Carthage/Carthage), specify it in your Cartfile:
-```
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate Lightweight Observable into your Xcode project using Carthage, specify it in your `Cartfile`:
+```ogdl
 github "fxm90/LightweightObservable" ~> 1.0
 ```
 Run carthage update to build the framework and drag the built `LightweightObservable.framework` into your Xcode project.
 
+
+##### Swift Package Manager
+The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler. It is in early development, but Lightweight Observable does support its use on supported platforms.
+
+Once you have your Swift package set up, adding Lightweight Observable as a dependency is as easy as adding it to the `dependencies` value of your `Package.swift`.
+```swift
+dependencies: [
+    .package(url: "https://github.com/fxm90/LightweightObservable", from: "1.0.3")
+]
+```
+
+
 ### How to use
 The framework provides two classes `Observable` and `Variable`:
- - `Observable`: Contains an immutable value, you only can subscribe to. This is useful in order to avoid side-effects on an internal API. 
+ - `Observable`: Contains an immutable value, you only can subscribe to. This is useful in order to avoid side-effects on an internal API.
  - `Variable`: Subclass of `Observable`, where you can modify the value as well.
 
-So basically your view-model could look like this:
+Using the given approach, your view-model could look like this:
 ```swift
 class TimeViewModel {
     // MARK: - Public properties
@@ -95,7 +107,7 @@ Feel free to check out the example application for a better understanding of thi
 
 #### Further details
 
-#### – Create a variable
+#### – Create and update variable
 ```swift
 let formattedTimeSubject = Variable("")
 
@@ -134,11 +146,11 @@ We need to maintain it, in order to properly control the lifecycle of that subsc
 Let me explain you why in a little example:
 
 > Imagine having a MVVM application using a service layer for network calls. A service is used as a singleton across the entire app.
-> 
+>
 > The view-model has a reference to a service and subscribes to an observable property. The subscription-closure is now saved inside the observable property on the service.
-> 
-> If the view-model gets deallocated (e.g. due to a dismissed view-controller), without noticing the observable property somehow, the subscription-closure would continue to be alive. 
-> 
+>
+> If the view-model gets deallocated (e.g. due to a dismissed view-controller), without noticing the observable property somehow, the subscription-closure would continue to be alive.
+>
 > As a workaround, we store the returned disposable from the subscription on the view-model. On deallocation of the disposable, it automatically informs the observable property to remove the referenced subscription closure.
 
 In case you only use a single subscriber you can store the returned `Disposable` to a variable:
@@ -182,7 +194,7 @@ extension Observable where T: Equatable {}
 
 ### Author
 
-Felix Mau, me@felix.hamburg
+Felix Mau (me(@)felix.hamburg)
 
 ### License
 

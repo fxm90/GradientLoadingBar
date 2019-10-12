@@ -144,7 +144,7 @@
                             <constraint firstItem="J9t-Vs-nTW" firstAttribute="top" secondItem="wLK-vz-uDn" secondAttribute="bottom" id="b3J-NQ-cWP"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="💡 Navigation Bar Example" prompt="Gradient Loading Bar" largeTitleDisplayMode="always" id="q3W-Ea-vnS"/>
+                    <navigationItem key="navigationItem" title="💡 Navigation Bar Example" prompt="– Gradient Loading Bar –" largeTitleDisplayMode="always" id="q3W-Ea-vnS"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3VI-no-5Tx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -170,7 +170,7 @@
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="title" value="📲 Safe Area Example"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="prompt" value="Gradient Loading Bar"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="prompt" value="– Gradient Loading Bar –"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cQz-wE-hV5" userLabel="Wrapper View">
@@ -251,7 +251,7 @@
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="title" value="🎨 Interface Builder Example"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="prompt" value="Gradient Loading Bar"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="prompt" value="– Gradient Loading Bar –"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mbb-4g-X9Q" userLabel="Wrapper View">
@@ -349,7 +349,7 @@
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="title" value="🚀 Advanced Example"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="prompt" value="Gradient Loading Bar"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="prompt" value="– Gradient Loading Bar –"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sJk-2n-yVK" userLabel="Wrapper View">
