@@ -183,7 +183,7 @@ class GradientActivityIndicatorViewModelTestCase: XCTestCase {
         delegateMock.reset()
 
         // In order to simplify the matrix, we're gonna update the `gradientColors` first.
-        let gradientColors: [UIColor] = [.red, .yellow, .green]
+        let gradientColors: [UIColor] = [.red, .yellow, .green, .blue]
         viewModel.gradientColors = gradientColors
 
         XCTAssertNil(delegateMock.invokedMethod,
@@ -194,22 +194,28 @@ class GradientActivityIndicatorViewModelTestCase: XCTestCase {
 
         // Then
         //
-        // `gradientColors      = [.red, .yellow, .green]`
-        // `gradientLayerColors = [.red, .yellow, .green, .yellow, .red, .yellow, .green]`
+        // `gradientColors      = [.red, .yellow, .green, .blue]`
+        // `gradientLayerColors = [.red, .yellow, .green, .blue, .green, .yellow, .red, .yellow, .green, .blue]`
         //
-        //  i | .red | .yellow | .green | .yellow | .red | .yellow | .green
-        //  0 | 0    | 0       | 0      | 0       | 0    | 0.5     | 1
-        //  1 | 0    | 0       | 0      | 0       | 0.5  | 1       | 1
-        //  2 | 0    | 0       | 0      | 0.5     | 1    | 1       | 1
-        //  3 | 0    | 0       | 0.5    | 1       | 1    | 1       | 1
-        //  4 | 0    | 0.5     | 1      | 1       | 1    | 1       | 1
+        //  i | .red | .yellow | .green | .blue | .green | .yellow | .red | .yellow | .green | .blue
+        //  0 | 0    | 0       | 0      | 0     | 0      | 0       | 0    | 0.33    | 0.66   | 1
+        //  1 | 0    | 0       | 0      | 0     | 0      | 0       | 0.33 | 0.66    | 1      | 1
+        //  2 | 0    | 0       | 0      | 0     | 0      | 0.33    | 0.66 | 1       | 1      | 1
+        //  3 | 0    | 0       | 0      | 0     | 0.33   | 0.66    | 1    | 1       | 1      | 1
+        //  4 | 0    | 0       | 0      | 0.33  | 0.66   | 1       | 1    | 1       | 1      | 1
+        //  5 | 0    | 0       | 0.33   | 0.66  | 1      | 1       | 1    | 1       | 1      | 1
+        //  6 | 0    | 0.33    | 0.66   | 1     | 1      | 1       | 1    | 1       | 1      | 1
         //
+        let oneThird = 1.0 / 3.0
+        let twoThird = 2.0 / 3.0
         let gradientLocationsMatrix = [
-            [0, 0, 0, 0, 0, 0.5, 1],
-            [0, 0, 0, 0, 0.5, 1, 1],
-            [0, 0, 0, 0.5, 1, 1, 1],
-            [0, 0, 0.5, 1, 1, 1, 1],
-            [0, 0.5, 1, 1, 1, 1, 1]
+            [0, 0, 0, 0, 0, 0, 0, oneThird, twoThird, 1],
+            [0, 0, 0, 0, 0, 0, oneThird, twoThird, 1, 1],
+            [0, 0, 0, 0, 0, oneThird, twoThird, 1, 1, 1],
+            [0, 0, 0, 0, oneThird, twoThird, 1, 1, 1, 1],
+            [0, 0, 0, oneThird, twoThird, 1, 1, 1, 1, 1],
+            [0, 0, oneThird, twoThird, 1, 1, 1, 1, 1, 1],
+            [0, oneThird, twoThird, 1, 1, 1, 1, 1, 1, 1]
         ]
 
         let expectedValues = gradientLocationsMatrix.map {
