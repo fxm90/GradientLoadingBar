@@ -7,6 +7,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [2.0.1] - 2019-12-10
+### Changed
+ - Refactorings (Optimized progress animation)
+ - Updated example application for iOS 13
+
 ## [2.0.0] - 2019-02-09
 ### Changed
  - Splitted framework into two classes:
@@ -50,7 +55,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [1.1.10] - 2018-14-04
 ### Changed
  - Updates for Swift 4.1
- - Formatted code 
+ - Formatted code
 
 ## [1.1.9] - 2018-27-01
 ### Changed
@@ -112,8 +117,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial release
 
 
-[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/2.0.0...master
-[1.1.17]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.17...2.0.0
+[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/2.0.1...master
+[2.0.1]: https://github.com/fxm90/GradientLoadingBar/compare/2.0.0...2.0.1
+[2.0.0]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.17...2.0.0
 [1.1.17]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.16...1.1.17
 [1.1.16]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.15...1.1.16
 [1.1.15]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.14...1.1.15
