@@ -13,6 +13,8 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		640E8AC0231457620008C5A6 /* GradientActivityIndicatorViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640E8ABF231457620008C5A6 /* GradientActivityIndicatorViewModelTestCase.swift */; };
+		6430C3A32338F1CA001F4A33 /* LargeNavigationBarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6430C3A22338F1CA001F4A33 /* LargeNavigationBarHeaderView.swift */; };
+		64C596EC2351D80000A6CC97 /* InterfaceBuilderExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C596EB2351D7FF00A6CC97 /* InterfaceBuilderExampleViewController.swift */; };
 		64E0F5BF2211B7D20066D00D /* GradientLoadingBarViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E0F5BB2211B7D20066D00D /* GradientLoadingBarViewModelTestCase.swift */; };
 		64E7F4252293E16B00BE5095 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E7F4242293E16B00BE5095 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift */; };
 		77357BD34CFF2778341F80E8 /* Pods_GradientLoadingBar_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03CD5D69D7C3FBBDBF5FABBB /* Pods_GradientLoadingBar_Example.framework */; };
@@ -52,6 +54,8 @@
 		607FACE51AFB9204008FA782 /* GradientLoadingBar_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GradientLoadingBar_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		640E8ABF231457620008C5A6 /* GradientActivityIndicatorViewModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientActivityIndicatorViewModelTestCase.swift; sourceTree = "<group>"; };
+		6430C3A22338F1CA001F4A33 /* LargeNavigationBarHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeNavigationBarHeaderView.swift; sourceTree = "<group>"; };
+		64C596EB2351D7FF00A6CC97 /* InterfaceBuilderExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceBuilderExampleViewController.swift; sourceTree = "<group>"; };
 		64E0F5BB2211B7D20066D00D /* GradientLoadingBarViewModelTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLoadingBarViewModelTestCase.swift; sourceTree = "<group>"; };
 		64E7F4242293E16B00BE5095 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift"; sourceTree = "<group>"; };
 		972CFBCB2138849A006F14C9 /* SafeAreaExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaExampleViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 				97B6F5FB2143F31F008CFEA5 /* Views */,
 				607FACD71AFB9204008FA782 /* BasicExampleViewController.swift */,
 				972CFBCB2138849A006F14C9 /* SafeAreaExampleViewController.swift */,
+				64C596EB2351D7FF00A6CC97 /* InterfaceBuilderExampleViewController.swift */,
 				97464E6621372BCD0097183A /* AdvancedExampleViewController.swift */,
 				97464E6821372C010097183A /* NavigationBarExampleViewController.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
@@ -191,6 +196,7 @@
 			children = (
 				97B6F5FC2143F31F008CFEA5 /* BlueFilledButton.swift */,
 				97B6F5FD2143F31F008CFEA5 /* BlueBorderedButton.swift */,
+				6430C3A22338F1CA001F4A33 /* LargeNavigationBarHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -441,8 +447,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD81AFB9204008FA782 /* BasicExampleViewController.swift in Sources */,
+				64C596EC2351D80000A6CC97 /* InterfaceBuilderExampleViewController.swift in Sources */,
 				972CFBCC2138849A006F14C9 /* SafeAreaExampleViewController.swift in Sources */,
 				97464E6721372BCD0097183A /* AdvancedExampleViewController.swift in Sources */,
+				6430C3A32338F1CA001F4A33 /* LargeNavigationBarHeaderView.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				97B6F5FF2143F31F008CFEA5 /* BlueFilledButton.swift in Sources */,
 				97B6F5FE2143F31F008CFEA5 /* UIColor+CustomColors.swift in Sources */,
@@ -602,6 +610,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = GradientLoadingBar/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -617,6 +626,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = GradientLoadingBar/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -636,6 +646,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -650,6 +661,7 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

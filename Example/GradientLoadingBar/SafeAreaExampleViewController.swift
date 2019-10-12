@@ -24,12 +24,3 @@ class SafeAreaExampleViewController: UIViewController {
         safeAreaGradientLoadingBar.fadeOut()
     }
 }
-
-// MARK: - UIBarPositioningDelegate
-
-/// - Note: Delegate is setted-up via storyboard.
-extension SafeAreaExampleViewController: UINavigationBarDelegate {
-    func position(for _: UIBarPositioning) -> UIBarPosition {
-        return .topAttached
-    }
-}

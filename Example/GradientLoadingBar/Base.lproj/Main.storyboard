@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="31S-8b-Niv">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="31S-8b-Niv">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,26 +18,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m1A-KD-5Hc" userLabel="Navigation Bar">
-                                <rect key="frame" x="0.0" y="20" width="375" height="130"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
-                                </textAttributes>
-                                <textAttributes key="largeTitleTextAttributes">
-                                    <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="🏡 Basic Example" prompt="Gradient Loading Bar" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="always" id="kSM-Tb-O8e"/>
-                                </items>
-                                <connections>
-                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="TbW-eG-GAT"/>
-                                </connections>
-                            </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V1J-1V-cbT" customClass="LargeNavigationBarHeaderView" customModule="GradientLoadingBar_Example" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="138"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="138" id="ydQ-Zv-f3W"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="🏡 Basic Example"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="prompt" value="Gradient Loading Bar"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vCz-UL-eay" userLabel="Wrapper View">
-                                <rect key="frame" x="16" y="151" width="343" height="467"/>
+                                <rect key="frame" x="0.0" y="138" width="375" height="480"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Hrq-tB-Sk3">
-                                        <rect key="frame" x="0.0" y="213.5" width="343" height="40"/>
+                                        <rect key="frame" x="16" y="220" width="343" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6V-cT-b8Q" customClass="BlueFilledButton" customModule="GradientLoadingBar_Example" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="163.5" height="40"/>
@@ -67,23 +59,23 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstItem="Hrq-tB-Sk3" firstAttribute="leading" secondItem="vCz-UL-eay" secondAttribute="leading" id="Er7-gx-Ray"/>
+                                    <constraint firstItem="Hrq-tB-Sk3" firstAttribute="leading" secondItem="vCz-UL-eay" secondAttribute="leading" constant="16" id="Er7-gx-Ray"/>
                                     <constraint firstItem="Hrq-tB-Sk3" firstAttribute="centerY" secondItem="vCz-UL-eay" secondAttribute="centerY" id="MB9-lc-dAX"/>
-                                    <constraint firstAttribute="trailing" secondItem="Hrq-tB-Sk3" secondAttribute="trailing" id="ao9-tR-lfs"/>
+                                    <constraint firstAttribute="trailing" secondItem="Hrq-tB-Sk3" secondAttribute="trailing" constant="16" id="ao9-tR-lfs"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="vCz-UL-eay" firstAttribute="top" secondItem="m1A-KD-5Hc" secondAttribute="bottom" constant="1" id="ANC-vj-0MY"/>
+                            <constraint firstItem="V1J-1V-cbT" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailing" id="9TW-dR-0YF"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="vCz-UL-eay" secondAttribute="bottom" id="BSE-5g-uVL"/>
-                            <constraint firstAttribute="trailing" secondItem="m1A-KD-5Hc" secondAttribute="trailing" id="J6w-Dc-YCP"/>
-                            <constraint firstItem="vCz-UL-eay" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Lym-2g-94s"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="vCz-UL-eay" secondAttribute="trailing" id="d0u-3Y-rTF"/>
-                            <constraint firstItem="m1A-KD-5Hc" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="gIx-CI-Ztc"/>
-                            <constraint firstItem="m1A-KD-5Hc" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="s9E-VE-DFo"/>
+                            <constraint firstItem="vCz-UL-eay" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Lym-2g-94s"/>
+                            <constraint firstItem="V1J-1V-cbT" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="PZZ-lR-n3R"/>
+                            <constraint firstItem="V1J-1V-cbT" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="VPm-eG-4vI"/>
+                            <constraint firstItem="vCz-UL-eay" firstAttribute="top" secondItem="V1J-1V-cbT" secondAttribute="bottom" id="Vhb-09-feC"/>
+                            <constraint firstAttribute="trailing" secondItem="vCz-UL-eay" secondAttribute="trailing" id="d0u-3Y-rTF"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Basic Example" image="home" id="QbQ-0M-Q7f"/>
@@ -91,7 +83,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-478" y="937"/>
+            <point key="canvasLocation" x="-969" y="940"/>
         </scene>
         <!--Navigation Bar Example-->
         <scene sceneID="Blz-xb-a2R">
@@ -105,20 +97,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vUY-8I-ztr" userLabel="Navigation Bar">
-                                <rect key="frame" x="0.0" y="20" width="375" height="130"/>
-                                <items>
-                                    <navigationItem title="💡 Navigation Bar Example" prompt="Gradient Loading Bar" largeTitleDisplayMode="always" id="Xgn-TU-GiE"/>
-                                </items>
-                                <connections>
-                                    <outlet property="delegate" destination="sEh-Tc-lv1" id="37c-xg-1ug"/>
-                                </connections>
-                            </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wLK-vz-uDn" userLabel="Wrapper View">
-                                <rect key="frame" x="16" y="151" width="343" height="467"/>
+                                <rect key="frame" x="0.0" y="137.5" width="375" height="480.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="xhZ-U8-Vur">
-                                        <rect key="frame" x="0.0" y="213.5" width="343" height="40"/>
+                                        <rect key="frame" x="16" y="220.5" width="343" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ogf-h2-Nhm" customClass="BlueFilledButton" customModule="GradientLoadingBar_Example" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="163.5" height="40"/>
@@ -145,34 +128,28 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="xhZ-U8-Vur" secondAttribute="trailing" id="2sW-85-0wR"/>
-                                    <constraint firstItem="xhZ-U8-Vur" firstAttribute="leading" secondItem="wLK-vz-uDn" secondAttribute="leading" id="Al7-Jv-AJK"/>
+                                    <constraint firstAttribute="trailing" secondItem="xhZ-U8-Vur" secondAttribute="trailing" constant="16" id="2sW-85-0wR"/>
+                                    <constraint firstItem="xhZ-U8-Vur" firstAttribute="leading" secondItem="wLK-vz-uDn" secondAttribute="leading" constant="16" id="Al7-Jv-AJK"/>
                                     <constraint firstItem="xhZ-U8-Vur" firstAttribute="centerY" secondItem="wLK-vz-uDn" secondAttribute="centerY" id="zTM-SW-qLa"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="wLK-vz-uDn" secondAttribute="trailing" id="Uee-J2-74E"/>
-                            <constraint firstItem="vUY-8I-ztr" firstAttribute="top" secondItem="Iik-d0-ufh" secondAttribute="bottom" id="Y6v-Tg-EQf"/>
-                            <constraint firstItem="vUY-8I-ztr" firstAttribute="leading" secondItem="iwi-Ev-GiP" secondAttribute="leading" id="ZlK-zd-lD9"/>
-                            <constraint firstItem="wLK-vz-uDn" firstAttribute="leading" secondItem="iwi-Ev-GiP" secondAttribute="leadingMargin" id="a1Y-qE-YRd"/>
-                            <constraint firstItem="J9t-Vs-nTW" firstAttribute="top" secondItem="wLK-vz-uDn" secondAttribute="bottom" id="ciu-vW-Ylv"/>
-                            <constraint firstItem="wLK-vz-uDn" firstAttribute="top" secondItem="vUY-8I-ztr" secondAttribute="bottom" constant="1" id="dAh-JQ-FEm"/>
-                            <constraint firstAttribute="trailing" secondItem="vUY-8I-ztr" secondAttribute="trailing" id="jWO-kc-RVA"/>
+                            <constraint firstItem="wLK-vz-uDn" firstAttribute="leading" secondItem="iwi-Ev-GiP" secondAttribute="leading" id="A9Q-8d-dYD"/>
+                            <constraint firstItem="wLK-vz-uDn" firstAttribute="top" secondItem="Iik-d0-ufh" secondAttribute="bottom" id="Pna-g3-eRn"/>
+                            <constraint firstAttribute="trailing" secondItem="wLK-vz-uDn" secondAttribute="trailing" id="Vn7-pj-36y"/>
+                            <constraint firstItem="J9t-Vs-nTW" firstAttribute="top" secondItem="wLK-vz-uDn" secondAttribute="bottom" id="b3J-NQ-cWP"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Nav Bar Example" image="idea" id="r91-al-1Rr"/>
+                    <navigationItem key="navigationItem" title="💡 Navigation Bar Example" prompt="Gradient Loading Bar" largeTitleDisplayMode="always" id="q3W-Ea-vnS"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="navigationBar" destination="vUY-8I-ztr" id="j3E-Rx-4R9"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3VI-no-5Tx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1550" y="937"/>
+            <point key="canvasLocation" x="2009" y="1661"/>
         </scene>
         <!--Safe Area Example-->
         <scene sceneID="0Ok-vd-ZTP">
@@ -186,26 +163,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Gd-IJ-QP8" userLabel="Navigation Bar">
-                                <rect key="frame" x="0.0" y="20" width="375" height="130"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
-                                </textAttributes>
-                                <textAttributes key="largeTitleTextAttributes">
-                                    <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="📲 Safe Area Example" prompt="Gradient Loading Bar" largeTitleDisplayMode="always" id="xuH-OM-7Aj"/>
-                                </items>
-                                <connections>
-                                    <outlet property="delegate" destination="G0W-Ta-C7r" id="DGD-4U-jfA"/>
-                                </connections>
-                            </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tyJ-Wx-jmZ" customClass="LargeNavigationBarHeaderView" customModule="GradientLoadingBar_Example" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="138"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="138" id="toR-QS-r8U"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="📲 Safe Area Example"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="prompt" value="Gradient Loading Bar"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cQz-wE-hV5" userLabel="Wrapper View">
-                                <rect key="frame" x="16" y="151" width="343" height="467"/>
+                                <rect key="frame" x="0.0" y="138" width="375" height="480"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="oWt-EZ-h2R">
-                                        <rect key="frame" x="0.0" y="213.5" width="343" height="40"/>
+                                        <rect key="frame" x="16" y="220" width="343" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6AO-o8-uCr" customClass="BlueFilledButton" customModule="GradientLoadingBar_Example" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="163.5" height="40"/>
@@ -234,23 +206,23 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="oWt-EZ-h2R" firstAttribute="centerY" secondItem="cQz-wE-hV5" secondAttribute="centerY" id="77C-lL-1fS"/>
-                                    <constraint firstItem="oWt-EZ-h2R" firstAttribute="leading" secondItem="cQz-wE-hV5" secondAttribute="leading" id="Hjd-XM-aek"/>
-                                    <constraint firstAttribute="trailing" secondItem="oWt-EZ-h2R" secondAttribute="trailing" id="ifg-oy-eiV"/>
+                                    <constraint firstItem="oWt-EZ-h2R" firstAttribute="leading" secondItem="cQz-wE-hV5" secondAttribute="leading" constant="16" id="Hjd-XM-aek"/>
+                                    <constraint firstAttribute="trailing" secondItem="oWt-EZ-h2R" secondAttribute="trailing" constant="16" id="ifg-oy-eiV"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="cQz-wE-hV5" firstAttribute="top" secondItem="5Gd-IJ-QP8" secondAttribute="bottom" constant="1" id="Pq7-6o-i3r"/>
-                            <constraint firstItem="cQz-wE-hV5" firstAttribute="leading" secondItem="5Bk-7E-1bh" secondAttribute="leadingMargin" id="XMq-rP-R6t"/>
-                            <constraint firstItem="5Gd-IJ-QP8" firstAttribute="leading" secondItem="5Bk-7E-1bh" secondAttribute="leading" id="aAS-80-sL9"/>
-                            <constraint firstAttribute="trailing" secondItem="5Gd-IJ-QP8" secondAttribute="trailing" id="aKg-4f-ls7"/>
-                            <constraint firstItem="5Gd-IJ-QP8" firstAttribute="top" secondItem="4Ae-UH-dXd" secondAttribute="bottom" id="epg-Ar-7Yp"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="cQz-wE-hV5" secondAttribute="trailing" id="ia6-FW-nJj"/>
-                            <constraint firstItem="9TC-19-AMF" firstAttribute="top" secondItem="cQz-wE-hV5" secondAttribute="bottom" id="sCI-fp-Ej2"/>
+                            <constraint firstItem="tyJ-Wx-jmZ" firstAttribute="leading" secondItem="5Bk-7E-1bh" secondAttribute="leading" id="BGY-Fa-Ib2"/>
+                            <constraint firstAttribute="trailing" secondItem="cQz-wE-hV5" secondAttribute="trailing" id="KmM-2A-jAw"/>
+                            <constraint firstItem="cQz-wE-hV5" firstAttribute="top" secondItem="tyJ-Wx-jmZ" secondAttribute="bottom" id="NJ3-mJ-mLD"/>
+                            <constraint firstItem="cQz-wE-hV5" firstAttribute="leading" secondItem="5Bk-7E-1bh" secondAttribute="leading" id="dID-N8-kru"/>
+                            <constraint firstItem="tyJ-Wx-jmZ" firstAttribute="top" secondItem="4Ae-UH-dXd" secondAttribute="bottom" id="obq-xF-4qg"/>
+                            <constraint firstItem="9TC-19-AMF" firstAttribute="top" secondItem="cQz-wE-hV5" secondAttribute="bottom" id="qfC-iN-Dv4"/>
+                            <constraint firstAttribute="trailing" secondItem="tyJ-Wx-jmZ" secondAttribute="trailing" id="u0E-oe-0ko"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Safe Area Example" image="iphone_x" id="VBS-L1-AHW"/>
@@ -258,7 +230,105 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oYv-dl-Yai" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="193" y="937"/>
+            <point key="canvasLocation" x="-214" y="940"/>
+        </scene>
+        <!--Interface Builder Example-->
+        <scene sceneID="NSv-IO-1Fu">
+            <objects>
+                <viewController title="Interface Builder Example" id="kcg-0d-bdI" customClass="InterfaceBuilderExampleViewController" customModule="GradientLoadingBar_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="znh-se-r1k"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ruy-Se-i9x"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="G47-Se-1Pm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ei7-8i-vp4" customClass="LargeNavigationBarHeaderView" customModule="GradientLoadingBar_Example" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="138"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="138" id="z0S-oU-OR8"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="🎨 Interface Builder Example"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="prompt" value="Gradient Loading Bar"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mbb-4g-X9Q" userLabel="Wrapper View">
+                                <rect key="frame" x="0.0" y="138" width="375" height="480"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yze-Dk-6Ol" customClass="GradientActivityIndicatorView" customModule="GradientLoadingBar">
+                                        <rect key="frame" x="16" y="16" width="343" height="3"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="3" id="jPq-M8-Jzb"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="3"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="B2P-Ta-wQl">
+                                        <rect key="frame" x="16" y="220" width="343" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FVq-l4-0tb" customClass="BlueFilledButton" customModule="GradientLoadingBar_Example" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="163.5" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="hLM-JF-3uL"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                                <state key="normal" title="Show"/>
+                                                <connections>
+                                                    <action selector="showButtonTouchUpInside:" destination="G0W-Ta-C7r" eventType="touchUpInside" id="YLy-C7-swv"/>
+                                                    <action selector="showButtonTouchUpInside:" destination="kcg-0d-bdI" eventType="touchUpInside" id="bBo-X1-9o5"/>
+                                                    <action selector="showButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="mS4-j8-FhD"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FWL-hp-DMs" customClass="BlueFilledButton" customModule="GradientLoadingBar_Example" customModuleProvider="target">
+                                                <rect key="frame" x="179.5" y="0.0" width="163.5" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="6jt-g9-DcI"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                                <state key="normal" title="Hide"/>
+                                                <connections>
+                                                    <action selector="hideButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="0fT-v2-VqK"/>
+                                                    <action selector="hideButtonTouchUpInside:" destination="kcg-0d-bdI" eventType="touchUpInside" id="Zvk-pf-LDf"/>
+                                                    <action selector="hideButtonTouchUpInside:" destination="G0W-Ta-C7r" eventType="touchUpInside" id="sya-aL-aeQ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Yze-Dk-6Ol" secondAttribute="trailing" constant="16" id="7Ae-mT-LLE"/>
+                                    <constraint firstItem="B2P-Ta-wQl" firstAttribute="leading" secondItem="mbb-4g-X9Q" secondAttribute="leading" constant="16" id="8cK-1Z-B70"/>
+                                    <constraint firstItem="Yze-Dk-6Ol" firstAttribute="leading" secondItem="mbb-4g-X9Q" secondAttribute="leading" constant="16" id="S1n-Cp-vlD"/>
+                                    <constraint firstItem="Yze-Dk-6Ol" firstAttribute="top" secondItem="mbb-4g-X9Q" secondAttribute="top" constant="16" id="asL-T7-vTV"/>
+                                    <constraint firstItem="B2P-Ta-wQl" firstAttribute="centerY" secondItem="mbb-4g-X9Q" secondAttribute="centerY" id="p7F-Kt-bT7"/>
+                                    <constraint firstAttribute="trailing" secondItem="B2P-Ta-wQl" secondAttribute="trailing" constant="16" id="tr4-w5-D3I"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="mbb-4g-X9Q" secondAttribute="trailing" id="7JI-Cf-Lbi"/>
+                            <constraint firstItem="mbb-4g-X9Q" firstAttribute="leading" secondItem="G47-Se-1Pm" secondAttribute="leading" id="ASY-d8-7lc"/>
+                            <constraint firstItem="mbb-4g-X9Q" firstAttribute="top" secondItem="ei7-8i-vp4" secondAttribute="bottom" id="CIq-u8-sbE"/>
+                            <constraint firstItem="ei7-8i-vp4" firstAttribute="top" secondItem="znh-se-r1k" secondAttribute="bottom" id="G4H-cR-m9r"/>
+                            <constraint firstAttribute="trailing" secondItem="ei7-8i-vp4" secondAttribute="trailing" id="hCK-vS-hrZ"/>
+                            <constraint firstItem="ei7-8i-vp4" firstAttribute="leading" secondItem="G47-Se-1Pm" secondAttribute="leading" id="hch-Ju-3QH"/>
+                            <constraint firstItem="Ruy-Se-i9x" firstAttribute="top" secondItem="mbb-4g-X9Q" secondAttribute="bottom" id="zdn-6E-6mg"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Interface Builder" image="picture" id="q1l-pB-Q4T"/>
+                    <connections>
+                        <outlet property="gradientActivityIndicatorView" destination="Yze-Dk-6Ol" id="v8n-H3-yyR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Yh-MD-f7b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="537" y="940"/>
         </scene>
         <!--Advanced Example-->
         <scene sceneID="7wr-48-QKh">
@@ -272,60 +342,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bs6-mY-v3z" userLabel="Navigation Bar">
-                                <rect key="frame" x="0.0" y="20" width="375" height="130"/>
-                                <items>
-                                    <navigationItem title="🚀 Advanced Example" prompt="Gradient Loading Bar" largeTitleDisplayMode="always" id="kYk-ST-73y"/>
-                                </items>
-                                <connections>
-                                    <outlet property="delegate" destination="l28-cg-vu8" id="gIY-Ta-u93"/>
-                                </connections>
-                            </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qZq-9D-wpV" customClass="LargeNavigationBarHeaderView" customModule="GradientLoadingBar_Example" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="138"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="138" id="St1-Xs-Hvy"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="🚀 Advanced Example"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="prompt" value="Gradient Loading Bar"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sJk-2n-yVK" userLabel="Wrapper View">
-                                <rect key="frame" x="16" y="151" width="343" height="467"/>
+                                <rect key="frame" x="0.0" y="138" width="375" height="480"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dTf-4j-4fr" customClass="GradientActivityIndicatorView" customModule="GradientLoadingBar">
-                                        <rect key="frame" x="0.0" y="182.5" width="343" height="3"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="3" id="xmv-tK-5hF"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="3"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6p6-Rh-h29" userLabel="Toggle Interface Builder Button" customClass="BlueBorderedButton" customModule="GradientLoadingBar_Example" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="189.5" width="343" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="Nl1-iA-frJ"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
-                                        <state key="normal" title="Toggle bar from Interface Builder"/>
-                                        <connections>
-                                            <action selector="toggleInterfaceBuilderButtonTouchUpInside:" destination="l28-cg-vu8" eventType="touchUpInside" id="UD5-hy-1kf"/>
-                                        </connections>
-                                    </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wzq-Eo-AIU">
-                                        <rect key="frame" x="0.0" y="237.5" width="343" height="40"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="wzq-Eo-AIU">
+                                        <rect key="frame" x="16" y="194" width="343" height="92"/>
                                         <subviews>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JKA-wf-nyj" userLabel="Toggle Programatically Button" customClass="BlueBorderedButton" customModule="GradientLoadingBar_Example" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="167.5" height="40"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="sKv-MC-7kH"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
-                                                <state key="normal" title="Toggle programatically"/>
+                                                <state key="normal" title="Custom Superview"/>
                                                 <connections>
                                                     <action selector="toggleProgrammaticallyButtonTouchUpInside:" destination="l28-cg-vu8" eventType="touchUpInside" id="tZg-ye-xbi"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cbn-y8-lGV" userLabel="Toggle Custom Colors Button" customClass="BlueBorderedButton" customModule="GradientLoadingBar_Example" customModuleProvider="target">
-                                                <rect key="frame" x="175.5" y="0.0" width="167.5" height="40"/>
+                                                <rect key="frame" x="0.0" y="52" width="343" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="emu-Jk-zMc"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
-                                                <state key="normal" title="Toggle custom colors"/>
+                                                <state key="normal" title="Custom Colors"/>
                                                 <connections>
                                                     <action selector="toggleCustomColorsButtonTouchUpInside:" destination="l28-cg-vu8" eventType="touchUpInside" id="BZJ-7f-xNF"/>
                                                 </connections>
@@ -333,42 +383,35 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstItem="6p6-Rh-h29" firstAttribute="bottom" secondItem="sJk-2n-yVK" secondAttribute="centerY" constant="-4" id="08q-Sj-IgC"/>
-                                    <constraint firstItem="wzq-Eo-AIU" firstAttribute="leading" secondItem="sJk-2n-yVK" secondAttribute="leading" id="139-Ak-t87"/>
-                                    <constraint firstItem="dTf-4j-4fr" firstAttribute="leading" secondItem="sJk-2n-yVK" secondAttribute="leading" id="1hs-3b-ifs"/>
-                                    <constraint firstAttribute="trailing" secondItem="dTf-4j-4fr" secondAttribute="trailing" id="HYF-aZ-woN"/>
-                                    <constraint firstItem="wzq-Eo-AIU" firstAttribute="top" secondItem="sJk-2n-yVK" secondAttribute="centerY" constant="4" id="IqE-ns-FHJ"/>
-                                    <constraint firstItem="6p6-Rh-h29" firstAttribute="leading" secondItem="sJk-2n-yVK" secondAttribute="leading" id="YmY-v8-bdx"/>
-                                    <constraint firstAttribute="trailing" secondItem="6p6-Rh-h29" secondAttribute="trailing" id="fXg-JQ-gbI"/>
-                                    <constraint firstAttribute="trailing" secondItem="wzq-Eo-AIU" secondAttribute="trailing" id="fcI-El-SAu"/>
-                                    <constraint firstItem="6p6-Rh-h29" firstAttribute="top" secondItem="dTf-4j-4fr" secondAttribute="bottom" constant="4" id="svm-uR-FjH"/>
+                                    <constraint firstItem="wzq-Eo-AIU" firstAttribute="leading" secondItem="sJk-2n-yVK" secondAttribute="leading" constant="16" id="139-Ak-t87"/>
+                                    <constraint firstItem="wzq-Eo-AIU" firstAttribute="centerY" secondItem="sJk-2n-yVK" secondAttribute="centerY" id="IqE-ns-FHJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="wzq-Eo-AIU" secondAttribute="trailing" constant="16" id="fcI-El-SAu"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="sJk-2n-yVK" secondAttribute="trailing" id="0N5-7k-Fvk"/>
-                            <constraint firstItem="sJk-2n-yVK" firstAttribute="top" secondItem="bs6-mY-v3z" secondAttribute="bottom" constant="1" id="5Fi-da-XPs"/>
-                            <constraint firstAttribute="trailing" secondItem="bs6-mY-v3z" secondAttribute="trailing" id="9bA-3n-nu0"/>
-                            <constraint firstItem="bs6-mY-v3z" firstAttribute="leading" secondItem="EZo-KN-FDG" secondAttribute="leading" id="QMM-vg-Yxt"/>
-                            <constraint firstItem="9Nv-iX-Uwf" firstAttribute="top" secondItem="sJk-2n-yVK" secondAttribute="bottom" id="TSD-eU-Yx2"/>
-                            <constraint firstItem="sJk-2n-yVK" firstAttribute="leading" secondItem="EZo-KN-FDG" secondAttribute="leadingMargin" id="oAM-fq-7Qo"/>
-                            <constraint firstItem="bs6-mY-v3z" firstAttribute="top" secondItem="vvP-wW-eUz" secondAttribute="bottom" id="qRd-cH-wBY"/>
+                            <constraint firstItem="sJk-2n-yVK" firstAttribute="top" secondItem="qZq-9D-wpV" secondAttribute="bottom" id="12P-NY-VtG"/>
+                            <constraint firstItem="9Nv-iX-Uwf" firstAttribute="top" secondItem="sJk-2n-yVK" secondAttribute="bottom" id="3ZY-rc-hVf"/>
+                            <constraint firstAttribute="trailing" secondItem="sJk-2n-yVK" secondAttribute="trailing" id="Hqt-KP-eSH"/>
+                            <constraint firstItem="qZq-9D-wpV" firstAttribute="top" secondItem="vvP-wW-eUz" secondAttribute="bottom" id="IEz-PS-kaF"/>
+                            <constraint firstItem="sJk-2n-yVK" firstAttribute="leading" secondItem="EZo-KN-FDG" secondAttribute="leading" id="ZPm-e3-QdJ"/>
+                            <constraint firstAttribute="trailing" secondItem="qZq-9D-wpV" secondAttribute="trailing" id="kc6-MY-EP0"/>
+                            <constraint firstItem="qZq-9D-wpV" firstAttribute="leading" secondItem="EZo-KN-FDG" secondAttribute="leading" id="piA-rQ-qe8"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Advanced Example" image="rocket" id="SyM-zw-tlg"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="customColorsButton" destination="Cbn-y8-lGV" id="1ag-73-Mlh"/>
-                        <outlet property="gradientActivityIndicatorView" destination="dTf-4j-4fr" id="OMu-fw-5cD"/>
                         <outlet property="programmaticallyButton" destination="JKA-wf-nyj" id="JRN-do-tSa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fkr-pn-u5J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="868" y="937"/>
+            <point key="canvasLocation" x="1273" y="940"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="gvY-1y-2Wb">
@@ -383,19 +426,40 @@
                     <connections>
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="tyB-Oz-z6h"/>
                         <segue destination="G0W-Ta-C7r" kind="relationship" relationship="viewControllers" id="hPt-bW-PMO"/>
+                        <segue destination="kcg-0d-bdI" kind="relationship" relationship="viewControllers" id="aD4-eR-rCH"/>
                         <segue destination="l28-cg-vu8" kind="relationship" relationship="viewControllers" id="4rs-U7-89R"/>
-                        <segue destination="sEh-Tc-lv1" kind="relationship" relationship="viewControllers" id="Dcr-pe-ish"/>
+                        <segue destination="uZS-9p-82D" kind="relationship" relationship="viewControllers" id="Dcr-pe-ish"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AXu-pz-Fer" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="538" y="134"/>
         </scene>
+        <!--Nav Bar Example-->
+        <scene sceneID="HFG-Xb-221">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uZS-9p-82D" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Nav Bar Example" image="idea" id="r91-al-1Rr"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="zAv-AH-IlN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="sEh-Tc-lv1" kind="relationship" relationship="rootViewController" id="Jor-5M-Hj4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yG3-j8-Ejc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2009" y="940"/>
+        </scene>
     </scenes>
     <resources>
         <image name="home" width="30" height="30"/>
         <image name="idea" width="30" height="30"/>
         <image name="iphone_x" width="30" height="30"/>
+        <image name="picture" width="30" height="30"/>
         <image name="rocket" width="30" height="30"/>
     </resources>
 </document>

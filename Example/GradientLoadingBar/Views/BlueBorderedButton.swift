@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 final class BlueBorderedButton: UIButton {
     // MARK: - Initializer
 

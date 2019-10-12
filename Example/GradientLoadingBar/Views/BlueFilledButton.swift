@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 final class BlueFilledButton: UIButton {
     // MARK: - Initializer
 
@@ -19,6 +20,12 @@ final class BlueFilledButton: UIButton {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+
+        commonInit()
+    }
+
+    override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
 
         commonInit()
     }

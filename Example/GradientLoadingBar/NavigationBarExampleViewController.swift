@@ -10,10 +10,6 @@ import UIKit
 import GradientLoadingBar
 
 class NavigationBarExampleViewController: UIViewController {
-    // MARK: - Outlets
-
-    @IBOutlet private var navigationBar: UINavigationBar!
-
     // MARK: - Private properties
 
     private let gradientProgressIndicatorView = GradientActivityIndicatorView()
@@ -37,6 +33,8 @@ class NavigationBarExampleViewController: UIViewController {
     // MARK: - Private methods
 
     private func setupGradientProgressIndicatorView() {
+        guard let navigationBar = navigationController?.navigationBar else { return }
+
         gradientProgressIndicatorView.fadeOut(duration: 0)
 
         gradientProgressIndicatorView.translatesAutoresizingMaskIntoConstraints = false
@@ -49,14 +47,5 @@ class NavigationBarExampleViewController: UIViewController {
             gradientProgressIndicatorView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor),
             gradientProgressIndicatorView.heightAnchor.constraint(equalToConstant: 3.0)
         ])
-    }
-}
-
-// MARK: - UIBarPositioningDelegate
-
-/// - Note: Delegate is setted-up via storyboard.
-extension NavigationBarExampleViewController: UINavigationBarDelegate {
-    func position(for _: UIBarPositioning) -> UIBarPosition {
-        return .topAttached
     }
 }

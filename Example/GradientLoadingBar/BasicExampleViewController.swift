@@ -22,12 +22,3 @@ class BasicExampleViewController: UIViewController {
         gradientLoadingBar.fadeOut()
     }
 }
-
-// MARK: - UIBarPositioningDelegate
-
-/// - Note: Delegate is setted-up via storyboard.
-extension BasicExampleViewController: UINavigationBarDelegate {
-    func position(for _: UIBarPositioning) -> UIBarPosition {
-        return .topAttached
-    }
-}

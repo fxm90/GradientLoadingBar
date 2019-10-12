@@ -15,8 +15,6 @@ class AdvancedExampleViewController: UIViewController {
     @IBOutlet private var programmaticallyButton: BlueBorderedButton!
     @IBOutlet private var customColorsButton: BlueBorderedButton!
 
-    @IBOutlet private var gradientActivityIndicatorView: GradientActivityIndicatorView!
-
     // MARK: - Private properties
 
     // swiftlint:disable:next identifier_name
@@ -41,14 +39,6 @@ class AdvancedExampleViewController: UIViewController {
 
         setupProgrammaticallyGradientActivityIndicatorView()
         setupCustomColorsGradientActivityIndicatorView()
-    }
-
-    @IBAction func toggleInterfaceBuilderButtonTouchUpInside(_: Any) {
-        if gradientActivityIndicatorView.isHidden {
-            gradientActivityIndicatorView.fadeIn()
-        } else {
-            gradientActivityIndicatorView.fadeOut()
-        }
     }
 
     @IBAction func toggleProgrammaticallyButtonTouchUpInside(_: Any) {
@@ -80,7 +70,7 @@ class AdvancedExampleViewController: UIViewController {
             programmaticallyGradientActivityIndicatorView.trailingAnchor.constraint(equalTo: programmaticallyButton.trailingAnchor),
 
             programmaticallyGradientActivityIndicatorView.topAnchor.constraint(equalTo: programmaticallyButton.topAnchor),
-            programmaticallyGradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: 3.0)
+            programmaticallyGradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: 3.5)
         ])
     }
 
@@ -95,16 +85,7 @@ class AdvancedExampleViewController: UIViewController {
             customColorsGradientActivityIndicatorView.trailingAnchor.constraint(equalTo: customColorsButton.trailingAnchor),
 
             customColorsGradientActivityIndicatorView.bottomAnchor.constraint(equalTo: customColorsButton.bottomAnchor),
-            customColorsGradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: 3.0)
+            customColorsGradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: 3.5)
         ])
-    }
-}
-
-// MARK: - UIBarPositioningDelegate
-
-/// - Note: Delegate is setted-up via storyboard.
-extension AdvancedExampleViewController: UINavigationBarDelegate {
-    func position(for _: UIBarPositioning) -> UIBarPosition {
-        return .topAttached
     }
 }
