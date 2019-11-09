@@ -40,13 +40,22 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES"
       codeCoverageEnabled = "YES"
-      onlyGenerateCoverageForSpecifiedTargets = "YES"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      onlyGenerateCoverageForSpecifiedTargets = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
+            BuildableName = "GradientLoadingBar_Example.app"
+            BlueprintName = "GradientLoadingBar_Example"
+            ReferencedContainer = "container:GradientLoadingBar.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A29550F398D14038E3DD88D91573885C"
+            BlueprintIdentifier = "AD9297F9E6CC3E50EDCFECA0A77800B7"
             BuildableName = "GradientLoadingBar.framework"
             BlueprintName = "GradientLoadingBar"
             ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -63,18 +72,17 @@
                ReferencedContainer = "container:GradientLoadingBar.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "649A163823770B4400404F3C"
+               BuildableName = "GradientLoadingBar_SnapshotTests.xctest"
+               BlueprintName = "GradientLoadingBar_SnapshotTests"
+               ReferencedContainer = "container:GradientLoadingBar.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "GradientLoadingBar_Example.app"
-            BlueprintName = "GradientLoadingBar_Example"
-            ReferencedContainer = "container:GradientLoadingBar.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -96,8 +104,6 @@
             ReferencedContainer = "container:GradientLoadingBar.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

@@ -17,6 +17,7 @@
     "tag": "2.0.1"
   },
   "social_media_url": "https://twitter.com/_fxm90",
+  "swift_versions": "5.0",
   "platforms": {
     "ios": "9.0"
   },
@@ -25,5 +26,6 @@
     "LightweightObservable": [
       "~> 1.0"
     ]
-  }
+  },
+  "swift_version": "5.0"
 }

@@ -48,7 +48,7 @@ file_header:
   required_pattern: |
                     \/\/
                     \/\/  SWIFTLINT_CURRENT_FILENAME
-                    \/\/  (GradientLoadingBar|GradientLoadingBar_Example|GradientLoadingBar_Tests)
+                    \/\/  (GradientLoadingBar|GradientLoadingBar_Example|GradientLoadingBar_Tests|GradientLoadingBar_SnapshotTests)
                     \/\/
                     \/\/  Created by .*? on \d{1,2}\/\d{1,2}\/\d{2}\.
                     \/\/  Copyright © \d{4} .*?\. All rights reserved\.

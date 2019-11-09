@@ -1,17 +1,29 @@
-platform :ios, '9.0'
-
+platform :ios, '13.0'
 use_frameworks!
 
 target 'GradientLoadingBar_Example' do
   pod 'GradientLoadingBar', :path => '../'
 
-  # Development pods
-  pod 'SwiftFormat/CLI'
-  pod 'SwiftLint'
+# Development pods.
+  pod 'SwiftFormat/CLI', '~> 0.40'
+  pod 'SwiftLint', '~> 0.36'
 
-  # Fix issues with interface builder and cocoapods.
-  # Source: https://github.com/CocoaPods/CocoaPods/issues/7606#issuecomment-484294739
+  target 'GradientLoadingBar_Tests' do
+    inherit! :search_paths
+
+    # Pods for testing.
+  end
+
+  target 'GradientLoadingBar_SnapshotTests' do
+    inherit! :search_paths
+
+    # Pods for snapshot testing.
+    pod 'SnapshotTesting', '~> 1.6'
+  end
+
   post_install do |installer|
+    # Fix issues with interface builder and cocoapods.
+    # Source: https://github.com/CocoaPods/CocoaPods/issues/7606#issuecomment-484294739
     installer.pods_project.build_configurations.each do |config|
       next unless config.name == 'Debug'
 
@@ -19,10 +31,15 @@ target 'GradientLoadingBar_Example' do
         '$(FRAMEWORK_SEARCH_PATHS)'
       ]
     end
-  end
 
-  target 'GradientLoadingBar_Tests' do
-    inherit! :search_paths
+    # We support all iOS versions starting from 9.0. Therefore we manually decrease the deployment target for `GradientLoadingBar` here,
+    # so other (development / testing related pods) can use a higher deployment target, which is defined using `platform :ios` above.
+    installer.pods_project.targets.each do |target|
+      next unless target.name == 'GradientLoadingBar'
 
+      target.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '9.0'
+      end
+    end
   end
 end
