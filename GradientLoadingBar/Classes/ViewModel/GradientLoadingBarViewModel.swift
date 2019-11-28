@@ -21,7 +21,7 @@ final class GradientLoadingBarViewModel {
 
     // MARK: - Private properties
 
-    private let superviewSubject: Variable<UIView?> = Variable(nil)
+    private let superviewSubject = PublishSubject<UIView?>()
 
     // MARK: - Dependencies
 
@@ -37,7 +37,7 @@ final class GradientLoadingBarViewModel {
 
         if let keyWindow = sharedApplication.keyWindow {
             // We have a valid key window.
-            superviewSubject.value = keyWindow
+            superviewSubject.update(keyWindow)
         } else {
             // The key window is not available yet. This can happen, if the initializer is called from
             // `UIApplicationDelegate.application(_:didFinishLaunchingWithOptions:)`.
@@ -51,7 +51,7 @@ final class GradientLoadingBarViewModel {
 
     deinit {
         /// By providing a custom de-initializer we make sure to remove the gradient-view from its superview.
-        superviewSubject.value = nil
+        superviewSubject.update(nil)
     }
 
     // MARK: - Private methods
@@ -60,7 +60,7 @@ final class GradientLoadingBarViewModel {
         guard let keyWindow = sharedApplication.keyWindow else { return }
 
         // Now that we have a valid key window, we can use it as superview.
-        superviewSubject.value = keyWindow
+        superviewSubject.update(keyWindow)
     }
 }
 
