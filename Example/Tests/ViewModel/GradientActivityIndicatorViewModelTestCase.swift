@@ -174,15 +174,6 @@ extension GradientActivityIndicatorViewModelTestCase {
         return infiniteGradientColors.map { $0.cgColor }
     }
 
-    private func makeGradientLocations() -> [NSNumber] {
-        let gradientLocations = [0, 0.2, 0.4, 0.6, 0.8, 1]
-
-        XCTAssertEqual(gradientLocations.count, UIColor.GradientLoadingBar.gradientColors.count,
-                       "Precondition failed – The given gradient locations do not match for the current color constant!")
-
-        return gradientLocations.map { NSNumber(value: $0) }
-    }
-
     private func makeGradientLocationAnimationMatrixInitialRow() -> [NSNumber] {
         let gradientLocations = [0, 0.2, 0.4, 0.6, 0.8, 1]
 
