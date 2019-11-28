@@ -58,12 +58,12 @@ final class GradientActivityIndicatorViewModel {
 
     /// Observable color array for the gradient layer (of type `CGColor`).
     var gradientLayerColors: Observable<[CGColor]> {
-        gradientLayerColorsSubject.asObservable
+        gradientLayerColorsSubject
     }
 
     /// The (initial) color locations for the gradient layer.
     var gradientLayerLocations: Observable<[NSNumber]> {
-        gradientLayerLocationsSubject.asObservable
+        gradientLayerLocationsSubject
     }
 
     /// Color array used for the gradient (of type `UIColor`).
@@ -158,7 +158,7 @@ final class GradientActivityIndicatorViewModel {
     /// ```
     private func makeGradientLocationAnimationMatrixInitialRow() -> [NSNumber] {
         let gradientColorsQuantity = gradientColors.count
-        let gradientLayerColorsQuantity = gradientLayerColors.value.count
+        let gradientLayerColorsQuantity = gradientLayerColorsSubject.value.count
 
         let startLocationsQuantity = gradientLayerColorsQuantity - gradientColorsQuantity
         let startLocations = [NSNumber](repeating: 0.0, count: startLocationsQuantity)
@@ -183,7 +183,7 @@ final class GradientActivityIndicatorViewModel {
     /// ```
     private func makeGradientLocationAnimationMatrix() -> GradientLocationAnimationMatrix {
         let gradientColorsQuantity = gradientColors.count
-        let gradientLayerColorsQuantity = gradientLayerColors.value.count
+        let gradientLayerColorsQuantity = gradientLayerColorsSubject.value.count
 
         let gradientLocations = makeGradientLocations()
 
