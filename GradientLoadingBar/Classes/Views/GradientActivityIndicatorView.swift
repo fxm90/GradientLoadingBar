@@ -59,8 +59,6 @@ open class GradientActivityIndicatorView: UIView {
     }
 
     /// The animation used to show the "progress".
-    ///
-    /// - Note: The properties `values` and `duration` are set in the delegate of the view-model.
     private let progressAnimation: CAKeyframeAnimation = {
         let animation = CAKeyframeAnimation(keyPath: "locations")
         animation.isRemovedOnCompletion = false
@@ -103,11 +101,7 @@ open class GradientActivityIndicatorView: UIView {
         gradientLayer?.startPoint = .zero
         gradientLayer?.endPoint = CGPoint(x: 1.0, y: 0.0)
 
-        viewModel.delegate = self
         bindViewModelToView()
-
-        // As the view is visible initially, we might already have to start the animation.
-        viewModel.startAnimationIfNeeded()
     }
 
     private func bindViewModelToView() {
@@ -118,20 +112,26 @@ open class GradientActivityIndicatorView: UIView {
         viewModel.gradientLayerLocations.subscribe { [weak self] newGradientLayerLocations, _ in
             self?.gradientLayer?.locations = newGradientLayerLocations
         }.disposed(by: &disposeBag)
+
+        viewModel.animationState.subscribeDistinct { [weak self] newAnimationState, _ in
+            switch newAnimationState {
+            case let .active(values, duration):
+                self?.startAnimatingLocations(values: values, duration: duration)
+
+            case .inactive:
+                self?.stopAnimatingLocations()
+            }
+        }.disposed(by: &disposeBag)
     }
-}
 
-// MARK: - `GradientActivityIndicatorViewModelDelegate`
-
-extension GradientActivityIndicatorView: GradientActivityIndicatorViewModelDelegate {
-    func startAnimatingLocations(values: GradientLocationAnimationMatrix, duration: TimeInterval) {
+    private func startAnimatingLocations(values: GradientLocationMatrix, duration: TimeInterval) {
         progressAnimation.values = values
         progressAnimation.duration = duration
 
         gradientLayer?.add(progressAnimation, forKey: GradientActivityIndicatorView.progressAnimationKey)
     }
 
-    func stopAnimatingLocations() {
+    private func stopAnimatingLocations() {
         gradientLayer?.removeAnimation(forKey: GradientActivityIndicatorView.progressAnimationKey)
     }
 }
