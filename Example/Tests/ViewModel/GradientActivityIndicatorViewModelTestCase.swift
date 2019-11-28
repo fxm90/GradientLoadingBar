@@ -40,7 +40,7 @@ class GradientActivityIndicatorViewModelTestCase: XCTestCase {
 
     func testInitializerShouldSetGradientLayerLocationsToCorrectValue() throws {
         let receivedGradientLayerLocations = try XCTUnwrap(viewModel.gradientLayerLocations.value)
-        let expectedGradientLayerLocations = makeGradientLocationAnimationMatrixInitialRow()
+        let expectedGradientLayerLocations = makeGradientLocationMatrixFirstRow()
 
         // Unfortunately there is no easier way comparing an array of type `NSNumber` / `Double` with a given accuracy.
         XCTAssertEqual(receivedGradientLayerLocations.count, expectedGradientLayerLocations.count)
@@ -174,7 +174,7 @@ extension GradientActivityIndicatorViewModelTestCase {
         return infiniteGradientColors.map { $0.cgColor }
     }
 
-    private func makeGradientLocationAnimationMatrixInitialRow() -> [NSNumber] {
+    private func makeGradientLocationMatrixFirstRow() -> [NSNumber] {
         let gradientLocations = [0, 0.2, 0.4, 0.6, 0.8, 1]
 
         XCTAssertEqual(gradientLocations.count, UIColor.GradientLoadingBar.gradientColors.count,
