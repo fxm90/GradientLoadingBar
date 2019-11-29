@@ -10,6 +10,11 @@ A customizable animated gradient loading bar. Inspired by [iOS 7 Progress Bar fr
 
 To run the example project, clone the repo, and open the workspace from the Example directory.
 
+### Requirements
+- Swift 5.0
+- Xcode 10.2+
+- iOS 9.0+
+
 ### Integration
 ##### CocoaPods
 [CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate GradientLoadingBar into your Xcode project using CocoaPods, specify it in your `Podfile`:
