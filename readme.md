@@ -13,13 +13,14 @@ To run the example project, clone the repo, and open the workspace from the Exam
 ### Integration
 ##### CocoaPods
 [CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate GradientLoadingBar into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
 ```ruby
 pod 'GradientLoadingBar', '~> 2.0'
 ```
 
-
 ##### Carthage
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate GradientLoadingBar into your Xcode project using Carthage, specify it in your `Cartfile`:
+
 ```ogdl
 github "fxm90/GradientLoadingBar" ~> 2.0
 ```
@@ -28,11 +29,13 @@ Run carthage update to build the framework and drag the built `GradientLoadingBa
 
 ### How to use
 This framework provides two classes:
+
  - **GradientLoadingBar**: A controller, managing the visibility of the `GradientActivityIndicatorView` on the current key window.
  - **GradientActivityIndicatorView**: A `UIView` containing the gradient with the animation. It can be added as a subview to another view either inside the interface builder or programmatically. Both ways are shown inside the example application.
 
 #### GradientLoadingBar
 To get started, import the module `GradientLoadingBar` into your file and save an instance of `GradientLoadingBar()` on a property of your view-controller. To show the loading bar, simply call the `fadeIn(duration:completion)` method and after your async operations have finished call the  `fadeOut(duration:completion)` method.
+
 ```swift
 class UserViewController: UIViewController {
 
@@ -47,14 +50,16 @@ class UserViewController: UIViewController {
 
         userService.loadUserData { [weak self] _ in
             // ...
-            // Be sure to call this on the main thread!!
+            // Be sure to call this on the main thread!
             self?.gradientLoadingBar.fadeOut()
         }
     }
 }
 ```
+
 ##### Configuration
 You can overwrite the default configuration by calling the initializers with the optional parameters `height` and `isRelativeToSafeArea`:
+
 ```swift
 let gradientLoadingBar = GradientLoadingBar(
     height: 4.0,
@@ -68,11 +73,11 @@ By setting this parameter you can set the height for the loading bar (defaults t
 ###### – Parameter `isRelativeToSafeArea: Bool`
 With this parameter you can configure, whether the loading bar should be positioned relative to the safe area (defaults to `true`).
 
-Example with `isRelativeToSafeArea` set to `true`
+Example with `isRelativeToSafeArea` set to `true`.
 [![Example][basic-example--thumbnail]][basic-example]
 
 
-Example with `isRelativeToSafeArea` set to `false`
+Example with `isRelativeToSafeArea` set to `false`.
 [![Example][safe-area-example--thumbnail]][safe-area-example]
 
 ##### Properties
@@ -91,6 +96,7 @@ This methods fades-out the loading bar.  You can adjust the duration with coresp
 
 ##### Custom shared instance (Singleton)
 If you need the loading bar on multiple / different parts of your app, you can use the given static `shared` variable:
+
 ```swift
 GradientLoadingBar.shared.fadeIn()
 
@@ -98,7 +104,9 @@ GradientLoadingBar.shared.fadeIn()
 
 GradientLoadingBar.shared.fadeOut()
 ```
+
 If you wish to customize the shared instance, you can add the following code e.g. to your app delegate `didFinishLaunchingWithOptions` method and overwrite the `shared` variable:
+
 ```swift
 GradientLoadingBar.shared = GradientLoadingBar(height: 5.0)
 ```
@@ -107,11 +115,11 @@ GradientLoadingBar.shared = GradientLoadingBar(height: 5.0)
 #### GradientActivityIndicatorView
 In case you don't want to add the loading bar onto the key-window, this framework provides the `GradientActivityIndicatorView`, which is a direct subclass of `UIView`. You can add the view to another view either inside the interface builder or programmatically.
 
-E.g. View added as a subview to a `UINavigationBar`
+E.g. View added as a subview to a `UINavigationBar`.
 [![Example][navigation-bar-example--thumbnail]][navigation-bar-example]
 
 
-E.g. View added as a subview to a `UIButton`
+E.g. View added as a subview to a `UIButton`.
 [![Example][advanced-example--thumbnail]][advanced-example]
 
 **Note:** The progress-animation starts and stops according to the `isHidden` flag. Setting this flag to `false` will start the animation, setting this to `true` will stop the animation. Often you don't want to directly show / hide the view and instead smoothly fade it in or out. Therefore the view provides the methods `fadeIn(duration:completion)` and `fadeOut(duration:completion)`. Based on my [gist](https://gist.github.com/fxm90/723b5def31b46035cd92a641e3b184f6), these methods adjust the `alpha` value of the view and update the `isHidden` flag accordingly.
@@ -129,6 +137,7 @@ This property adjusts the duration of the animation moving the gradient from lef
 ### Troubleshooting
 #### Interface Builder Support
 Unfortunatly the Interface Builder support is currently broken for Cocoapods frameworks. If you need Interface Builder support, add the following code to your Podfile and run `pod install` again. Afterwards you should be able to use the `GradientLoadingBar` inside the Interface Builder :)
+
 ```
   post_install do |installer|
     installer.pods_project.build_configurations.each do |config|

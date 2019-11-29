@@ -29,7 +29,7 @@ typealias GradientLocationMatrix = [GradientLocationRow]
 ///  - Visible colors in the **middle** of the animation: `[.blue, .green, .yellow, .red]` (inverted `gradientColors`)
 ///  - Visible colors at the **end** of the animation:    `[.red, .yellow, .green, .blue]` (same as start `gradientColors`)
 ///
-/// So first thing we're gonna do is to create a single array of all colors used in the above states.
+/// So first thing we have to do, is to create a single array of all colors used in the above states.
 /// Therefore we'll duplicate the `gradientColors`, reverse them, and remove the first and last item of the reversed array in order to
 /// prevent duplicate values at the "inner edges" destroying the infinite look. Afterwards we can append the `gradientColors` again.
 ///
@@ -37,7 +37,8 @@ typealias GradientLocationMatrix = [GradientLocationRow]
 /// `gradientLayerColors = [.red, .yellow, .green, .blue, .green, .yellow, .red, .yellow, .green, .blue]`
 ///
 /// Now we can animate through all of the colors, by updating the `locations` property accordingly. Please have a look at the documentation
-/// for the method `makeGradientLocationAnimationMatrix()` for further details regarding the `locations` property.
+/// for the method `makeGradientLocationMatrix(gradientColorsQuantity:gradientLayerColorsQuantity:)` for further details regarding the `locations`
+/// property.
 ///
 /// As the colors at the start are the same as at the end, we can loop the animation without visual artefacts.
 final class GradientActivityIndicatorViewModel {

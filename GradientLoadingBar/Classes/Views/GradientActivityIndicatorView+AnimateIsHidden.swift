@@ -18,7 +18,7 @@ import UIKit
 public extension GradientActivityIndicatorView {
     // MARK: - Public methods
 
-    /// Updates the view visiblity.
+    /// Updates the view visibility.
     ///
     /// - Parameters:
     ///   - isHidden: The new view visibility.
