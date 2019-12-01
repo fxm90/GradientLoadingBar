@@ -3,7 +3,7 @@
 //  GradientLoadingBar_Tests
 //
 //  Created by Felix Mau on 08/26/19.
-//  Copyright © 2019 CocoaPods. All rights reserved.
+//  Copyright © 2019 Felix Mau. All rights reserved.
 //
 
 import XCTest
@@ -38,16 +38,42 @@ class GradientActivityIndicatorViewModelTestCase: XCTestCase {
         XCTAssertEqual(viewModel.gradientLayerColors.value, expectedGradientLayerColors)
     }
 
-    func testInitializerShouldSetGradientLayerLocationsToCorrectValue() throws {
-        let receivedGradientLayerLocations = try XCTUnwrap(viewModel.gradientLayerLocations.value)
-        let expectedGradientLayerLocations = makeGradientLocationMatrixFirstRow()
+    func testInitializerShouldSetColorLocationInitialRowToCorrectValue() throws {
+        let receivedColorLocationInitialRow = try XCTUnwrap(viewModel.colorLocationInitialRow.value)
+        let expectedColorLocationInitialRow = makeColorLocationInitialRow()
 
         // Unfortunately there is no easier way comparing an array of type `NSNumber` / `Double` with a given accuracy.
-        XCTAssertEqual(receivedGradientLayerLocations.count, expectedGradientLayerLocations.count)
+        XCTAssertEqual(receivedColorLocationInitialRow.count, expectedColorLocationInitialRow.count)
 
-        for (receivedLocation, expectedLocation) in zip(receivedGradientLayerLocations, expectedGradientLayerLocations) {
-            XCTAssertEqual(receivedLocation.doubleValue, expectedLocation.doubleValue, accuracy: .ulpOfOne)
+        for (receivedColorLocation, expectedColorLocation) in zip(receivedColorLocationInitialRow, expectedColorLocationInitialRow) {
+            XCTAssertEqual(receivedColorLocation.doubleValue, expectedColorLocation.doubleValue, accuracy: .ulpOfOne)
         }
+    }
+
+    func testInitializerShouldSetColorLocationMatrixToCorrectValue() throws {
+        let receivedColorLocationMatrix = try XCTUnwrap(viewModel.colorLocationMatrix.value)
+        let expectedColorLocationMatrix = makeColorLocationMatrix()
+
+        // Unfortunately there is no easier way comparing an array of type `NSNumber` / `Double` with a given accuracy.
+        XCTAssertEqual(receivedColorLocationMatrix.count, expectedColorLocationMatrix.count)
+
+        for (receivedColorLocationRow, expectedColorLocationRow) in zip(receivedColorLocationMatrix, expectedColorLocationMatrix) {
+            XCTAssertEqual(receivedColorLocationRow.count, expectedColorLocationRow.count)
+
+            for (receivedColorLocation, expectedColorLocation) in zip(receivedColorLocationRow, expectedColorLocationRow) {
+                XCTAssertEqual(receivedColorLocation.doubleValue, expectedColorLocation.doubleValue, accuracy: .ulpOfOne)
+            }
+        }
+    }
+
+    func testInitializerShouldSetAnimationDurationToStaticConfigurationProperty() {
+        XCTAssertEqual(viewModel.animationDuration.value, TimeInterval.GradientLoadingBar.progressDuration)
+    }
+
+    func testInitializerShouldSetIsAnimatingToTrue() throws {
+        XCTAssertTrue(
+            try XCTUnwrap(viewModel.isAnimating.value)
+        )
     }
 
     func testInitializerShouldSetGradientColorsToStaticConfigurationProperty() {
@@ -82,7 +108,7 @@ class GradientActivityIndicatorViewModelTestCase: XCTestCase {
         XCTAssertEqual(viewModel.gradientLayerColors.value, expectedGradientLayerColors)
     }
 
-    func testSettingGradientColorsShouldUpdateGradientLayerLocationsObservable() {
+    func testSettingGradientColorsShouldUpdateColorLocationInitialRowObservable() {
         // Given
         let gradientColors: [UIColor] = [.red, .yellow, .green]
 
@@ -100,30 +126,15 @@ class GradientActivityIndicatorViewModelTestCase: XCTestCase {
         let expectedGradientLocations = [0, 0, 0, 0, 0, 0.5, 1]
         let expectedGradientLayerLocations = expectedGradientLocations.map { NSNumber(value: $0) }
 
-        XCTAssertEqual(viewModel.gradientLayerLocations.value, expectedGradientLayerLocations)
+        XCTAssertEqual(viewModel.colorLocationInitialRow.value, expectedGradientLayerLocations)
     }
 
-    // MARK: - Test property `isHidden`
-
-    func testSettingIsHiddenToTrueShouldSetAnimationStateToHidden() {
-        // When
-        viewModel.isHidden = true
-
-        // Then
-        XCTAssertEqual(viewModel.animationState.value, .inactive)
-    }
-
-    func testSettingIsHiddenToFalseShouldSetAnimationStateToActive() {
+    func testSettingGradientColorsShouldUpdateColorLocationMatrixObservable() {
         // Given
-        // In order to simplify the matrix, we're gonna update the `gradientColors` first.
         let gradientColors: [UIColor] = [.red, .yellow, .green]
-        viewModel.gradientColors = gradientColors
-
-        let progressAnimationDuration: TimeInterval = 123
-        viewModel.progressAnimationDuration = progressAnimationDuration
 
         // When
-        viewModel.isHidden = false
+        viewModel.gradientColors = gradientColors
 
         // Then
         //
@@ -137,7 +148,7 @@ class GradientActivityIndicatorViewModelTestCase: XCTestCase {
         //  3 | 0    | 0       | 0.5    | 1       | 1    | 1       | 1
         //  4 | 0    | 0.5     | 1      | 1       | 1    | 1       | 1
         //
-        let gradientLocationsMatrix = [
+        let colorLocationMatrix = [
             [0, 0, 0, 0, 0, 0.5, 1],
             [0, 0, 0, 0, 0.5, 1, 1],
             [0, 0, 0, 0.5, 1, 1, 1],
@@ -145,12 +156,46 @@ class GradientActivityIndicatorViewModelTestCase: XCTestCase {
             [0, 0.5, 1, 1, 1, 1, 1]
         ]
 
-        let expectedValues = gradientLocationsMatrix.map {
+        let expectedColorLocationMatrix = colorLocationMatrix.map {
             $0.map { NSNumber(value: $0) }
         }
 
-        XCTAssertEqual(viewModel.animationState.value, .active(values: expectedValues,
-                                                               duration: progressAnimationDuration))
+        XCTAssertEqual(viewModel.colorLocationMatrix.value, expectedColorLocationMatrix)
+    }
+
+    // MARK: - Test property `progressAnimationDuration`
+
+    func testSettingProgressAnimationDurationShouldUpdateAnimationDurationObservable() {
+        // Given
+        let progressAnimationDuration: TimeInterval = 123
+
+        // When
+        viewModel.progressAnimationDuration = progressAnimationDuration
+
+        // Then
+        XCTAssertEqual(viewModel.animationDuration.value, progressAnimationDuration)
+    }
+
+    // MARK: - Test property `isHidden`
+
+    func testSettingIsHiddenToTrueShouldSetIsAnimatingToFalse() throws {
+        // When
+        viewModel.isHidden = true
+
+        // Then
+        XCTAssertFalse(
+            try XCTUnwrap(viewModel.isAnimating.value)
+        )
+    }
+
+    func testSettingIsHiddenToFalseShouldSetIsAnimatingToTrue() throws {
+        // When
+        viewModel.isHidden = false
+
+        // Then
+        XCTAssertTrue(
+            try XCTUnwrap(viewModel.isAnimating.value)
+        )
     }
 }
 
@@ -174,7 +219,7 @@ extension GradientActivityIndicatorViewModelTestCase {
         return infiniteGradientColors.map { $0.cgColor }
     }
 
-    private func makeGradientLocationMatrixFirstRow() -> [NSNumber] {
+    private func makeColorLocationInitialRow() -> ColorLocationRow {
         let gradientLocations = [0, 0.2, 0.4, 0.6, 0.8, 1]
 
         XCTAssertEqual(gradientLocations.count, UIColor.GradientLoadingBar.gradientColors.count,
@@ -187,8 +232,46 @@ extension GradientActivityIndicatorViewModelTestCase {
         // 0      | 0       | 0      | 0        | 0       | 0    | 0       | 0        | 0      | 0       | 0      | 0.2     | 0.4    | 0.6      | 0.8     | 1
         //
         // swiftlint:disable:next identifier_name
-        let gradientLocationAnimationMatrixInitialRow = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] + gradientLocations
+        let gradientLocationAnimationMatrixInitialRow = Array(repeating: 0.0, count: 10) + gradientLocations
 
-        return gradientLocationAnimationMatrixInitialRow.map { NSNumber(value: $0) }
+        return gradientLocationAnimationMatrixInitialRow.map {
+            NSNumber(value: $0)
+        }
+    }
+
+    private func makeColorLocationMatrix() -> ColorLocationMatrix {
+        let gradientLocations = [0, 0.2, 0.4, 0.6, 0.8, 1]
+
+        XCTAssertEqual(gradientLocations.count, UIColor.GradientLoadingBar.gradientColors.count,
+                       "Precondition failed – The given gradient locations do not match for the current color constant!")
+
+        // The current constant has 6 value and therefore we expect 16 gradient layer colors in total.
+        // Ergo we have to fill the first 10 values with "0", before adding the `gradientLocations`.
+        //
+        // .green | .malibu | .azure | .curious | .violet | .red | .violet | .curious | .azure | .malibu | .green | .malibu | .azure | .curious | .violet | .red
+        // 0      | 0       | 0      | 0        | 0       | 0    | 0       | 0        | 0      | 0       | 0      | 0.2     | 0.4    | 0.6      | 0.8     | 1
+        // ...
+        // 0      | 0       | 0      | 0        | 0       | 0    | 0.2     | 0.4      | 0.6    | 0.8     | 1      | 1       | 1      | 1        | 1       | 1
+        // ...
+        // 0      | 0.2     | 0.4    | 0.6      | 0.8     | 1    | 1       | 1        | 1      | 1       | 1      | 1       | 1      | 1        | 1       | 1
+        //
+
+        let colorLocationMatrix = [
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1, 1],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1, 1, 1],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1, 1, 1, 1],
+            [0, 0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1, 1, 1, 1, 1],
+            [0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1, 1, 1, 1, 1, 1],
+            [0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1, 1, 1, 1, 1, 1, 1],
+            [0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1, 1, 1, 1, 1, 1, 1, 1],
+            [0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [0, 0, 0.2, 0.4, 0.6, 0.8, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [0, 0.2, 0.4, 0.6, 0.8, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+        ]
+
+        return colorLocationMatrix.map {
+            $0.map { NSNumber(value: $0) }
+        }
     }
 }

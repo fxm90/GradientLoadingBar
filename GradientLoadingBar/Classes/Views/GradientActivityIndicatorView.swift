@@ -109,29 +109,28 @@ open class GradientActivityIndicatorView: UIView {
             self?.gradientLayer?.colors = newGradientLayerColors
         }.disposed(by: &disposeBag)
 
-        viewModel.gradientLayerLocations.subscribe { [weak self] newGradientLayerLocations, _ in
-            self?.gradientLayer?.locations = newGradientLayerLocations
+        viewModel.colorLocationInitialRow.subscribeDistinct { [weak self] newColorLocationInitialRow, _ in
+            self?.gradientLayer?.locations = newColorLocationInitialRow
         }.disposed(by: &disposeBag)
 
-        viewModel.animationState.subscribeDistinct { [weak self] newAnimationState, _ in
-            switch newAnimationState {
-            case let .active(values, duration):
-                self?.startAnimatingLocations(values: values, duration: duration)
+        viewModel.colorLocationMatrix.subscribeDistinct { [weak self] newColorLocationMatrix, _ in
+            self?.progressAnimation.values = newColorLocationMatrix
+        }.disposed(by: &disposeBag)
 
-            case .inactive:
-                self?.stopAnimatingLocations()
-            }
+        viewModel.animationDuration.subscribeDistinct { [weak self] newAnimationDuration, _ in
+            self?.progressAnimation.duration = newAnimationDuration
+        }.disposed(by: &disposeBag)
+
+        viewModel.isAnimating.subscribeDistinct { [weak self] newIsAnimating, _ in
+            self?.updateAnimation(isAnimating: newIsAnimating)
         }.disposed(by: &disposeBag)
     }
 
-    private func startAnimatingLocations(values: GradientLocationMatrix, duration: TimeInterval) {
-        progressAnimation.values = values
-        progressAnimation.duration = duration
-
-        gradientLayer?.add(progressAnimation, forKey: GradientActivityIndicatorView.progressAnimationKey)
-    }
-
-    private func stopAnimatingLocations() {
-        gradientLayer?.removeAnimation(forKey: GradientActivityIndicatorView.progressAnimationKey)
+    private func updateAnimation(isAnimating: Bool) {
+        if isAnimating {
+            gradientLayer?.add(progressAnimation, forKey: GradientActivityIndicatorView.progressAnimationKey)
+        } else {
+            gradientLayer?.removeAnimation(forKey: GradientActivityIndicatorView.progressAnimationKey)
+        }
     }
 }
