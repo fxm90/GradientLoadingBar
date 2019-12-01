@@ -21,7 +21,7 @@ final class GradientLoadingBarViewModel {
 
     // MARK: - Private properties
 
-    private let superviewSubject = PublishSubject<UIView?>()
+    private let superviewSubject: Variable<UIView?> = Variable(nil)
 
     // MARK: - Dependencies
 
@@ -35,32 +35,31 @@ final class GradientLoadingBarViewModel {
         self.sharedApplication = sharedApplication
         self.notificationCenter = notificationCenter
 
-        if let keyWindow = sharedApplication.keyWindow {
-            // We have a valid key window.
-            superviewSubject.update(keyWindow)
-        } else {
-            // The key window is not available yet. This can happen, if the initializer is called from
-            // `UIApplicationDelegate.application(_:didFinishLaunchingWithOptions:)`.
-            // Therefore we setup an observer to inform the view model when a `UIWindow` object becomes the key window.
-            notificationCenter.addObserver(self,
-                                           selector: #selector(didReceiveUIWindowDidBecomeKeyNotification(_:)),
-                                           name: UIWindow.didBecomeKeyNotification,
-                                           object: nil)
+        if let keyWindow = sharedApplication.windows.first(where: { $0.isKeyWindow }) {
+            superviewSubject.value = keyWindow
         }
+
+        // The key window might be not available yet. This can happen, if the initializer is called from
+        // `UIApplicationDelegate.application(_:didFinishLaunchingWithOptions:)`.
+        // Furthermore the key window can change. Therefore we setup an observer to inform the view model
+        // when a `UIWindow` object becomes the key window.
+        notificationCenter.addObserver(self,
+                                       selector: #selector(didReceiveUIWindowDidBecomeKeyNotification(_:)),
+                                       name: UIWindow.didBecomeKeyNotification,
+                                       object: nil)
     }
 
     deinit {
         /// By providing a custom de-initializer we make sure to remove the gradient-view from its superview.
-        superviewSubject.update(nil)
+        superviewSubject.value = nil
     }
 
     // MARK: - Private methods
 
     @objc private func didReceiveUIWindowDidBecomeKeyNotification(_: Notification) {
-        guard let keyWindow = sharedApplication.keyWindow else { return }
+        guard let keyWindow = sharedApplication.windows.first(where: { $0.isKeyWindow }) else { return }
 
-        // Now that we have a valid key window, we can use it as superview.
-        superviewSubject.update(keyWindow)
+        superviewSubject.value = keyWindow
     }
 }
 
@@ -68,7 +67,7 @@ final class GradientLoadingBarViewModel {
 
 /// This allows mocking `UIApplication` in tests.
 protocol UIApplicationProtocol: AnyObject {
-    var keyWindow: UIWindow? { get }
+    var windows: [UIWindow] { get }
 }
 
 extension UIApplication: UIApplicationProtocol {}

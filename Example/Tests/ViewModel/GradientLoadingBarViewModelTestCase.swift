@@ -35,47 +35,64 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
 
     // MARK: - Test observable `superview`
 
+    func testInitializerShouldSetupSuperviewObservableNil() throws {
+        // When
+        let viewModel = GradientLoadingBarViewModel(sharedApplication: sharedApplicationMock,
+                                                    notificationCenter: notificationCenter)
+
+        // Then
+        let variable = try XCTUnwrap(viewModel.superview as? Variable, "Cast `Observable` instance to `Variable` in order to validate the initial value.")
+        XCTAssertNil(variable.value)
+    }
+
     func testInitializerShouldSetupSuperviewObservableWithKeyWindow() {
         // Given
         let keyWindow = UIWindow()
-        sharedApplicationMock.keyWindow = keyWindow
+        keyWindow.makeKey()
+
+        let otherWindow = UIWindow()
+        sharedApplicationMock.windows = [keyWindow, otherWindow]
 
         // When
         let viewModel = GradientLoadingBarViewModel(sharedApplication: sharedApplicationMock,
                                                     notificationCenter: notificationCenter)
 
         // Then
-        XCTAssertEqual(viewModel.superview.value,
-                       keyWindow)
+        XCTAssertEqual(viewModel.superview.value, keyWindow)
     }
 
     func testInitializerShouldSetupSuperviewObservableAfterUIWindowDidBecomeKeyNotification() {
         // Given
+        let keyWindow = UIWindow()
+        keyWindow.makeKey()
+
+        let otherWindow = UIWindow()
+        sharedApplicationMock.windows = [otherWindow]
+
         let viewModel = GradientLoadingBarViewModel(sharedApplication: sharedApplicationMock,
                                                     notificationCenter: notificationCenter)
 
-        let keyWindow = UIWindow()
-
         // When
-        sharedApplicationMock.keyWindow = keyWindow
+        sharedApplicationMock.windows.append(keyWindow)
         notificationCenter.post(name: UIWindow.didBecomeKeyNotification,
                                 object: nil)
 
         // Then
-        XCTAssertEqual(viewModel.superview.value,
-                       keyWindow)
+        XCTAssertEqual(viewModel.superview.value, keyWindow)
     }
 
     func testDeinitShouldResetSuperviewObservableToNil() {
         // Given
         let keyWindow = UIWindow()
-        sharedApplicationMock.keyWindow = keyWindow
+        keyWindow.makeKey()
+
+        let otherWindow = UIWindow()
+        sharedApplicationMock.windows = [keyWindow, otherWindow]
 
         var viewModel: GradientLoadingBarViewModel? = GradientLoadingBarViewModel(sharedApplication: sharedApplicationMock,
                                                                                   notificationCenter: notificationCenter)
 
         let expectation = self.expectation(description: "Expected observer to be informed to reset superview to nil.")
-
         var disposeBag = DisposeBag()
 
         // As we've just initialized the view model it has to exist at this point, and therefore we can "safely" use force-unwrapping here.
@@ -100,5 +117,5 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
 // MARK: - Mocks
 
 class SharedApplicationMock: UIApplicationProtocol {
-    var keyWindow: UIWindow?
+    var windows = [UIWindow]()
 }
