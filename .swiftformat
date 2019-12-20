@@ -1,7 +1,23 @@
-# file options
+#
+# Configuration file for SwiftFormat (https://github.com/nicklockwood/SwiftFormat/)
+#
+# A more detailed documentation of the rules can be found at <https://github.com/nicklockwood/SwiftFormat/blob/master/Rules.md>
+#
+
+#
+# File options
+#
 --exclude "Example/Pods/"
 
-# rules
---enable "blankLinesAroundMark"
---disable "sortedImports,trailingCommas"
---wraparguments "afterfirst"
+#
+# Rules
+#
+--disable andOperator
+--disable sortedImports
+--disable trailingCommas
+
+#
+# Rule Configuration
+#
+--wraparguments "after-first"
+--wrapcollections "before-first"
