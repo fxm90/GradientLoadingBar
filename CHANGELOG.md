@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [2.0.2] - 2019-20-12
+### Changed
+ - Use `windows.first(where: { $0.isKeyWindow })` instead of [`keyWindow`](https://developer.apple.com/documentation/uikit/uiapplication/1622924-keywindow) as this is deprecated in iOS 13
+
 ## [2.0.1] - 2019-12-10
 ### Changed
  - Refactorings (Optimized progress animation)
@@ -118,7 +122,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 
 [Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/2.0.1...master
-[2.0.1]: https://github.com/fxm90/GradientLoadingBar/compare/2.0.0...2.0.1
+[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/2.0.2...master
+[2.0.2]: https://github.com/fxm90/GradientLoadingBar/compare/2.0.1...2.0.2
 [2.0.0]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.17...2.0.0
 [1.1.17]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.16...1.1.17
 [1.1.16]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.15...1.1.16

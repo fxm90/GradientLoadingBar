@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GradientLoadingBar'
-  s.version          = '2.0.1'
+  s.version          = '2.0.2'
   s.summary          = 'A customizable animated gradient loading bar.'
 
 # This description is used to generate tags and improve search results.
