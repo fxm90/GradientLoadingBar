@@ -1,7 +1,13 @@
 #
+# .swiftformat
+# Created by Felix Mau (https://felix.hamburg)
+#
+
+#
 # Configuration file for SwiftFormat (https://github.com/nicklockwood/SwiftFormat/)
 #
-# A more detailed documentation of the rules can be found at <https://github.com/nicklockwood/SwiftFormat/blob/master/Rules.md>
+# A more detailed documentation of the rules can be found at
+# https://github.com/nicklockwood/SwiftFormat/blob/master/Rules.md
 #
 
 #
