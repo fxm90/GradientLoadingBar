@@ -6,7 +6,7 @@
 //  Copyright © 2017 Felix Mau. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import LightweightObservable
 
 /// This view model checks for the availability of the key-window,
