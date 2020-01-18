@@ -1,4 +1,4 @@
-[![Travis](https://travis-ci.org/nicklockwood/SwiftFormat.svg)](https://travis-ci.org/nicklockwood/SwiftFormat)
+[![Travis](https://api.travis-ci.org/nicklockwood/SwiftFormat.svg?branch=master)](https://travis-ci.org/nicklockwood/SwiftFormat)
 [![Coveralls](https://coveralls.io/repos/github/nicklockwood/SwiftFormat/badge.svg)](https://coveralls.io/github/nicklockwood/SwiftFormat)
 [![Swift 4.2](https://img.shields.io/badge/swift-4.2-red.svg?style=flat)](https://developer.apple.com/swift)
 [![License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://opensource.org/licenses/MIT)
@@ -69,7 +69,6 @@ Command-line tool
 You can install the `swiftformat` command-line tool on macOS using [Homebrew](http://brew.sh/). Assuming you already have Homebrew installed, just type:
 
 ```bash
-$ brew update
 $ brew install swiftformat
 ```
 
@@ -123,14 +122,6 @@ $ swiftformat .
     
 (that's a space and then a period after the command) in the terminal to format any Swift files in the current directory. In place of the `.`, you can instead type an absolute or relative path to the file or directory that you want to format.
 
-If you prefer, you can use unix pipes to include SwiftFormat as part of a command chain. For example, this is an alternative way to format a file:
-
-```bash
-$ cat /path/to/file.swift | swiftformat --output /path/to/file.swift
-```
-    
-Omitting the `--output /path/to/file.swift` will print the formatted file to `stdout`.
-
 **WARNING:** `swiftformat .` will overwrite any Swift files it finds in the current directory, and any subfolders therein. If you run it in your home directory, it will probably reformat every Swift file on your hard drive.
 
 To use it safely, do the following:
@@ -155,21 +146,55 @@ To use it safely, do the following:
 
 Following these instructions *should* ensure that you avoid catastrophic data loss, but in the unlikely event that it wipes your hard drive, **please note that I accept no responsibility**.
 
+**Using Standard Input/Output:**
+
+If you prefer, you can use unix pipes to include SwiftFormat as part of a command chain. For example, this is an alternative way to format a file:
+
+```bash
+$ cat /path/to/file.swift | swiftformat --output /path/to/file.swift
+```
+    
+Omitting the `--output /path/to/file.swift` will print the formatted file to Standard Output (stdout). You can also use `>` to specify the output path as follows:
+
+```bash
+$ cat /path/to/file.swift | swiftformat > /path/to/file.swift
+```
+
+If you do not supply an input file, SwiftFormat will automatically take its input from Standard Input (stdin), but will time-out if no input is received immediately and display the help screen. To make it explicit, pass "stdin" as the input path:
+
+```bash
+$ cat /path/to/file.swift | swiftformat stdin
+```
+
 
 Xcode source editor extension
 -----------------------------
 
 **Installation:**
 
-You'll find the latest version of the SwiftFormat for Xcode application inside the EditorExtension folder included in the SwiftFormat repository. Drag it into your `Applications` folder, then double-click to launch it, and follow the on-screen instructions.
+Like the command-line tool, you can install the SwiftFormat for Xcode extension application via [Homebrew](http://brew.sh/). Assuming you already have Homebrew installed, type:
 
-**NOTE:** The Extension requires Xcode 9.2 and macOS 10.12 (Sierra) or higher.
+```bash
+$ brew cask install swiftformat-for-xcode
+```
+
+This will install SwiftFormat for Xcode in your Applications folder. Double-click the app to launch it, and then follow the on-screen instructions.
+
+**NOTE:** The app should be correctly signed, but if you get a Gatekeeper warning when trying to open it you can bypass this by right-clicking (or control-clicking) the app and selecting `Open`.
+
+To update to the latest version once installed use:
+
+```bash
+$ brew cask upgrade swiftformat-for-xcode
+```
+
+Alternatively, if you prefer not to use Homebrew, you'll find the latest version of the SwiftFormat for Xcode application inside the EditorExtension folder included in the SwiftFormat repository. Download and unpack the zip archive, then drag `SwiftFormat for Xcode.app` into your `Applications` folder.
 
 **Usage:**
 
-In Xcode, you'll find a SwiftFormat option under the Editor menu. You can use this to format either the current selection or the whole file.
+Once you have launched the app and restarted Xcode, you'll find a SwiftFormat option under Xcode's Editor menu.
 
-You can configure the formatting [rules](#rules) and [options](#options) used by the Xcode source editor extension using the host application. There is currently no way to override these per-project, however you can import and export different configurations using the File menu. You will need to do this again each time you switch project.
+You can configure the formatting [rules](#rules) and [options](#options) using the SwiftFormat for Xcode host application. There is currently no way to override these per-project, however you can import and export different configurations using the File menu. You will need to do this again each time you switch projects.
 
 The format of the configuration file is described in the [Config section](#config-file) below.
 
@@ -682,10 +707,12 @@ Credits
 * [Vincent Bernier](https://github.com/vinceburn) - Xcode extension settings UI
 * [Maxime Marinel](https://github.com/bourvill) - Git pre-commit hook script
 * [Romain Pouclet](https://github.com/palleas) - Homebrew formula
+* [Aerobounce](https://github.com/aerobounce) - Homebrew cask for source editor extension
 * [Ali Akhtarzada](https://github.com/aliak00) - Several path-related CLI enhancements
 * [Yonas Kolb](https://github.com/yonaskolb) - Swift Package Manager integration
 * [Wolfgang Lutz](https://github.com/Lutzifer) - AppleScript integration instructions
 * [Balázs Kilvády](https://github.com/balitm) - Xcode lint warning integration
+* [Anthony Miller](https://github.com/AnthonyMDev) - Improvements to wrap/indent logic
 * [Nick Lockwood](https://github.com/nicklockwood) - Everything else
 
 ([Full list of contributors](https://github.com/nicklockwood/SwiftFormat/graphs/contributors))

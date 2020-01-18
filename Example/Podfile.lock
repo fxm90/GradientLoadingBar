@@ -3,8 +3,8 @@ PODS:
     - LightweightObservable (~> 2.0)
   - LightweightObservable (2.0.0)
   - SnapshotTesting (1.7.0)
-  - SwiftFormat/CLI (0.43.0)
-  - SwiftLint (0.38.0)
+  - SwiftFormat/CLI (0.44.0)
+  - SwiftLint (0.38.2)
 
 DEPENDENCIES:
   - GradientLoadingBar (from `../`)
@@ -27,8 +27,8 @@ SPEC CHECKSUMS:
   GradientLoadingBar: 8ecde9e0ffe13cbbcd76c1d971077dbdc51d0e10
   LightweightObservable: f0c032384379a17cb048b861e33de8209155d7be
   SnapshotTesting: 273b614fcc60fac7d9f613f6648afa91a7da36be
-  SwiftFormat: 2f5705a6e9f4791004478d939722b6803b77fc5a
-  SwiftLint: 4105f061f9812b214568b736dab580ab2c73a582
+  SwiftFormat: 180a4d17bcfa2c9f61b202dac7dddd2087ff920a
+  SwiftLint: 8f5d2f903e1c9bcbc832fd16771e80a263ac6cbb
 
 PODFILE CHECKSUM: f56a08d884831d712155be32578b7364270d0af0
 
