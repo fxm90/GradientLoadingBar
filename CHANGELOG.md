@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [2.0.3] - 2020-18-01
+### Added
+ - Added support for Swift Package Manager.
+
 ## [2.0.2] - 2019-20-12
 ### Changed
  - Use `windows.first(where: { $0.isKeyWindow })` instead of [`keyWindow`](https://developer.apple.com/documentation/uikit/uiapplication/1622924-keywindow) as this is deprecated in iOS 13
@@ -121,9 +125,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial release
 
 
-[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/2.0.1...master
-[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/2.0.2...master
+[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/2.0.3...master
+[2.0.3]: https://github.com/fxm90/GradientLoadingBar/compare/2.0.2...2.0.3
 [2.0.2]: https://github.com/fxm90/GradientLoadingBar/compare/2.0.1...2.0.2
+[2.0.1]: https://github.com/fxm90/GradientLoadingBar/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.17...2.0.0
 [1.1.17]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.16...1.1.17
 [1.1.16]: https://github.com/fxm90/GradientLoadingBar/compare/1.1.15...1.1.16
