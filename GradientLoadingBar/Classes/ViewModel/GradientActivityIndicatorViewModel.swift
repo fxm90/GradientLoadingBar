@@ -6,7 +6,7 @@
 //  Copyright © 2019 Felix Mau. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import LightweightObservable
 
 // MARK: - Types

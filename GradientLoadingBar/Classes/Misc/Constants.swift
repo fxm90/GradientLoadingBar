@@ -6,7 +6,7 @@
 //  Copyright © 2019 Felix Mau. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension UIColor {
     /// Default colors for components.
