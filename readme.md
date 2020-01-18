@@ -32,6 +32,18 @@ github "fxm90/GradientLoadingBar" ~> 2.0
 Run carthage update to build the framework and drag the built `GradientLoadingBar.framework`, as well as the dependency `LightweightObservable.framework`, into your Xcode project.
 
 
+##### Swift Package Manager
+The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler. It is in early development, but Gradient Loading Bar does support its use on supported platforms.
+
+Once you have your Swift package set up, adding Gradient Loading Bar as a dependency is as easy as adding it to the `dependencies` value of your `Package.swift`.
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/fxm90/GradientLoadingBar", from: "2.0.3")
+]
+```
+
+
 ### How to use
 This framework provides two classes:
 
