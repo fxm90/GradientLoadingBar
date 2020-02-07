@@ -1,0 +1,49 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Execute SwiftFormat and treat any formatting errors as real errors."
+  lane :format do
+    swiftformat(executable: "Pods/SwiftFormat/CommandLineTool/swiftformat",
+                path: "../",
+                lint: true)
+  end
+
+  desc "Execute SwiftLint and treat any formatting errors as real errors."
+  lane :lint do
+    swiftlint(
+      config_file: ".swiftlint.yml",
+      strict: true,
+      executable: "Pods/SwiftLint/swiftlint"
+    )
+  end
+
+  desc "Execute tests."
+  lane :tests do
+    run_tests(workspace: "GradientLoadingBar.xcworkspace",
+              devices: ["iPhone 11 Pro"],
+              scheme: "GradientLoadingBar-Example")
+  end
+
+  desc "Execute validation of library."
+  lane :pod_lint do
+    Dir.chdir("..") do
+      # Move outside of `Example/` directory.
+      pod_lib_lint()
+    end
+  end
+end
