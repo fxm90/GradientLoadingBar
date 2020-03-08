@@ -11,17 +11,22 @@
 
 ## Features
 
-Lightweight Observable is a simple implementation of an observable sequence that you can subscribe to. The framework is designed to be minimal meanwhile convenient. The entire code is only ~90 lines (excluding comments). With Lightweight Observable you can easily set up UI-Bindings in an MVVM application, handle asynchronous network calls and a lot more.
+Lightweight Observable is a simple implementation of an observable sequence that you can subscribe to. The framework is designed to be minimal meanwhile convenient. The entire code is only ~100 lines (excluding comments). With Lightweight Observable you can easily set up UI-Bindings in an MVVM application, handle asynchronous network calls and a lot more.
 
-##### Credits 
+##### Credits
 The code was heavily influenced by [roberthein/observable](https://github.com/roberthein/Observable). However I needed something that was syntactically closer to [RxSwift](https://github.com/ReactiveX/RxSwift), which is why I came up with this code, and for re-usability reasons afterwards moved it into a CocoaPod.
 
-##### Migration Guide 
+##### Migration Guide
 If you want to update from version 1.x.x, please have a look at the [Lightweight Observable 2.0 Migration Guide
 ](Documentation/Lightweight%20Observable%202.0%20Migration%20Guide.md)
 
 ### Example
 To run the example project, clone the repo, and open the workspace from the Example directory.
+
+### Requirements
+- Swift 5.0
+- Xcode 10.2+
+- iOS 9.0+
 
 ### Integration
 ##### CocoaPods
@@ -56,8 +61,8 @@ dependencies: [
 The framework provides three classes `Observable`, `PublishSubject` and `Variable`:
 
  - `Observable`: An observable sequence that you can subscribe to, but not change the underlying value (immutable). This is useful to avoid side-effects on an internal API.
- - `PublishSubject`: Subclass of `Observable`, that starts empty and only emits new elements to subscribers (mutable).
- - `Variable`: Subclass of `Observable`, that starts with an initial value and replays it or the latest element to new subscribers (mutable).
+ - `PublishSubject`: Subclass of `Observable` that starts empty and only emits new elements to subscribers (mutable).
+ - `Variable`: Subclass of `Observable` that starts with an initial value and replays it or the latest element to new subscribers (mutable).
 
 #### – Create and update a `PublishSubject`
 A `PublishSubject` starts empty and only emits new elements to subscribers.
@@ -82,7 +87,7 @@ formattedTimeSubject.value = "4:21 PM"
 ```
 
 #### – Create an `Observable`
-Initializing an observable directly is not possible, as this would lead to a sequence that will never change. Instead you need to cast a `PublishSubject` or a `Variable` to an observable.
+Initializing an observable directly is not possible, as this would lead to a sequence that will never change. Instead you need to cast a `PublishSubject` or a `Variable` to an Observable.
 
 ```swift
 var formattedTime: Observable<String> {
@@ -94,12 +99,19 @@ lazy var formattedTime: Observable<String> = formattedTimeSubject
 ```
 
 #### – Subscribe to changes
-A subscriber will be informed at different times, depending on the subclass of the observable:
+A subscriber will be informed at different times, depending on the corresponding subclass of the observable:
 
  - `PublishSubject`: Starts empty and only emits new elements to subscribers.
  - `Variable`: Starts with an initial value and replays it or the latest element to new subscribers.
 
-To subscribe to an observable, you need to use the method `func subscribe(_ observer: @escaping Observer) -> Disposable`.
+##### – Closure based subscription
+**Declaration**
+
+```swift
+func subscribe(_ observer: @escaping Observer) -> Disposable
+```
+
+Use this method to subscribe to an observable via a closure:
 
 ```swift
 formattedTime.subscribe { [weak self] newFormattedTime, oldFormattedTime in
@@ -107,9 +119,22 @@ formattedTime.subscribe { [weak self] newFormattedTime, oldFormattedTime in
 }
 ```
 
-Please notice that the old value (`oldFormattedTime`) is an optional of the underlying type, as we don't have this value on the initial call to the subscriber.
+Please notice that the old value (`oldFormattedTime`) is an optional of the underlying type, as we might not have this value on the initial call to the subscriber.
 
 **Important:** To avoid retain cycles and/or crashes, **always** use `[weak self]` when self is needed by an observer.
+
+##### - KeyPath based subscription
+**Declaration**
+
+```swift
+func bind<Root: AnyObject>(to keyPath: ReferenceWritableKeyPath<Root, Value>, on object: Root) -> Disposable
+```
+
+It is also possible to use Swift's KeyPath feature to bind an observable directly to a property:
+
+```swift
+formattedTime.bind(to: \.text, on: timeLabel)
+```
 
 #### – Memory Management (`Disposable` / `DisposeBag`)
 
@@ -121,7 +146,7 @@ Let me explain you why in a little example:
 
 > Imagine having a MVVM application using a service layer for network calls. A service is used as a singleton across the entire app.
 >
-> The view-model has a reference to a service and subscribes to an observable property. The subscription-closure is now saved inside the observable property on the service.
+> The view-model has a reference to a service and subscribes to an observable property of this service. The subscription-closure is now saved inside the observable property on the service.
 >
 > If the view-model gets deallocated (e.g. due to a dismissed view-controller), without noticing the observable property somehow, the subscription-closure would continue to be alive.
 >
@@ -130,9 +155,17 @@ Let me explain you why in a little example:
 In case you only use a single subscriber you can store the returned `Disposable` to a variable:
 
 ```swift
+// MARK: - Using `subscribe(_:)`
+
 let disposable = formattedTime.subscribe { [weak self] newFormattedTime, oldFormattedTime in
-	// ...
+    self?.timeLabel.text = newFormattedTime
 }
+
+// MARK: - Using a `bind(to:on:)`
+
+let disposable = dateTimeViewModel
+    .formattedTime
+    .bind(to: \.text, on: timeLabel)
 ```
 
 In case you're having multiple observers, you can store all returned `Disposable` in an array of `Disposable`. (To match the syntax from [RxSwift](https://github.com/ReactiveX/RxSwift), this pod contains a typealias called `DisposeBag`, which is an array of `Disposable`).
@@ -140,13 +173,25 @@ In case you're having multiple observers, you can store all returned `Disposable
 ```swift
 var disposeBag = DisposeBag()
 
+// MARK: - Using `subscribe(_:)`
+
 formattedTime.subscribe { [weak self] newFormattedTime, oldFormattedTime in
-    // ...
+    self?.timeLabel.text = newFormattedTime
 }.disposed(by: &disposeBag)
 
 formattedDate.subscribe { [weak self] newFormattedDate, oldFormattedDate in
-    // ...
+    self?.dateLabel.text = newFormattedDate
 }.disposed(by: &disposeBag)
+
+// MARK: - Using a `bind(to:on:)`
+
+formattedTime
+    .bind(to: \.text, on: timeLabel)
+    .disposed(by: &disposeBag)
+
+formattedDate
+    .bind(to: \.text, on: dateLabel)
+    .disposed(by: &disposeBag)
 ```
 
 A `DisposeBag` is exactly what it says it is, a bag (or array) of disposables.
@@ -229,9 +274,10 @@ class TimeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        timeViewModel.formattedTime.subscribe { [weak self] newFormattedTime, _ in
-            self?.timeLabel.text = newFormattedTime
-        }.disposed(by: &disposeBag)
+        timeViewModel
+            .formattedTime
+            .bind(to: \.text, on: timeLabel)
+            .disposed(by: &disposeBag)
     }
 ```
 Feel free to check out the example application as well for a better understanding of this approach 🙂

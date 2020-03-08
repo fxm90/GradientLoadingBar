@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// Additonal helper methods for an observable that can be compared for equality.
+/// Additional helper methods for an observable that that underlying type conforms to `Equatable`.
 public extension Observable where T: Equatable {
     // MARK: - Types
 

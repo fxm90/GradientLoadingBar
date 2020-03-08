@@ -11,6 +11,9 @@ import Foundation
 /// An observable sequence that you can subscribe to.
 ///
 /// - Note: Implementation is partly based on [roberthein/Observable](https://github.com/roberthein/Observable).
+///
+/// - Remark: I'd prefer having a protocol definition here, but casting an instance with a generic (e.g. `Variable<Int>(0)`) to a
+///           protocol with an associated type (`Observable<Int>`) does not work. Therefore we use an "abstract" class as a workaround.
 public class Observable<T> {
     // MARK: - Types
 
@@ -34,7 +37,7 @@ public class Observable<T> {
     ///
     /// - Attention: It's always better to subscribe to a given observable! This **shortcut** should only be used during **testing**.
     public var value: Value? {
-        fatalError("⚠️ – Subclasses need to overwrite this computed property.")
+        fatalError("⚠️ – Subclasses need to overwrite and implement this computed property.")
     }
 
     // MARK: - Private properties
@@ -50,13 +53,11 @@ public class Observable<T> {
     /// Initializes a new observable.
     ///
     /// - Note: Declared `fileprivate` in order to prevent directly initializing an observable, which can not be updated.
-    fileprivate init() {
-        // swiftformat:disable:previous redundantFileprivate
-    }
+    fileprivate init() {}
 
     // MARK: - Public methods
 
-    /// Informs the given observer on changes to our `value`.
+    /// Informs the given observer on changes to our property `value`.
     ///
     /// - Parameter observer: The observer-closure that is notified on changes.
     public func subscribe(_ observer: @escaping Observer) -> Disposable {
@@ -72,8 +73,8 @@ public class Observable<T> {
 
     // MARK: - Private methods
 
-    fileprivate func notifyObserver(_ value: Value, oldValue: OldValue) {
-        for (_, observer) in observers {
+    fileprivate func notifyObserver(with value: Value, from oldValue: OldValue) {
+        observers.values.forEach { observer in
             observer(value, oldValue)
         }
     }
@@ -85,13 +86,15 @@ public final class PublishSubject<T>: Observable<T> {
 
     /// The current (readonly) value of the observable (if available).
     public override var value: Value? {
-        currentValue
+        _value
     }
 
     // MARK: - Private properties
 
     /// The storage for our computed property.
-    private var currentValue: Value?
+    ///
+    /// - Note: Workaround for compiler error `Cannot override with a stored property 'value'`.
+    private var _value: Value?
 
     // MARK: - Initializer
 
@@ -106,11 +109,12 @@ public final class PublishSubject<T>: Observable<T> {
 
     /// Updates the publish subject using the given value.
     public func update(_ value: Value) {
-        let oldValue = currentValue
-        currentValue = value
+        let oldValue = _value
+        _value = value
 
-        // We inform the observer here instead of using `didSet` to prevent unwrapping an optional (`currentValue` is nullable, as we're starting empty!).
-        notifyObserver(value, oldValue: oldValue)
+        // We inform the observer here instead of using `didSet` on `_value` to prevent unwrapping an optional (`_value` is nullable, as we're starting empty!).
+        // Unwrapping lead to issues on having an underlying optional type.
+        notifyObserver(with: value, from: oldValue)
     }
 }
 
@@ -120,20 +124,18 @@ public final class Variable<T>: Observable<T> {
 
     /// The current (read- and writeable) value of the variable.
     public override var value: Value {
-        get {
-            currentValue
-        }
-        set {
-            currentValue = newValue
-        }
+        get { _value }
+        set { _value = newValue }
     }
 
     // MARK: - Private properties
 
     /// The storage for our computed property.
-    private var currentValue: Value {
+    ///
+    /// - Note: Workaround for compiler error `Cannot override with a stored property 'value'`.
+    private var _value: Value {
         didSet {
-            notifyObserver(value, oldValue: oldValue)
+            notifyObserver(with: value, from: oldValue)
         }
     }
 
@@ -143,7 +145,7 @@ public final class Variable<T>: Observable<T> {
     ///
     /// - Note: We keep the initializer to the super class `Observable` fileprivate in order to verify always having a value.
     public init(_ value: Value) {
-        currentValue = value
+        _value = value
 
         super.init()
     }
@@ -152,7 +154,7 @@ public final class Variable<T>: Observable<T> {
 
     public override func subscribe(_ observer: @escaping Observer) -> Disposable {
         // A variable should inform the observer with the initial value.
-        observer(value, nil)
+        observer(_value, nil)
 
         return super.subscribe(observer)
     }
