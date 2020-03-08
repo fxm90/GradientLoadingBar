@@ -27,35 +27,27 @@ open class GradientActivityIndicatorView: UIView {
 
     /// Colors used for the gradient.
     public var gradientColors: [UIColor] {
-        get {
-            return viewModel.gradientColors
-        }
-        set {
-            viewModel.gradientColors = newValue
-        }
+        get { viewModel.gradientColors }
+        set { viewModel.gradientColors = newValue }
     }
 
     /// Duration for the progress animation.
     public var progressAnimationDuration: TimeInterval {
-        get {
-            return viewModel.progressAnimationDuration
-        }
-        set {
-            viewModel.progressAnimationDuration = newValue
-        }
+        get { viewModel.progressAnimationDuration }
+        set { viewModel.progressAnimationDuration = newValue }
     }
 
     /// In order to prevent adding another sublayer and keeping the frame up-to-date, we
     /// simply overwrite the `layerClass` and use a `CAGradientLayer` for this view.
     open override class var layerClass: AnyClass {
-        return CAGradientLayer.self
+        CAGradientLayer.self
     }
 
     // MARK: - Private properties
 
     /// The layer holding the gradient.
     private var gradientLayer: CAGradientLayer? {
-        return layer as? CAGradientLayer
+        layer as? CAGradientLayer
     }
 
     /// The animation used to show the "progress".
@@ -92,7 +84,7 @@ open class GradientActivityIndicatorView: UIView {
 
     open override func point(inside _: CGPoint, with _: UIEvent?) -> Bool {
         // Passing all touches to the next view (if any), in the view stack.
-        return false
+        false
     }
 
     // MARK: - Private methods

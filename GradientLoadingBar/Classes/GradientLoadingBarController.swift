@@ -30,7 +30,7 @@ open class GradientLoadingBarController {
     /// Colors used for the gradient.
     public var gradientColors: [UIColor] {
         get {
-            return gradientView.gradientColors
+            gradientView.gradientColors
         }
         set {
             gradientView.gradientColors = newValue
@@ -40,7 +40,7 @@ open class GradientLoadingBarController {
     /// Duration for the progress animation.
     public var progressAnimationDuration: TimeInterval {
         get {
-            return gradientView.progressAnimationDuration
+            gradientView.progressAnimationDuration
         }
         set {
             gradientView.progressAnimationDuration = newValue

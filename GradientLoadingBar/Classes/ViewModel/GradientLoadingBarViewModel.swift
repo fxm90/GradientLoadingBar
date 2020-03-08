@@ -16,7 +16,7 @@ final class GradientLoadingBarViewModel {
 
     /// Observable for the superview of the gradient-view.
     var superview: Observable<UIView?> {
-        return superviewSubject
+        superviewSubject
     }
 
     // MARK: - Private properties
