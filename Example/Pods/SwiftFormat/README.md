@@ -224,12 +224,14 @@ import PackageDescription
 
 let package = Package(
     name: "BuildTools",
-	platforms: [.macOS(.v10_11)],
+    platforms: [.macOS(.v10_11)],
     dependencies: [
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.41.2"),
-    ]
+    ],
+    targets: [.target(name: "BuildTools", path: "")]
 )
 ```
+3. If you are running Xcode 11.4 or later, in the `BuildTools` folder create a file called `Empty.swift` with nothing in it. This is to satisfy a change in Swift Package Manager.
 
 #### 2) Add a Build phases to your app target
 
@@ -238,12 +240,14 @@ let package = Package(
 3. Drag the new `Run Script` phase **above** the `Compile Sources` phase, expand it and paste the following script:  
    ```bash
    cd BuildTools
+   SDKROOT=macosx
    #swift package update #Uncomment this line temporarily to update the version used to the latest matching your BuildTools/Package.swift file
    swift run -c release swiftformat "$SRCROOT"
    ```
 
-**NOTE:** You may wish to check BuildTools/Package.swift into your source control so that the version used by your run-script phase is kept in version control. It is recommended to add the following to your .gitignore file: `BuildTools/.build` and `BuildTools/.swiftpm`.
+You can also use `swift run -c release --package-path BuildTools swiftformat "$SRCROOT"` if you need a more complex script and `cd BuildTools` breaks stuff.
 
+**NOTE:** You may wish to check BuildTools/Package.swift into your source control so that the version used by your run-script phase is kept in version control. It is recommended to add the following to your .gitignore file: `BuildTools/.build` and `BuildTools/.swiftpm`.
 
 ### Using Cocoapods
 
@@ -308,13 +312,13 @@ Git pre-commit hook
 
 1. Follow the instructions for installing the SwiftFormat command-line tool.
 
-2. Edit or create a `.git/hooks/pre-commit` file in your project folder. The .git folder is hidden but should already exist if you are using Git with your project, so open in with the terminal, or the Finder's `Go > Go to Folder...` menu.
+2. Edit or create a `.git/hooks/pre-commit` file in your project folder. The .git folder is hidden but should already exist if you are using Git with your project, so open it with the terminal, or the Finder's `Go > Go to Folder...` menu.
 
 3. Add the following line in the pre-commit file (unlike the Xcode build phase approach, this uses your locally installed version of SwiftFormat, not a separate copy in your project repository)
 
     ```bash
     #!/bin/bash
-    git diff --diff-filter=d --staged --name-only | grep -e '\(.*\).swift$' | while read line; do
+    git diff --diff-filter=d --staged --name-only | grep -e '\.swift$' | while read line; do
       swiftformat "${line}";
       git add "$line";
     done
@@ -453,7 +457,7 @@ A SwiftFormat configuration file consists of one or more command-line options, s
 
 ```
 --allman true
---indent tabs
+--indent tab
 --disable elseOnSameLine,semicolons
 ```
 
@@ -474,7 +478,7 @@ The config file format is designed to be edited by hand. You may include blank l
 ```
 # format options
 --allman true
---indent tabs # tabs FTW!
+--indent tab # tabs FTW!
 
 # file options
 --exclude Pods
@@ -721,8 +725,10 @@ Credits
 * [Ali Akhtarzada](https://github.com/aliak00) - Several path-related CLI enhancements
 * [Yonas Kolb](https://github.com/yonaskolb) - Swift Package Manager integration
 * [Wolfgang Lutz](https://github.com/Lutzifer) - AppleScript integration instructions
-* [Balázs Kilvády](https://github.com/balitm) - Xcode lint warning integration
+* [Balázs Kilvády](https://github.com/balitm) - Xcode lint warning integration
 * [Anthony Miller](https://github.com/AnthonyMDev) - Improvements to wrap/indent logic
+* [Shingo Takagi](https://github.com/zizi4n5) - Several brace-related bug fixes
+* [Juri Pakaste](https://github.com/juri) - Filelist feature
 * [Nick Lockwood](https://github.com/nicklockwood) - Everything else
 
 ([Full list of contributors](https://github.com/nicklockwood/SwiftFormat/graphs/contributors))

@@ -8,10 +8,10 @@
 
 import Foundation
 
-/// Helper to allow storing multiple disposables (and matching name from RxSwift).
+/// Helper to allow storing multiple disposables and matching name from [RxSwift](https://github.com/ReactiveX/RxSwift).
 public typealias DisposeBag = [Disposable]
 
-/// Executes a given closure on deallocation.
+/// Executes a given closure on it's deallocation.
 public final class Disposable {
     // MARK: - Types
 
@@ -39,7 +39,7 @@ public final class Disposable {
 
     // MARK: - Public methods
 
-    /// Adds the current disposable to an array of disposables.
+    /// Adds the current instance to the given array of disposables.
     public func disposed(by bag: inout DisposeBag) {
         bag.append(self)
     }

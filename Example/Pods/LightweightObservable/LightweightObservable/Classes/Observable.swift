@@ -8,12 +8,12 @@
 
 import Foundation
 
-/// An observable sequence that you can subscribe to.
+/// A lightweight implementation of an observable sequence that you can subscribe to.
 ///
-/// - Note: Implementation is partly based on [roberthein/Observable](https://github.com/roberthein/Observable).
+/// - Note: Partly based on [roberthein/Observable](https://github.com/roberthein/Observable).
 ///
-/// - Remark: I'd prefer having a protocol definition here, but casting an instance with a generic (e.g. `Variable<Int>(0)`) to a
-///           protocol with an associated type (`Observable<Int>`) does not work. Therefore we use an "abstract" class as a workaround.
+/// - Remark: I'd prefer having a protocol definition here, but casting an instance with a generic (e.g. `Variable<Int>(0)`) to a protocol
+///           with an associated type (`Observable<Int>`) doesn't work yet. Therefore we use an "abstract" class as a workaround.
 public class Observable<T> {
     // MARK: - Types
 
@@ -24,7 +24,11 @@ public class Observable<T> {
     public typealias OldValue = T?
 
     /// The type for the closure to executed on change of the observable.
-    public typealias Observer = (Value, OldValue) -> Void
+    ///
+    /// - Parameters:
+    ///   - value: The current (new) value.
+    ///   - oldValue: The previous (old) value.
+    public typealias Observer = (_ value: Value, _ oldValue: OldValue) -> Void
 
     /// We store all observers within a dictionary, for which this is the type of the key.
     private typealias Index = UInt
@@ -37,7 +41,7 @@ public class Observable<T> {
     ///
     /// - Attention: It's always better to subscribe to a given observable! This **shortcut** should only be used during **testing**.
     public var value: Value? {
-        fatalError("⚠️ – Subclasses need to overwrite and implement this computed property.")
+        fatalError("⚠️ – Trying to access an abstract property! Subclasses need to overwrite and implement this computed property.")
     }
 
     // MARK: - Private properties
@@ -45,29 +49,29 @@ public class Observable<T> {
     /// The index of the last inserted observer.
     private var lastIndex: Index = 0
 
-    /// Map with all active observers.
+    /// Map with all **active** observers.
     private var observers = [Index: Observer]()
 
     // MARK: - Initalizer
 
     /// Initializes a new observable.
     ///
-    /// - Note: Declared `fileprivate` in order to prevent directly initializing an observable, which can not be updated.
+    /// - Note: Declared `fileprivate` in order to prevent directly initializing an observable, that can't emit values.
     fileprivate init() {}
 
     // MARK: - Public methods
 
-    /// Informs the given observer on changes to our property `value`.
+    /// Informs the given observer on changes to our underlying property `value`.
     ///
-    /// - Parameter observer: The observer-closure that is notified on changes.
+    /// - Parameter observer: The closure that is notified on changes.
     public func subscribe(_ observer: @escaping Observer) -> Disposable {
-        let currentIndex = lastIndex + 1
-        observers[currentIndex] = observer
-        lastIndex = currentIndex
+        let indexForNewObserver = lastIndex + 1
+        observers[indexForNewObserver] = observer
+        lastIndex = indexForNewObserver
 
         // Return a disposable, that removes the entry for this observer on it's deallocation.
         return Disposable { [weak self] in
-            self?.observers[currentIndex] = nil
+            self?.observers[indexForNewObserver] = nil
         }
     }
 
@@ -112,8 +116,8 @@ public final class PublishSubject<T>: Observable<T> {
         let oldValue = _value
         _value = value
 
-        // We inform the observer here instead of using `didSet` on `_value` to prevent unwrapping an optional (`_value` is nullable, as we're starting empty!).
-        // Unwrapping lead to issues on having an underlying optional type.
+        // We inform the observer here instead of using `didSet` on `_value` to prevent unwrapping an optional (`_value` is nullable, as we're starting empty).
+        // Unwrapping lead to issues / crashes on having an underlying optional type, e.g. `PublishSubject<Int?>`.
         notifyObserver(with: value, from: oldValue)
     }
 }
