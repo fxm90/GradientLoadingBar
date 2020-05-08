@@ -19,7 +19,7 @@ open class GradientActivityIndicatorView: UIView {
     // MARK: - Public properties
 
     /// Boolean flag, whether the view is currently hidden.
-    open override var isHidden: Bool {
+    override open var isHidden: Bool {
         didSet {
             viewModel.isHidden = isHidden
         }
@@ -39,7 +39,7 @@ open class GradientActivityIndicatorView: UIView {
 
     /// In order to prevent adding another sublayer and keeping the frame up-to-date, we
     /// simply overwrite the `layerClass` and use a `CAGradientLayer` for this view.
-    open override class var layerClass: AnyClass {
+    override open class var layerClass: AnyClass {
         CAGradientLayer.self
     }
 
@@ -68,7 +68,7 @@ open class GradientActivityIndicatorView: UIView {
 
     // MARK: - Initializers
 
-    public override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
 
         commonInit()
@@ -82,7 +82,7 @@ open class GradientActivityIndicatorView: UIView {
 
     // MARK: - Public methods
 
-    open override func point(inside _: CGPoint, with _: UIEvent?) -> Bool {
+    override open func point(inside _: CGPoint, with _: UIEvent?) -> Bool {
         // Passing all touches to the next view (if any), in the view stack.
         false
     }
