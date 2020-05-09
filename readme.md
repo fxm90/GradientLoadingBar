@@ -176,14 +176,14 @@ Felix Mau (me(@)felix.hamburg)
 
 GradientLoadingBar is available under the MIT license. See the LICENSE file for more info.
 
-[basic-example]: https://felix.hamburg/files/github/gradient-loading-bar/basic-example.png
-[basic-example--thumbnail]: https://felix.hamburg/files/github/gradient-loading-bar/basic-example--thumbnail.png
+[basic-example]: Assets/basic-example.png
+[basic-example--thumbnail]: Assets/basic-example--thumbnail.png
 
-[safe-area-example]: https://felix.hamburg/files/github/gradient-loading-bar/safe-area-example.png
-[safe-area-example--thumbnail]: https://felix.hamburg/files/github/gradient-loading-bar/safe-area-example--thumbnail.png
+[safe-area-example]: Assets/safe-area-example.png
+[safe-area-example--thumbnail]: Assets/safe-area-example--thumbnail.png
 
-[advanced-example]: https://felix.hamburg/files/github/gradient-loading-bar/advanced-example.png
-[advanced-example--thumbnail]: https://felix.hamburg/files/github/gradient-loading-bar/advanced-example--thumbnail.png
+[advanced-example]: Assets/advanced-example.png
+[advanced-example--thumbnail]: Assets/advanced-example--thumbnail.png
 
-[navigation-bar-example]: https://felix.hamburg/files/github/gradient-loading-bar/navigation-bar-example.png
-[navigation-bar-example--thumbnail]: https://felix.hamburg/files/github/gradient-loading-bar/navigation-bar-example--thumbnail.png
+[navigation-bar-example]: Assets/navigation-bar-example.png
+[navigation-bar-example--thumbnail]: Assets/navigation-bar-example--thumbnail.png
