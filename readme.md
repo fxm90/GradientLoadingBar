@@ -6,7 +6,7 @@ GradientLoadingBar
 A customizable animated gradient loading bar. Inspired by [iOS 7 Progress Bar from Codepen](https://codepen.io/marcobiedermann/pen/LExXWW).
 
 ### Example
-![Example](http://felix.hamburg/files/github/gradient-loading-bar/screen.gif)
+![Example][example]
 
 To run the example project, clone the repo, and open the workspace from the Example directory.
 
@@ -175,6 +175,8 @@ Felix Mau (me(@)felix.hamburg)
 ### License
 
 GradientLoadingBar is available under the MIT license. See the LICENSE file for more info.
+
+[example]: Assets/screen.gif
 
 [basic-example]: Assets/basic-example.png
 [basic-example--thumbnail]: Assets/basic-example--thumbnail.png
