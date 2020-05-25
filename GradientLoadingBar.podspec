@@ -23,7 +23,7 @@ Inspired by https://codepen.io/marcobiedermann/pen/LExXWW
                        DESC
 
   s.homepage         = 'https://github.com/fxm90/GradientLoadingBar'
-  s.screenshots      = 'https://felix.hamburg/files/github/gradient-loading-bar/screen.gif'
+  s.screenshots      = 'https://raw.githubusercontent.com/fxm90/GradientLoadingBar/master/Assets/screen.gif'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Felix Mau' => 'contact@felix.hamburg' }
   s.source           = { :git => 'https://github.com/fxm90/GradientLoadingBar.git', :tag => s.version.to_s }
