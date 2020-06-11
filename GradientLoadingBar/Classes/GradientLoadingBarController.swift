@@ -17,33 +17,35 @@ open class GradientLoadingBarController {
     // MARK: - Public properties
 
     /// The height of the gradient bar.
+    ///
     ///  - Note: Has to be public to allow overwriting `setupConstraints()`
     public let height: CGFloat
 
     /// Flag whether the top layout constraint should respect `safeAreaLayoutGuide`.
+    ///
     ///  - Note: Has to be public to allow overwriting `setupConstraints()`
     public let isRelativeToSafeArea: Bool
 
     /// View containing the gradient layer.
-    public let gradientView = GradientActivityIndicatorView()
+    public let gradientActivityIndicatorView = GradientActivityIndicatorView()
 
     /// Colors used for the gradient.
     public var gradientColors: [UIColor] {
         get {
-            gradientView.gradientColors
+            gradientActivityIndicatorView.gradientColors
         }
         set {
-            gradientView.gradientColors = newValue
+            gradientActivityIndicatorView.gradientColors = newValue
         }
     }
 
     /// Duration for the progress animation.
     public var progressAnimationDuration: TimeInterval {
         get {
-            gradientView.progressAnimationDuration
+            gradientActivityIndicatorView.progressAnimationDuration
         }
         set {
-            gradientView.progressAnimationDuration = newValue
+            gradientActivityIndicatorView.progressAnimationDuration = newValue
         }
     }
 
@@ -73,7 +75,7 @@ open class GradientLoadingBarController {
         self.isRelativeToSafeArea = isRelativeToSafeArea
 
         // We don't want the view to be visible initially.
-        gradientView.fadeOut(duration: 0)
+        gradientActivityIndicatorView.fadeOut(duration: 0)
 
         bindViewModelToView()
     }
@@ -90,24 +92,24 @@ open class GradientLoadingBarController {
         }
 
         NSLayoutConstraint.activate([
-            gradientView.topAnchor.constraint(equalTo: superViewTopAnchor),
-            gradientView.heightAnchor.constraint(equalToConstant: height),
+            gradientActivityIndicatorView.topAnchor.constraint(equalTo: superViewTopAnchor),
+            gradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: height),
 
-            gradientView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
-            gradientView.trailingAnchor.constraint(equalTo: superview.trailingAnchor)
+            gradientActivityIndicatorView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
+            gradientActivityIndicatorView.trailingAnchor.constraint(equalTo: superview.trailingAnchor)
         ])
     }
 
     /// Fades in the gradient loading bar.
     public func fadeIn(duration: TimeInterval = TimeInterval.GradientLoadingBar.fadeInDuration, completion: ((Bool) -> Void)? = nil) {
-        gradientView.fadeIn(duration: duration,
-                            completion: completion)
+        gradientActivityIndicatorView.fadeIn(duration: duration,
+                                             completion: completion)
     }
 
     /// Fades out the gradient loading bar.
     public func fadeOut(duration: TimeInterval = TimeInterval.GradientLoadingBar.fadeOutDuration, completion: ((Bool) -> Void)? = nil) {
-        gradientView.fadeOut(duration: duration,
-                             completion: completion)
+        gradientActivityIndicatorView.fadeOut(duration: duration,
+                                              completion: completion)
     }
 
     // MARK: - Private methods
@@ -120,11 +122,11 @@ open class GradientLoadingBarController {
 
     private func updateSuperview(_ superview: UIView?) {
         // If the view’s superview is not nil, the superview releases the view.
-        gradientView.removeFromSuperview()
+        gradientActivityIndicatorView.removeFromSuperview()
 
         if let superview = superview {
-            gradientView.translatesAutoresizingMaskIntoConstraints = false
-            superview.addSubview(gradientView)
+            gradientActivityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+            superview.addSubview(gradientActivityIndicatorView)
 
             setupConstraints(superview: superview)
         }

@@ -10,7 +10,7 @@ import UIKit
 
 extension UIColor {
     /// Default colors for components.
-    public struct GradientLoadingBar {
+    public enum GradientLoadingBar {
         /// The default color palette for the gradient colors.
         ///
         /// - SeeAlso: https://codepen.io/marcobiedermann/pen/LExXWW
@@ -22,7 +22,7 @@ extension UIColor {
 
 extension TimeInterval {
     /// Numeric default values.
-    public struct GradientLoadingBar {
+    public enum GradientLoadingBar {
         /// The default duration for fading-in the loading bar, measured in seconds.
         public static let fadeInDuration = 0.33
 

@@ -14,7 +14,9 @@ open class GradientActivityIndicatorView: UIView {
     // MARK: - Config
 
     /// Animation-Key for the progress animation.
-    private static let progressAnimationKey = "GradientActivityIndicatorView--progressAnimation"
+    private enum Config {
+        static let progressAnimationKey = "GradientActivityIndicatorView--progressAnimation"
+    }
 
     // MARK: - Public properties
 
@@ -120,9 +122,9 @@ open class GradientActivityIndicatorView: UIView {
 
     private func updateAnimation(isAnimating: Bool) {
         if isAnimating {
-            gradientLayer?.add(progressAnimation, forKey: GradientActivityIndicatorView.progressAnimationKey)
+            gradientLayer?.add(progressAnimation, forKey: Config.progressAnimationKey)
         } else {
-            gradientLayer?.removeAnimation(forKey: GradientActivityIndicatorView.progressAnimationKey)
+            gradientLayer?.removeAnimation(forKey: Config.progressAnimationKey)
         }
     }
 }
