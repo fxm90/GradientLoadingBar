@@ -52,16 +52,17 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
             gradientActivityIndicatorView.trailingAnchor.constraint(equalTo: superview.trailingAnchor)
         ])
 
-        applyNotchMask()
+        // As we currently only support portrait mode (and no device rotation),
+        // we can safely use `bounds.size.width` here.
+        let screenWidth = superview.bounds.size.width
+        applyNotchMask(for: screenWidth)
     }
 
     // MARK: - Private methods
 
-    private func applyNotchMask() {
-        // We draw the mask of the notch in the center of the screen.
-        // As we currently only support portrait mode, we can safely use `UIScreen.main.bounds` here.
-        let screenWidth = UIScreen.main.bounds.size.width
-        let leftNotchPoint = (screenWidth - Config.notchWidth) / 2 + 1
+    private func applyNotchMask(for screenWidth: CGFloat) {
+        // We always center the notch in the middle of the screen.
+        let leftNotchPoint = (screenWidth - Config.notchWidth) / 2 + 0.5
         let rightNotchPoint = (screenWidth + Config.notchWidth) / 2
 
         let smallCircleDiameter: CGFloat = 2 * Config.smallCircleRadius
