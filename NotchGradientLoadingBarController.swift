@@ -51,7 +51,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         // We draw the mask of the notch in the center of the screen.
         // As we currently only support portrait mode, we can safely use `UIScreen.main.bounds` here.
         let screenWidth = UIScreen.main.bounds.size.width
-        let leftNotchPoint = (screenWidth - Config.notchWidth) / 2
+        let leftNotchPoint = (screenWidth - Config.notchWidth) / 2 + 1
         let rightNotchPoint = (screenWidth + Config.notchWidth) / 2
 
         let smallCircleDiameter: CGFloat = 2 * Config.smallCircleRadius
@@ -73,11 +73,16 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
                           endAngle: 0,
                           clockwise: true)
 
+        // We're moving the the large-circles a bit closer to the center point.
+        // This simulates the "\" and "/" line between the large and the small circles.
+        // See: https://medium.com/tall-west/no-cutting-corners-on-the-iphone-x-97a9413b94e
+        let horizontalOffsetForLargeCircle: CGFloat = 1
+
         // Draw the large circle right to the `leftNotchPoint`.
-        // Moving it up by two points looked way better.
-        let verticalOffsetForLargeCenterPoint: CGFloat = 2
-        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint + Config.largeCircleRadius,
-                                              y: smallCircleDiameter - verticalOffsetForLargeCenterPoint),
+        // Moving it up by three points looked way better.
+        let verticalOffsetForLargeCircle: CGFloat = 3
+        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint + Config.largeCircleRadius + horizontalOffsetForLargeCircle,
+                                              y: smallCircleDiameter - verticalOffsetForLargeCircle),
                           radius: Config.largeCircleRadius,
                           startAngle: CGFloat.pi,
                           endAngle: CGFloat.pi / 2,
@@ -85,12 +90,12 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
 
         // Draw line to large-circle underneath and left to `rightNotchPoint`.
         bezierPath.addLineTo(x: rightNotchPoint - Config.largeCircleRadius,
-                             y: smallCircleDiameter + Config.largeCircleRadius - verticalOffsetForLargeCenterPoint)
+                             y: smallCircleDiameter + Config.largeCircleRadius - verticalOffsetForLargeCircle)
 
         // Draw the large circle left to the `rightNotchPoint`.
-        // Moving it up by two points looked way better.
-        bezierPath.addArc(withCenter: CGPoint(x: rightNotchPoint - Config.largeCircleRadius,
-                                              y: smallCircleDiameter - verticalOffsetForLargeCenterPoint),
+        // Moving it up by some points looked way better.
+        bezierPath.addArc(withCenter: CGPoint(x: rightNotchPoint - Config.largeCircleRadius - horizontalOffsetForLargeCircle,
+                                              y: smallCircleDiameter - verticalOffsetForLargeCircle),
                           radius: Config.largeCircleRadius,
                           startAngle: CGFloat.pi / 2,
                           endAngle: 0,
@@ -112,22 +117,25 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         // Start by moving down at the end of the screen.
         bezierPath.addLineTo(x: screenWidth, y: height)
 
+        // Have the small-circle at the bottom only half of the size, produced visually better results.
+        let bottomPathSmallCircleRadius = Config.smallCircleRadius / 2
+
         // Draw line to small-circle right to `rightNotchPoint`.
-        bezierPath.addLineTo(x: rightNotchPoint + Config.smallCircleRadius + height,
+        bezierPath.addLineTo(x: rightNotchPoint + bottomPathSmallCircleRadius + height,
                              y: height)
 
         // Draw the small circle right to the `rightNotchPoint`.
-        bezierPath.addArc(withCenter: CGPoint(x: rightNotchPoint + Config.smallCircleRadius + height,
-                                              y: Config.smallCircleRadius + height),
-                          radius: Config.smallCircleRadius,
+        bezierPath.addArc(withCenter: CGPoint(x: rightNotchPoint + bottomPathSmallCircleRadius + height,
+                                              y: bottomPathSmallCircleRadius + height),
+                          radius: bottomPathSmallCircleRadius,
                           startAngle: -CGFloat.pi / 2,
                           endAngle: -CGFloat.pi,
                           clockwise: false)
 
         // Draw the large circle left to the `rightNotchPoint`.
-        // Moving it up by two points looked way better.
-        bezierPath.addArc(withCenter: CGPoint(x: rightNotchPoint - Config.largeCircleRadius + height,
-                                              y: smallCircleDiameter - verticalOffsetForLargeCenterPoint + height),
+        // Moving it up by some points looked way better.
+        bezierPath.addArc(withCenter: CGPoint(x: rightNotchPoint - Config.largeCircleRadius + height - horizontalOffsetForLargeCircle,
+                                              y: smallCircleDiameter - verticalOffsetForLargeCircle + height),
                           radius: Config.largeCircleRadius,
                           startAngle: 0,
                           endAngle: CGFloat.pi / 2,
@@ -135,21 +143,21 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
 
         // Draw line to large-circle underneath and right to `leftNotchPoint`.
         bezierPath.addLineTo(x: leftNotchPoint + Config.largeCircleRadius + height,
-                             y: smallCircleDiameter + Config.largeCircleRadius - verticalOffsetForLargeCenterPoint + height)
+                             y: smallCircleDiameter + Config.largeCircleRadius - verticalOffsetForLargeCircle + height)
 
         // Draw the large circle right to the `leftNotchPoint`.
-        // Moving it up by two points looked way better.
-        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint + Config.largeCircleRadius - height,
-                                              y: smallCircleDiameter - verticalOffsetForLargeCenterPoint + height),
+        // Moving it up by some points looked way better.
+        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint + Config.largeCircleRadius - height + horizontalOffsetForLargeCircle,
+                                              y: smallCircleDiameter - verticalOffsetForLargeCircle + height),
                           radius: Config.largeCircleRadius,
                           startAngle: CGFloat.pi / 2,
                           endAngle: CGFloat.pi,
                           clockwise: true)
 
         // Draw the small circle left to the `leftNotchPoint`.
-        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint - Config.smallCircleRadius - height,
-                                              y: Config.smallCircleRadius + height),
-                          radius: Config.smallCircleRadius,
+        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint - bottomPathSmallCircleRadius - height,
+                                              y: bottomPathSmallCircleRadius + height),
+                          radius: bottomPathSmallCircleRadius,
                           startAngle: 0,
                           endAngle: -CGFloat.pi / 2,
                           clockwise: false)
@@ -160,6 +168,10 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
 
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = bezierPath.cgPath
+
+        if #available(iOS 13.0, *) {
+            shapeLayer.cornerCurve = .continuous
+        }
 
         // Our shape is not perfect, therefore we move it up by one point, so no background is visible between our shape and
         // the frame of the smartphone.
