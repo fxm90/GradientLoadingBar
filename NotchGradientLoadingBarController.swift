@@ -32,7 +32,16 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
     // MARK: - Public methods
 
     override open func setupConstraints(superview: UIView) {
-        // Our view will be masked therefore the view height needs to cover both circles plus the given user-height.
+        // The `safeAreaInsets.top` always includes the status-bar and therefore will always be greater "0".
+        // As a workaround we check the bottom inset.
+        let hasNotch = superview.safeAreaInsets.bottom > 0
+        guard hasNotch else {
+            // No special masking required.
+            super.setupConstraints(superview: superview)
+            return
+        }
+
+        // Our view will be masked therefore the view height needs to cover the notch height plus the given user-height.
         let height = 2 * Config.smallCircleRadius + Config.largeCircleRadius + self.height
 
         NSLayoutConstraint.activate([
