@@ -7,7 +7,8 @@
 
 import UIKit
 
-///
+/// Type-alias for the controller to be more similar to the pod name.
+/// The notch is only available when supporting safe area layout guides, which is starting from iOS 11.
 @available(iOS 11.0, *)
 public typealias NotchGradientLoadingBar = NotchGradientLoadingBarController
 
@@ -112,8 +113,12 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         // Draw line to the end of the screen.
         bezierPath.addLineTo(x: screenWidth, y: 0)
 
-        // And go back..
-        // Therefore we always to offset the given `height` by the user.
+        // And all the way back..
+        // Therefore we always have to offset the given `height` by the user.
+        // As our bezier-path is not perfect, we move it up by one point at the end, so no background is visible between our shape and
+        // the frame of the smartphone. Therefore we have to add one point to the user-height here accordingly.
+        let height = self.height + 1
+
         // Start by moving down at the end of the screen.
         bezierPath.addLineTo(x: screenWidth, y: height)
 

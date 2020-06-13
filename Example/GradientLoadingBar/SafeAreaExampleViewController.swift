@@ -12,7 +12,7 @@ import GradientLoadingBar
 class SafeAreaExampleViewController: UIViewController {
     // MARK: - Private properties
 
-    private let notchGradientLoadingBar = NotchGradientLoadingBar(height: 6)
+    private let notchGradientLoadingBar = NotchGradientLoadingBar(height: 4)
 
     // MARK: - Public methods
 
