@@ -122,15 +122,24 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         // Draw line to the end of the screen.
         bezierPath.addLineTo(x: screenWidth, y: 0)
 
-        // And all the way back. Therefore we always have to offset the given `height` by the user.
+        // And all the way back.
+        // Therefore we always have to offset the given `height` by the user.
         // We need to align the height with the "basic" `GradientLoadingBar`, and therefore add one point here.
         let height = self.height + 1
 
-        // Start by moving down at the end of the screen.
-        bezierPath.addLineTo(x: screenWidth, y: height)
-
         // Have the small-circle at the bottom only one third of the size, produced visually better results.
         let bottomPathSmallCircleRadius = Config.smallCircleRadius / 3
+
+        // Moving the bottom-line in the corners of the small circles just a tiny bit away from the center point to the smartphone corners,
+        // produced a visually more equal height for the gradient-view.
+        let bottomPathHorizontalOffsetForSmallCircle: CGFloat = 0.5
+
+        // Moving the bottom-line just a tiny bit down here produced a visually more equal height for the gradient-view underneath
+        // the smartphone-frame in the ears and the notch.
+        let bottomPathVerticalOffsetForLargeCircle: CGFloat = 0.5
+
+        // Start by moving down at the end of the screen.
+        bezierPath.addLineTo(x: screenWidth, y: height)
 
         // Draw line to small-circle right to `rightNotchPoint`.
         bezierPath.addLineTo(x: rightNotchPoint + bottomPathSmallCircleRadius + height,
@@ -138,21 +147,17 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
 
         // Draw the small circle right to the `rightNotchPoint`.
         // We're offsetting the center-point with the given height here.
-        bezierPath.addArc(withCenter: CGPoint(x: rightNotchPoint + bottomPathSmallCircleRadius + height,
+        bezierPath.addArc(withCenter: CGPoint(x: rightNotchPoint + bottomPathSmallCircleRadius + height + bottomPathHorizontalOffsetForSmallCircle,
                                               y: bottomPathSmallCircleRadius + height),
                           radius: bottomPathSmallCircleRadius,
                           startAngle: -CGFloat.pi / 2,
                           endAngle: -CGFloat.pi,
                           clockwise: false)
 
-        // Moving the bottom-line just a tiny bit down here produced a visually more equal height for the gradient-view underneath
-        // the smartphone-frame in the ears and the notch.
-        let bottomVerticalOffsetForLargeCircle: CGFloat = 0.5
-
         // Draw the large circle left to the `rightNotchPoint`.
         // We're using the same center-point as the large-circle above, but with a larger radius here.
         bezierPath.addArc(withCenter: CGPoint(x: rightNotchPoint - Config.largeCircleRadius,
-                                              y: smallCircleDiameter - verticalOffsetForLargeCircle + bottomVerticalOffsetForLargeCircle),
+                                              y: smallCircleDiameter - verticalOffsetForLargeCircle + bottomPathVerticalOffsetForLargeCircle),
                           radius: Config.largeCircleRadius + height,
                           startAngle: 0,
                           endAngle: CGFloat.pi / 2,
@@ -160,12 +165,12 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
 
         // Draw line to large-circle underneath and right to `leftNotchPoint`.
         bezierPath.addLineTo(x: leftNotchPoint + Config.largeCircleRadius + height,
-                             y: smallCircleDiameter + Config.largeCircleRadius - verticalOffsetForLargeCircle + height + bottomVerticalOffsetForLargeCircle)
+                             y: smallCircleDiameter + Config.largeCircleRadius - verticalOffsetForLargeCircle + height + bottomPathVerticalOffsetForLargeCircle)
 
         // Draw the large circle right to the `leftNotchPoint`.
         // We're using the same center-point as the large-circle above, but with a larger radius here.
         bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint + Config.largeCircleRadius,
-                                              y: smallCircleDiameter - verticalOffsetForLargeCircle + bottomVerticalOffsetForLargeCircle),
+                                              y: smallCircleDiameter - verticalOffsetForLargeCircle + bottomPathVerticalOffsetForLargeCircle),
                           radius: Config.largeCircleRadius + height,
                           startAngle: CGFloat.pi / 2,
                           endAngle: CGFloat.pi,
@@ -173,7 +178,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
 
         // Draw the small circle left to the `leftNotchPoint`.
         // We're offsetting the center-point with the given height here.
-        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint - bottomPathSmallCircleRadius - height,
+        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint - bottomPathSmallCircleRadius - height - bottomPathHorizontalOffsetForSmallCircle,
                                               y: bottomPathSmallCircleRadius + height),
                           radius: bottomPathSmallCircleRadius,
                           startAngle: 0,
