@@ -8,11 +8,8 @@
 import UIKit
 
 /// Type-alias for the controller to be more similar to the pod name.
-/// The notch is only available when supporting safe area layout guides, which is starting from iOS 11.
-@available(iOS 11.0, *)
 public typealias NotchGradientLoadingBar = NotchGradientLoadingBarController
 
-@available(iOS 11.0, *)
 open class NotchGradientLoadingBarController: GradientLoadingBarController {
     // MARK: - Config
 
@@ -32,16 +29,22 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
     // MARK: - Public methods
 
     override open func setupConstraints(superview: UIView) {
-        // The `safeAreaInsets.top` always includes the status-bar and therefore will always be greater "0".
-        // As a workaround we check the bottom inset.
-        let hasNotch = superview.safeAreaInsets.bottom > 0
-        guard hasNotch else {
-            // No special masking required.
+        guard #available(iOS 11.0, *) else {
+            /// The notch is only available when supporting safe area layout guides, which is starting from iOS 11.
             super.setupConstraints(superview: superview)
             return
         }
 
-        // Our view will be masked therefore the view height needs to cover the notch height plus the given user-height.
+        // The `safeAreaInsets.top` always includes the status-bar and therefore will always be greater "0".
+        // As a workaround we check the bottom inset.
+        let hasNotch = superview.safeAreaInsets.bottom > 0
+        guard hasNotch else {
+            // No special masking required for non safe area devices.
+            super.setupConstraints(superview: superview)
+            return
+        }
+
+        // Our view will be masked therefore the view height needs to cover the notch-height plus the given user-height.
         let height = 2 * Config.smallCircleRadius + Config.largeCircleRadius + self.height
 
         NSLayoutConstraint.activate([
@@ -52,8 +55,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
             gradientActivityIndicatorView.trailingAnchor.constraint(equalTo: superview.trailingAnchor)
         ])
 
-        // As we currently only support portrait mode (and no device rotation),
-        // we can safely use `bounds.size.width` here.
+        // As we currently only support portrait mode (and no device rotation), we can safely use `bounds.size.width` here.
         let screenWidth = superview.bounds.size.width
         applyNotchMask(for: screenWidth)
     }
@@ -89,9 +91,10 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         // See: https://medium.com/tall-west/no-cutting-corners-on-the-iphone-x-97a9413b94e
         let horizontalOffsetForLargeCircle: CGFloat = 1
 
-        // Draw the large circle right to the `leftNotchPoint`.
-        // Moving it up by three points looked way better.
+        // Also moving the large-circles up by three points looked way better.
         let verticalOffsetForLargeCircle: CGFloat = 3
+
+        // Draw the large circle right to the `leftNotchPoint`.
         bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint + Config.largeCircleRadius + horizontalOffsetForLargeCircle,
                                               y: smallCircleDiameter - verticalOffsetForLargeCircle),
                           radius: Config.largeCircleRadius,
@@ -104,7 +107,6 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
                              y: smallCircleDiameter + Config.largeCircleRadius - verticalOffsetForLargeCircle)
 
         // Draw the large circle left to the `rightNotchPoint`.
-        // Moving it up by some points looked way better.
         bezierPath.addArc(withCenter: CGPoint(x: rightNotchPoint - Config.largeCircleRadius - horizontalOffsetForLargeCircle,
                                               y: smallCircleDiameter - verticalOffsetForLargeCircle),
                           radius: Config.largeCircleRadius,
@@ -126,7 +128,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         // And all the way back..
         // Therefore we always have to offset the given `height` by the user.
         // As our bezier-path is not perfect, we move it up by one point at the end, so no background is visible between our shape and
-        // the frame of the smartphone. Therefore we have to add one point to the user-height here accordingly.
+        // the frame of the smartphone (see `shapeLayer.position =`). Therefore we have to add one point to the user-height here accordingly.
         let height = self.height + 1
 
         // Start by moving down at the end of the screen.
@@ -148,7 +150,6 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
                           clockwise: false)
 
         // Draw the large circle left to the `rightNotchPoint`.
-        // Moving it up by some points looked way better.
         bezierPath.addArc(withCenter: CGPoint(x: rightNotchPoint - Config.largeCircleRadius + height - horizontalOffsetForLargeCircle,
                                               y: smallCircleDiameter - verticalOffsetForLargeCircle + height),
                           radius: Config.largeCircleRadius,
@@ -161,7 +162,6 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
                              y: smallCircleDiameter + Config.largeCircleRadius - verticalOffsetForLargeCircle + height)
 
         // Draw the large circle right to the `leftNotchPoint`.
-        // Moving it up by some points looked way better.
         bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint + Config.largeCircleRadius - height + horizontalOffsetForLargeCircle,
                                               y: smallCircleDiameter - verticalOffsetForLargeCircle + height),
                           radius: Config.largeCircleRadius,
