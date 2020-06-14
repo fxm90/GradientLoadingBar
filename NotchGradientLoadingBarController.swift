@@ -87,7 +87,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
                           clockwise: true)
 
         // We're moving the the large-circles a bit up.
-        // This simulates the "\" and "/" line between the large and the small circles.
+        // This prevents having a straight line between the circles.
         // See: https://medium.com/tall-west/no-cutting-corners-on-the-iphone-x-97a9413b94e
         let verticalOffsetForLargeCircle: CGFloat = 3
 
@@ -122,12 +122,12 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         // Draw line to the end of the screen.
         bezierPath.addLineTo(x: screenWidth, y: 0)
 
-        // And all the way back.
+        // And all the way back..
         // Therefore we always have to offset the given `height` by the user.
-        // We need to align the height with the "basic" `GradientLoadingBar`, and therefore add one point here.
+        // To visually align the height with the "basic" `GradientLoadingBar`, we have to add one point here.
         let height = self.height + 1
 
-        // Have the small-circle at the bottom only one third of the size, produced visually better results.
+        // Have the small-circle at the bottom-path only one third of the size of the upper-path produced visually better results.
         let bottomPathSmallCircleRadius = Config.smallCircleRadius / 3
 
         // Moving the bottom-line in the corners of the small circles just a tiny bit away from the center point to the smartphone corners,
@@ -146,7 +146,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
                              y: height)
 
         // Draw the small circle right to the `rightNotchPoint`.
-        // We're offsetting the center-point with the given height here.
+        // We're offsetting the center-point with the given user-height here.
         bezierPath.addArc(withCenter: CGPoint(x: rightNotchPoint + bottomPathSmallCircleRadius + height + bottomPathHorizontalOffsetForSmallCircle,
                                               y: bottomPathSmallCircleRadius + height),
                           radius: bottomPathSmallCircleRadius,
@@ -177,7 +177,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
                           clockwise: true)
 
         // Draw the small circle left to the `leftNotchPoint`.
-        // We're offsetting the center-point with the given height here.
+        // We're offsetting the center-point with the given user-height here.
         bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint - bottomPathSmallCircleRadius - height - bottomPathHorizontalOffsetForSmallCircle,
                                               y: bottomPathSmallCircleRadius + height),
                           radius: bottomPathSmallCircleRadius,
