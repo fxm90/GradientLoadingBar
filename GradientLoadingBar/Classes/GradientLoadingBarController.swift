@@ -80,6 +80,10 @@ open class GradientLoadingBarController {
         bindViewModelToView()
     }
 
+    deinit {
+        gradientActivityIndicatorView.removeFromSuperview()
+    }
+
     // MARK: - Public methods
 
     /// Apply layout constraints for gradient loading view.
