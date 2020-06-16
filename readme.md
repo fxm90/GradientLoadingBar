@@ -45,9 +45,10 @@ dependencies: [
 
 
 ### How to use
-This framework provides two classes:
+This framework provides three classes:
 
  - **GradientLoadingBar**: A controller, managing the visibility of the `GradientActivityIndicatorView` on the current key window.
+- **NotchGradientLoadingBar**: A subclass of `GradientLoadingBar`, wrapping the `GradientActivityIndicatorView` around the notch of the iPhone.
  - **GradientActivityIndicatorView**: A `UIView` containing the gradient with the animation. It can be added as a subview to another view either inside the interface builder or programmatically. Both ways are shown inside the example application.
 
 #### GradientLoadingBar
@@ -97,6 +98,8 @@ Example with `isRelativeToSafeArea` set to `true`.
 Example with `isRelativeToSafeArea` set to `false`.
 [![Example][safe-area-example--thumbnail]][safe-area-example]
 
+**Note:** There is a third option which will wrap the loading bar around the iPhone notch. See documentation of the class `NotchGradientLoadingBar` for further details.
+
 ##### Properties
 ###### – `gradientColors: [UIColor]`
 This property adjusts the gradient colors shown on the loading bar.
@@ -106,10 +109,10 @@ This property adjusts the duration of the animation moving the gradient from lef
 
 ##### Methods
 ###### – `fadeIn(duration:completion)`
-This method fades-in the loading bar. You can adjust the duration with coresponding parameter. Furthermore you can pass in a completion handler that gets called once the animation is finished.
+This method fades-in the loading bar. You can adjust the duration with corresponding parameter. Furthermore you can pass in a completion handler that gets called once the animation is finished.
 
 ###### – `fadeOut(duration:completion)`
-This methods fades-out the loading bar.  You can adjust the duration with coresponding parameter. Furthermore you can pass in a completion handler that gets called once the animation is finished.
+This methods fades-out the loading bar.  You can adjust the duration with corresponding parameter. Furthermore you can pass in a completion handler that gets called once the animation is finished.
 
 ##### Custom shared instance (Singleton)
 If you need the loading bar on multiple / different parts of your app, you can use the given static `shared` variable:
@@ -126,6 +129,18 @@ If you wish to customize the shared instance, you can add the following code e.g
 
 ```swift
 GradientLoadingBar.shared = GradientLoadingBar(height: 5.0)
+```
+
+
+#### NotchGradientLoadingBar
+This subclass of the `GradientLoadingBar` will wrap the loading bar around the notch of the iPhone.
+
+For iPhones without a safe area, the behaviour stays the same as mentioned in the above documentation of the `GradientLoadingBar`.
+
+```swift
+let notchGradientLoadingBar = NotchGradientLoadingBar(
+    height: 3.0
+)
 ```
 
 
