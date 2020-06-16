@@ -64,7 +64,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
 
     private func applyNotchMask(for screenWidth: CGFloat) {
         // We always center the notch in the middle of the screen.
-        let leftNotchPoint = (screenWidth - Config.notchWidth) / 2
+        let leftNotchPoint = (screenWidth - Config.notchWidth) / 2 + 0.5
         let rightNotchPoint = (screenWidth + Config.notchWidth) / 2
 
         let smallCircleDiameter: CGFloat = 2 * Config.smallCircleRadius
