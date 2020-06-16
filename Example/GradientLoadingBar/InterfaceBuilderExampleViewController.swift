@@ -16,6 +16,12 @@ class InterfaceBuilderExampleViewController: UIViewController {
 
     // MARK: - Public methods
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        gradientActivityIndicatorView.fadeOut()
+    }
+
     @IBAction func showButtonTouchUpInside(_: Any) {
         gradientActivityIndicatorView.fadeIn()
     }

@@ -12,15 +12,32 @@ import GradientLoadingBar
 class SafeAreaExampleViewController: UIViewController {
     // MARK: - Private properties
 
-    private let notchGradientLoadingBar = NotchGradientLoadingBar(height: 3)
+    private let gradientLoadingBar = GradientLoadingBar(isRelativeToSafeArea: false)
+
+    private let notchGradientLoadingBar = NotchGradientLoadingBar(isRelativeToSafeArea: false)
 
     // MARK: - Public methods
 
-    @IBAction func showButtonTouchUpInside(_: Any) {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        gradientLoadingBar.fadeOut()
+        notchGradientLoadingBar.fadeOut()
+    }
+
+    @IBAction func showBasicBarButtonTouchUpInside(_: Any) {
+        gradientLoadingBar.fadeIn()
+    }
+
+    @IBAction func hideBasicBarButtonTouchUpInside(_: Any) {
+        gradientLoadingBar.fadeOut()
+    }
+
+    @IBAction func showNotchBarButtonTouchUpInside(_: Any) {
         notchGradientLoadingBar.fadeIn()
     }
 
-    @IBAction func hideButtonTouchUpInside(_: Any) {
+    @IBAction func hideNotchBarButtonTouchUpInside(_: Any) {
         notchGradientLoadingBar.fadeOut()
     }
 }

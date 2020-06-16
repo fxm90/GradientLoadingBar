@@ -10,6 +10,13 @@ import UIKit
 import GradientLoadingBar
 
 class NavigationBarExampleViewController: UIViewController {
+    // MARK: - Config
+
+    private enum Config {
+        ///
+        static let height: CGFloat = 3
+    }
+
     // MARK: - Private properties
 
     private let gradientProgressIndicatorView = GradientActivityIndicatorView()
@@ -20,6 +27,12 @@ class NavigationBarExampleViewController: UIViewController {
         super.viewDidLoad()
 
         setupGradientProgressIndicatorView()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        gradientProgressIndicatorView.fadeOut()
     }
 
     @IBAction func showButtonTouchUpInside(_: Any) {
@@ -45,7 +58,7 @@ class NavigationBarExampleViewController: UIViewController {
             gradientProgressIndicatorView.trailingAnchor.constraint(equalTo: navigationBar.trailingAnchor),
 
             gradientProgressIndicatorView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor),
-            gradientProgressIndicatorView.heightAnchor.constraint(equalToConstant: 3.0)
+            gradientProgressIndicatorView.heightAnchor.constraint(equalToConstant: Config.height)
         ])
     }
 }

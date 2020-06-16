@@ -12,13 +12,17 @@ import GradientLoadingBar
 class BasicExampleViewController: UIViewController {
     // MARK: - Public methods
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        GradientLoadingBar.shared.fadeOut()
+    }
+
     @IBAction func showButtonTouchUpInside(_: Any) {
-        let gradientLoadingBar = GradientLoadingBar.shared
-        gradientLoadingBar.fadeIn()
+        GradientLoadingBar.shared.fadeIn()
     }
 
     @IBAction func hideButtonTouchUpInside(_: Any) {
-        let gradientLoadingBar = GradientLoadingBar.shared
-        gradientLoadingBar.fadeOut()
+        GradientLoadingBar.shared.fadeOut()
     }
 }

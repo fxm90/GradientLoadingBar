@@ -10,6 +10,13 @@ import UIKit
 import GradientLoadingBar
 
 class AdvancedExampleViewController: UIViewController {
+    // MARK: - Config
+
+    private enum Config {
+        ///
+        static let height: CGFloat = 3.5
+    }
+
     // MARK: - Outlets
 
     @IBOutlet private var programmaticallyButton: BlueBorderedButton!
@@ -41,6 +48,13 @@ class AdvancedExampleViewController: UIViewController {
         setupCustomColorsGradientActivityIndicatorView()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        programmaticallyGradientActivityIndicatorView.fadeOut()
+        customColorsGradientActivityIndicatorView.fadeOut()
+    }
+
     @IBAction func toggleProgrammaticallyButtonTouchUpInside(_: Any) {
         if programmaticallyGradientActivityIndicatorView.isHidden {
             programmaticallyGradientActivityIndicatorView.fadeIn()
@@ -70,7 +84,7 @@ class AdvancedExampleViewController: UIViewController {
             programmaticallyGradientActivityIndicatorView.trailingAnchor.constraint(equalTo: programmaticallyButton.trailingAnchor),
 
             programmaticallyGradientActivityIndicatorView.topAnchor.constraint(equalTo: programmaticallyButton.topAnchor),
-            programmaticallyGradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: 3.5)
+            programmaticallyGradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: Config.height)
         ])
     }
 
@@ -85,7 +99,7 @@ class AdvancedExampleViewController: UIViewController {
             customColorsGradientActivityIndicatorView.trailingAnchor.constraint(equalTo: customColorsButton.trailingAnchor),
 
             customColorsGradientActivityIndicatorView.bottomAnchor.constraint(equalTo: customColorsButton.bottomAnchor),
-            customColorsGradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: 3.5)
+            customColorsGradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: Config.height)
         ])
     }
 }
