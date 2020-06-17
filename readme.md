@@ -98,7 +98,7 @@ Example with `isRelativeToSafeArea` set to `true`.
 Example with `isRelativeToSafeArea` set to `false`.
 [![Example][safe-area-example--thumbnail]][safe-area-example]
 
-###### Note
+##### Note
 There is a third option which will wrap the loading bar around the iPhone notch. See documentation of the class `NotchGradientLoadingBar` for further details.
 
 ##### Properties
@@ -156,7 +156,7 @@ E.g. View added as a subview to a `UINavigationBar`.
 E.g. View added as a subview to a `UIButton`.
 [![Example][advanced-example--thumbnail]][advanced-example]
 
-###### Note
+##### Note
 The progress-animation starts and stops according to the `isHidden` flag. Setting this flag to `false` will start the animation, setting this to `true` will stop the animation. Often you don't want to directly show / hide the view and instead smoothly fade it in or out. Therefore the view provides the methods `fadeIn(duration:completion)` and `fadeOut(duration:completion)`. Based on my [gist](https://gist.github.com/fxm90/723b5def31b46035cd92a641e3b184f6), these methods adjust the `alpha` value of the view and update the `isHidden` flag accordingly.
 
 ##### Properties
