@@ -143,6 +143,7 @@ let notchGradientLoadingBar = NotchGradientLoadingBar(
 )
 ```
 
+[![Example][notch-bar-example--thumbnail]][notch-bar-example]
 
 #### GradientActivityIndicatorView
 In case you don't want to add the loading bar onto the key-window, this framework provides the `GradientActivityIndicatorView`, which is a direct subclass of `UIView`. You can add the view to another view either inside the interface builder or programmatically.
@@ -199,8 +200,12 @@ GradientLoadingBar is available under the MIT license. See the LICENSE file for 
 [safe-area-example]: Assets/safe-area-example.png
 [safe-area-example--thumbnail]: Assets/safe-area-example--thumbnail.png
 
-[advanced-example]: Assets/advanced-example.png
-[advanced-example--thumbnail]: Assets/advanced-example--thumbnail.png
+[notch-example]: Assets/notch-example.png
+[notch-example--thumbnail]: Assets/notch-example--thumbnail.png
 
 [navigation-bar-example]: Assets/navigation-bar-example.png
 [navigation-bar-example--thumbnail]: Assets/navigation-bar-example--thumbnail.png
+
+
+[advanced-example]: Assets/advanced-example.png
+[advanced-example--thumbnail]: Assets/advanced-example--thumbnail.png
