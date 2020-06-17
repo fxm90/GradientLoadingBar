@@ -13,7 +13,7 @@ class NavigationBarExampleViewController: UIViewController {
     // MARK: - Config
 
     private enum Config {
-        ///
+        /// The programatically applied height of the `GradientActivityIndicatorView`.
         static let height: CGFloat = 3
     }
 
