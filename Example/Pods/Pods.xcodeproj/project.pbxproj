@@ -82,7 +82,7 @@
 		CE8387F85FA7B1C55704E5BDD58C9F17 /* GradientLoadingBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D40940A239793530B056F5C6D42CBC /* GradientLoadingBarViewModel.swift */; };
 		D56563764E24224FB95BC77EC18F7D9E /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE4FE8F00C724C9593C6DEFB4CE2286 /* String.swift */; };
 		D6A43851802E3E81CF23D65CA9A81E4E /* SnapshotTesting-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B84171C66B510644D7EFFDC5B3E475 /* SnapshotTesting-dummy.m */; };
-		DC190F5724925D170069E2B0 /* NotchGradientLoadingBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC190F5624925D170069E2B0 /* NotchGradientLoadingBarController.swift */; };
+		DC81E238249A71BC00A0320E /* NotchGradientLoadingBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC81E237249A71BC00A0320E /* NotchGradientLoadingBarController.swift */; };
 		DC82754FF0AA19CEEF707C55CBB24008 /* GradientActivityIndicatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288446056D0E6A131D9245C47AC68D44 /* GradientActivityIndicatorViewModel.swift */; };
 		E8945D07A466F2FA6A965D3AA13F41EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E59CE2F9522AE21F97AA29799051F00E /* Foundation.framework */; };
 		E964CE43D2624DD003460825556D1101 /* LightweightObservable-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE49E78400E3A6E986194452C2A1611 /* LightweightObservable-dummy.m */; };
@@ -236,8 +236,8 @@
 		D1B84171C66B510644D7EFFDC5B3E475 /* SnapshotTesting-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SnapshotTesting-dummy.m"; sourceTree = "<group>"; };
 		D20C54CBF964A3FE43CE7FE20719F6AD /* SwiftLint.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftLint.debug.xcconfig; sourceTree = "<group>"; };
 		D5B2A1C4D6360C6D91F1483048511530 /* LightweightObservable-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LightweightObservable-umbrella.h"; sourceTree = "<group>"; };
-		DC190F5624925D170069E2B0 /* NotchGradientLoadingBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchGradientLoadingBarController.swift; sourceTree = "<group>"; };
 		DC1FD5A53165BF4293473D170AD9995E /* View.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = View.swift; path = Sources/SnapshotTesting/Common/View.swift; sourceTree = "<group>"; };
+		DC81E237249A71BC00A0320E /* NotchGradientLoadingBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotchGradientLoadingBarController.swift; path = GradientLoadingBar/Classes/NotchGradientLoadingBarController.swift; sourceTree = "<group>"; };
 		E06A1816AB01D090FDC9EEC02261A14E /* SnapshotTesting-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SnapshotTesting-Info.plist"; sourceTree = "<group>"; };
 		E0D90990792D653F523A884442305989 /* Pods-GradientLoadingBar_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GradientLoadingBar_Example.modulemap"; sourceTree = "<group>"; };
 		E503602B2F6C5B0D3DD0B08982C1E017 /* SnapshotTesting-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapshotTesting-umbrella.h"; sourceTree = "<group>"; };
@@ -527,7 +527,7 @@
 				B25194A474F7FB1B19DF392B63D633A0 /* ViewModel */,
 				C8FA2FFE987E4CAE66EF6455DF3F969C /* Views */,
 				6A285D3D7A75E50B304EC4E2967172F4 /* GradientLoadingBarController.swift */,
-				DC190F5624925D170069E2B0 /* NotchGradientLoadingBarController.swift */,
+				DC81E237249A71BC00A0320E /* NotchGradientLoadingBarController.swift */,
 			);
 			name = GradientLoadingBar;
 			path = ../..;
@@ -903,7 +903,7 @@
 				72E7D09F895BFB276F79212661207A3E /* Constants.swift in Sources */,
 				1AB5DB926319ED83D108A7029C3CE863 /* GradientActivityIndicatorView+AnimateIsHidden.swift in Sources */,
 				845E53EF69DD891F41769CBFAD775C5C /* GradientActivityIndicatorView.swift in Sources */,
-				DC190F5724925D170069E2B0 /* NotchGradientLoadingBarController.swift in Sources */,
+				DC81E238249A71BC00A0320E /* NotchGradientLoadingBarController.swift in Sources */,
 				DC82754FF0AA19CEEF707C55CBB24008 /* GradientActivityIndicatorViewModel.swift in Sources */,
 				9BF500319938CCD42F882041380B4A4E /* GradientLoadingBar-dummy.m in Sources */,
 				EA1F3BF177FD4A38CBE9B67849F9DAC4 /* GradientLoadingBarController.swift in Sources */,
