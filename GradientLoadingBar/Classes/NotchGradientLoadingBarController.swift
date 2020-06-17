@@ -88,7 +88,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
 
         // We're moving the the large-circles a bit up.
         // This prevents having a straight line between the circles.
-        // See: https://medium.com/tall-west/no-cutting-corners-on-the-iphone-x-97a9413b94e
+        // See <https://medium.com/tall-west/no-cutting-corners-on-the-iphone-x-97a9413b94e>
         let verticalOffsetForLargeCircle: CGFloat = 3
 
         // Draw the large circle right to the `leftNotchPoint`.
