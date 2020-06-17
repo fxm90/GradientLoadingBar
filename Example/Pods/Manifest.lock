@@ -1,5 +1,5 @@
 PODS:
-  - GradientLoadingBar (2.0.3):
+  - GradientLoadingBar (2.1.0):
     - LightweightObservable (~> 2.1)
   - LightweightObservable (2.1.1)
   - SnapshotTesting (1.7.2)
@@ -24,7 +24,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  GradientLoadingBar: ad8aad87840461c6be08040cfde58646d1faf634
+  GradientLoadingBar: 9992888de03a77c1e9364c087aefa1d9c3860ef7
   LightweightObservable: 52abe2a01c8273921b1f66cd66526eb3328ca35a
   SnapshotTesting: 8caa6661fea7c8019d5b46de77c16bab99c36c5c
   SwiftFormat: e415b539c50e7a956a44b023544c9846c0c037d7

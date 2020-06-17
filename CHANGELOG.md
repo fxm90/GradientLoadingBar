@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [2.1.0] - 2020-17-06
+### Added
+ - Added `NotchGradientLoadingBar`: A subclass of `GradientLoadingBar`, wrapping the `GradientActivityIndicatorView` around the notch of the iPhone.
+
 ## [2.0.3] - 2020-18-01
 ### Added
  - Added support for Swift Package Manager.
@@ -125,7 +129,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial release
 
 
-[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/2.0.3...master
+[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/2.1.0...master
+[2.1.0]: https://github.com/fxm90/GradientLoadingBar/compare/2.0.3...2.1.0
 [2.0.3]: https://github.com/fxm90/GradientLoadingBar/compare/2.0.2...2.0.3
 [2.0.2]: https://github.com/fxm90/GradientLoadingBar/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/fxm90/GradientLoadingBar/compare/2.0.0...2.0.1
