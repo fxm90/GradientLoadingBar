@@ -2,7 +2,8 @@
 //  NotchGradientLoadingBarController.swift
 //  GradientLoadingBar
 //
-//  Created by Felix Mau on 11.06.20.
+//  Created by Felix Mau on 06/11/20.
+//  Copyright © 2020 Felix Mau. All rights reserved.
 //
 
 import UIKit
@@ -62,6 +63,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
 
     // MARK: - Private methods
 
+    // swiftlint:disable:next function_body_length
     private func applyNotchMask(for screenWidth: CGFloat) {
         // We always center the notch in the middle of the screen.
         let leftNotchPoint = (screenWidth - Config.notchWidth) / 2 + 0.5
