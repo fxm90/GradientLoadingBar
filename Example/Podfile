@@ -18,7 +18,7 @@ target 'GradientLoadingBar_Example' do
     inherit! :search_paths
 
     # Pods for snapshot testing.
-    pod 'SnapshotTesting', '~> 1.6'
+    pod 'SnapshotTesting', '~> 1.7', :inhibit_warnings => true
   end
 
   post_install do |installer|

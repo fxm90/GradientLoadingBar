@@ -1,3 +1,5 @@
+![](EditorExtension/Application/Assets.xcassets/AppIcon.appiconset/AppIcon256.png)
+
 [![PayPal](https://img.shields.io/badge/paypal-donate-blue.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9ZGWNK5FEZFF6&source=url)
 [![Travis](https://api.travis-ci.org/nicklockwood/SwiftFormat.svg?branch=master)](https://travis-ci.org/nicklockwood/SwiftFormat)
 [![Coveralls](https://coveralls.io/repos/github/nicklockwood/SwiftFormat/badge.svg)](https://coveralls.io/github/nicklockwood/SwiftFormat)
@@ -156,7 +158,13 @@ If you prefer, you can use unix pipes to include SwiftFormat as part of a comman
 $ cat /path/to/file.swift | swiftformat --output /path/to/file.swift
 ```
 
-Omitting the `--output /path/to/file.swift` will print the formatted file to Standard Output (stdout). You can also use `>` to specify the output path as follows:
+Omitting the `--output /path/to/file.swift` will print the formatted file to Standard Output (stdout). You can also pass "stdout" explicitly as the output path:
+
+```bash
+$ cat /path/to/file.swift | swiftformat --output stdout
+```
+
+Or you can use `>` to specify the output path as follows:
 
 ```bash
 $ cat /path/to/file.swift | swiftformat > /path/to/file.swift
@@ -314,19 +322,20 @@ Git pre-commit hook
 
 1. Follow the instructions for installing the SwiftFormat command-line tool.
 
-2. Edit or create a `.git/hooks/pre-commit` file in your project folder. The .git folder is hidden but should already exist if you are using Git with your project, so open it with the terminal, or the Finder's `Go > Go to Folder...` menu.
+2. Install [git-format-staged](https://github.com/hallettj/git-format-staged).
 
-3. Add the following line in the pre-commit file (unlike the Xcode build phase approach, this uses your locally installed version of SwiftFormat, not a separate copy in your project repository)
+3. Edit or create a `.git/hooks/pre-commit` file in your project folder. The .git folder is hidden but should already exist if you are using Git with your project, so open it with the terminal, or the Finder's `Go > Go to Folder...` menu.
+
+4. Add the following line in the pre-commit file. The `{}` will be replaced automatically by the path to the Swift file being formatted:
 
     ```bash
     #!/bin/bash
-    git diff --diff-filter=d --staged --name-only | grep -e '\.swift$' | while read line; do
-      swiftformat "${line}";
-      git add "$line";
-    done
+    git-format-staged --formatter "swiftformat stdin --stdinpath {}" "*.swift"
     ```
-
-4. enable the hook by typing `chmod +x .git/hooks/pre-commit` in the terminal
+    
+    (Note that this example uses your locally installed version of SwiftFormat, not a separate copy in your project repository. You can replace `swiftformat` with the path to a copy inside your project if you prefer.)
+    
+5. enable the hook by typing `chmod +x .git/hooks/pre-commit` in the terminal.
  
 The pre-commit hook will now run whenever you run `git commit`. Running `git commit --no-verify` will skip the pre-commit hook.
 
@@ -635,17 +644,22 @@ FAQ
 
 *Q. What platforms does SwiftFormat support?*
 
-> A. SwiftFormat works on macOS 10.12 (Sierra) and above, and also runs on Ubuntu Linux.
+> A. SwiftFormat works on macOS 10.13 (High Sierra) and above, and also runs on Ubuntu Linux.
 
 
 *Q. What versions of Swift are supported?*
 
-> A. The SwiftFormat framework and command-line tool can be compiled using Swift 4.0 and above, and can format programs written in Swift 3.x, 4.x or 5. Swift 2.x is no longer actively supported. If you are still using Swift 2.x, and find that SwiftFormat breaks your code, the best solution is probably to revert to an earlier SwiftFormat release, or enable only a small subset of rules.
+> A. The SwiftFormat framework and command-line tool can be compiled using Swift 4.2 and above, and can format programs written in Swift 4.x or 5. Swift 3.x is no longer actively supported. If you are still using Swift 3.x or earlier and find that SwiftFormat breaks your code, the best solution is probably to revert to an earlier SwiftFormat release, or enable only a small subset of rules. Use the `--swiftversion` argument to enable additional rules specific to later Swift versions.
 
 
 *Q. SwiftFormat made changes I didn't want it to. How can I find out which rules to disable?*
 
 > A. If you run SwiftFormat using the `--verbose` option, it will tell you which rules were applied to each file. You can then selectively disable certain rules using the `--disable` argument (see below).
+
+
+*Q. People on my team have different SwiftFormat versions installed. How can we ensure consistent formatting?
+
+> A. You can specify a `--minversion` argument in your project's .swiftformat` file to fail the build if developers attempt to use an older SwiftFormat version.
 
 
 *Q. How can I modify the formatting rules?*
@@ -719,11 +733,12 @@ SwiftFormat is not a commercially-funded product, it's a labour of love given fr
 Credits
 ------------
 
-* [Tony Arnold](https://github.com/tonyarnold) - Xcode source editor extension
-* [Vincent Bernier](https://github.com/vinceburn) - Xcode extension settings UI
+* [Tony Arnold](https://github.com/tonyarnold) - SwiftFormat for Xcode
+* [Vincent Bernier](https://github.com/vinceburn) - SwiftFormat for Xcode settings UI
+* [Vikram Kriplaney](https://github.com/markiv) - SwiftFormat for Xcode icon
 * [Maxime Marinel](https://github.com/bourvill) - Git pre-commit hook script
 * [Romain Pouclet](https://github.com/palleas) - Homebrew formula
-* [Aerobounce](https://github.com/aerobounce) - Homebrew cask for source editor extension
+* [Aerobounce](https://github.com/aerobounce) - Homebrew cask for SwiftFormat for Xcode
 * [Ali Akhtarzada](https://github.com/aliak00) - Several path-related CLI enhancements
 * [Yonas Kolb](https://github.com/yonaskolb) - Swift Package Manager integration
 * [Wolfgang Lutz](https://github.com/Lutzifer) - AppleScript integration instructions

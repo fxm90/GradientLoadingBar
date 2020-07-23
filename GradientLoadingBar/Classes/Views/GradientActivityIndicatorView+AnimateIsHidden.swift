@@ -57,7 +57,7 @@ public extension GradientActivityIndicatorView {
                            self.isHidden = isFinished
 
                            completion?(isFinished)
-        })
+                       })
     }
 
     /// Fade in the current view by setting the `isHidden` flag to `false` and animating the `alpha` to one.
