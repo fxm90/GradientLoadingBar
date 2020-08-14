@@ -18,6 +18,7 @@ Table of Contents
     - [Xcode build phase](#xcode-build-phase)
     - [Via Applescript](#via-applescript)
     - [VSCode plugin](#vscode-plugin)
+    - [Sublime Text plugin](#sublime-text-plugin)
     - [Git pre-commit hook](#git-pre-commit-hook)
     - [On CI using Danger](#on-ci-using-danger)
 - [Configuration](#configuration)
@@ -176,6 +177,12 @@ If you do not supply an input file, SwiftFormat will automatically take its inpu
 $ cat /path/to/file.swift | swiftformat stdin
 ```
 
+When using stdin, SwiftFormat does not have access to the file path of the input, so features that rely on the file location (such as inserting the creation date into header comments, or detecting `.swiftformat` configuration files in the file path) will not work. To solve this, you can provide the file path using the `--stdinpath` argument:
+
+```bash
+$ cat /path/to/file.swift | swiftformat stdin --stdinpath /path/to/file.swift
+```
+
 
 Xcode source editor extension
 -----------------------------
@@ -260,7 +267,7 @@ You can also use `swift run -c release --package-path BuildTools swiftformat "$S
 
 ### Using Cocoapods
 
-#### 1) Add the SwitfFormat CLI to your Podfile
+#### 1) Add the SwiftFormat CLI to your Podfile
 
 1. Add the `swiftformat` binary to your project directory via [CocoaPods](https://cocoapods.org/), by adding the following line to your Podfile then running `pod install`:
 
@@ -280,7 +287,7 @@ You can also use `swift run -c release --package-path BuildTools swiftformat "$S
     "${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat" "$SRCROOT"
     ```
 
-### Alternative: Locally installed swiftformat
+### Alternative: Locally installed SwiftFormat
 
 Alternatively, you could use a locally installed swiftformat command-line tool instead by putting the following in your Run Script build phase:
 
@@ -315,6 +322,12 @@ VSCode plugin
 --------------
 
 If you prefer to use Microsoft's [VSCode](https://code.visualstudio.com) editor for writing Swift, [Valentin Knabel](https://github.com/vknabel) has created a [VSCode plugin](https://marketplace.visualstudio.com/items?itemName=vknabel.vscode-swiftformat) for SwiftFormat.
+
+
+Sublime Text plugin
+--------------------
+
+If you prefer to use the [Sublime Text](https://www.sublimetext.com) editor, try the [Sublime-Swift-Format plugin](https://github.com/aerobounce/Sublime-Swift-Format) by [Aerobounce](https://github.com/aerobounce).
 
 
 Git pre-commit hook
@@ -375,6 +388,19 @@ Rules are configured by adding `--[option_name] [value]` to your command-line ar
 
 A given option may affect multiple rules. Use `--ruleinfo [rule_name]` command for details about which options affect a given rule, or see the [Rules.md](https://github.com/nicklockwood/SwiftFormat/blob/master/Rules.md) file.
 
+You can configure options for specific files or code ranges by using `swiftformat:options` directive in comments inside your Swift file. To temporarily set one or more options inside a source file, use:
+
+```swift
+// swiftformat:options --indent 2 --allman true
+```
+
+To apply an options override only to a particular line, use the `:next` modifier:
+
+```swift
+// swiftformat:options:next --semicolons inline
+doTheThing(); print("Did the thing")
+```
+
 
 Rules
 -----
@@ -408,7 +434,7 @@ To avoid automatically opting-in to new rules when SwiftFormat is updated, you c
 
 To see exactly which rules were applied to a given file, you can use the `--verbose` command-line option to force SwiftFormat to print a more detailed log as it applies the formatting. **NOTE:** running in verbose mode is slower than the default mode.
 
-You can disable rules for specific files or code ranges by using `swiftformat:` directives in comments inside your Swift files. To temporarily disable one or more rules inside a source file, use:
+You can disable rules for specific files or code ranges by using `swiftformat:` directives in comments inside your Swift file. To temporarily disable one or more rules inside a source file, use:
 
 ```swift
 // swiftformat:disable <rule1> [<rule2> [rule<3> ...]]
@@ -703,6 +729,8 @@ Known issues
 
 * When running a version of SwiftFormat built using Xcode 10.2 on macOS 10.14.3 or earlier, you may experience a crash with the error "dyld: Library not loaded: @rpath/libswiftCore.dylib". To fix this, you need to install the [Swift 5 Runtime Support for Command Line Tools](https://support.apple.com/kb/DL1998). These tools are included by default in macOS 10.14.4 and later.
 
+* When using the `preferKeyPath` rule, conversion of `compactMap { $0.foo }` to `compactMap(\.foo)` will result in code that fails to compile if `foo` is not an `Optional` property. This is due to a difference in the way that Swift handles type inference for closures vs keyPaths, as discussed [here](https://bugs.swift.org/browse/SR-13347). The recommended workaround is to replace `compactMap()` with `map()` in these cases, which will not change the behavior of the code.
+
 * When using the `--self remove` option, the `redundantSelf` rule will remove references to `self` in autoclosure arguments, which may change the meaning of the code, or cause it not to compile. To work around this issue, use the `--selfrequired` option to provide a comma-delimited list of methods to be excluded from the rule. The `expect()` function from the popular [Nimble](https://github.com/Quick/Nimble) unit testing framework is already excluded by default. If you are using the `--self insert` option then this is not an issue.
 
 * If you assign `SomeClass.self` to a variable and then instantiate an instance of the class using that variable, Swift requires that you use an explicit `.init()`, however, the `redundantInit` rule is not currently capable of detecting this situation and will remove the `.init`. To work around this issue, use the `// swiftformat:disable:next redundantInit` comment directive to disable the rule for any affected lines of code (or just disable the `redundantInit` rule completely).
@@ -714,10 +742,6 @@ Known issues
 * The `isEmpty` rule will convert `count == 0` to `isEmpty` even for types that do not have an `isEmpty` method, such as `NSArray`/`NSDictionary`/etc. Use of Foundation collections in Swift code is pretty rare, but just in case, the rule is disabled by default.
 
 * If a file begins with a comment, the `stripHeaders` rule will remove it if it is followed by a blank line. To avoid this, make sure that the first comment is directly followed by a line of code.
-
-* The formatted file cache is based on a hash of the file contents, so it's possible (though unlikely) that an edited file will have the exact same hash as the previously formatted version, causing SwiftFormat to incorrectly identify it as not having changed, and fail to update it.
-
-    To fix this, you can use the command-line option `--cache ignore` to force SwiftFormat to ignore the cache for this run, or just type an extra space in the file (which SwiftFormat will then remove again when it applies the correct formatting).
 
 * When running on Linux, the `--symlinks` option has no effect, and some of the `fileHeader` placeholders are not supported.
 
@@ -736,9 +760,11 @@ Credits
 * [Tony Arnold](https://github.com/tonyarnold) - SwiftFormat for Xcode
 * [Vincent Bernier](https://github.com/vinceburn) - SwiftFormat for Xcode settings UI
 * [Vikram Kriplaney](https://github.com/markiv) - SwiftFormat for Xcode icon
+* [Hyperphonic](https://github.com/hyperphonic0) - Xcode 12 compatibility for SwiftFormat
 * [Maxime Marinel](https://github.com/bourvill) - Git pre-commit hook script
 * [Romain Pouclet](https://github.com/palleas) - Homebrew formula
-* [Aerobounce](https://github.com/aerobounce) - Homebrew cask for SwiftFormat for Xcode
+* [Aerobounce](https://github.com/aerobounce) - Homebrew cask and Sublime Text plugin
+* [Cal Stephens](https://github.com/calda) - Several formatting rules and options
 * [Ali Akhtarzada](https://github.com/aliak00) - Several path-related CLI enhancements
 * [Yonas Kolb](https://github.com/yonaskolb) - Swift Package Manager integration
 * [Wolfgang Lutz](https://github.com/Lutzifer) - AppleScript integration instructions
