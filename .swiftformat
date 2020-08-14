@@ -21,6 +21,7 @@
 --disable andOperator
 --disable sortedImports
 --disable trailingCommas
+--disable wrapMultilineStatementBraces
 
 #
 # Rule Configuration
