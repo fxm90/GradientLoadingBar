@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="31S-8b-Niv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="31S-8b-Niv">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -58,12 +58,21 @@
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="bi1-og-G8F">
+                                        <rect key="frame" x="14" y="280" width="347" height="31"/>
+                                        <connections>
+                                            <action selector="chnageSliderValue:" destination="vXZ-lx-hvc" eventType="valueChanged" id="yjf-Jm-ylT"/>
+                                        </connections>
+                                    </slider>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="Hrq-tB-Sk3" firstAttribute="leading" secondItem="vCz-UL-eay" secondAttribute="leading" constant="16" id="Er7-gx-Ray"/>
+                                    <constraint firstItem="bi1-og-G8F" firstAttribute="leading" secondItem="vCz-UL-eay" secondAttribute="leading" constant="16" id="GRD-QQ-hGx"/>
                                     <constraint firstItem="Hrq-tB-Sk3" firstAttribute="centerY" secondItem="vCz-UL-eay" secondAttribute="centerY" id="MB9-lc-dAX"/>
                                     <constraint firstAttribute="trailing" secondItem="Hrq-tB-Sk3" secondAttribute="trailing" constant="16" id="ao9-tR-lfs"/>
+                                    <constraint firstItem="bi1-og-G8F" firstAttribute="top" secondItem="Hrq-tB-Sk3" secondAttribute="bottom" constant="20" id="hLh-II-KpU"/>
+                                    <constraint firstAttribute="trailing" secondItem="bi1-og-G8F" secondAttribute="trailing" constant="16" id="mc0-5P-zjX"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -80,6 +89,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Basic Example" image="house" catalog="system" id="QbQ-0M-Q7f"/>
                     <navigationItem key="navigationItem" title="Basic Example" prompt="Gradient Loading Bar" largeTitleDisplayMode="always" id="Rdw-Bd-vul"/>
+                    <connections>
+                        <outlet property="slider" destination="bi1-og-G8F" id="ZFa-di-COw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
@@ -230,14 +242,24 @@
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="6iB-XA-1FD">
+                                        <rect key="frame" x="14" y="308" width="347" height="31"/>
+                                        <connections>
+                                            <action selector="chnageSlider:" destination="G0W-Ta-C7r" eventType="valueChanged" id="feD-wL-hVl"/>
+                                            <action selector="chnageSliderValue:" destination="vXZ-lx-hvc" eventType="valueChanged" id="QQW-w5-r1L"/>
+                                        </connections>
+                                    </slider>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="oWt-EZ-h2R" firstAttribute="bottom" secondItem="cQz-wE-hV5" secondAttribute="centerY" constant="-8" id="77C-lL-1fS"/>
                                     <constraint firstItem="oWt-EZ-h2R" firstAttribute="leading" secondItem="cQz-wE-hV5" secondAttribute="leading" constant="16" id="Hjd-XM-aek"/>
+                                    <constraint firstItem="6iB-XA-1FD" firstAttribute="top" secondItem="eno-YK-fo8" secondAttribute="bottom" constant="20" id="dsW-xK-bqv"/>
                                     <constraint firstAttribute="trailing" secondItem="oWt-EZ-h2R" secondAttribute="trailing" constant="16" id="ifg-oy-eiV"/>
+                                    <constraint firstItem="6iB-XA-1FD" firstAttribute="leading" secondItem="cQz-wE-hV5" secondAttribute="leading" constant="16" id="jSO-Hc-I5d"/>
                                     <constraint firstAttribute="trailing" secondItem="eno-YK-fo8" secondAttribute="trailing" constant="16" id="o3h-uA-jbM"/>
                                     <constraint firstItem="eno-YK-fo8" firstAttribute="top" secondItem="cQz-wE-hV5" secondAttribute="centerY" constant="8" id="rVX-yO-z4X"/>
+                                    <constraint firstAttribute="trailing" secondItem="6iB-XA-1FD" secondAttribute="trailing" constant="16" id="tgh-XK-aqf"/>
                                     <constraint firstItem="eno-YK-fo8" firstAttribute="leading" secondItem="cQz-wE-hV5" secondAttribute="leading" constant="16" id="zaJ-tE-bCY"/>
                                 </constraints>
                             </view>
@@ -255,6 +277,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Safe Area Example" image="rectangle.and.arrow.up.right.and.arrow.down.left" catalog="system" id="VBS-L1-AHW"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="slider" destination="6iB-XA-1FD" id="5kc-MV-J5F"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oYv-dl-Yai" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
