@@ -115,6 +115,12 @@ This method fades-in the loading bar. You can adjust the duration with correspon
 ###### – `fadeOut(duration:completion)`
 This methods fades-out the loading bar.  You can adjust the duration with corresponding parameter. Furthermore you can pass in a completion handler that gets called once the animation is finished.
 
+###### – `setProgress(rate)`
+This methods show progress on the loading bar.  You can adjust progress value use this method.
+
+Example with `setProgress`.
+![Example][progress-example]
+
 ##### Custom shared instance (Singleton)
 If you need the loading bar on multiple / different parts of your app, you can use the given static `shared` variable:
 
@@ -211,3 +217,5 @@ GradientLoadingBar is available under the MIT license. See the LICENSE file for 
 
 [advanced-example]: Assets/advanced-example.png
 [advanced-example--thumbnail]: Assets/advanced-example--thumbnail.png
+
+[progress-example]: Assets/progress-example.gif
