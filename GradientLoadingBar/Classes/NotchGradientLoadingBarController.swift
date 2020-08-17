@@ -53,7 +53,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
             gradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: height),
 
             gradientActivityIndicatorView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
-            gradientActivityIndicatorView.trailingAnchor.constraint(equalTo: superview.trailingAnchor)
+            gradientActivityIndicatorView.widthAnchor.constraint(equalToConstant: superview.frame.size.width)
         ])
 
         // As we currently only support portrait mode (and no device rotation), we can safely use `bounds.size.width` here.

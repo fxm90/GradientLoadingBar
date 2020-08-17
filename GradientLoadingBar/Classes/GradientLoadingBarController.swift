@@ -100,7 +100,7 @@ open class GradientLoadingBarController {
             gradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: height),
 
             gradientActivityIndicatorView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
-            gradientActivityIndicatorView.trailingAnchor.constraint(equalTo: superview.trailingAnchor)
+            gradientActivityIndicatorView.widthAnchor.constraint(equalToConstant: superview.frame.size.width)
         ])
     }
 
@@ -114,6 +114,20 @@ open class GradientLoadingBarController {
     public func fadeOut(duration: TimeInterval = TimeInterval.GradientLoadingBar.fadeOutDuration, completion: ((Bool) -> Void)? = nil) {
         gradientActivityIndicatorView.fadeOut(duration: duration,
                                               completion: completion)
+    }
+
+    /// Progress display through rate ---- Rate range : 0 ~ 1
+    public func setProgress(_ rate: CGFloat) {
+        guard rate >= 0, rate <= 1 else { return }
+
+        guard let window = viewModel.superview.value, let width = window?.frame.size.width else { return }
+
+        let progress = width * rate
+        let widthConstraints = gradientActivityIndicatorView.constraints.filter { $0.firstAttribute == .width }
+        guard !widthConstraints.isEmpty else { return }
+
+        let widthConstraint = widthConstraints[0]
+        widthConstraint.constant = progress
     }
 
     // MARK: - Private methods
