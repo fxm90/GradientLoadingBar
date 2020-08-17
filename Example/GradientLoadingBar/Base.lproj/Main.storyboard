@@ -32,7 +32,7 @@
                                 <rect key="frame" x="0.0" y="138" width="375" height="480"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Hrq-tB-Sk3">
-                                        <rect key="frame" x="16" y="220" width="343" height="40"/>
+                                        <rect key="frame" x="16" y="20" width="343" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6V-cT-b8Q" customClass="BlueFilledButton" customModule="GradientLoadingBar_Example" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="163.5" height="40"/>
@@ -59,7 +59,7 @@
                                         </subviews>
                                     </stackView>
                                     <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="bi1-og-G8F">
-                                        <rect key="frame" x="14" y="280" width="347" height="31"/>
+                                        <rect key="frame" x="14" y="80" width="347" height="31"/>
                                         <connections>
                                             <action selector="chnageSliderValue:" destination="vXZ-lx-hvc" eventType="valueChanged" id="yjf-Jm-ylT"/>
                                         </connections>
@@ -69,7 +69,7 @@
                                 <constraints>
                                     <constraint firstItem="Hrq-tB-Sk3" firstAttribute="leading" secondItem="vCz-UL-eay" secondAttribute="leading" constant="16" id="Er7-gx-Ray"/>
                                     <constraint firstItem="bi1-og-G8F" firstAttribute="leading" secondItem="vCz-UL-eay" secondAttribute="leading" constant="16" id="GRD-QQ-hGx"/>
-                                    <constraint firstItem="Hrq-tB-Sk3" firstAttribute="centerY" secondItem="vCz-UL-eay" secondAttribute="centerY" id="MB9-lc-dAX"/>
+                                    <constraint firstItem="Hrq-tB-Sk3" firstAttribute="top" secondItem="vCz-UL-eay" secondAttribute="top" constant="20" id="K7t-rg-G0j"/>
                                     <constraint firstAttribute="trailing" secondItem="Hrq-tB-Sk3" secondAttribute="trailing" constant="16" id="ao9-tR-lfs"/>
                                     <constraint firstItem="bi1-og-G8F" firstAttribute="top" secondItem="Hrq-tB-Sk3" secondAttribute="bottom" constant="20" id="hLh-II-KpU"/>
                                     <constraint firstAttribute="trailing" secondItem="bi1-og-G8F" secondAttribute="trailing" constant="16" id="mc0-5P-zjX"/>
@@ -491,7 +491,7 @@
                     <tabBarItem key="tabBarItem" title="Nav Bar Example" image="lightbulb.fill" catalog="system" id="r91-al-1Rr"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="zAv-AH-IlN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="104.5"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
