@@ -343,7 +343,7 @@ Git pre-commit hook
 
     ```bash
     #!/bin/bash
-    git-format-staged --formatter "swiftformat stdin --stdinpath {}" "*.swift"
+    git-format-staged --formatter "swiftformat stdin --stdinpath '{}'" "*.swift"
     ```
     
     (Note that this example uses your locally installed version of SwiftFormat, not a separate copy in your project repository. You can replace `swiftformat` with the path to a copy inside your project if you prefer.)
@@ -418,7 +418,7 @@ You can disable rules individually using `--disable` followed by a list of one o
 --enable isEmpty
 ```
 
-If you prefer, you can place your enabled/disabled rules on separate lines instead of using commas:
+If you prefer, you can use multiple `--enable`/`--disable` arguments instead of using commas:
 
 ```bash
 --disable indent
@@ -426,10 +426,28 @@ If you prefer, you can place your enabled/disabled rules on separate lines inste
 --disable redundantSelf
 ```
 
-To avoid automatically opting-in to new rules when SwiftFormat is updated, you can use the`--rules` argument to *only* enable the rules you specify:
+Alternatively, you can use the line continuation character `\` to wrap a single argument over multiple line:
+
+```bash         
+--disable          \
+    indent,        \
+    linebreaks,    \
+    redundantSelf
+```
+
+To avoid automatically opting-in to new rules when SwiftFormat is updated, use the`--rules` argument to *only* enable the rules you specify:
 
 ```bash
 --rules indent,linebreaks
+```
+
+As above, you may include multiple `--rules` arguments, or use the line continuation character `\` to wrap the rules onto separate lines:
+
+```bash
+--rules redundantSelf
+--rules         \
+    indent,     \
+    linebreaks
 ```
 
 To see exactly which rules were applied to a given file, you can use the `--verbose` command-line option to force SwiftFormat to print a more detailed log as it applies the formatting. **NOTE:** running in verbose mode is slower than the default mode.
@@ -759,12 +777,13 @@ Credits
 
 * [Tony Arnold](https://github.com/tonyarnold) - SwiftFormat for Xcode
 * [Vincent Bernier](https://github.com/vinceburn) - SwiftFormat for Xcode settings UI
-* [Vikram Kriplaney](https://github.com/markiv) - SwiftFormat for Xcode icon
+* [Vikram Kriplaney](https://github.com/markiv) - SwiftFormat for Xcode icon and search feature
 * [Hyperphonic](https://github.com/hyperphonic0) - Xcode 12 compatibility for SwiftFormat
 * [Maxime Marinel](https://github.com/bourvill) - Git pre-commit hook script
 * [Romain Pouclet](https://github.com/palleas) - Homebrew formula
 * [Aerobounce](https://github.com/aerobounce) - Homebrew cask and Sublime Text plugin
-* [Cal Stephens](https://github.com/calda) - Several formatting rules and options
+* [Cal Stephens](https://github.com/calda) - Several new formatting rules and options
+* [Facundo Menzella](https://github.com/acumenzella) - Several new formatting rules
 * [Ali Akhtarzada](https://github.com/aliak00) - Several path-related CLI enhancements
 * [Yonas Kolb](https://github.com/yonaskolb) - Swift Package Manager integration
 * [Wolfgang Lutz](https://github.com/Lutzifer) - AppleScript integration instructions
