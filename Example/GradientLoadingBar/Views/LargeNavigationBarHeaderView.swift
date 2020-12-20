@@ -2,7 +2,7 @@
 //  LargeNavigationBarHeaderView.swift
 //  GradientLoadingBar_Example
 //
-//  Created by Felix Mau on 23/09/19.
+//  Created by Felix Mau on 23.09.19.
 //  Copyright © 2019 CocoaPods. All rights reserved.
 //
 
@@ -63,7 +63,7 @@ final class LargeNavigationBarHeaderView: UIView {
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.0),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.0),
 
-            titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8.0)
+            titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8.0),
         ])
     }
 
@@ -79,7 +79,7 @@ final class LargeNavigationBarHeaderView: UIView {
             promptLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8.0),
             promptLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8.0),
 
-            promptLabel.topAnchor.constraint(equalTo: topAnchor, constant: 9.5)
+            promptLabel.topAnchor.constraint(equalTo: topAnchor, constant: 9.5),
         ])
     }
 }

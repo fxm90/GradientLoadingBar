@@ -2,7 +2,7 @@
 //  GradientActivityIndicatorViewModel.swift
 //  GradientLoadingBar
 //
-//  Created by Felix Mau on 08/26/19.
+//  Created by Felix Mau on 26.08.19.
 //  Copyright © 2019 Felix Mau. All rights reserved.
 //
 
@@ -166,9 +166,7 @@ final class GradientActivityIndicatorViewModel {
     /// ```
     ///
     /// - Note: Declared `static` so we can call this method from the initializer, before `self` is available.
-    private static func makeColorLocationRow(index: Int,
-                                             gradientColorsQuantity: Int,
-                                             gradientLayerColorsQuantity: Int) -> ColorLocationRow {
+    private static func makeColorLocationRow(index: Int, gradientColorsQuantity: Int, gradientLayerColorsQuantity: Int) -> ColorLocationRow {
         let startLocationsQuantity = gradientLayerColorsQuantity - gradientColorsQuantity - index
         let startLocations = [NSNumber](repeating: 0.0, count: startLocationsQuantity)
 
@@ -203,8 +201,7 @@ final class GradientActivityIndicatorViewModel {
     /// ```
     ///
     /// - Note: Declared `static` so we can call this method from the initializer, before `self` is available.
-    private static func makeColorLocationMatrix(gradientColorsQuantity: Int,
-                                                gradientLayerColorsQuantity: Int) -> ColorLocationMatrix {
+    private static func makeColorLocationMatrix(gradientColorsQuantity: Int, gradientLayerColorsQuantity: Int) -> ColorLocationMatrix {
         let matrixHeight = gradientLayerColorsQuantity - gradientColorsQuantity + 1
         let range = 0 ..< matrixHeight
 

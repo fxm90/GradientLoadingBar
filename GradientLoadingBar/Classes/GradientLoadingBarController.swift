@@ -2,7 +2,7 @@
 //  GradientLoadingBarController.swift
 //  GradientLoadingBar
 //
-//  Created by Felix Mau on 12/11/16.
+//  Created by Felix Mau on 12.11.16.
 //  Copyright © 2016 Felix Mau. All rights reserved.
 //
 
@@ -69,8 +69,7 @@ open class GradientLoadingBarController {
     ///   - isRelativeToSafeArea: Flag whether the top layout constraint should respect `safeAreaLayoutGuide`.
     ///
     /// - Returns: Instance of gradient loading bar.
-    public init(height: CGFloat = 3,
-                isRelativeToSafeArea: Bool = true) {
+    public init(height: CGFloat = 3, isRelativeToSafeArea: Bool = true) {
         self.height = height
         self.isRelativeToSafeArea = isRelativeToSafeArea
 
@@ -100,7 +99,7 @@ open class GradientLoadingBarController {
             gradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: height),
 
             gradientActivityIndicatorView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
-            gradientActivityIndicatorView.trailingAnchor.constraint(equalTo: superview.trailingAnchor)
+            gradientActivityIndicatorView.trailingAnchor.constraint(equalTo: superview.trailingAnchor),
         ])
     }
 

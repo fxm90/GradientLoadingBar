@@ -2,7 +2,7 @@
 //  BlueBorderedButton.swift
 //  GradientLoadingBar_Example
 //
-//  Created by Felix Mau on 08/29/18.
+//  Created by Felix Mau on 29.08.18.
 //  Copyright © 2018 Felix Mau. All rights reserved.
 //
 

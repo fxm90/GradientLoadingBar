@@ -6,11 +6,11 @@ let package = Package(name: "GradientLoadingBar",
                       platforms: [.iOS(.v9)],
                       products: [
                           .library(name: "GradientLoadingBar",
-                                   targets: ["GradientLoadingBar"])
+                                   targets: ["GradientLoadingBar"]),
                       ],
                       dependencies: [
                           .package(url: "https://github.com/fxm90/LightweightObservable",
-                                   .upToNextMajor(from: "2.0.0"))
+                                   .upToNextMajor(from: "2.0.0")),
                       ],
                       targets: [
                           .target(name: "GradientLoadingBar",
@@ -18,5 +18,5 @@ let package = Package(name: "GradientLoadingBar",
                                   path: "GradientLoadingBar/Classes"),
                           .testTarget(name: "GradientLoadingBarTests",
                                       dependencies: ["GradientLoadingBar"],
-                                      path: "Example/Tests/")
+                                      path: "Example/Tests/"),
                       ])

@@ -2,7 +2,7 @@
 //  GradientLoadingBarControllerTestCase.swift
 //  GradientLoadingBar_SnapshotTests
 //
-//  Created by Felix Mau on 06/14/20.
+//  Created by Felix Mau on 14.06.20.
 //  Copyright © 2020 CocoaPods. All rights reserved.
 //
 

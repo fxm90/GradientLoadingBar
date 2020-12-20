@@ -2,7 +2,7 @@
 //  NavigationBarExampleViewController.swift
 //  GradientLoadingBar_Example
 //
-//  Created by Felix Mau on 08/29/18.
+//  Created by Felix Mau on 29.08.18.
 //  Copyright © 2018 Felix Mau. All rights reserved.
 //
 
@@ -58,7 +58,7 @@ class NavigationBarExampleViewController: UIViewController {
             gradientProgressIndicatorView.trailingAnchor.constraint(equalTo: navigationBar.trailingAnchor),
 
             gradientProgressIndicatorView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor),
-            gradientProgressIndicatorView.heightAnchor.constraint(equalToConstant: Config.height)
+            gradientProgressIndicatorView.heightAnchor.constraint(equalToConstant: Config.height),
         ])
     }
 }

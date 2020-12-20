@@ -2,7 +2,7 @@
 //  GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift
 //  GradientLoadingBar_Tests
 //
-//  Created by Felix Mau on 19/05/19.
+//  Created by Felix Mau on 19.05.19.
 //  Copyright © 2017 Felix Mau. All rights reserved.
 //
 

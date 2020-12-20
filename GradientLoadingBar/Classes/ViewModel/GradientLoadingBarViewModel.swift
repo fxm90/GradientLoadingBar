@@ -2,7 +2,7 @@
 //  GradientLoadingBarViewModel.swift
 //  GradientLoadingBar
 //
-//  Created by Felix Mau on 12/26/17.
+//  Created by Felix Mau on 26.12.17.
 //  Copyright © 2017 Felix Mau. All rights reserved.
 //
 
@@ -30,8 +30,7 @@ final class GradientLoadingBarViewModel {
 
     // MARK: - Constructor
 
-    init(sharedApplication: UIApplicationProtocol = UIApplication.shared,
-         notificationCenter: NotificationCenter = .default) {
+    init(sharedApplication: UIApplicationProtocol = UIApplication.shared, notificationCenter: NotificationCenter = .default) {
         self.sharedApplication = sharedApplication
         self.notificationCenter = notificationCenter
 

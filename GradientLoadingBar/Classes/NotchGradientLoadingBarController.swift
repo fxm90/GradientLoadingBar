@@ -2,7 +2,7 @@
 //  NotchGradientLoadingBarController.swift
 //  GradientLoadingBar
 //
-//  Created by Felix Mau on 06/11/20.
+//  Created by Felix Mau on 06.11.20.
 //  Copyright © 2020 Felix Mau. All rights reserved.
 //
 
@@ -53,7 +53,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
             gradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: height),
 
             gradientActivityIndicatorView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
-            gradientActivityIndicatorView.trailingAnchor.constraint(equalTo: superview.trailingAnchor)
+            gradientActivityIndicatorView.trailingAnchor.constraint(equalTo: superview.trailingAnchor),
         ])
 
         // As we currently only support portrait mode (and no device rotation), we can safely use `bounds.size.width` here.
@@ -72,7 +72,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         let smallCircleDiameter: CGFloat = 2 * Config.smallCircleRadius
 
         let bezierPath = UIBezierPath()
-        bezierPath.move(to: CGPoint(x: 0, y: 0))
+        bezierPath.move(to: .zero)
 
         // Draw line to small-circle left to `leftNotchPoint`.
         bezierPath.addLineTo(x: leftNotchPoint - Config.smallCircleRadius,

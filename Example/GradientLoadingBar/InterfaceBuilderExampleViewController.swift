@@ -2,7 +2,7 @@
 //  InterfaceBuilderExampleViewController.swift
 //  GradientLoadingBar_Example
 //
-//  Created by Felix Mau on 10/12/19.
+//  Created by Felix Mau on 12.10.19.
 //  Copyright © 2018 Felix Mau. All rights reserved.
 //
 

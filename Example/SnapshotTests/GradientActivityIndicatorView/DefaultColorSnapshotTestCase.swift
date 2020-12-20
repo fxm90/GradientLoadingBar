@@ -2,7 +2,7 @@
 //  DefaultColorSnapshotTestCase.swift
 //  GradientLoadingBar_SnapshotTests
 //
-//  Created by Felix Mau on 09/11/19.
+//  Created by Felix Mau on 09.11.19.
 //  Copyright © 2019 CocoaPods. All rights reserved.
 //
 
