@@ -5,8 +5,9 @@ target 'GradientLoadingBar_Example' do
   pod 'GradientLoadingBar', :path => '../'
 
 # Development pods.
-  pod 'SwiftFormat/CLI', '~> 0.40'
-  pod 'SwiftLint', '~> 0.36'
+  pod 'SwiftFormat/CLI', '~> 0.41'
+  pod 'SwiftLint', '~> 0.42'
+  pod 'SwiftConfigurationFiles', :git => 'https://github.com/fxm90/SwiftConfigurationFiles.git'
 
   target 'GradientLoadingBar_Tests' do
     inherit! :search_paths

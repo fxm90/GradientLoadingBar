@@ -1,0 +1,25 @@
+{
+  "name": "SwiftConfigurationFiles",
+  "version": "0.0.1",
+  "summary": "Repository containing configuration files for Swift development, e.g. for tools like SwiftLint or SwiftFormat.",
+  "homepage": "https://github.com/fxm90/Swift-Configuration-Files",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Felix Mau": "me@felix.hamburg"
+  },
+  "source": {
+    "git": "https://github.com/fxm90/Swift-Configuration-Files.git",
+    "tag": "0.0.1"
+  },
+  "social_media_url": "https://twitter.com/_fxm90",
+  "preserve_paths": ".*",
+  "platforms": {
+    "osx": null,
+    "ios": null,
+    "tvos": null,
+    "watchos": null
+  }
+}

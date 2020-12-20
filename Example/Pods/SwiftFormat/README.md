@@ -1,4 +1,4 @@
-![](EditorExtension/Application/Assets.xcassets/AppIcon.appiconset/AppIcon256.png)
+![](EditorExtension/Application/Assets.xcassets/AppIcon.appiconset/icon_256x256.png)
 
 [![PayPal](https://img.shields.io/badge/paypal-donate-blue.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9ZGWNK5FEZFF6&source=url)
 [![Travis](https://api.travis-ci.org/nicklockwood/SwiftFormat.svg?branch=master)](https://travis-ci.org/nicklockwood/SwiftFormat)
@@ -202,7 +202,7 @@ This will install SwiftFormat for Xcode in your Applications folder. Double-clic
 To update to the latest version once installed use:
 
 ```bash
-$ brew cask upgrade swiftformat-for-xcode
+$ brew upgrade --cask swiftformat-for-xcode
 ```
 
 Alternatively, if you prefer not to use Homebrew, you'll find the latest version of the SwiftFormat for Xcode application inside the EditorExtension folder included in the SwiftFormat repository. Download and unpack the zip archive, then drag `SwiftFormat for Xcode.app` into your `Applications` folder.
@@ -277,6 +277,8 @@ You can also use `swift run -c release --package-path BuildTools swiftformat "$S
 
 **NOTE:** This will only install the pre-built command-line app, not the source code for the SwiftFormat framework.
 
+**NOTE (2):** When installing this way, GateKeeper may block swiftformat from running until you open it manually the first time by right-clicking in the Finder and selecting "Open".
+
 #### 2) Add a Build phase to your app target
 
 1. Click on your project in the file list, choose your target under `TARGETS`, click the `Build Phases` tab
@@ -309,9 +311,9 @@ To run SwiftFormat on the frontmost Xcode document (project or workspace) you ca
 
 ```applescript
 tell application "Xcode"
-	set frontWindow to the first window
-	set myPath to path of document of frontWindow
-	do shell script "cd " & myPath & ";cd ..; /usr/local/bin/swiftformat ."
+    set frontWindow to the first window
+    set myPath to path of document of frontWindow
+    do shell script "cd " & myPath & ";cd ..; /usr/local/bin/swiftformat ."
 end tell
 ```
 
@@ -343,7 +345,7 @@ Git pre-commit hook
 
     ```bash
     #!/bin/bash
-    git-format-staged --formatter "swiftformat stdin --stdinpath {}" "*.swift"
+    git-format-staged --formatter "swiftformat stdin --stdinpath '{}'" "*.swift"
     ```
     
     (Note that this example uses your locally installed version of SwiftFormat, not a separate copy in your project repository. You can replace `swiftformat` with the path to a copy inside your project if you prefer.)
@@ -418,7 +420,7 @@ You can disable rules individually using `--disable` followed by a list of one o
 --enable isEmpty
 ```
 
-If you prefer, you can place your enabled/disabled rules on separate lines instead of using commas:
+If you prefer, you can use multiple `--enable`/`--disable` arguments instead of using commas:
 
 ```bash
 --disable indent
@@ -426,10 +428,28 @@ If you prefer, you can place your enabled/disabled rules on separate lines inste
 --disable redundantSelf
 ```
 
-To avoid automatically opting-in to new rules when SwiftFormat is updated, you can use the`--rules` argument to *only* enable the rules you specify:
+Alternatively, you can use the line continuation character `\` to wrap a single argument over multiple line:
+
+```bash         
+--disable          \
+    indent,        \
+    linebreaks,    \
+    redundantSelf
+```
+
+To avoid automatically opting-in to new rules when SwiftFormat is updated, use the`--rules` argument to *only* enable the rules you specify:
 
 ```bash
 --rules indent,linebreaks
+```
+
+As above, you may include multiple `--rules` arguments, or use the line continuation character `\` to wrap the rules onto separate lines:
+
+```bash
+--rules redundantSelf
+--rules         \
+    indent,     \
+    linebreaks
 ```
 
 To see exactly which rules were applied to a given file, you can use the `--verbose` command-line option to force SwiftFormat to print a more detailed log as it applies the formatting. **NOTE:** running in verbose mode is slower than the default mode.
@@ -727,7 +747,9 @@ Q. I don't want to be surprised by new rules added when I upgrade SwiftFormat. H
 Known issues
 ---------------
 
-* When running a version of SwiftFormat built using Xcode 10.2 on macOS 10.14.3 or earlier, you may experience a crash with the error "dyld: Library not loaded: @rpath/libswiftCore.dylib". To fix this, you need to install the [Swift 5 Runtime Support for Command Line Tools](https://support.apple.com/kb/DL1998). These tools are included by default in macOS 10.14.4 and later.
+* When using the `initCoderUnavailable` rule, if an `init` that is marked as unavailable is overridden elsewhere in the program then it will cause a compilation error. The recommended workaround is to remove the override (which shouldn't affect the program behavior if the init was really unused) or use the `// swiftformat:disable:next initCoderUnavailable` comment directive to disable the rule for the overridden init (or just disable the `initCoderUnavailable` rule completely).
+
+* When using the `extensionAccessControl` rule with the `--extensionacl on-extension` option, if you have public methods defined on an internal type defined in another file, the resultant public extension will no longer compile. The recommended solution is to manually remove the `public` modifier (this won't change the program behavior) or disable the `extensionAccessControl` rule.
 
 * When using the `preferKeyPath` rule, conversion of `compactMap { $0.foo }` to `compactMap(\.foo)` will result in code that fails to compile if `foo` is not an `Optional` property. This is due to a difference in the way that Swift handles type inference for closures vs keyPaths, as discussed [here](https://bugs.swift.org/browse/SR-13347). The recommended workaround is to replace `compactMap()` with `map()` in these cases, which will not change the behavior of the code.
 
@@ -737,13 +759,13 @@ Known issues
 
 * The `--self insert` option can only recognize locally declared member variables, not ones inherited from superclasses or extensions in other files, so it cannot insert missing `self` references for those. Note that the reverse is not true: `--self remove` should remove *all* redundant `self` references.
 
-* The `trailingClosures` rule can generate ambiguous code if a function has multiple optional closure arguments, or if multiple functions have signatures differing only by the name of the closure argument. For this reason, the rule is limited to anonymous closure arguments by default, with a whitelist for exceptions.
+* The `trailingClosures` rule can generate ambiguous code if a function has multiple optional closure arguments, or if multiple functions have signatures differing only by the name of the closure argument. For this reason, the rule is limited to anonymous closure arguments by default. You can use the `--trailingclosures` and `--nevertrailing` arguments to explicitly opt in or out of trailing closure support for specific functions.
 
 * The `isEmpty` rule will convert `count == 0` to `isEmpty` even for types that do not have an `isEmpty` method, such as `NSArray`/`NSDictionary`/etc. Use of Foundation collections in Swift code is pretty rare, but just in case, the rule is disabled by default.
 
 * If a file begins with a comment, the `stripHeaders` rule will remove it if it is followed by a blank line. To avoid this, make sure that the first comment is directly followed by a line of code.
 
-* When running on Linux, the `--symlinks` option has no effect, and some of the `fileHeader` placeholders are not supported.
+* When running a version of SwiftFormat built using Xcode 10.2 on macOS 10.14.3 or earlier, you may experience a crash with the error "dyld: Library not loaded: @rpath/libswiftCore.dylib". To fix this, you need to install the [Swift 5 Runtime Support for Command Line Tools](https://support.apple.com/kb/DL1998). These tools are included by default in macOS 10.14.4 and later.
 
 
 Tip Jar
@@ -759,12 +781,13 @@ Credits
 
 * [Tony Arnold](https://github.com/tonyarnold) - SwiftFormat for Xcode
 * [Vincent Bernier](https://github.com/vinceburn) - SwiftFormat for Xcode settings UI
-* [Vikram Kriplaney](https://github.com/markiv) - SwiftFormat for Xcode icon
+* [Vikram Kriplaney](https://github.com/markiv) - SwiftFormat for Xcode icon and search feature
 * [Hyperphonic](https://github.com/hyperphonic0) - Xcode 12 compatibility for SwiftFormat
 * [Maxime Marinel](https://github.com/bourvill) - Git pre-commit hook script
 * [Romain Pouclet](https://github.com/palleas) - Homebrew formula
 * [Aerobounce](https://github.com/aerobounce) - Homebrew cask and Sublime Text plugin
-* [Cal Stephens](https://github.com/calda) - Several formatting rules and options
+* [Cal Stephens](https://github.com/calda) - Several new formatting rules and options
+* [Facundo Menzella](https://github.com/acumenzella) - Several new formatting rules
 * [Ali Akhtarzada](https://github.com/aliak00) - Several path-related CLI enhancements
 * [Yonas Kolb](https://github.com/yonaskolb) - Swift Package Manager integration
 * [Wolfgang Lutz](https://github.com/Lutzifer) - AppleScript integration instructions
@@ -772,6 +795,7 @@ Credits
 * [Anthony Miller](https://github.com/AnthonyMDev) - Improvements to wrap/indent logic
 * [Shingo Takagi](https://github.com/zizi4n5) - Several brace-related bug fixes
 * [Juri Pakaste](https://github.com/juri) - Filelist feature
+* [Jim Puls](https://github.com/puls) - Big Sur icon update
 * [Nick Lockwood](https://github.com/nicklockwood) - Everything else
 
 ([Full list of contributors](https://github.com/nicklockwood/SwiftFormat/graphs/contributors))
