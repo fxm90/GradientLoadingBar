@@ -69,7 +69,7 @@ public func _verifyInlineSnapshot<Value>(
   )
   -> String? {
 
-    let recording = recording || isRecording
+    let recording = recording || record
 
     do {
       let tookSnapshot = XCTestExpectation(description: "Took snapshot")
