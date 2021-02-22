@@ -10,20 +10,23 @@ import UIKit
 import GradientLoadingBar
 
 class SafeAreaExampleViewController: UIViewController {
-    // MARK: - Private properties
+    // MARK: - UI properties
 
-    @IBOutlet private var slider: UISlider!
+    @IBOutlet private var progressSlider: UISlider!
+
+    // MARK: - Private properties
 
     private let gradientLoadingBar = GradientLoadingBar(isRelativeToSafeArea: false)
 
     private let notchGradientLoadingBar = NotchGradientLoadingBar(isRelativeToSafeArea: false)
+
+    private let progressLoadingBar = ProgressLoadingBar(isRelativeToSafeArea: false)
 
     // MARK: - Public methods
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        slider.isHidden = true
         gradientLoadingBar.fadeOut()
         notchGradientLoadingBar.fadeOut()
     }
@@ -37,17 +40,26 @@ class SafeAreaExampleViewController: UIViewController {
     }
 
     @IBAction func showNotchBarButtonTouchUpInside(_: Any) {
-        slider.isHidden = false
         notchGradientLoadingBar.fadeIn()
-        notchGradientLoadingBar.setProgress(CGFloat(slider.value))
     }
 
     @IBAction func hideNotchBarButtonTouchUpInside(_: Any) {
-        slider.isHidden = true
         notchGradientLoadingBar.fadeOut()
     }
 
+    /// Progress
+    @IBAction func showProgressBar(_: UIButton) {
+        progressSlider.isHidden = false
+        progressLoadingBar.fadeIn()
+        progressLoadingBar.setProgress(CGFloat(progressSlider.value))
+    }
+
+    @IBAction func hideProgressBar(_: UIButton) {
+        progressSlider.isHidden = true
+        progressLoadingBar.fadeOut()
+    }
+
     @IBAction func chnageSlider(_ sender: UISlider) {
-        notchGradientLoadingBar.setProgress(CGFloat(sender.value))
+        progressLoadingBar.setProgress(CGFloat(sender.value))
     }
 }

@@ -27,8 +27,6 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         static let largeCircleRadius: CGFloat = 20
     }
 
-    // MARK: - Public methods
-
     override open func setupConstraints(superview: UIView) {
         guard #available(iOS 11.0, *) else {
             /// The notch is only available when supporting safe area layout guides, which is starting from iOS 11.
@@ -48,13 +46,17 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         // Our view will be masked therefore the view height needs to cover the notch-height plus the given user-height.
         let height = 2 * Config.smallCircleRadius + Config.largeCircleRadius + self.height
 
+        let trailingConstraint = gradientActivityIndicatorView.trailingAnchor.constraint(equalTo: superview.trailingAnchor)
+
         NSLayoutConstraint.activate([
             gradientActivityIndicatorView.topAnchor.constraint(equalTo: superview.topAnchor),
             gradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: height),
 
             gradientActivityIndicatorView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
-            gradientActivityIndicatorView.trailingAnchor.constraint(equalTo: superview.trailingAnchor),
+            trailingConstraint,
         ])
+
+        self.trailingConstraint = trailingConstraint
 
         // As we currently only support portrait mode (and no device rotation), we can safely use `bounds.size.width` here.
         let screenWidth = superview.bounds.size.width

@@ -16,6 +16,9 @@ public typealias GradientLoadingBar = GradientLoadingBarController
 open class GradientLoadingBarController {
     // MARK: - Public properties
 
+    /// The trailing Constraint of the gradient bar.
+    internal var trailingConstraint: NSLayoutConstraint?
+
     /// The height of the gradient bar.
     ///
     ///  - Note: Has to be public to allow overwriting `setupConstraints()`
@@ -94,13 +97,17 @@ open class GradientLoadingBarController {
             superViewTopAnchor = superview.topAnchor
         }
 
+        let trailingConstraint = gradientActivityIndicatorView.trailingAnchor.constraint(equalTo: superview.trailingAnchor)
+
         NSLayoutConstraint.activate([
             gradientActivityIndicatorView.topAnchor.constraint(equalTo: superViewTopAnchor),
             gradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: height),
 
             gradientActivityIndicatorView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
-            gradientActivityIndicatorView.trailingAnchor.constraint(equalTo: superview.trailingAnchor),
+            trailingConstraint,
         ])
+
+        self.trailingConstraint = trailingConstraint
     }
 
     /// Fades in the gradient loading bar.
