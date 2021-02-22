@@ -45,10 +45,11 @@ dependencies: [
 
 
 ### How to use
-This framework provides three classes:
+This framework provides four classes:
 
  - **GradientLoadingBar**: A controller, managing the visibility of the `GradientActivityIndicatorView` on the current key window.
-- **NotchGradientLoadingBar**: A subclass of `GradientLoadingBar`, wrapping the `GradientActivityIndicatorView` around the notch of the iPhone.
+ - **NotchGradientLoadingBar**: A subclass of `GradientLoadingBar`, wrapping the `GradientActivityIndicatorView` around the notch of the iPhone.
+ - **ProgressLoadingBar**: A subclass of `NotchGradientLoadingBar`, wrapping the `GradientActivityIndicatorView` around the notch of the iPhone.
  - **GradientActivityIndicatorView**: A `UIView` containing the gradient with the animation. It can be added as a subview to another view either inside the interface builder or programmatically. Both ways are shown inside the example application.
 
 #### GradientLoadingBar
@@ -115,12 +116,6 @@ This method fades-in the loading bar. You can adjust the duration with correspon
 ###### – `fadeOut(duration:completion)`
 This methods fades-out the loading bar.  You can adjust the duration with corresponding parameter. Furthermore you can pass in a completion handler that gets called once the animation is finished.
 
-###### – `setProgress(rate)`
-This methods show progress on the loading bar.  You can adjust progress value use this method.
-
-Example with `setProgress`.
-![Example][progress-example]
-
 ##### Custom shared instance (Singleton)
 If you need the loading bar on multiple / different parts of your app, you can use the given static `shared` variable:
 
@@ -151,6 +146,29 @@ let notchGradientLoadingBar = NotchGradientLoadingBar(
 ```
 
 [![Example][notch-example--thumbnail]][notch-example]
+
+
+
+#### ProgressLoadingBar
+This subclass of the `NotchGradientLoadingBar` will wrap the loading bar around the notch of the iPhone.
+
+For iPhones without a safe area, the behaviour stays the same as mentioned in the above documentation of the `GradientLoadingBar`.
+
+Notch will show only portrait mode. 
+
+```swift
+let progressLoadingBar = ProgressLoadingBar(
+    height: 3.0
+)
+```
+
+###### – `setProgress(rate)`
+This methods show progress on the loading bar.  You can adjust progress value use this method.
+
+Example with `setProgress`.
+![Example][progress-example]
+
+
 
 #### GradientActivityIndicatorView
 In case you don't want to add the loading bar onto the key-window, this framework provides the `GradientActivityIndicatorView`, which is a direct subclass of `UIView`. You can add the view to another view either inside the interface builder or programmatically.
