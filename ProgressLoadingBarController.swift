@@ -7,19 +7,17 @@
 
 import UIKit
 
-/// Type-alias for the controller to match pod name.
+/// Type-alias for the controller to be more similar to the pod name.
 public typealias ProgressLoadingBar = ProgressLoadingBarController
 
 open class ProgressLoadingBarController: NotchGradientLoadingBarController {
-    override open func setupConstraints(superview: UIView) {
-        super.setupConstraints(superview: superview)
-    }
-
     /// Progress display through rate - Rate range : 0 ~ 1
     public func setProgress(_ rate: CGFloat) {
         guard rate >= 0, rate <= 1 else { return }
-        let width = UIScreen.main.bounds.size.width
-        let progress = width - (width * rate)
-        trailingConstraint?.constant = -progress
+        guard let superView = gradientActivityIndicatorView.superview else { return }
+        progress = rate
+        widthConstraint?.isActive = false
+        widthConstraint = gradientActivityIndicatorView.widthAnchor.constraint(equalTo: superView.widthAnchor, multiplier: rate)
+        widthConstraint?.isActive = true
     }
 }
