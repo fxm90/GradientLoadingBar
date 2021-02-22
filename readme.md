@@ -166,6 +166,7 @@ let progressLoadingBar = ProgressLoadingBar(
 This methods show progress on the loading bar.  You can adjust progress value use this method.
 
 Example with `setProgress`.
+
 ![Example][progress-example]
 
 
