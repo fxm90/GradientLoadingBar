@@ -154,7 +154,7 @@ This subclass of the `NotchGradientLoadingBar` will wrap the loading bar around 
 
 For iPhones without a safe area, the behaviour stays the same as mentioned in the above documentation of the `GradientLoadingBar`.
 
-Notch will show only portrait mode. 
+`NotchGradientLoadingBar` will show only portrait mode. But the other orientation will show `GradientLoadingBar`
 
 ```swift
 let progressLoadingBar = ProgressLoadingBar(
