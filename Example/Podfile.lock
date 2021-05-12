@@ -1,5 +1,5 @@
 PODS:
-  - GradientLoadingBar (2.1.0):
+  - GradientLoadingBar (2.1.1):
     - LightweightObservable (~> 2.1)
   - LightweightObservable (2.1.2)
   - SnapshotTesting (1.8.2)
@@ -33,7 +33,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/fxm90/SwiftConfigurationFiles.git
 
 SPEC CHECKSUMS:
-  GradientLoadingBar: a86921933436aa7a1ae9fc00079dee9dfd94d678
+  GradientLoadingBar: d7ad91e4f15be604faca463efd63e541b5118dee
   LightweightObservable: c5ac85423a5edbed9a920b4d5c7b8f94ab3688c4
   SnapshotTesting: 38947050d13960d57a4a9c166fcf51bca7d56970
   SwiftConfigurationFiles: 1cf2228a911ebed9f42f8dec077bb634f04ca6c8
