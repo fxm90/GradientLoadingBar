@@ -16,7 +16,6 @@
     "git": "https://github.com/fxm90/GradientLoadingBar.git",
     "tag": "2.1.0"
   },
-  "social_media_url": "https://twitter.com/_fxm90",
   "swift_versions": "5.1",
   "platforms": {
     "ios": "9.0"

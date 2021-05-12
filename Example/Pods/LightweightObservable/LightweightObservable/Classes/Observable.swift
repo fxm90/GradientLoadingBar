@@ -2,7 +2,7 @@
 //  Observable.swift
 //  LightweightObservable
 //
-//  Created by Felix Mau on 11/02/19.
+//  Created by Felix Mau on 11.02.19.
 //  Copyright © 2019 Felix Mau. All rights reserved.
 //
 
@@ -89,7 +89,7 @@ public final class PublishSubject<T>: Observable<T> {
     // MARK: - Public properties
 
     /// The current (readonly) value of the observable (if available).
-    public override var value: Value? {
+    override public var value: Value? {
         _value
     }
 
@@ -105,7 +105,7 @@ public final class PublishSubject<T>: Observable<T> {
     /// Initializes a new publish subject.
     ///
     /// - Note: As we've made the initializer to the super class `Observable` fileprivate, we must override it here to allow public access.
-    public override init() {
+    override public init() {
         super.init()
     }
 
@@ -127,7 +127,7 @@ public final class Variable<T>: Observable<T> {
     // MARK: - Public properties
 
     /// The current (read- and writeable) value of the variable.
-    public override var value: Value {
+    override public var value: Value {
         get { _value }
         set { _value = newValue }
     }
@@ -156,10 +156,12 @@ public final class Variable<T>: Observable<T> {
 
     // MARK: - Public methods
 
-    public override func subscribe(_ observer: @escaping Observer) -> Disposable {
+    override public func subscribe(_ observer: @escaping Observer) -> Disposable {
+        let disposable = super.subscribe(observer)
+
         // A variable should inform the observer with the initial value.
         observer(_value, nil)
 
-        return super.subscribe(observer)
+        return disposable
     }
 }

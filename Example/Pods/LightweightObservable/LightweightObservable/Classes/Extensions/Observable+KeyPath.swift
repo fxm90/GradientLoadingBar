@@ -2,7 +2,7 @@
 //  Observable+KeyPath.swift
 //  LightweightObservable
 //
-//  Created by Felix Mau on 03/01/20.
+//  Created by Felix Mau on 03.01.20.
 //  Copyright © 2020 Felix Mau. All rights reserved.
 //
 

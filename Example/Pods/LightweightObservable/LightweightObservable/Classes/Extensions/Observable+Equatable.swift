@@ -2,7 +2,7 @@
 //  Observable+Equatable.swift
 //  LightweightObservable
 //
-//  Created by Felix Mau on 01/05/19.
+//  Created by Felix Mau on 01.05.19.
 //  Copyright © 2019 Felix Mau. All rights reserved.
 //
 
