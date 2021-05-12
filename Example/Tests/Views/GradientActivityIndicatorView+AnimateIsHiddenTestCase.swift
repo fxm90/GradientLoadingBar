@@ -56,7 +56,7 @@ class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
         }
 
         // Then
-        wait(for: [expectation], timeout: 0.2)
+        wait(for: [expectation], timeout: 1)
 
         XCTAssertFalse(gradientActivityIndicatorView.isHidden)
         XCTAssertEqual(gradientActivityIndicatorView.alpha, 1.0, accuracy: CGFloat.ulpOfOne)
@@ -80,7 +80,7 @@ class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
         gradientActivityIndicatorView.layer.removeAllAnimations()
 
         // Then
-        wait(for: [expectation], timeout: 0.2)
+        wait(for: [expectation], timeout: 1)
 
         XCTAssertFalse(gradientActivityIndicatorView.isHidden)
     }
@@ -96,7 +96,7 @@ class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
         }
 
         // Then
-        wait(for: [expectation], timeout: 0.2)
+        wait(for: [expectation], timeout: 1)
 
         XCTAssertTrue(gradientActivityIndicatorView.isHidden)
         XCTAssertEqual(gradientActivityIndicatorView.alpha, 0.0, accuracy: CGFloat.ulpOfOne)
@@ -116,7 +116,7 @@ class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
         gradientActivityIndicatorView.layer.removeAllAnimations()
 
         // Then
-        wait(for: [expectation], timeout: 0.2)
+        wait(for: [expectation], timeout: 1)
 
         XCTAssertFalse(gradientActivityIndicatorView.isHidden, "As we've interrupted the animation, we expect the `isHidden` flag to still be `false`.")
     }
@@ -138,7 +138,7 @@ class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
         }
 
         // Then
-        wait(for: [expectation], timeout: 0.2)
+        wait(for: [expectation], timeout: 1)
 
         XCTAssertFalse(gradientActivityIndicatorView.isHidden)
         XCTAssertEqual(gradientActivityIndicatorView.alpha, 1.0, accuracy: CGFloat.ulpOfOne)
@@ -162,7 +162,7 @@ class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
         gradientActivityIndicatorView.layer.removeAllAnimations()
 
         // Then
-        wait(for: [expectation], timeout: 0.2)
+        wait(for: [expectation], timeout: 1)
 
         XCTAssertFalse(gradientActivityIndicatorView.isHidden)
     }
@@ -180,7 +180,7 @@ class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
         }
 
         // Then
-        wait(for: [expectation], timeout: 0.2)
+        wait(for: [expectation], timeout: 1)
 
         XCTAssertTrue(gradientActivityIndicatorView.isHidden)
         XCTAssertEqual(gradientActivityIndicatorView.alpha, 0.0, accuracy: CGFloat.ulpOfOne)
@@ -200,7 +200,7 @@ class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
         gradientActivityIndicatorView.layer.removeAllAnimations()
 
         // Then
-        wait(for: [expectation], timeout: 0.2)
+        wait(for: [expectation], timeout: 1)
 
         XCTAssertFalse(gradientActivityIndicatorView.isHidden, "As we've interrupted the animation, we expect the `isHidden` flag to still be `false`.")
     }
