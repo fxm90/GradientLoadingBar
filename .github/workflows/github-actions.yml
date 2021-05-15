@@ -1,0 +1,47 @@
+#
+# github-actions.yml
+# Created by Felix Mau (https://felix.hamburg)
+#
+
+name: Continuous Integration
+on: [push, pull_request]
+jobs:
+  build-and-test:
+    runs-on: macos-latest
+
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+
+      - name: Install dependencies
+        working-directory: ./Example
+        run: |
+          bundle install
+
+      - name: Execute SwiftFormat and treat any formatting errors as real errors.
+        working-directory: ./Example
+        run: |
+          bundle exec fastlane format
+
+      - name: Execute SwiftLint and treat any formatting errors as real errors.
+        working-directory: ./Example
+        run: |
+          bundle exec fastlane format
+
+      - name: Execute tests.
+        working-directory: ./Example
+        run: |
+          bundle exec fastlane tests
+
+      - name: Execute validation of library.
+        working-directory: ./Example
+        run: |
+          bundle exec fastlane pod_lint
+
+      - run: echo "🍏 This job's status is ${{ job.status }}."
