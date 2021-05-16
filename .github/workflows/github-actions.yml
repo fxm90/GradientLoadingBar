@@ -2,46 +2,94 @@
 # github-actions.yml
 # Created by Felix Mau (https://felix.hamburg)
 #
+# Based on:
+#  - https://futurestud.io/tutorials/github-actions-trigger-builds-on-schedule-cron#schedulegithubactionsusingacron
+#  - https://about.codecov.io/blog/code-coverage-for-ios-development-using-swift-xcode-and-github-actions/
+#
 
 name: Continuous Integration
-on: [push, pull_request]
-jobs:
-  build-and-test:
-    runs-on: macos-latest
+on:  
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 0 * * *' # Every day at midnight.
 
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel.
+jobs:
+  # This workflow starts with a job called "set-up".
+  set-up:
+    # The type of runner that the job will run on.
+    runs-on: macos-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job.
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
 
+  check-out-repository:
+    runs-on: macos-latest
+    # To run jobs sequentially, you can define dependencies on other jobs using the jobs.<job_id>.needs keyword.
+    needs: set-up
+    steps:
       - name: Check out repository code
         uses: actions/checkout@v2
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
 
+  install-dependencies:
+    runs-on: macos-latest
+    needs: check-out-repository
+    steps:
       - name: Install dependencies
         working-directory: ./Example
         run: |
           bundle install
 
+  swiftformat:
+    runs-on: macos-latest
+    needs: install-dependencies
+    steps:
       - name: Execute SwiftFormat and treat any formatting errors as real errors.
         working-directory: ./Example
         run: |
           bundle exec fastlane format
 
+  swiftlint:
+    runs-on: macos-latest
+    needs: swiftformat
+    steps:
       - name: Execute SwiftLint and treat any formatting errors as real errors.
         working-directory: ./Example
         run: |
           bundle exec fastlane format
 
+  execute-tests:
+    runs-on: macos-latest
+    needs: swiftlint
+    steps:
       - name: Execute tests.
         working-directory: ./Example
         run: |
           bundle exec fastlane tests
 
+  pod-lint:
+    runs-on: macos-latest
+    needs: execute-tests
+    steps:
       - name: Execute validation of library.
         working-directory: ./Example
         run: |
           bundle exec fastlane pod_lint
 
+  upload-codecov:
+    runs-on: macos-latest
+    needs: pod-lint
+    steps:
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1.2.1
+
+  tear-down:
+    runs-on: macos-latest
+    needs: upload-codecov
+    steps:
       - run: echo "🍏 This job's status is ${{ job.status }}."
