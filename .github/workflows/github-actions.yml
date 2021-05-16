@@ -7,7 +7,7 @@
 #  - https://about.codecov.io/blog/code-coverage-for-ios-development-using-swift-xcode-and-github-actions/
 #
 
-name: continuous-integration
+name: Continuous Integration
 on:  
   push:
   pull_request:
