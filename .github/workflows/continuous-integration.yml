@@ -3,6 +3,7 @@
 # Created by Felix Mau (https://felix.hamburg)
 #
 # Based on:
+#  - https://docs.github.com/en/actions/quickstart
 #  - https://futurestud.io/tutorials/github-actions-trigger-builds-on-schedule-cron#schedulegithubactionsusingacron
 #  - https://about.codecov.io/blog/code-coverage-for-ios-development-using-swift-xcode-and-github-actions/
 #
@@ -12,7 +13,11 @@ on:
   push:
   pull_request:
   schedule:
-    - cron: '0 0 * * *' # Every day at midnight.
+    # Run workflow every day at midnight.
+    #
+    #  - Note: "Scheduled workflows run on the latest commit on the default or base branch."
+    #          https://docs.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events
+    - cron: '0 0 * * *' 
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel.
 jobs:
