@@ -21,7 +21,7 @@ extension Snapshotting where Value: UIViewController, Format == UIImage {
     /// Based on:
     /// <https://github.com/pointfreeco/swift-snapshot-testing/issues/279> and <https://www.pointfree.co/episodes/ep86-swiftui-snapshot-testing#t657>
     static var windowedImage: Snapshotting {
-        Snapshotting<UIImage, UIImage>.image(precision: Config.precision).asyncPullback { viewController in
+        Snapshotting<UIImage, UIImage>.image(precision: Config.precision, scale: nil).asyncPullback { viewController in
             Async<UIImage> { callback in
                 UIView.setAnimationsEnabled(false)
 
