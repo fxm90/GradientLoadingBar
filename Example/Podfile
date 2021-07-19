@@ -1,3 +1,6 @@
+# Fixes warning `Your project does not explicitly specify the CocoaPods master specs repo`.
+source 'https://github.com/CocoaPods/Specs.git'
+
 platform :ios, '13.0'
 use_frameworks!
 

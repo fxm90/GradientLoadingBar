@@ -4,7 +4,7 @@ PODS:
   - LightweightObservable (2.1.2)
   - SnapshotTesting (1.9.0)
   - SwiftConfigurationFiles (0.0.1)
-  - SwiftFormat/CLI (0.48.6)
+  - SwiftFormat/CLI (0.48.10)
   - SwiftLint (0.43.1)
 
 DEPENDENCIES:
@@ -15,7 +15,7 @@ DEPENDENCIES:
   - SwiftLint (~> 0.42)
 
 SPEC REPOS:
-  trunk:
+  https://github.com/CocoaPods/Specs.git:
     - LightweightObservable
     - SnapshotTesting
     - SwiftFormat
@@ -37,9 +37,9 @@ SPEC CHECKSUMS:
   LightweightObservable: c5ac85423a5edbed9a920b4d5c7b8f94ab3688c4
   SnapshotTesting: 6141c48b6aa76ead61431ca665c14ab9a066c53b
   SwiftConfigurationFiles: 1cf2228a911ebed9f42f8dec077bb634f04ca6c8
-  SwiftFormat: 835d432cbffc8916d3def6e37a01a10c516d8e24
+  SwiftFormat: 159f1c73ade21744d6ff3276fc3413be4fc81f6b
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
 
-PODFILE CHECKSUM: 0162acba18693f0fc61e093eb10a5e0c88df2db9
+PODFILE CHECKSUM: 36b90780cb508f9eaca4f0ac59660e3e748de601
 
 COCOAPODS: 1.10.1

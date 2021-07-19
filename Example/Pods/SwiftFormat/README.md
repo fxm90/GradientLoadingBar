@@ -1,7 +1,7 @@
 ![](EditorExtension/Application/Assets.xcassets/AppIcon.appiconset/icon_256x256.png)
 
 [![PayPal](https://img.shields.io/badge/paypal-donate-blue.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9ZGWNK5FEZFF6&source=url)
-[![Travis](https://api.travis-ci.org/nicklockwood/SwiftFormat.svg?branch=master)](https://travis-ci.org/nicklockwood/SwiftFormat)
+[![Travis](https://api.travis-ci.com/nicklockwood/SwiftFormat.svg?branch=master)](https://travis-ci.com/github/nicklockwood/SwiftFormat)
 [![Codecov](https://codecov.io/gh/nicklockwood/SwiftFormat/graphs/badge.svg)](https://codecov.io/gh/nicklockwood/SwiftFormat)
 [![Swift 4.2](https://img.shields.io/badge/swift-4.2-red.svg?style=flat)](https://developer.apple.com/swift)
 [![License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://opensource.org/licenses/MIT)
@@ -28,6 +28,7 @@ Table of Contents
     - [Config file](#config-file)
     - [Globs](#globs)
     - [Linting](#linting)
+    - [Error codes](#error-codes)
     - [Cache](#cache)
     - [File headers](#file-headers)
 - [FAQ](#faq)
@@ -241,7 +242,7 @@ let package = Package(
     name: "BuildTools",
     platforms: [.macOS(.v10_11)],
     dependencies: [
-        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.41.2"),
+        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.48.10"),
     ],
     targets: [.target(name: "BuildTools", path: "")]
 )
@@ -602,7 +603,7 @@ $ swiftformat --lint path/to/project
 
 This runs the same rules as format mode, and all the same configuration options apply, however, no files will be modified. Instead, SwiftFormat will format each file in memory and then compare the result against the input and report the lines that required changes.
 
-The `--lint` option is similar to `--dryrun`, but `--lint` returns warnings for every line that required changes, and will return a nonzero error code if any changes are detected, which is useful if you want it to fail a build step on your CI server.
+The `--lint` option is similar to `--dryrun`, but `--lint` returns warnings for every line that required changes, and will return a nonzero error code (see [Error codes](#error-codes) below) if any changes are detected, which is useful if you want it to fail a build step on your CI server.
 
 If you would prefer `--lint` not to fail your build, you can use the `--lenient` option to force SwiftFormat to return success in `--lint` mode even when formatting issues were detected.
 
@@ -613,6 +614,16 @@ $ swiftformat --lint --lenient path/to/project
 By default, `--lint` will only report lines that require formatting, but you can use the additional `--verbose` flag to display additional info about which files were checked, even if there were no changes needed.
 
 If you would prefer not to see a warning for each and every formatting change, you can use the `--quiet` flag to suppress all output except errors.
+
+
+Error codes
+-----------
+
+The swiftformat command-line tool will always exit with one of the following codes:
+
+* 0 - Success. This code will be returned in the event of a successful formatting run or if `--lint` detects no violations.
+* 1 - Lint failure. This code will be returned only when running in `--lint` mode if the input requires formatting.
+* 70 - Program error. This code will be returned if there is a problem with the input or configuration arguments.
 
 
 Cache
@@ -746,6 +757,8 @@ Q. I don't want to be surprised by new rules added when I upgrade SwiftFormat. H
 
 Known issues
 ---------------
+
+* The `redundantType` rule can introduce ambiguous code in certain cases when using the default mode of `--redundanttype inferred`. This can be worked around by by using `--redundanttype explicit`, or by manually removing the redundant type reference on the affected line, or by using the `// swiftformat:disable:next redundantType` comment directive to disable the rule at the call site (or just disable the `redundantType` rule completely).
 
 * If a type initializer or factory method returns an implicitly unwrapped optional value then the `redundantType` rule may remove the explicit type in a situation where it's actually required. To work around this you can either use `--redundanttype explicit`, or use the `// swiftformat:disable:next redundantType` comment directive to disable the rule at the call site (or just disable the `redundantType` rule completely).
 
