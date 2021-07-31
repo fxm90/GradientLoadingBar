@@ -4,7 +4,7 @@ PODS:
   - LightweightObservable (2.1.2)
   - SnapshotTesting (1.9.0)
   - SwiftConfigurationFiles (0.0.1)
-  - SwiftFormat/CLI (0.48.10)
+  - SwiftFormat/CLI (0.48.11)
   - SwiftLint (0.43.1)
 
 DEPENDENCIES:
@@ -29,7 +29,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SwiftConfigurationFiles:
-    :commit: 349e9f3eba24551acb372397ca953b5414bd9131
+    :commit: f6dea18948c1b667043964c2539b9008d2e6beed
     :git: https://github.com/fxm90/SwiftConfigurationFiles.git
 
 SPEC CHECKSUMS:
@@ -37,7 +37,7 @@ SPEC CHECKSUMS:
   LightweightObservable: c5ac85423a5edbed9a920b4d5c7b8f94ab3688c4
   SnapshotTesting: 6141c48b6aa76ead61431ca665c14ab9a066c53b
   SwiftConfigurationFiles: 1cf2228a911ebed9f42f8dec077bb634f04ca6c8
-  SwiftFormat: 159f1c73ade21744d6ff3276fc3413be4fc81f6b
+  SwiftFormat: 938e5865a118c49d63c7a290ddad86335f9e585f
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
 
 PODFILE CHECKSUM: 36b90780cb508f9eaca4f0ac59660e3e748de601
