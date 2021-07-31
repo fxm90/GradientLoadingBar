@@ -22,11 +22,11 @@ class InterfaceBuilderExampleViewController: UIViewController {
         gradientActivityIndicatorView.fadeOut()
     }
 
-    @IBAction func showButtonTouchUpInside(_: Any) {
+    @IBAction private func showButtonTouchUpInside(_: Any) {
         gradientActivityIndicatorView.fadeIn()
     }
 
-    @IBAction func hideButtonTouchUpInside(_: Any) {
+    @IBAction private func hideButtonTouchUpInside(_: Any) {
         gradientActivityIndicatorView.fadeOut()
     }
 }

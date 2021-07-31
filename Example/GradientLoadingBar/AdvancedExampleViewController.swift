@@ -55,7 +55,7 @@ class AdvancedExampleViewController: UIViewController {
         customColorsGradientActivityIndicatorView.fadeOut()
     }
 
-    @IBAction func toggleProgrammaticallyButtonTouchUpInside(_: Any) {
+    @IBAction private func toggleProgrammaticallyButtonTouchUpInside(_: Any) {
         if programmaticallyGradientActivityIndicatorView.isHidden {
             programmaticallyGradientActivityIndicatorView.fadeIn()
         } else {
@@ -63,7 +63,7 @@ class AdvancedExampleViewController: UIViewController {
         }
     }
 
-    @IBAction func toggleCustomColorsButtonTouchUpInside(_: Any) {
+    @IBAction private func toggleCustomColorsButtonTouchUpInside(_: Any) {
         if customColorsGradientActivityIndicatorView.isHidden {
             customColorsGradientActivityIndicatorView.fadeIn()
         } else {

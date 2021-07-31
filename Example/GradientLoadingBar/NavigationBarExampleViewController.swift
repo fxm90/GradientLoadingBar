@@ -35,11 +35,11 @@ class NavigationBarExampleViewController: UIViewController {
         gradientProgressIndicatorView.fadeOut()
     }
 
-    @IBAction func showButtonTouchUpInside(_: Any) {
+    @IBAction private func showButtonTouchUpInside(_: Any) {
         gradientProgressIndicatorView.fadeIn()
     }
 
-    @IBAction func hideButtonTouchUpInside(_: Any) {
+    @IBAction private func hideButtonTouchUpInside(_: Any) {
         gradientProgressIndicatorView.fadeOut()
     }
 

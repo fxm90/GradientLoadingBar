@@ -25,19 +25,19 @@ class SafeAreaExampleViewController: UIViewController {
         notchGradientLoadingBar.fadeOut()
     }
 
-    @IBAction func showBasicBarButtonTouchUpInside(_: Any) {
+    @IBAction private func showBasicBarButtonTouchUpInside(_: Any) {
         gradientLoadingBar.fadeIn()
     }
 
-    @IBAction func hideBasicBarButtonTouchUpInside(_: Any) {
+    @IBAction private func hideBasicBarButtonTouchUpInside(_: Any) {
         gradientLoadingBar.fadeOut()
     }
 
-    @IBAction func showNotchBarButtonTouchUpInside(_: Any) {
+    @IBAction private func showNotchBarButtonTouchUpInside(_: Any) {
         notchGradientLoadingBar.fadeIn()
     }
 
-    @IBAction func hideNotchBarButtonTouchUpInside(_: Any) {
+    @IBAction private func hideNotchBarButtonTouchUpInside(_: Any) {
         notchGradientLoadingBar.fadeOut()
     }
 }

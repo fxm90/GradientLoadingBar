@@ -18,11 +18,11 @@ class BasicExampleViewController: UIViewController {
         GradientLoadingBar.shared.fadeOut()
     }
 
-    @IBAction func showButtonTouchUpInside(_: Any) {
+    @IBAction private func showButtonTouchUpInside(_: Any) {
         GradientLoadingBar.shared.fadeIn()
     }
 
-    @IBAction func hideButtonTouchUpInside(_: Any) {
+    @IBAction private func hideButtonTouchUpInside(_: Any) {
         GradientLoadingBar.shared.fadeOut()
     }
 }
