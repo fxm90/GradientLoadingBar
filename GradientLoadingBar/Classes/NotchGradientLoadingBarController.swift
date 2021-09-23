@@ -20,7 +20,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
     /// Values for the iPhone 13 are based on testing in the simulator.
     private enum Config {
         /// The width of the iPhone notch.
-        static let notchWidth: CGFloat = UIDevice.isAnyIPhone13 ? 162 : 209
+        static let notchWidth: CGFloat = UIDevice.isAnyIPhone13 ? 162 : 210
 
         /// The radius of the small circle on the outside of the notch.
         static let smallCircleRadius: CGFloat = 6
@@ -100,7 +100,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         //
         // But for the iPhone 13 we reduce this value: ‟iPhone 13 notch is 20% smaller in width, but it is also a little taller in height‟.
         // See <https://9to5mac.com/2021/09/14/iphone-13-notch-smaller-but-bigger>.
-        let verticalOffsetForLargeCircle: CGFloat = UIDevice.isAnyIPhone13 ? 1 : 3
+        let verticalOffsetForLargeCircle: CGFloat = UIDevice.isAnyIPhone13 ? 1 : 2
 
         // Draw the large circle right to the `leftNotchPoint`.
         bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint + Config.largeCircleRadius,
@@ -134,9 +134,6 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         bezierPath.addLineTo(x: screenWidth, y: 0)
 
         // And all the way back..
-        // Therefore we always have to offset the given `height` by the user.
-        // To visually align the height with the "basic" `GradientLoadingBar`, we have to add one point here.
-        let height = self.height + 1
 
         // Have the small-circle at the bottom-path only one third of the size of the upper-path produced visually better results.
         let bottomPathSmallCircleRadius = Config.smallCircleRadius / 3
