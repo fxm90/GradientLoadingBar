@@ -16,15 +16,17 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
 
     /// Values are based on
     /// <https://www.paintcodeapp.com/news/iphone-x-screen-demystified>
+    ///
+    /// Values for the iPhone 13 are based on testing in the simulator.
     private enum Config {
         /// The width of the iPhone notch.
-        static let notchWidth: CGFloat = 209
+        static let notchWidth: CGFloat = UIDevice.isAnyIPhone13 ? 162 : 209
 
         /// The radius of the small circle on the outside of the notch.
         static let smallCircleRadius: CGFloat = 6
 
         /// The radius of the large circle on the inside of the notch.
-        static let largeCircleRadius: CGFloat = 20
+        static let largeCircleRadius: CGFloat = 21
     }
 
     // MARK: - Public methods
@@ -50,26 +52,25 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
             return
         }
 
-        // Our view will be masked therefore the view height needs to cover the notch-height plus the given user-height.
-        let height = 2 * Config.smallCircleRadius + Config.largeCircleRadius + self.height
+        // As we currently only support portrait mode (and no device rotation), we can safely use `bounds.size.width` here.
+        let screenWidth = superview.bounds.size.width
+        let notchBezierPath = self.notchBezierPath(for: screenWidth)
 
         NSLayoutConstraint.activate([
             gradientActivityIndicatorView.topAnchor.constraint(equalTo: superview.topAnchor),
-            gradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: height),
+            gradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: notchBezierPath.bounds.height),
 
             gradientActivityIndicatorView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
             gradientActivityIndicatorView.trailingAnchor.constraint(equalTo: superview.trailingAnchor),
         ])
 
-        // As we currently only support portrait mode (and no device rotation), we can safely use `bounds.size.width` here.
-        let screenWidth = superview.bounds.size.width
-        applyNotchMask(for: screenWidth)
+        maskView(with: notchBezierPath)
     }
 
     // MARK: - Private methods
 
     // swiftlint:disable:next function_body_length
-    private func applyNotchMask(for screenWidth: CGFloat) {
+    private func notchBezierPath(for screenWidth: CGFloat) -> UIBezierPath {
         // We always center the notch in the middle of the screen.
         let leftNotchPoint = (screenWidth - Config.notchWidth) / 2 + 0.5
         let rightNotchPoint = (screenWidth + Config.notchWidth) / 2
@@ -96,7 +97,10 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         // We're moving the the large-circles a bit up.
         // This prevents having a straight line between the circles.
         // See <https://medium.com/tall-west/no-cutting-corners-on-the-iphone-x-97a9413b94e>
-        let verticalOffsetForLargeCircle: CGFloat = 3
+        //
+        // But for the iPhone 13 we reduce this value: ‟iPhone 13 notch is 20% smaller in width, but it is also a little taller in height‟.
+        // See <https://9to5mac.com/2021/09/14/iphone-13-notch-smaller-but-bigger>.
+        let verticalOffsetForLargeCircle: CGFloat = UIDevice.isAnyIPhone13 ? 1 : 3
 
         // Draw the large circle right to the `leftNotchPoint`.
         bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint + Config.largeCircleRadius,
@@ -196,6 +200,10 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         bezierPath.addLineTo(x: 0, y: height)
         bezierPath.close()
 
+        return bezierPath
+    }
+
+    private func maskView(with bezierPath: UIBezierPath) {
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = bezierPath.cgPath
 
@@ -213,5 +221,33 @@ private extension UIBezierPath {
     // swiftlint:disable:next identifier_name
     func addLineTo(x: CGFloat, y: CGFloat) {
         addLine(to: CGPoint(x: x, y: y))
+    }
+}
+
+private extension UIDevice {
+    /// Starting from the iPhone 13 the notch is smaller, but a little bit higher.
+    /// Therefore we explicitly need to detect any iPhone 13 device.
+    ///
+    /// Based on: <https://stackoverflow.com/a/26962452/3532505>
+    ///           Adapted for Simulator usage based on <https://stackoverflow.com/a/46380596/3532505>
+    static var isAnyIPhone13: Bool {
+        #if targetEnvironment(simulator)
+            let identifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] ?? ""
+        #else
+            var systemInfo = utsname()
+            uname(&systemInfo)
+
+            let machineMirror = Mirror(reflecting: systemInfo.machine)
+            let identifier = machineMirror.children.reduce("") { identifier, element in
+                guard let value = element.value as? Int8, value != 0 else {
+                    return identifier
+                }
+
+                return identifier + String(UnicodeScalar(UInt8(value)))
+            }
+        #endif
+
+        let iPhone13Identifiers = ["iPhone14,5", "iPhone14,2", "iPhone14,3"]
+        return iPhone13Identifiers.contains(identifier)
     }
 }
