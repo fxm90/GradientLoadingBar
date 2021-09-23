@@ -5,7 +5,7 @@ PODS:
   - SnapshotTesting (1.9.0)
   - SwiftConfigurationFiles (0.0.1)
   - SwiftFormat/CLI (0.48.11)
-  - SwiftLint (0.43.1)
+  - SwiftLint (0.44.0)
 
 DEPENDENCIES:
   - GradientLoadingBar (from `../`)
@@ -38,7 +38,7 @@ SPEC CHECKSUMS:
   SnapshotTesting: 6141c48b6aa76ead61431ca665c14ab9a066c53b
   SwiftConfigurationFiles: 1cf2228a911ebed9f42f8dec077bb634f04ca6c8
   SwiftFormat: 938e5865a118c49d63c7a290ddad86335f9e585f
-  SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
+  SwiftLint: e96c0a8c770c7ebbc4d36c55baf9096bb65c4584
 
 PODFILE CHECKSUM: 36b90780cb508f9eaca4f0ac59660e3e748de601
 
