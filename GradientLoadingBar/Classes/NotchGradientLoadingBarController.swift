@@ -24,7 +24,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
 
         // The iPhone 13 specific configuration: ‟iPhone 13 notch is 20% smaller in width, but it is also a little taller in height‟.
         // Source: <https://9to5mac.com/2021/09/14/iphone-13-notch-smaller-but-bigger>.
-        static let iPhone13Device = Config(notchWidth: 162,
+        static let iPhone13Device = Config(notchWidth: 161.5,
                                            smallCircleRadius: 6,
                                            largeCircleRadius: 22,
                                            verticalOffsetForLargeCircle: -1)
