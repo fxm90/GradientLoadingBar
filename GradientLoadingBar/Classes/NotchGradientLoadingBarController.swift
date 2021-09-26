@@ -20,13 +20,20 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
     /// Values for the iPhone 13 are based on testing in the simulator.
     private enum Config {
         /// The width of the iPhone notch.
-        static let notchWidth: CGFloat = UIDevice.isAnyIPhone13 ? 162 : 210
+        static let notchWidth: CGFloat = UIDevice.isAnyIPhone13Device ? 162 : 210
 
         /// The radius of the small circle on the outside of the notch.
         static let smallCircleRadius: CGFloat = 6
 
         /// The radius of the large circle on the inside of the notch.
-        static let largeCircleRadius: CGFloat = 21
+        static let largeCircleRadius: CGFloat = UIDevice.isAnyIPhone13Device ? 22 : 21
+    }
+
+    // MARK: - Private properties
+
+    ///
+    private var adaptedLoadingBarHeight: CGFloat {
+        height + 1
     }
 
     // MARK: - Public methods
@@ -56,9 +63,12 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         let screenWidth = superview.bounds.size.width
         let notchBezierPath = self.notchBezierPath(for: screenWidth)
 
+        // Setting the lineWidth draws a line, where the actual path is exactly in the middle of the drawn line.
+        let viewHeight = notchBezierPath.bounds.height + adaptedLoadingBarHeight
+
         NSLayoutConstraint.activate([
             gradientActivityIndicatorView.topAnchor.constraint(equalTo: superview.topAnchor),
-            gradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: notchBezierPath.bounds.height),
+            gradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: viewHeight),
 
             gradientActivityIndicatorView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
             gradientActivityIndicatorView.trailingAnchor.constraint(equalTo: superview.trailingAnchor),
@@ -69,26 +79,28 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
 
     // MARK: - Private methods
 
-    // swiftlint:disable:next function_body_length
     private func notchBezierPath(for screenWidth: CGFloat) -> UIBezierPath {
         // We always center the notch in the middle of the screen.
-        let leftNotchPoint = (screenWidth - Config.notchWidth) / 2 + 0.5
+        let leftNotchPoint = (screenWidth - Config.notchWidth) / 2
         let rightNotchPoint = (screenWidth + Config.notchWidth) / 2
 
         let smallCircleDiameter: CGFloat = 2 * Config.smallCircleRadius
 
+        // Setting the `lineWidth` draws a line, where the actual path is exactly in the middle of the drawn line.
+        let halfStrokeSize = height / 2
+
         let bezierPath = UIBezierPath()
-        bezierPath.move(to: .zero)
+        bezierPath.moveTo(x: 0, y: halfStrokeSize)
 
         // Draw line to small-circle left to `leftNotchPoint`.
-        bezierPath.addLineTo(x: leftNotchPoint - Config.smallCircleRadius,
-                             y: 0)
+        bezierPath.addLineTo(x: leftNotchPoint - halfStrokeSize - Config.smallCircleRadius,
+                             y: halfStrokeSize)
 
         // Draw the small circle left to the `leftNotchPoint`.
         // See <https://developer.apple.com/documentation/uikit/uibezierpath/1624358-init#1965853> for the definition of the
         // angles in the default coordinate system.
-        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint - Config.smallCircleRadius,
-                                              y: Config.smallCircleRadius),
+        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint - halfStrokeSize - Config.smallCircleRadius,
+                                              y: halfStrokeSize + Config.smallCircleRadius),
                           radius: Config.smallCircleRadius,
                           startAngle: -CGFloat.pi / 2,
                           endAngle: 0,
@@ -100,102 +112,38 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         //
         // But for the iPhone 13 we reduce this value: ‟iPhone 13 notch is 20% smaller in width, but it is also a little taller in height‟.
         // See <https://9to5mac.com/2021/09/14/iphone-13-notch-smaller-but-bigger>.
-        let verticalOffsetForLargeCircle: CGFloat = UIDevice.isAnyIPhone13 ? 1 : 2
+        let verticalOffsetForLargeCircle: CGFloat = UIDevice.isAnyIPhone13Device ? -1 : -2
 
         // Draw the large circle right to the `leftNotchPoint`.
-        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint + Config.largeCircleRadius,
-                                              y: smallCircleDiameter - verticalOffsetForLargeCircle),
+        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint - halfStrokeSize + Config.largeCircleRadius,
+                                              y: halfStrokeSize + smallCircleDiameter + verticalOffsetForLargeCircle),
                           radius: Config.largeCircleRadius,
                           startAngle: CGFloat.pi,
                           endAngle: CGFloat.pi / 2,
                           clockwise: false)
 
         // Draw line to large-circle underneath and left to `rightNotchPoint`.
-        bezierPath.addLineTo(x: rightNotchPoint - Config.largeCircleRadius,
-                             y: smallCircleDiameter + Config.largeCircleRadius - verticalOffsetForLargeCircle)
+        bezierPath.addLineTo(x: halfStrokeSize + rightNotchPoint - Config.largeCircleRadius,
+                             y: halfStrokeSize + smallCircleDiameter + Config.largeCircleRadius + verticalOffsetForLargeCircle)
 
         // Draw the large circle left to the `rightNotchPoint`.
-        bezierPath.addArc(withCenter: CGPoint(x: rightNotchPoint - Config.largeCircleRadius,
-                                              y: smallCircleDiameter - verticalOffsetForLargeCircle),
+        bezierPath.addArc(withCenter: CGPoint(x: halfStrokeSize + rightNotchPoint - Config.largeCircleRadius,
+                                              y: halfStrokeSize + smallCircleDiameter + verticalOffsetForLargeCircle),
                           radius: Config.largeCircleRadius,
                           startAngle: CGFloat.pi / 2,
                           endAngle: 0,
                           clockwise: false)
 
         // Draw the small circle right to the `rightNotchPoint`.
-        bezierPath.addArc(withCenter: CGPoint(x: rightNotchPoint + Config.smallCircleRadius,
-                                              y: Config.smallCircleRadius),
+        bezierPath.addArc(withCenter: CGPoint(x: halfStrokeSize + rightNotchPoint + Config.smallCircleRadius,
+                                              y: halfStrokeSize + Config.smallCircleRadius),
                           radius: Config.smallCircleRadius,
                           startAngle: CGFloat.pi,
                           endAngle: CGFloat.pi + CGFloat.pi / 2,
                           clockwise: true)
 
         // Draw line to the end of the screen.
-        bezierPath.addLineTo(x: screenWidth, y: 0)
-
-        // And all the way back..
-
-        // Have the small-circle at the bottom-path only one third of the size of the upper-path produced visually better results.
-        let bottomPathSmallCircleRadius = Config.smallCircleRadius / 3
-
-        // Moving the bottom-line in the corners of the small circles just a tiny bit away from the center point to the smartphone corners,
-        // produced a visually more equal height for the gradient-view.
-        let bottomPathHorizontalOffsetForSmallCircle: CGFloat = 0.5
-
-        // Moving the bottom-line just a tiny bit down here produced a visually more equal height for the gradient-view underneath
-        // the smartphone-frame in the ears and the notch.
-        let bottomPathVerticalOffsetForLargeCircle: CGFloat = 0.5
-
-        // Start by moving down at the end of the screen.
-        bezierPath.addLineTo(x: screenWidth, y: height)
-
-        // Draw line to small-circle right to `rightNotchPoint`.
-        bezierPath.addLineTo(x: rightNotchPoint + bottomPathSmallCircleRadius + height,
-                             y: height)
-
-        // Draw the small circle right to the `rightNotchPoint`.
-        // We're offsetting the center-point with the given user-height here.
-        bezierPath.addArc(withCenter: CGPoint(x: rightNotchPoint + bottomPathSmallCircleRadius + height + bottomPathHorizontalOffsetForSmallCircle,
-                                              y: bottomPathSmallCircleRadius + height),
-                          radius: bottomPathSmallCircleRadius,
-                          startAngle: -CGFloat.pi / 2,
-                          endAngle: -CGFloat.pi,
-                          clockwise: false)
-
-        // Draw the large circle left to the `rightNotchPoint`.
-        // We're using the same center-point as the large-circle above, but with a larger radius here.
-        bezierPath.addArc(withCenter: CGPoint(x: rightNotchPoint - Config.largeCircleRadius,
-                                              y: smallCircleDiameter - verticalOffsetForLargeCircle + bottomPathVerticalOffsetForLargeCircle),
-                          radius: Config.largeCircleRadius + height,
-                          startAngle: 0,
-                          endAngle: CGFloat.pi / 2,
-                          clockwise: true)
-
-        // Draw line to large-circle underneath and right to `leftNotchPoint`.
-        bezierPath.addLineTo(x: leftNotchPoint + Config.largeCircleRadius + height,
-                             y: smallCircleDiameter + Config.largeCircleRadius - verticalOffsetForLargeCircle + height + bottomPathVerticalOffsetForLargeCircle)
-
-        // Draw the large circle right to the `leftNotchPoint`.
-        // We're using the same center-point as the large-circle above, but with a larger radius here.
-        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint + Config.largeCircleRadius,
-                                              y: smallCircleDiameter - verticalOffsetForLargeCircle + bottomPathVerticalOffsetForLargeCircle),
-                          radius: Config.largeCircleRadius + height,
-                          startAngle: CGFloat.pi / 2,
-                          endAngle: CGFloat.pi,
-                          clockwise: true)
-
-        // Draw the small circle left to the `leftNotchPoint`.
-        // We're offsetting the center-point with the given user-height here.
-        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint - bottomPathSmallCircleRadius - height - bottomPathHorizontalOffsetForSmallCircle,
-                                              y: bottomPathSmallCircleRadius + height),
-                          radius: bottomPathSmallCircleRadius,
-                          startAngle: 0,
-                          endAngle: -CGFloat.pi / 2,
-                          clockwise: false)
-
-        // Draw line to the beginning of the screen.
-        bezierPath.addLineTo(x: 0, y: height)
-        bezierPath.close()
+        bezierPath.addLineTo(x: screenWidth, y: halfStrokeSize)
 
         return bezierPath
     }
@@ -203,6 +151,12 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
     private func maskView(with bezierPath: UIBezierPath) {
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = bezierPath.cgPath
+        shapeLayer.lineWidth = adaptedLoadingBarHeight
+        shapeLayer.strokeColor = UIColor.white.cgColor
+
+        // Explicitly set to `nil` to avoid having a filled shape, showing the gradient behind the notch
+        // in the app switcher.
+        shapeLayer.fillColor = nil
 
         if #available(iOS 13.0, *) {
             shapeLayer.cornerCurve = .continuous
@@ -216,6 +170,11 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
 
 private extension UIBezierPath {
     // swiftlint:disable:next identifier_name
+    func moveTo(x: CGFloat, y: CGFloat) {
+        move(to: CGPoint(x: x, y: y))
+    }
+
+    // swiftlint:disable:next identifier_name
     func addLineTo(x: CGFloat, y: CGFloat) {
         addLine(to: CGPoint(x: x, y: y))
     }
@@ -223,11 +182,11 @@ private extension UIBezierPath {
 
 private extension UIDevice {
     /// Starting from the iPhone 13 the notch is smaller, but a little bit higher.
-    /// Therefore we explicitly need to detect any iPhone 13 device.
+    /// Therefore we explicitly need to detect any iPhone 13 device for an adapted notch calculation.
     ///
     /// Based on: <https://stackoverflow.com/a/26962452/3532505>
     ///           Adapted for Simulator usage based on <https://stackoverflow.com/a/46380596/3532505>
-    static var isAnyIPhone13: Bool {
+    static var isAnyIPhone13Device: Bool {
         #if targetEnvironment(simulator)
             let identifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] ?? ""
         #else
