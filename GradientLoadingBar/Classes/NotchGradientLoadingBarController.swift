@@ -18,14 +18,12 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         /// The default configuration for the iPhone X, 11 and 12.
         /// Values are based on <https://www.paintcodeapp.com/news/iphone-x-screen-demystified>.
         static let `default` = Config(notchWidth: 210,
-                                      smallCircleRadius: 6,
                                       largeCircleRadius: 21,
                                       verticalOffsetForLargeCircle: -2)
 
         // The iPhone 13 specific configuration: ‟iPhone 13 notch is 20% smaller in width, but it is also a little taller in height‟.
         // Source: <https://9to5mac.com/2021/09/14/iphone-13-notch-smaller-but-bigger>.
         static let iPhone13Device = Config(notchWidth: 161.5,
-                                           smallCircleRadius: 6,
                                            largeCircleRadius: 22,
                                            verticalOffsetForLargeCircle: -1)
 
@@ -33,7 +31,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         let notchWidth: CGFloat
 
         /// The radius of the small circle on the outside of the notch.
-        let smallCircleRadius: CGFloat
+        let smallCircleRadius: CGFloat = 6
 
         /// The radius of the large circle on the inside of the notch.
         let largeCircleRadius: CGFloat
@@ -100,6 +98,8 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         let leftNotchPoint = (screenWidth - config.notchWidth) / 2
         let rightNotchPoint = (screenWidth + config.notchWidth) / 2
 
+        // The center point of the large circles lays at the bottom of the small circles.
+        // See graphic https://www.paintcodeapp.com/news/iphone-x-screen-demystified for further details.
         let smallCircleDiameter: CGFloat = 2 * config.smallCircleRadius
 
         // Setting the `lineWidth` draws a line, where the actual path is exactly in the middle of the drawn line.
@@ -189,6 +189,10 @@ private extension UIBezierPath {
 }
 
 private extension UIDevice {
+    private enum Config {
+        static let iPhone13Identifiers = ["iPhone14,5", "iPhone14,2", "iPhone14,3"]
+    }
+
     /// Starting from the iPhone 13 the notch is smaller, but a little bit higher.
     /// Therefore we explicitly need to detect any iPhone 13 device for an adapted notch calculation.
     ///
@@ -211,7 +215,6 @@ private extension UIDevice {
             }
         #endif
 
-        let iPhone13Identifiers = ["iPhone14,5", "iPhone14,2", "iPhone14,3"]
-        return iPhone13Identifiers.contains(identifier)
+        return Config.iPhone13Identifiers.contains(identifier)
     }
 }
