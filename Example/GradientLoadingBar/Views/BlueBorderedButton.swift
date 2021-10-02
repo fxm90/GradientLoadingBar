@@ -30,8 +30,8 @@ final class BlueBorderedButton: UIButton {
         backgroundColor = .clear
         tintColor = UIColor.CustomColors.blue
 
-        layer.cornerRadius = 4.0
+        layer.cornerRadius = 4
         layer.borderColor = UIColor.CustomColors.blue.cgColor
-        layer.borderWidth = 1.0
+        layer.borderWidth = 1
     }
 }

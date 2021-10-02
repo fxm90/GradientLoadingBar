@@ -93,7 +93,7 @@ open class GradientActivityIndicatorView: UIView {
 
     private func commonInit() {
         gradientLayer?.startPoint = .zero
-        gradientLayer?.endPoint = CGPoint(x: 1.0, y: 0.0)
+        gradientLayer?.endPoint = CGPoint(x: 1, y: 0)
 
         bindViewModelToView()
     }

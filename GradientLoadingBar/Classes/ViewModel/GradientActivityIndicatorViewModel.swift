@@ -158,7 +158,7 @@ private extension ColorLocationMatrix {
         // we need to position them as      `[ 0.0,  0.33,    0.66,   0.99]`.
         let increaseBy = 1.0 / Double(gradientColorsQuantity - 1)
         let range = 0 ..< gradientColorsQuantity
-        let gradientLocations = range.reduce(into: ColorLocationRow(repeating: 0.0, count: gradientColorsQuantity)) { gradientLocations, col in
+        let gradientLocations = range.reduce(into: ColorLocationRow(repeating: 0, count: gradientColorsQuantity)) { gradientLocations, col in
             let value = Double(col) * increaseBy
             gradientLocations[col] = value as NSNumber
         }

@@ -46,7 +46,7 @@ class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
         let expectation = self.expectation(description: "Expect completion handler to be called.")
 
         // Hide view to validate fade-in.
-        gradientActivityIndicatorView.alpha = 0.0
+        gradientActivityIndicatorView.alpha = 0
         gradientActivityIndicatorView.isHidden = true
 
         // When
@@ -67,7 +67,7 @@ class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
         let expectation = self.expectation(description: "Expect completion handler to be called.")
 
         // Hide view to validate fade-in.
-        gradientActivityIndicatorView.alpha = 0.0
+        gradientActivityIndicatorView.alpha = 0
         gradientActivityIndicatorView.isHidden = true
 
         // When
@@ -99,7 +99,7 @@ class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
         wait(for: [expectation], timeout: 1)
 
         XCTAssertTrue(gradientActivityIndicatorView.isHidden)
-        XCTAssertEqual(gradientActivityIndicatorView.alpha, 0.0, accuracy: CGFloat.ulpOfOne)
+        XCTAssertEqual(gradientActivityIndicatorView.alpha, 0, accuracy: CGFloat.ulpOfOne)
     }
 
     func testAnimateIsHiddenWithInterruptionShouldNotHideViewAndCallCompletionHandler() {
@@ -128,7 +128,7 @@ class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
         let expectation = self.expectation(description: "Expect completion handler to be called.")
 
         // Hide view to validate fade-in.
-        gradientActivityIndicatorView.alpha = 0.0
+        gradientActivityIndicatorView.alpha = 0
         gradientActivityIndicatorView.isHidden = true
 
         // When
@@ -149,7 +149,7 @@ class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
         let expectation = self.expectation(description: "Expect completion handler to be called.")
 
         // Hide view to validate fade-in.
-        gradientActivityIndicatorView.alpha = 0.0
+        gradientActivityIndicatorView.alpha = 0
         gradientActivityIndicatorView.isHidden = true
 
         // When
@@ -183,7 +183,7 @@ class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
         wait(for: [expectation], timeout: 1)
 
         XCTAssertTrue(gradientActivityIndicatorView.isHidden)
-        XCTAssertEqual(gradientActivityIndicatorView.alpha, 0.0, accuracy: CGFloat.ulpOfOne)
+        XCTAssertEqual(gradientActivityIndicatorView.alpha, 0, accuracy: CGFloat.ulpOfOne)
     }
 
     func testFadeOutWithInterruptionShouldNotHideViewAndCallCompletionHandler() {

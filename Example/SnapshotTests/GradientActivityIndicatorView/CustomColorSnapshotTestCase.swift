@@ -15,7 +15,7 @@ class CustomColorSnapshotTestCase: XCTestCase {
     // MARK: - Config
 
     /// The frame we use for rendering the `GradientLoadingBar`. This will also be the image size for our snapshot.
-    private static let frame = CGRect(x: 0.0, y: 0.0, width: 375.0, height: 4.0)
+    private static let frame = CGRect(origin: .zero, size: CGSize(width: 375, height: 4))
 
     /// The custom colors we use on this test-case.
     /// Source: https://color.adobe.com/Pink-Flamingo-color-theme-10343714/

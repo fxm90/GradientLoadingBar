@@ -48,7 +48,7 @@ public extension GradientActivityIndicatorView {
     func fadeOut(duration: TimeInterval = TimeInterval.GradientLoadingBar.fadeOutDuration, completion: ((Bool) -> Void)? = nil) {
         UIView.animate(withDuration: duration,
                        animations: {
-                           self.alpha = 0.0
+                           self.alpha = 0
                        },
                        completion: { isFinished in
                            // Update `isHidden` flag accordingly:
@@ -76,7 +76,7 @@ public extension GradientActivityIndicatorView {
 
         UIView.animate(withDuration: duration,
                        animations: {
-                           self.alpha = 1.0
+                           self.alpha = 1
                        },
                        completion: completion)
     }
