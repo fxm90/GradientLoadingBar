@@ -77,9 +77,12 @@ final class GradientActivityIndicatorViewModel {
     /// Color array used for the gradient (of type `UIColor`).
     var gradientColors = UIColor.GradientLoadingBar.gradientColors {
         didSet {
-            gradientLayerColorsSubject.value = makeGradientLayerColors()
+            let gradientLayerColors = ColorLocationRow.gradientLayerColors(from: gradientColors)
+            gradientLayerColorsSubject.value = gradientLayerColors
 
-            let gradientLocationMatrix = makeColorLocationMatrix()
+            let gradientLocationMatrix = ColorLocationMatrix.colorLocationMatrix(gradientColorsQuantity: gradientColors.count,
+                                                                                 gradientLayerColorsQuantity: gradientLayerColors.count)
+
             colorLocationInitialRowSubject.value = gradientLocationMatrix[0]
             colorLocationMatrixSubject.value = gradientLocationMatrix
         }
@@ -114,36 +117,26 @@ final class GradientActivityIndicatorViewModel {
     // MARK: - Initializer
 
     init() {
-        let gradientLayerColors = Self.makeGradientLayerColors(from: gradientColors)
-        let gradientLocationMatrix = Self.makeColorLocationMatrix(gradientColorsQuantity: gradientColors.count,
-                                                                  gradientLayerColorsQuantity: gradientLayerColors.count)
+        let gradientLayerColors = ColorLocationRow.gradientLayerColors(from: gradientColors)
+        let gradientLocationMatrix = ColorLocationMatrix.colorLocationMatrix(gradientColorsQuantity: gradientColors.count,
+                                                                             gradientLayerColorsQuantity: gradientLayerColors.count)
 
         gradientLayerColorsSubject = Variable(gradientLayerColors)
         colorLocationInitialRowSubject = Variable(gradientLocationMatrix[0])
         colorLocationMatrixSubject = Variable(gradientLocationMatrix)
     }
+}
 
-    // MARK: - Private methods
+// MARK: - Helpers
 
-    /// Forward calls to the static factory method `makeGradientLayerColors(from:)` by providing the required parameters.
-    private func makeGradientLayerColors() -> [CGColor] {
-        Self.makeGradientLayerColors(from: gradientColors)
-    }
-
-    /// Forward calls to the static factory method `makeColorLocationMatrix(gradientColorsQuantity:gradientLayerColorsQuantity:)`
-    /// by providing the required parameters.
-    private func makeColorLocationMatrix() -> ColorLocationMatrix {
-        Self.makeColorLocationMatrix(gradientColorsQuantity: gradientColors.count,
-                                     gradientLayerColorsQuantity: gradientLayerColorsSubject.value.count)
-    }
-
+private extension ColorLocationRow {
     /// Generates the colors used on the gradient-layer.
     ///
     /// Example for   `gradientColors      = [.red, .yellow, .green, .blue]`
     /// and therefore `gradientLayerColors = [.red, .yellow, .green, .blue, .green, .yellow, .red, .yellow, .green, .blue]`
     ///
     /// - Note: Declared `static` so we can call this method from the initializer, before `self` is available.
-    private static func makeGradientLayerColors(from gradientColors: [UIColor]) -> [CGColor] {
+    static func gradientLayerColors(from gradientColors: [UIColor]) -> [CGColor] {
         // Simulate infinite animation - Therefore we'll reverse the colors and remove the first and last item
         // to prevent duplicate values at the "inner edges" destroying the infinite look.
         let reversedColors = gradientColors
@@ -154,7 +147,9 @@ final class GradientActivityIndicatorViewModel {
         let infiniteGradientColors = gradientColors + reversedColors + gradientColors
         return infiniteGradientColors.map { $0.cgColor }
     }
+}
 
+private extension ColorLocationMatrix {
     /// Generates a single row for the locations-matrix used for animating the current `gradientColors`.
     ///
     /// Example for   `index               = 0`
@@ -166,7 +161,7 @@ final class GradientActivityIndicatorViewModel {
     /// ```
     ///
     /// - Note: Declared `static` so we can call this method from the initializer, before `self` is available.
-    private static func makeColorLocationRow(index: Int, gradientColorsQuantity: Int, gradientLayerColorsQuantity: Int) -> ColorLocationRow {
+    private static func colorLocationRow(index: Int, gradientColorsQuantity: Int, gradientLayerColorsQuantity: Int) -> ColorLocationRow {
         let startLocationsQuantity = gradientLayerColorsQuantity - gradientColorsQuantity - index
         let startLocations = [NSNumber](repeating: 0.0, count: startLocationsQuantity)
 
@@ -201,14 +196,14 @@ final class GradientActivityIndicatorViewModel {
     /// ```
     ///
     /// - Note: Declared `static` so we can call this method from the initializer, before `self` is available.
-    private static func makeColorLocationMatrix(gradientColorsQuantity: Int, gradientLayerColorsQuantity: Int) -> ColorLocationMatrix {
+    static func colorLocationMatrix(gradientColorsQuantity: Int, gradientLayerColorsQuantity: Int) -> ColorLocationMatrix {
         let matrixHeight = gradientLayerColorsQuantity - gradientColorsQuantity + 1
         let range = 0 ..< matrixHeight
 
         return range.reduce(into: ColorLocationMatrix(repeating: [], count: matrixHeight)) { gradientLocationMatrix, row in
-            gradientLocationMatrix[row] = Self.makeColorLocationRow(index: row,
-                                                                    gradientColorsQuantity: gradientColorsQuantity,
-                                                                    gradientLayerColorsQuantity: gradientLayerColorsQuantity)
+            gradientLocationMatrix[row] = Self.colorLocationRow(index: row,
+                                                                gradientColorsQuantity: gradientColorsQuantity,
+                                                                gradientLayerColorsQuantity: gradientLayerColorsQuantity)
         }
     }
 }
