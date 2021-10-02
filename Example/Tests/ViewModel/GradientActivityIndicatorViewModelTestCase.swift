@@ -38,18 +38,6 @@ class GradientActivityIndicatorViewModelTestCase: XCTestCase {
         XCTAssertEqual(viewModel.gradientLayerColors.value, expectedGradientLayerColors)
     }
 
-    func testInitializerShouldSetColorLocationInitialRowToCorrectValue() throws {
-        let receivedColorLocationInitialRow = try XCTUnwrap(viewModel.colorLocationInitialRow.value)
-        let expectedColorLocationInitialRow = makeColorLocationInitialRow()
-
-        // Unfortunately there is no easier way comparing an array of type `NSNumber` / `Double` with a given accuracy.
-        XCTAssertEqual(receivedColorLocationInitialRow.count, expectedColorLocationInitialRow.count)
-
-        for (receivedColorLocation, expectedColorLocation) in zip(receivedColorLocationInitialRow, expectedColorLocationInitialRow) {
-            XCTAssertEqual(receivedColorLocation.doubleValue, expectedColorLocation.doubleValue, accuracy: .ulpOfOne)
-        }
-    }
-
     func testInitializerShouldSetColorLocationMatrixToCorrectValue() throws {
         let receivedColorLocationMatrix = try XCTUnwrap(viewModel.colorLocationMatrix.value)
         let expectedColorLocationMatrix = makeColorLocationMatrix()
@@ -106,27 +94,6 @@ class GradientActivityIndicatorViewModelTestCase: XCTestCase {
         let expectedGradientLayerColors = expectedGradientColors.map { $0.cgColor }
 
         XCTAssertEqual(viewModel.gradientLayerColors.value, expectedGradientLayerColors)
-    }
-
-    func testSettingGradientColorsShouldUpdateColorLocationInitialRowObservable() {
-        // Given
-        let gradientColors: [UIColor] = [.red, .yellow, .green]
-
-        // When
-        viewModel.gradientColors = gradientColors
-
-        // Then
-        //
-        // `gradientColors      = [.red, .yellow, .green]`
-        // `gradientLayerColors = [.red, .yellow, .green, .yellow, .red, .yellow, .green]`
-        //
-        //  gradientLayerColors | .red | .yellow | .green | .green | .yellow | .red | .yellow | .green
-        //  initialLocations    | 0    | 0       | 0      | 0      | 0       | 0    | 0.5     | 1
-        //
-        let expectedGradientLocations = [0, 0, 0, 0, 0, 0.5, 1]
-        let expectedGradientLayerLocations = expectedGradientLocations.map { NSNumber(value: $0) }
-
-        XCTAssertEqual(viewModel.colorLocationInitialRow.value, expectedGradientLayerLocations)
     }
 
     func testSettingGradientColorsShouldUpdateColorLocationMatrixObservable() {
@@ -255,7 +222,6 @@ extension GradientActivityIndicatorViewModelTestCase {
         // ...
         // 0      | 0.2     | 0.4    | 0.6      | 0.8     | 1    | 1       | 1        | 1      | 1       | 1      | 1       | 1      | 1        | 1       | 1
         //
-
         let colorLocationMatrix = [
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1, 1],

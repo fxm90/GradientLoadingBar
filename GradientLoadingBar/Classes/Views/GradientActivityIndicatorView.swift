@@ -103,12 +103,12 @@ open class GradientActivityIndicatorView: UIView {
             self?.gradientLayer?.colors = newGradientLayerColors
         }.disposed(by: &disposeBag)
 
-        viewModel.colorLocationInitialRow.subscribeDistinct { [weak self] newColorLocationInitialRow, _ in
-            self?.gradientLayer?.locations = newColorLocationInitialRow
-        }.disposed(by: &disposeBag)
-
         viewModel.colorLocationMatrix.subscribeDistinct { [weak self] newColorLocationMatrix, _ in
             self?.progressAnimation.values = newColorLocationMatrix
+
+            // In order to have a working animation we need to provide the initial gradient-locations,
+            // which is the first row of our animation matrix.
+            self?.gradientLayer?.locations = newColorLocationMatrix.first
         }.disposed(by: &disposeBag)
 
         viewModel.animationDuration.subscribeDistinct { [weak self] newAnimationDuration, _ in

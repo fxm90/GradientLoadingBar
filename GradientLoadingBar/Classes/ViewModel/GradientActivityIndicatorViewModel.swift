@@ -49,14 +49,6 @@ final class GradientActivityIndicatorViewModel {
         gradientLayerColorsSubject
     }
 
-    /// Observable color locations for the gradient layer.
-    ///
-    /// - Note: In order to have a working animation we need to provide the initial gradient-locations,
-    ///         which is the first row of our animation matrix.
-    var colorLocationInitialRow: Observable<ColorLocationRow> {
-        colorLocationInitialRowSubject
-    }
-
     /// Observable color location matrix, used to position the gradient colors during the animation.
     /// - The outer array defines each animation step.
     /// - The inner array defines the location of each gradient-color during this animation step.
@@ -83,7 +75,6 @@ final class GradientActivityIndicatorViewModel {
             let gradientLocationMatrix = ColorLocationMatrix.colorLocationMatrix(gradientColorsQuantity: gradientColors.count,
                                                                                  gradientLayerColorsQuantity: gradientLayerColors.count)
 
-            colorLocationInitialRowSubject.value = gradientLocationMatrix[0]
             colorLocationMatrixSubject.value = gradientLocationMatrix
         }
     }
@@ -108,7 +99,6 @@ final class GradientActivityIndicatorViewModel {
     // MARK: - Private properties
 
     private let gradientLayerColorsSubject: Variable<[CGColor]>
-    private let colorLocationInitialRowSubject: Variable<ColorLocationRow>
     private let colorLocationMatrixSubject: Variable<ColorLocationMatrix>
 
     private let animationDurationSubject = Variable(TimeInterval.GradientLoadingBar.progressDuration)
@@ -122,7 +112,6 @@ final class GradientActivityIndicatorViewModel {
                                                                              gradientLayerColorsQuantity: gradientLayerColors.count)
 
         gradientLayerColorsSubject = Variable(gradientLayerColors)
-        colorLocationInitialRowSubject = Variable(gradientLocationMatrix[0])
         colorLocationMatrixSubject = Variable(gradientLocationMatrix)
     }
 }
