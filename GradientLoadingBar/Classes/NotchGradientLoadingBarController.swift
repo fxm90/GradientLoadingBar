@@ -42,13 +42,6 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         let verticalOffsetForLargeCircle: CGFloat
     }
 
-    // MARK: - Private properties
-
-    ///
-    private var adaptedLoadingBarHeight: CGFloat {
-        height + 1
-    }
-
     // MARK: - Public methods
 
     override open func setupConstraints(superview: UIView) {
@@ -78,8 +71,8 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
                                                    config: UIDevice.isAnyIPhone13Device ? .iPhone13Device : .default)
 
         // Setting the `lineWidth` draws a line, where the actual path is exactly in the middle of the drawn line.
-        // Therefore we have to add the `adaptedLoadingBarHeight` here to the bounds.
-        let viewHeight = notchBezierPath.bounds.height + adaptedLoadingBarHeight
+        // To get the correct height (including the path) we have to add the `height` here to the given bounds (half height for top, half for bottom).
+        let viewHeight = notchBezierPath.bounds.height + height
         NSLayoutConstraint.activate([
             gradientActivityIndicatorView.topAnchor.constraint(equalTo: superview.topAnchor),
             gradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: viewHeight),
@@ -159,7 +152,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
     private func maskView(with bezierPath: UIBezierPath) {
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = bezierPath.cgPath
-        shapeLayer.lineWidth = adaptedLoadingBarHeight
+        shapeLayer.lineWidth = height
         shapeLayer.strokeColor = UIColor.white.cgColor
 
         // Explicitly set to `nil` to avoid having a filled shape, showing the gradient behind the notch
