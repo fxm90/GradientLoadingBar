@@ -36,7 +36,7 @@ platform :ios do
   desc "Execute tests."
   lane :tests do
     run_tests(workspace: "GradientLoadingBar.xcworkspace",
-              devices: ["iPhone 11 Pro"],
+              devices: ["iPhone 12 Pro"],
               scheme: "GradientLoadingBar-Example")
   end
 
