@@ -28,6 +28,7 @@
 		97B6F5FF2143F31F008CFEA5 /* BlueFilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B6F5FC2143F31F008CFEA5 /* BlueFilledButton.swift */; };
 		97B6F6002143F31F008CFEA5 /* BlueBorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B6F5FD2143F31F008CFEA5 /* BlueBorderedButton.swift */; };
 		DC190F622496A25A0069E2B0 /* NotchGradientLoadingBarControllerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC190F602496A24F0069E2B0 /* NotchGradientLoadingBarControllerTestCase.swift */; };
+		DC9FF938270A470D0065B5B9 /* NotchGradientLoadingBarViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9FF937270A470D0065B5B9 /* NotchGradientLoadingBarViewModelTestCase.swift */; };
 		DCE3AB13249761B300889FFA /* Snapshotting+WindowedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE3AB11249761AB00889FFA /* Snapshotting+WindowedImage.swift */; };
 		DCE3AB16249764BB00889FFA /* GradientLoadingBarControllerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE3AB14249764A000889FFA /* GradientLoadingBarControllerTestCase.swift */; };
 /* End PBXBuildFile section */
@@ -83,6 +84,7 @@
 		ABA9B1EF5F3928BA6E31D3EA /* Pods_GradientLoadingBar_SnapshotTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GradientLoadingBar_SnapshotTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C06CA4DFA1DCB931095ABD3D /* GradientLoadingBar.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GradientLoadingBar.podspec; path = ../GradientLoadingBar.podspec; sourceTree = "<group>"; };
 		DC190F602496A24F0069E2B0 /* NotchGradientLoadingBarControllerTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchGradientLoadingBarControllerTestCase.swift; sourceTree = "<group>"; };
+		DC9FF937270A470D0065B5B9 /* NotchGradientLoadingBarViewModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchGradientLoadingBarViewModelTestCase.swift; sourceTree = "<group>"; };
 		DCE3AB11249761AB00889FFA /* Snapshotting+WindowedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Snapshotting+WindowedImage.swift"; sourceTree = "<group>"; };
 		DCE3AB14249764A000889FFA /* GradientLoadingBarControllerTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLoadingBarControllerTestCase.swift; sourceTree = "<group>"; };
 		DCE3AB172497670400889FFA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			children = (
 				64E0F5BB2211B7D20066D00D /* GradientLoadingBarViewModelTestCase.swift */,
 				640E8ABF231457620008C5A6 /* GradientActivityIndicatorViewModelTestCase.swift */,
+				DC9FF937270A470D0065B5B9 /* NotchGradientLoadingBarViewModelTestCase.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 			files = (
 				640E8AC0231457620008C5A6 /* GradientActivityIndicatorViewModelTestCase.swift in Sources */,
 				64E0F5BF2211B7D20066D00D /* GradientLoadingBarViewModelTestCase.swift in Sources */,
+				DC9FF938270A470D0065B5B9 /* NotchGradientLoadingBarViewModelTestCase.swift in Sources */,
 				64E7F4252293E16B00BE5095 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

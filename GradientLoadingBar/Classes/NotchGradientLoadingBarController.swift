@@ -15,17 +15,25 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
     // MARK: - Config
 
     private struct Config {
-        /// The default configuration for the iPhone X, 11 and 12.
+        /// The default configuration for the iPhone X and 11.
         /// Values are based on <https://www.paintcodeapp.com/news/iphone-x-screen-demystified>.
-        static let `default` = Config(notchWidth: 209.5,
-                                      largeCircleRadius: 21,
-                                      verticalOffsetForLargeCircle: -1.75)
+        static let `default` = Config(notchWidth: 208,
+                                      largeCircleRadius: 22.5,
+                                      verticalOffsetForLargeCircle: -4.5,
+                                      transform: CGAffineTransform(translationX: 0.33, y: 0))
+
+        /// The iPhone 12 specific configuration.
+        static let iPhone12Device = Config(notchWidth: 209.5,
+                                           largeCircleRadius: 21,
+                                           verticalOffsetForLargeCircle: -1.75,
+                                           transform: .identity)
 
         // The iPhone 13 specific configuration: ‟iPhone 13 notch is 20% smaller in width, but it is also a little taller in height‟.
         // Source: <https://9to5mac.com/2021/09/14/iphone-13-notch-smaller-but-bigger>.
         static let iPhone13Device = Config(notchWidth: 161,
                                            largeCircleRadius: 22,
-                                           verticalOffsetForLargeCircle: -1)
+                                           verticalOffsetForLargeCircle: -1,
+                                           transform: .identity)
 
         /// The width of the iPhone notch.
         let notchWidth: CGFloat
@@ -36,11 +44,18 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         /// The radius of the large circle on the inside of the notch.
         let largeCircleRadius: CGFloat
 
-        // We're moving the the large-circles a bit up.
-        // This prevents having a straight line between the circles.
-        // See <https://medium.com/tall-west/no-cutting-corners-on-the-iphone-x-97a9413b94e>
+        /// We're moving the the large-circles a bit up.
+        /// This prevents having a straight line between the circles.
+        /// See <https://medium.com/tall-west/no-cutting-corners-on-the-iphone-x-97a9413b94e>
         let verticalOffsetForLargeCircle: CGFloat
+
+        /// The transform to be applied to the bezier path.
+        let transform: CGAffineTransform
     }
+
+    // MARK: - Private properties
+
+    private let viewModel = NotchGradientLoadingBarViewModel()
 
     // MARK: - Public methods
 
@@ -67,8 +82,20 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
 
         // As we currently only support portrait mode (and no device rotation), we can safely use `bounds.size.width` here.
         let screenWidth = superview.bounds.size.width
-        let notchBezierPath = self.notchBezierPath(for: screenWidth,
-                                                   config: UIDevice.isAnyIPhone13Device ? .iPhone13Device : .default)
+
+        let config: Config
+        switch viewModel.safeAreaDevice {
+        case .unknown, .iPhoneX, .iPhone11:
+            config = .default
+
+        case .iPhone12:
+            config = .iPhone12Device
+
+        case .iPhone13:
+            config = .iPhone13Device
+        }
+
+        let notchBezierPath = self.notchBezierPath(for: screenWidth, config: config)
 
         // Setting the `lineWidth` draws a line, where the actual path is exactly in the middle of the drawn line.
         // To get the correct height (including the path) we have to add the `height` here to the given bounds (half height for top, half for bottom).
@@ -146,6 +173,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         // Draw line to the end of the screen.
         bezierPath.addLineTo(x: screenWidth, y: halfStrokeSize)
 
+        bezierPath.apply(config.transform)
         return bezierPath
     }
 
@@ -178,36 +206,5 @@ private extension UIBezierPath {
     // swiftlint:disable:next identifier_name
     func addLineTo(x: CGFloat, y: CGFloat) {
         addLine(to: CGPoint(x: x, y: y))
-    }
-}
-
-private extension UIDevice {
-    private enum Config {
-        static let iPhone13Identifiers = ["iPhone14,5", "iPhone14,2", "iPhone14,3"]
-    }
-
-    /// Starting from the iPhone 13 the notch is smaller, but a little bit higher.
-    /// Therefore we explicitly need to detect any iPhone 13 device for an adapted notch calculation.
-    ///
-    /// Based on: <https://stackoverflow.com/a/26962452/3532505>
-    ///           Adapted for Simulator usage based on <https://stackoverflow.com/a/46380596/3532505>
-    static var isAnyIPhone13Device: Bool {
-        #if targetEnvironment(simulator)
-            let identifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] ?? ""
-        #else
-            var systemInfo = utsname()
-            uname(&systemInfo)
-
-            let machineMirror = Mirror(reflecting: systemInfo.machine)
-            let identifier = machineMirror.children.reduce("") { identifier, element in
-                guard let value = element.value as? Int8, value != 0 else {
-                    return identifier
-                }
-
-                return identifier + String(UnicodeScalar(UInt8(value)))
-            }
-        #endif
-
-        return Config.iPhone13Identifiers.contains(identifier)
     }
 }

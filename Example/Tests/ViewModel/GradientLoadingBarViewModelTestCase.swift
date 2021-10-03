@@ -116,6 +116,6 @@ class GradientLoadingBarViewModelTestCase: XCTestCase {
 
 // MARK: - Mocks
 
-class SharedApplicationMock: UIApplicationProtocol {
+private class SharedApplicationMock: UIApplicationProtocol {
     var windows = [UIWindow]()
 }
