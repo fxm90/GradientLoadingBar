@@ -17,13 +17,13 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
     private struct Config {
         /// The default configuration for the iPhone X, 11 and 12.
         /// Values are based on <https://www.paintcodeapp.com/news/iphone-x-screen-demystified>.
-        static let `default` = Config(notchWidth: 210,
+        static let `default` = Config(notchWidth: 209.5,
                                       largeCircleRadius: 21,
-                                      verticalOffsetForLargeCircle: -2)
+                                      verticalOffsetForLargeCircle: -1.75)
 
         // The iPhone 13 specific configuration: ‟iPhone 13 notch is 20% smaller in width, but it is also a little taller in height‟.
         // Source: <https://9to5mac.com/2021/09/14/iphone-13-notch-smaller-but-bigger>.
-        static let iPhone13Device = Config(notchWidth: 161.5,
+        static let iPhone13Device = Config(notchWidth: 161,
                                            largeCircleRadius: 22,
                                            verticalOffsetForLargeCircle: -1)
 
