@@ -1,6 +1,6 @@
 {
   "name": "GradientLoadingBar",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "summary": "A customizable animated gradient loading bar.",
   "description": "A customizable animated gradient loading bar.\nInspired by https://codepen.io/marcobiedermann/pen/LExXWW",
   "homepage": "https://github.com/fxm90/GradientLoadingBar",
@@ -14,7 +14,7 @@
   },
   "source": {
     "git": "https://github.com/fxm90/GradientLoadingBar.git",
-    "tag": "2.1.1"
+    "tag": "2.2.0"
   },
   "swift_versions": "5.1",
   "platforms": {
