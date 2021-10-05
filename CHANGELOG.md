@@ -7,11 +7,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [2.2.1] - 2021-05-10
+### Fixed
+ - Fixed invalid import ([#024])
+
+[#024]: https://github.com/fxm90/GradientLoadingBar/issues/24
+
 ## [2.2.0] - 2021-04-10
 ### Fixed
- - Add support for iPhone 13 ([#023])
+ - Added support for iPhone 13 ([#023])
 
-[#020]: https://github.com/fxm90/GradientLoadingBar/issues/23
+[#023]: https://github.com/fxm90/GradientLoadingBar/issues/23
 
 ## [2.1.1] - 2021-12-05
 ### Fixed
@@ -141,7 +147,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial release
 
 
-[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/2.2.0...master
+[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/2.2.1...master
+[2.2.1]: https://github.com/fxm90/GradientLoadingBar/compare/2.2.0...2.2.1
 [2.2.0]: https://github.com/fxm90/GradientLoadingBar/compare/2.1.1...2.2.0
 [2.1.1]: https://github.com/fxm90/GradientLoadingBar/compare/2.1.0...2.1.1
 [2.1.0]: https://github.com/fxm90/GradientLoadingBar/compare/2.0.3...2.1.0
