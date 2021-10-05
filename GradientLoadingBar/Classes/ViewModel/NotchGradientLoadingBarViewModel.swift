@@ -70,7 +70,7 @@ private extension UIDevice {
             uname(&systemInfo)
 
             let machineMirror = Mirror(reflecting: systemInfo.machine)
-            let identifier = machineMirror.children.reduce("") { identifier, element in
+            return machineMirror.children.reduce("") { identifier, element in
                 guard let value = element.value as? Int8, value != 0 else {
                     return identifier
                 }
