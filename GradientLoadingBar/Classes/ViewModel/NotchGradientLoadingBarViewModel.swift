@@ -6,7 +6,7 @@
 //  Copyright © 2021 Felix Mau. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 final class NotchGradientLoadingBarViewModel {
     // MARK: - Types
