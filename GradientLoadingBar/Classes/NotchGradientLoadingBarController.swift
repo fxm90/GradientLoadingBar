@@ -19,7 +19,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         /// Values are based on <https://www.paintcodeapp.com/news/iphone-x-screen-demystified>.
         static let `default` = Config(notchWidth: 208,
                                       largeCircleRadius: 22.5,
-                                      verticalOffsetForLargeCircle: -4.5,
+                                      verticalOffsetForLargeCircle: -4.75,
                                       transform: CGAffineTransform(translationX: 0.33, y: 0))
 
         /// The iPhone 12 specific configuration.
@@ -123,14 +123,15 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         // See graphic https://www.paintcodeapp.com/news/iphone-x-screen-demystified for further details.
         let smallCircleDiameter: CGFloat = 2 * config.smallCircleRadius
 
-        // Setting the `lineWidth` draws a line, where the actual path is exactly in the middle of the drawn line.
-        let height = self.height - 1
+        // Reducing the height here a little in order to match the "basic" gradient loading bar.
+        let height = self.height - 0.5
 
         let bezierPath = UIBezierPath()
-        bezierPath.moveTo(x: 0, y: 0)
+        bezierPath.move(to: .zero)
 
         // Draw line to small-circle left to `leftNotchPoint`.
-        bezierPath.addLineTo(x: leftNotchPoint - config.smallCircleRadius, y: 0)
+        bezierPath.addLineTo(x: leftNotchPoint - config.smallCircleRadius,
+                             y: 0)
 
         // Draw the small circle left to the `leftNotchPoint`.
         // See <https://developer.apple.com/documentation/uikit/uibezierpath/1624358-init#1965853> for the definition of the
@@ -173,16 +174,23 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         // Draw line to the end of the screen.
         bezierPath.addLineTo(x: screenWidth, y: 0)
 
-        // Draw line down
-        bezierPath.addLineTo(x: screenWidth, y: height)
+        // And all the way back..
+
+        // Have the small-circle at the bottom-path only ⅔ of the size of the upper-path produced visually better results.
+        let bottomPathSmallCircleRadius = (config.smallCircleRadius / 3) * 2
+
+        // Draw line down.
+        bezierPath.addLineTo(x: screenWidth,
+                             y: height)
 
         // Draw line to small-circle underneath and right to `rightNotchPoint`.
-        bezierPath.addLineTo(x: rightNotchPoint + config.smallCircleRadius + height, y: height)
+        bezierPath.addLineTo(x: rightNotchPoint + bottomPathSmallCircleRadius + height,
+                             y: height)
 
         // Draw the small circle right to the `rightNotchPoint`.
-        bezierPath.addArc(withCenter: CGPoint(x: height + rightNotchPoint + config.smallCircleRadius,
-                                              y: height + config.smallCircleRadius),
-                          radius: config.smallCircleRadius,
+        bezierPath.addArc(withCenter: CGPoint(x: height + rightNotchPoint + bottomPathSmallCircleRadius,
+                                              y: height + bottomPathSmallCircleRadius),
+                          radius: bottomPathSmallCircleRadius,
                           startAngle: CGFloat.pi + CGFloat.pi / 2,
                           endAngle: CGFloat.pi,
                           clockwise: false)
@@ -208,20 +216,19 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
                           clockwise: true)
 
         // Draw the small circle left to the `leftNotchPoint`.
-        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint - height - config.smallCircleRadius,
-                                              y: height + config.smallCircleRadius),
-                          radius: config.smallCircleRadius,
+        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint - height - bottomPathSmallCircleRadius,
+                                              y: height + bottomPathSmallCircleRadius),
+                          radius: bottomPathSmallCircleRadius,
                           startAngle: 0,
                           endAngle: -CGFloat.pi / 2,
                           clockwise: false)
 
         // Draw line to the beginning of the screen.
         bezierPath.addLineTo(x: 0, y: height)
-
-        // Draw line up
-        bezierPath.addLineTo(x: 0, y: 0)
+        bezierPath.close()
 
         bezierPath.apply(config.transform)
+
         return bezierPath
     }
 
@@ -241,11 +248,6 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
 // MARK: - Helpers
 
 private extension UIBezierPath {
-    // swiftlint:disable:next identifier_name
-    func moveTo(x: CGFloat, y: CGFloat) {
-        move(to: CGPoint(x: x, y: y))
-    }
-
     // swiftlint:disable:next identifier_name
     func addLineTo(x: CGFloat, y: CGFloat) {
         addLine(to: CGPoint(x: x, y: y))
