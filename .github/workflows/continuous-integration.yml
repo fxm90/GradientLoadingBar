@@ -9,7 +9,7 @@
 #
 
 name: Continuous Integration
-on:  
+on:
   push:
   pull_request:
   schedule:
@@ -17,7 +17,7 @@ on:
     #
     #  - Note: "Scheduled workflows run on the latest commit on the default or base branch."
     #          https://docs.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events
-    - cron: '0 0 * * *' 
+    - cron: '0 0 * * *'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel.
 jobs:
@@ -48,7 +48,7 @@ jobs:
 
       - name: Execute SwiftLint and treat any formatting errors as real errors.
         working-directory: ./Example
-        run: bundle exec fastlane format
+        run: bundle exec fastlane lint
 
       - name: Execute tests.
         working-directory: ./Example
