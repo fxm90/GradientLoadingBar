@@ -123,55 +123,102 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         let smallCircleDiameter: CGFloat = 2 * config.smallCircleRadius
 
         // Setting the `lineWidth` draws a line, where the actual path is exactly in the middle of the drawn line.
-        let halfStrokeSize = height / 2
+        let height = self.height - 1
 
         let bezierPath = UIBezierPath()
-        bezierPath.moveTo(x: 0, y: halfStrokeSize)
+        bezierPath.moveTo(x: 0, y: 0)
 
         // Draw line to small-circle left to `leftNotchPoint`.
-        bezierPath.addLineTo(x: leftNotchPoint - halfStrokeSize - config.smallCircleRadius,
-                             y: halfStrokeSize)
+        bezierPath.addLineTo(x: leftNotchPoint - config.smallCircleRadius, y: 0)
 
         // Draw the small circle left to the `leftNotchPoint`.
         // See <https://developer.apple.com/documentation/uikit/uibezierpath/1624358-init#1965853> for the definition of the
         // angles in the default coordinate system.
-        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint - halfStrokeSize - config.smallCircleRadius,
-                                              y: halfStrokeSize + config.smallCircleRadius),
+        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint - config.smallCircleRadius,
+                                              y: config.smallCircleRadius),
                           radius: config.smallCircleRadius,
                           startAngle: -CGFloat.pi / 2,
                           endAngle: 0,
                           clockwise: true)
 
         // Draw the large circle right to the `leftNotchPoint`.
-        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint - halfStrokeSize + config.largeCircleRadius,
-                                              y: halfStrokeSize + smallCircleDiameter + config.verticalOffsetForLargeCircle),
+        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint + config.largeCircleRadius,
+                                              y: smallCircleDiameter + config.verticalOffsetForLargeCircle),
                           radius: config.largeCircleRadius,
                           startAngle: CGFloat.pi,
                           endAngle: CGFloat.pi / 2,
                           clockwise: false)
 
         // Draw line to large-circle underneath and left to `rightNotchPoint`.
-        bezierPath.addLineTo(x: halfStrokeSize + rightNotchPoint - config.largeCircleRadius,
-                             y: halfStrokeSize + smallCircleDiameter + config.largeCircleRadius + config.verticalOffsetForLargeCircle)
+        bezierPath.addLineTo(x: rightNotchPoint - config.largeCircleRadius,
+                             y: smallCircleDiameter + config.largeCircleRadius + config.verticalOffsetForLargeCircle)
 
         // Draw the large circle left to the `rightNotchPoint`.
-        bezierPath.addArc(withCenter: CGPoint(x: halfStrokeSize + rightNotchPoint - config.largeCircleRadius,
-                                              y: halfStrokeSize + smallCircleDiameter + config.verticalOffsetForLargeCircle),
+        bezierPath.addArc(withCenter: CGPoint(x: rightNotchPoint - config.largeCircleRadius,
+                                              y: smallCircleDiameter + config.verticalOffsetForLargeCircle),
                           radius: config.largeCircleRadius,
                           startAngle: CGFloat.pi / 2,
                           endAngle: 0,
                           clockwise: false)
 
         // Draw the small circle right to the `rightNotchPoint`.
-        bezierPath.addArc(withCenter: CGPoint(x: halfStrokeSize + rightNotchPoint + config.smallCircleRadius,
-                                              y: halfStrokeSize + config.smallCircleRadius),
+        bezierPath.addArc(withCenter: CGPoint(x: rightNotchPoint + config.smallCircleRadius,
+                                              y: config.smallCircleRadius),
                           radius: config.smallCircleRadius,
                           startAngle: CGFloat.pi,
                           endAngle: CGFloat.pi + CGFloat.pi / 2,
                           clockwise: true)
 
         // Draw line to the end of the screen.
-        bezierPath.addLineTo(x: screenWidth, y: halfStrokeSize)
+        bezierPath.addLineTo(x: screenWidth, y: 0)
+
+        // Draw line down
+        bezierPath.addLineTo(x: screenWidth, y: height)
+
+        // Draw line to small-circle underneath and right to `rightNotchPoint`.
+        bezierPath.addLineTo(x: rightNotchPoint + config.smallCircleRadius + height, y: height)
+
+        // Draw the small circle right to the `rightNotchPoint`.
+        bezierPath.addArc(withCenter: CGPoint(x: height + rightNotchPoint + config.smallCircleRadius,
+                                              y: height + config.smallCircleRadius),
+                          radius: config.smallCircleRadius,
+                          startAngle: CGFloat.pi + CGFloat.pi / 2,
+                          endAngle: CGFloat.pi,
+                          clockwise: false)
+
+        // Draw the large circle left to the `rightNotchPoint`.
+        bezierPath.addArc(withCenter: CGPoint(x: height + rightNotchPoint - config.largeCircleRadius,
+                                              y: height + smallCircleDiameter + config.verticalOffsetForLargeCircle),
+                          radius: config.largeCircleRadius,
+                          startAngle: 0,
+                          endAngle: CGFloat.pi / 2,
+                          clockwise: true)
+
+        // Draw line to large-circle underneath and right to `leftNotchPoint`
+        bezierPath.addLineTo(x: height + leftNotchPoint + config.largeCircleRadius,
+                             y: height + smallCircleDiameter + config.largeCircleRadius + config.verticalOffsetForLargeCircle)
+
+        // Draw the large circle right to the `leftNotchPoint`.
+        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint - height + config.largeCircleRadius,
+                                              y: height + smallCircleDiameter + config.verticalOffsetForLargeCircle),
+                          radius: config.largeCircleRadius,
+                          startAngle: CGFloat.pi / 2,
+                          endAngle: CGFloat.pi,
+                          clockwise: true)
+
+        // Draw the small circle left to the `leftNotchPoint`.
+        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint - height - config.smallCircleRadius,
+                                              y: height + config.smallCircleRadius),
+                          radius: config.smallCircleRadius,
+                          startAngle: 0,
+                          endAngle: -CGFloat.pi / 2,
+                          clockwise: false)
+
+        // Draw line to the beginning of the screen.
+        bezierPath.addLineTo(x: 0, y: height)
+
+        // Draw line up
+        bezierPath.addLineTo(x: 0, y: 0)
 
         bezierPath.apply(config.transform)
         return bezierPath
@@ -180,12 +227,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
     private func maskView(with bezierPath: UIBezierPath) {
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = bezierPath.cgPath
-        shapeLayer.lineWidth = height
         shapeLayer.strokeColor = UIColor.white.cgColor
-
-        // Explicitly set to `nil` to avoid having a filled shape, showing the gradient behind the notch
-        // in the app switcher.
-        shapeLayer.fillColor = nil
 
         if #available(iOS 13.0, *) {
             shapeLayer.cornerCurve = .continuous
