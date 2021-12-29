@@ -7,6 +7,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [2.2.3] - 2021-29-12
+### Fixed
+ - Fixed incorrect layout on `NotchGradientLoadingBar` when using an increased height ([#026], thanks to [alinfarcas12](https://github.com/alinfarcas12))
+
+[#026]: https://github.com/fxm90/GradientLoadingBar/issues/26
+
 ## [2.2.2] - 2021-05-10
 ### Fixed
  - Fixed missing `return` ([#025])
@@ -153,7 +159,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial release
 
 
-[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/2.2.2...master
+[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/2.2.3...master
+[2.2.2]: https://github.com/fxm90/GradientLoadingBar/compare/2.2.2...2.2.3
 [2.2.2]: https://github.com/fxm90/GradientLoadingBar/compare/2.2.1...2.2.2
 [2.2.1]: https://github.com/fxm90/GradientLoadingBar/compare/2.2.0...2.2.1
 [2.2.0]: https://github.com/fxm90/GradientLoadingBar/compare/2.1.1...2.2.0
