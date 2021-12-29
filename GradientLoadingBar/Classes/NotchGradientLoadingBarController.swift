@@ -113,6 +113,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
 
     // MARK: - Private methods
 
+    // swiftlint:disable:next function_body_length
     private func notchBezierPath(for screenWidth: CGFloat, config: Config) -> UIBezierPath {
         // We always center the notch in the middle of the screen.
         let leftNotchPoint = (screenWidth - config.notchWidth) / 2
