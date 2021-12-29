@@ -1,5 +1,8 @@
 #
 # .swiftlint.yml
+#
+# This file enables [SwiftLint](https://github.com/realm/SwiftLint) rules, that are disabled by default.
+#
 # Created by Felix Mau (https://felix.hamburg)
 #
 # Based on:
@@ -11,6 +14,7 @@
 opt_in_rules:
   - anyobject_protocol                  # Prefer using `AnyObject` over class for class-only protocols.
   - array_init                          # Prefer using `Array(seq)` over `seq.map { $0 }` to convert a sequence into an Array.
+  - balanced_xctest_lifecycle           # Test classes must implement balanced setUp and tearDown methods.
   - block_based_kvo                     # Prefer the new block based KVO API with keypaths when using Swift 3.2 or later.
   - closure_spacing                     # Closure expressions should have a single space inside each brace.
   - contains_over_filter_count          # Prefer `contains` over comparing `filter(where:).count` to 0.
@@ -43,6 +47,7 @@ opt_in_rules:
   - overridden_super_call               # Some overridden methods should always call super
   - prefer_self_type_over_type_of_self  # Prefer `Self` over `type(of: self)` when accessing properties or calling methods.
   - prefer_zero_over_explicit_init      # Prefer `.zero` over explicit init with zero parameters (e.g. `CGPoint(x: 0, y: 0)`).
+  - private_subject                     # Combine Subject should be private.
   - private_outlet                      # IBOutlets should be private to avoid leaking UIKit to higher layers.
   - private_action                      # IBActions should be private.
   - prohibited_super_call               # Some methods should not call super, e.g. `UIViewController.loadView()`
