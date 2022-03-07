@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-frameworks.sh
+${BUILT_PRODUCTS_DIR}/GradientLoadingBar/GradientLoadingBar.framework
+${BUILT_PRODUCTS_DIR}/LightweightObservable/LightweightObservable.framework

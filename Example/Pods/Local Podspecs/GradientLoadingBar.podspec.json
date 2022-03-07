@@ -20,7 +20,7 @@
   "platforms": {
     "ios": "9.0"
   },
-  "source_files": "GradientLoadingBar/Classes/**/*",
+  "source_files": "GradientLoadingBar/**/*",
   "dependencies": {
     "LightweightObservable": [
       "~> 2.1"
