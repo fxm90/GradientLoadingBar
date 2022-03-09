@@ -15,6 +15,7 @@
 			dependencies = (
 			);
 			name = SwiftFormat;
+			productName = SwiftFormat;
 		};
 		52B60EC2A583F24ACBB69C113F5488B9 /* SwiftLint */ = {
 			isa = PBXAggregateTarget;
@@ -24,6 +25,7 @@
 			dependencies = (
 			);
 			name = SwiftLint;
+			productName = SwiftLint;
 		};
 		B951B6FCD3E55AF969FBA9F7B476B877 /* SwiftConfigurationFiles */ = {
 			isa = PBXAggregateTarget;
@@ -33,6 +35,7 @@
 			dependencies = (
 			);
 			name = SwiftConfigurationFiles;
+			productName = SwiftConfigurationFiles;
 		};
 /* End PBXAggregateTarget section */
 
@@ -62,6 +65,7 @@
 		D89148BFC07632D1FE62D5CF4616C2E8 /* Pods-Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B41E79C10D2183B4E17863A56C910697 /* Pods-Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E9F255F44A070FE2F4A65A212FAEF61F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77E2A4AC6C090C3B4708BCEF61A594D /* Constants.swift */; };
 		EE9AE0164C3214055E15309068AA5167 /* GradientActivityIndicatorView+AnimateIsHidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58459B178EBD2B9585E50F15D67EE23 /* GradientActivityIndicatorView+AnimateIsHidden.swift */; };
+		F5B625F827D7F1AE00D7036A /* GradientLoadingBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B625F727D7F1AE00D7036A /* GradientLoadingBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,14 +141,14 @@
 		67873E92210DD4E777C49C6E8AEDC108 /* GradientLoadingBar */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GradientLoadingBar; path = GradientLoadingBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BDD419F652F3675D32741451E718393 /* Pods-ExampleTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ExampleTests-dummy.m"; sourceTree = "<group>"; };
 		6FDE3CD52E416082AE176DBDB70626CB /* Pods-ExampleTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ExampleTests-Info.plist"; sourceTree = "<group>"; };
-		71872C2E0B6E8DF2819ECF73055406F6 /* readme.md */ = {isa = PBXFileReference; includeInIndex = 1; path = readme.md; sourceTree = "<group>"; };
+		71872C2E0B6E8DF2819ECF73055406F6 /* readme.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		74F3E929AF83C1E4C9BC46B633924476 /* GradientLoadingBar-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GradientLoadingBar-umbrella.h"; sourceTree = "<group>"; };
 		8669497E8F926A3169C00AF47826AAD6 /* SwiftFormat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftFormat.debug.xcconfig; sourceTree = "<group>"; };
-		87D32B363FBDF3F00313D21994B675AB /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
-		92594448460C4FAEA07450F6CA28523D /* GradientLoadingBar.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = GradientLoadingBar.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		87D32B363FBDF3F00313D21994B675AB /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		92594448460C4FAEA07450F6CA28523D /* GradientLoadingBar.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = GradientLoadingBar.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		97F60369B21C7504D22C2F3E0C10FA35 /* Pods-ExampleTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ExampleTests-umbrella.h"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E727A4C9E4C166DCC2CAA15F7ACF299 /* LightweightObservable-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "LightweightObservable-Info.plist"; sourceTree = "<group>"; };
 		9F1636BA6BA0D07871777A395C031882 /* LightweightObservable-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LightweightObservable-umbrella.h"; sourceTree = "<group>"; };
 		A3129AC48F73935634A39479CA444F46 /* GradientLoadingBar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GradientLoadingBar.release.xcconfig; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 		F196AAA163469B17170E99B82C7C4C0A /* LightweightObservable */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = LightweightObservable; path = LightweightObservable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1A45E0B6EB826771A16350B666D273E /* Pods-Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Example-frameworks.sh"; sourceTree = "<group>"; };
 		F5728A1B060B328908F33E4940A320F8 /* NotchGradientLoadingBarController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NotchGradientLoadingBarController.swift; path = GradientLoadingBar/NotchGradientLoadingBarController.swift; sourceTree = "<group>"; };
+		F5B625F727D7F1AE00D7036A /* GradientLoadingBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLoadingBarView.swift; sourceTree = "<group>"; };
 		F68E85A90B9AF768C61F63A80C28F574 /* LightweightObservable-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LightweightObservable-dummy.m"; sourceTree = "<group>"; };
 		FDF5B122F650A2634FB3C234A25C151D /* GradientLoadingBar-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GradientLoadingBar-dummy.m"; sourceTree = "<group>"; };
 		FEF8A4D0CFDD18F4F07E729EB41C30C2 /* Pods-Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Example.modulemap"; sourceTree = "<group>"; };
@@ -219,7 +224,6 @@
 			children = (
 				C0D1CBD055D6A6588A506E4B5CF3B3F1 /* Support Files */,
 			);
-			name = SwiftLint;
 			path = SwiftLint;
 			sourceTree = "<group>";
 		};
@@ -259,7 +263,6 @@
 				A482DB85D620AA387395F03499CC3828 /* Observable+KeyPath.swift */,
 				9F57CC0A003D15EE3A149D8555340C69 /* Support Files */,
 			);
-			name = LightweightObservable;
 			path = LightweightObservable;
 			sourceTree = "<group>";
 		};
@@ -296,7 +299,6 @@
 			children = (
 				E06143DDA1B20446A5E527278BE31354 /* Support Files */,
 			);
-			name = SwiftFormat;
 			path = SwiftFormat;
 			sourceTree = "<group>";
 		};
@@ -417,6 +419,7 @@
 				B72AD445BCB6C242480FA00F4A7FA00A /* Helper */,
 				A3D136E552F19DAD93030CDE95AD3F72 /* Pod */,
 				2B5209E60C92277B4546CA61AA88C321 /* Support Files */,
+				F5B625F627D7F19500D7036A /* SwiftUI */,
 				5654FA15AB8E153A3A42BDD0D1D93413 /* ViewModel */,
 				FCF27B6059B29C86D29779B4B617FE26 /* Views */,
 			);
@@ -439,7 +442,6 @@
 			children = (
 				B373A2B0D322199E5871E3923120D8A1 /* Support Files */,
 			);
-			name = SwiftConfigurationFiles;
 			path = SwiftConfigurationFiles;
 			sourceTree = "<group>";
 		};
@@ -458,6 +460,14 @@
 			);
 			name = "Pods-Example";
 			path = "Target Support Files/Pods-Example";
+			sourceTree = "<group>";
+		};
+		F5B625F627D7F19500D7036A /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				F5B625F727D7F1AE00D7036A /* GradientLoadingBarView.swift */,
+			);
+			path = SwiftUI;
 			sourceTree = "<group>";
 		};
 		FCF27B6059B29C86D29779B4B617FE26 /* Views */ = {
@@ -665,6 +675,7 @@
 				68C5DB73151103C8F43EF26688EE5600 /* GradientLoadingBarViewModel.swift in Sources */,
 				110C6F18C17D074E76617348CD73E2FE /* NotchGradientLoadingBarController.swift in Sources */,
 				0ACD0ACD5263B4D09556739F7926FF96 /* NotchGradientLoadingBarViewModel.swift in Sources */,
+				F5B625F827D7F1AE00D7036A /* GradientLoadingBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
