@@ -19,7 +19,7 @@ struct EntryPointView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Example Application")) {
+                Section(header: Text("UIKit Examples")) {
                     NavigationLink(destination: BasicExampleView()) {
                         TitleSubtitleView(title: "🏡 Basic Example",
                                           subtitle: "Basic usage and setup.")
@@ -50,10 +50,12 @@ struct EntryPointView: View {
                             .contentShape(Rectangle())
                     }
                     .buttonStyle(PlainButtonStyle())
+                }
 
+                Section(header: Text("SwiftUI Examples")) {
                     NavigationLink(destination: SwiftUIExampleView()) {
-                        TitleSubtitleView(title: "🪄 SwiftUI Example",
-                                          subtitle: "How to use in a SwiftUI context.")
+                        TitleSubtitleView(title: "🎨 GradientLoadingBarView Example",
+                                          subtitle: "How to use the SwiftUI view.")
                     }
                 }
             }
