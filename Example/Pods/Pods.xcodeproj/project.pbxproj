@@ -351,13 +351,13 @@
 			path = "../Target Support Files/SwiftConfigurationFiles";
 			sourceTree = "<group>";
 		};
-		B72AD445BCB6C242480FA00F4A7FA00A /* Misc */ = {
+		B72AD445BCB6C242480FA00F4A7FA00A /* Helper */ = {
 			isa = PBXGroup;
 			children = (
 				C77E2A4AC6C090C3B4708BCEF61A594D /* Constants.swift */,
 			);
-			name = Misc;
-			path = GradientLoadingBar/Misc;
+			name = Helper;
+			path = GradientLoadingBar/Helper;
 			sourceTree = "<group>";
 		};
 		C0D1CBD055D6A6588A506E4B5CF3B3F1 /* Support Files */ = {
@@ -414,7 +414,7 @@
 			children = (
 				CFC12B93FC53CC45081B03DB6B4EFEA2 /* GradientLoadingBarController.swift */,
 				F5728A1B060B328908F33E4940A320F8 /* NotchGradientLoadingBarController.swift */,
-				B72AD445BCB6C242480FA00F4A7FA00A /* Misc */,
+				B72AD445BCB6C242480FA00F4A7FA00A /* Helper */,
 				A3D136E552F19DAD93030CDE95AD3F72 /* Pod */,
 				2B5209E60C92277B4546CA61AA88C321 /* Support Files */,
 				5654FA15AB8E153A3A42BDD0D1D93413 /* ViewModel */,
