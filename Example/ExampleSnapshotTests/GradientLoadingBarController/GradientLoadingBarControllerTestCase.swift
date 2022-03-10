@@ -12,6 +12,13 @@ import SnapshotTesting
 @testable import GradientLoadingBar
 
 final class GradientLoadingBarControllerTestCase: XCTestCase {
+    // MARK: - Config
+
+    private enum Config {
+        /// The percentage of pixels that must match.
+        static let precision: Float = 0.99
+    }
+
     // MARK: - Tests
 
     func test_gradientLoadingBarController() {
@@ -30,6 +37,7 @@ final class GradientLoadingBarControllerTestCase: XCTestCase {
         // Then
         wait(for: [expectation], timeout: 1)
 
-        assertSnapshot(matching: rootViewController, as: .windowedImage)
+        assertSnapshot(matching: rootViewController,
+                       as: .image(drawHierarchyInKeyWindow: true, precision: Config.precision))
     }
 }

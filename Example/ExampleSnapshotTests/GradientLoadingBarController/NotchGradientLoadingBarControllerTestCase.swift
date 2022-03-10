@@ -14,6 +14,13 @@ import SnapshotTesting
 final class NotchGradientLoadingBarControllerTestCase: XCTestCase {
     // swiftlint:disable:previous type_name
 
+    // MARK: - Config
+
+    private enum Config {
+        /// The percentage of pixels that must match.
+        static let precision: Float = 0.99
+    }
+
     // MARK: - Tests
 
     func test_notchGradientLoadingBarController() {
@@ -32,6 +39,7 @@ final class NotchGradientLoadingBarControllerTestCase: XCTestCase {
         // Then
         wait(for: [expectation], timeout: 1)
 
-        assertSnapshot(matching: rootViewController, as: .windowedImage)
+        assertSnapshot(matching: rootViewController,
+                       as: .image(drawHierarchyInKeyWindow: true, precision: Config.precision))
     }
 }

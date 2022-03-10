@@ -33,7 +33,6 @@
 		F5F5B69F27D94B1800D998B5 /* NotchGradientLoadingBarViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F5B69B27D94B1800D998B5 /* NotchGradientLoadingBarViewModelTestCase.swift */; };
 		F5FC82FA27DA0BBF00FE1D7D /* GradientActivityIndicatorViewTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FC82E827DA0BBF00FE1D7D /* GradientActivityIndicatorViewTestCase.swift */; };
 		F5FC82FE27DA0BBF00FE1D7D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F5FC82EF27DA0BBF00FE1D7D /* README.md */; };
-		F5FC82FF27DA0BBF00FE1D7D /* Snapshotting+WindowedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FC82F127DA0BBF00FE1D7D /* Snapshotting+WindowedImage.swift */; };
 		F5FC830027DA0BBF00FE1D7D /* GradientLoadingBarControllerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FC82F327DA0BBF00FE1D7D /* GradientLoadingBarControllerTestCase.swift */; };
 		F5FC830127DA0BBF00FE1D7D /* NotchGradientLoadingBarControllerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FC82F427DA0BBF00FE1D7D /* NotchGradientLoadingBarControllerTestCase.swift */; };
 /* End PBXBuildFile section */
@@ -90,7 +89,6 @@
 		F5FC82DE27DA0B3200FE1D7D /* ExampleSnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleSnapshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5FC82E827DA0BBF00FE1D7D /* GradientActivityIndicatorViewTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientActivityIndicatorViewTestCase.swift; sourceTree = "<group>"; };
 		F5FC82EF27DA0BBF00FE1D7D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		F5FC82F127DA0BBF00FE1D7D /* Snapshotting+WindowedImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Snapshotting+WindowedImage.swift"; sourceTree = "<group>"; };
 		F5FC82F327DA0BBF00FE1D7D /* GradientLoadingBarControllerTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLoadingBarControllerTestCase.swift; sourceTree = "<group>"; };
 		F5FC82F427DA0BBF00FE1D7D /* NotchGradientLoadingBarControllerTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotchGradientLoadingBarControllerTestCase.swift; sourceTree = "<group>"; };
 		FAA1A12E84EBC1F48401EB10 /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -294,7 +292,6 @@
 		F5FC82DF27DA0B3200FE1D7D /* ExampleSnapshotTests */ = {
 			isa = PBXGroup;
 			children = (
-				F5FC82F027DA0BBF00FE1D7D /* _Helper */,
 				F5FC82E727DA0BBF00FE1D7D /* GradientActivityIndicatorView */,
 				F5FC82F227DA0BBF00FE1D7D /* GradientLoadingBarController */,
 				F5FC830727DA0D8400FE1D7D /* GradientLoadingBarView */,
@@ -309,14 +306,6 @@
 				F5FC82E827DA0BBF00FE1D7D /* GradientActivityIndicatorViewTestCase.swift */,
 			);
 			path = GradientActivityIndicatorView;
-			sourceTree = "<group>";
-		};
-		F5FC82F027DA0BBF00FE1D7D /* _Helper */ = {
-			isa = PBXGroup;
-			children = (
-				F5FC82F127DA0BBF00FE1D7D /* Snapshotting+WindowedImage.swift */,
-			);
-			path = _Helper;
 			sourceTree = "<group>";
 		};
 		F5FC82F227DA0BBF00FE1D7D /* GradientLoadingBarController */ = {
@@ -646,7 +635,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5FC82FA27DA0BBF00FE1D7D /* GradientActivityIndicatorViewTestCase.swift in Sources */,
-				F5FC82FF27DA0BBF00FE1D7D /* Snapshotting+WindowedImage.swift in Sources */,
 				F57C83C927DA11580025AA11 /* GradientLoadingBarViewTestCase.swift in Sources */,
 				F5FC830027DA0BBF00FE1D7D /* GradientLoadingBarControllerTestCase.swift in Sources */,
 				F5FC830127DA0BBF00FE1D7D /* NotchGradientLoadingBarControllerTestCase.swift in Sources */,
