@@ -34,7 +34,7 @@ final class GradientLoadingBarViewModel {
         self.sharedApplication = sharedApplication
         self.notificationCenter = notificationCenter
 
-        if let keyWindow = sharedApplication.windows.first(where: { $0.isKeyWindow }) {
+        if let keyWindow = sharedApplication.keyWindowInConnectedScenes {
             superviewSubject.value = keyWindow
         }
 
@@ -56,7 +56,7 @@ final class GradientLoadingBarViewModel {
     // MARK: - Private methods
 
     @objc private func didReceiveUIWindowDidBecomeKeyNotification(_: Notification) {
-        guard let keyWindow = sharedApplication.windows.first(where: { $0.isKeyWindow }) else { return }
+        guard let keyWindow = sharedApplication.keyWindowInConnectedScenes else { return }
 
         superviewSubject.value = keyWindow
     }
@@ -66,7 +66,21 @@ final class GradientLoadingBarViewModel {
 
 /// This allows mocking `UIApplication` in tests.
 protocol UIApplicationProtocol: AnyObject {
-    var windows: [UIWindow] { get }
+    var keyWindowInConnectedScenes: UIWindow? { get }
 }
 
-extension UIApplication: UIApplicationProtocol {}
+extension UIApplication: UIApplicationProtocol {
+    /// Returns the current key window across multiple iOS versions.
+    var keyWindowInConnectedScenes: UIWindow? {
+        guard #available(iOS 15.0, *) else {
+            return windows.first { $0.isKeyWindow }
+        }
+
+        // Starting from iOS 15.0 we need to use `UIWindowScene.windows` on a relevant window scene instead.
+        // Source: https://stackoverflow.com/a/58031897
+        return connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap(\.windows)
+            .first { $0.isKeyWindow }
+    }
+}

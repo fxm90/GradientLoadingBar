@@ -8,6 +8,8 @@
 
 import SnapshotTesting
 
+@testable import GradientLoadingBar
+
 // MARK: - Config
 
 private enum Config {
@@ -25,7 +27,7 @@ extension Snapshotting where Value: UIViewController, Format == UIImage {
             Async<UIImage> { callback in
                 UIView.setAnimationsEnabled(false)
 
-                guard let keyWindow = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else {
+                guard let keyWindow = UIApplication.shared.keyWindowInConnectedScenes else {
                     fatalError("⚠️ – Failed to get key window from application!")
                 }
                 keyWindow.rootViewController = viewController

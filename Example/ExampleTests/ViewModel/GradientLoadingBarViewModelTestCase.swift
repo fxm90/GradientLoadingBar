@@ -47,9 +47,8 @@ final class GradientLoadingBarViewModelTestCase: XCTestCase {
 
     func test_initializer_shouldSetupSuperviewObservable_withKeyWindow() {
         // Given
-        let keyWindow = KeyWindow()
-        let passiveWindow = PassiveWindow()
-        sharedApplicationMock.windows = [keyWindow, passiveWindow]
+        let keyWindow = UIWindow()
+        sharedApplicationMock.keyWindowInConnectedScenes = keyWindow
 
         // When
         let viewModel = GradientLoadingBarViewModel(sharedApplication: sharedApplicationMock,
@@ -61,15 +60,15 @@ final class GradientLoadingBarViewModelTestCase: XCTestCase {
 
     func test_initializer_shouldSetupSuperviewObservable_afterUIWindowDidBecomeKeyNotification() {
         // Given
-        let keyWindow = KeyWindow()
-        let passiveWindow = PassiveWindow()
-        sharedApplicationMock.windows = [passiveWindow]
+        sharedApplicationMock.keyWindowInConnectedScenes = nil
 
         let viewModel = GradientLoadingBarViewModel(sharedApplication: sharedApplicationMock,
                                                     notificationCenter: notificationCenter)
 
         // When
-        sharedApplicationMock.windows.append(keyWindow)
+        let keyWindow = UIWindow()
+        sharedApplicationMock.keyWindowInConnectedScenes = keyWindow
+
         notificationCenter.post(name: UIWindow.didBecomeKeyNotification,
                                 object: nil)
 
@@ -79,9 +78,8 @@ final class GradientLoadingBarViewModelTestCase: XCTestCase {
 
     func test_deinit_shouldResetSuperviewObservable_withNil() {
         // Given
-        let keyWindow = KeyWindow()
-        let passiveWindow = PassiveWindow()
-        sharedApplicationMock.windows = [keyWindow, passiveWindow]
+        let keyWindow = UIWindow()
+        sharedApplicationMock.keyWindowInConnectedScenes = keyWindow
 
         var viewModel: GradientLoadingBarViewModel? = GradientLoadingBarViewModel(sharedApplication: sharedApplicationMock,
                                                                                   notificationCenter: notificationCenter)
@@ -108,18 +106,8 @@ final class GradientLoadingBarViewModelTestCase: XCTestCase {
     }
 }
 
-// MARK: - Helpers
-
-private final class KeyWindow: UIWindow {
-    override var isKeyWindow: Bool { true }
-}
-
-private final class PassiveWindow: UIWindow {
-    override var isKeyWindow: Bool { false }
-}
-
 // MARK: - Mocks
 
 private final class SharedApplicationMock: UIApplicationProtocol {
-    var windows = [UIWindow]()
+    var keyWindowInConnectedScenes: UIWindow?
 }
