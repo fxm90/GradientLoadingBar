@@ -17,6 +17,13 @@ target 'Example' do
     # Pods for testing
   end
 
+  target 'ExampleSnapshotTests' do
+    inherit! :search_paths
+
+    # Pods for snapshot testing.
+    pod 'SnapshotTesting', '~> 1.9', :inhibit_warnings => true
+  end
+
   post_install do |installer|
     # Fix issues with interface builder and cocoapods.
     # Source: https://github.com/CocoaPods/CocoaPods/issues/7606#issuecomment-484294739
