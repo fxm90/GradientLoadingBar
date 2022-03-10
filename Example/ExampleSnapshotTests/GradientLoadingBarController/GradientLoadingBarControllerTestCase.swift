@@ -19,7 +19,7 @@ final class GradientLoadingBarControllerTestCase: XCTestCase {
         static let precision: Float = 0.99
     }
 
-    // MARK: - Tests
+    // MARK: - Test cases
 
     func test_gradientLoadingBarController() {
         // Given
