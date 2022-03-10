@@ -1,5 +1,5 @@
 //
-//  CustomColorSnapshotTestCase.swift
+//  GradientActivityIndicatorViewTestCase.swift
 //  ExampleSnapshotTests
 //
 //  Created by Felix Mau on 09.11.19.
