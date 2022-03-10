@@ -12,7 +12,6 @@
 		DCA9833A27D68AD400D6EA30 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9833927D68AD400D6EA30 /* ExampleApp.swift */; };
 		DCA9833E27D68AD600D6EA30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCA9833D27D68AD600D6EA30 /* Assets.xcassets */; };
 		DCA9834127D68AD600D6EA30 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCA9834027D68AD600D6EA30 /* Preview Assets.xcassets */; };
-		DCA9834B27D68AD600D6EA30 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9834A27D68AD600D6EA30 /* ExampleTests.swift */; };
 		DCA9836927D68E3500D6EA30 /* StoryboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9836827D68E3500D6EA30 /* StoryboardView.swift */; };
 		DCA9836C27D6905000D6EA30 /* EntryPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9836B27D6905000D6EA30 /* EntryPointView.swift */; };
 		DCA9837127D6912300D6EA30 /* BasicExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9837027D6912300D6EA30 /* BasicExampleViewController.swift */; };
@@ -26,6 +25,10 @@
 		DCA9838727D6A44700D6EA30 /* NavigationBarExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9838627D6A44700D6EA30 /* NavigationBarExampleViewController.swift */; };
 		DCA9838927D6A55A00D6EA30 /* NavigationBarExample.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCA9838827D6A55A00D6EA30 /* NavigationBarExample.storyboard */; };
 		DCA9838B27D6A74800D6EA30 /* SwiftUIExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9838A27D6A74800D6EA30 /* SwiftUIExampleView.swift */; };
+		F5F5B69C27D94B1800D998B5 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F5B69727D94B1800D998B5 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift */; };
+		F5F5B69D27D94B1800D998B5 /* GradientLoadingBarViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F5B69927D94B1800D998B5 /* GradientLoadingBarViewModelTestCase.swift */; };
+		F5F5B69E27D94B1800D998B5 /* GradientActivityIndicatorViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F5B69A27D94B1800D998B5 /* GradientActivityIndicatorViewModelTestCase.swift */; };
+		F5F5B69F27D94B1800D998B5 /* NotchGradientLoadingBarViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F5B69B27D94B1800D998B5 /* NotchGradientLoadingBarViewModelTestCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,7 +52,6 @@
 		DCA9833D27D68AD600D6EA30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DCA9834027D68AD600D6EA30 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DCA9834627D68AD600D6EA30 /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DCA9834A27D68AD600D6EA30 /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
 		DCA9836827D68E3500D6EA30 /* StoryboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardView.swift; sourceTree = "<group>"; };
 		DCA9836B27D6905000D6EA30 /* EntryPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPointView.swift; sourceTree = "<group>"; };
 		DCA9837027D6912300D6EA30 /* BasicExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicExampleViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,10 @@
 		DCA9838627D6A44700D6EA30 /* NavigationBarExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarExampleViewController.swift; sourceTree = "<group>"; };
 		DCA9838827D6A55A00D6EA30 /* NavigationBarExample.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NavigationBarExample.storyboard; sourceTree = "<group>"; };
 		DCA9838A27D6A74800D6EA30 /* SwiftUIExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExampleView.swift; sourceTree = "<group>"; };
+		F5F5B69727D94B1800D998B5 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift"; sourceTree = "<group>"; };
+		F5F5B69927D94B1800D998B5 /* GradientLoadingBarViewModelTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLoadingBarViewModelTestCase.swift; sourceTree = "<group>"; };
+		F5F5B69A27D94B1800D998B5 /* GradientActivityIndicatorViewModelTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientActivityIndicatorViewModelTestCase.swift; sourceTree = "<group>"; };
+		F5F5B69B27D94B1800D998B5 /* NotchGradientLoadingBarViewModelTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotchGradientLoadingBarViewModelTestCase.swift; sourceTree = "<group>"; };
 		FAA1A12E84EBC1F48401EB10 /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,7 +155,8 @@
 		DCA9834927D68AD600D6EA30 /* ExampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				DCA9834A27D68AD600D6EA30 /* ExampleTests.swift */,
+				F5F5B69827D94B1800D998B5 /* ViewModel */,
+				F5F5B69627D94B1800D998B5 /* Views */,
 			);
 			path = ExampleTests;
 			sourceTree = "<group>";
@@ -227,6 +234,24 @@
 				DCA9838627D6A44700D6EA30 /* NavigationBarExampleViewController.swift */,
 			);
 			path = NavigationBarExample;
+			sourceTree = "<group>";
+		};
+		F5F5B69627D94B1800D998B5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F5F5B69727D94B1800D998B5 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F5F5B69827D94B1800D998B5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F5F5B69927D94B1800D998B5 /* GradientLoadingBarViewModelTestCase.swift */,
+				F5F5B69A27D94B1800D998B5 /* GradientActivityIndicatorViewModelTestCase.swift */,
+				F5F5B69B27D94B1800D998B5 /* NotchGradientLoadingBarViewModelTestCase.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -455,7 +480,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCA9834B27D68AD600D6EA30 /* ExampleTests.swift in Sources */,
+				F5F5B69E27D94B1800D998B5 /* GradientActivityIndicatorViewModelTestCase.swift in Sources */,
+				F5F5B69C27D94B1800D998B5 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift in Sources */,
+				F5F5B69F27D94B1800D998B5 /* NotchGradientLoadingBarViewModelTestCase.swift in Sources */,
+				F5F5B69D27D94B1800D998B5 /* GradientLoadingBarViewModelTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,6 +631,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -633,6 +662,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -656,7 +686,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F63GJC2AN7;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = hamburg.felix.gradientLoadingBar.example.ExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -677,7 +707,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F63GJC2AN7;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = hamburg.felix.gradientLoadingBar.example.ExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -18,10 +18,12 @@ default_platform(:ios)
 platform :ios do
   desc "Execute SwiftFormat and treat any formatting errors as real errors."
   lane :format do
-    swiftformat(executable: "Pods/SwiftFormat/CommandLineTool/swiftformat",
-                config: "Pods/SwiftConfigurationFiles/.swiftformat",
-                path: "../",
-                lint: true)
+    swiftformat(
+      executable: "Pods/SwiftFormat/CommandLineTool/swiftformat",
+      config: "Pods/SwiftConfigurationFiles/.swiftformat",
+      path: "../",
+      lint: true
+    )
   end
 
   desc "Execute SwiftLint and treat any formatting errors as real errors."
@@ -35,9 +37,11 @@ platform :ios do
 
   desc "Execute tests."
   lane :tests do
-    run_tests(workspace: "GradientLoadingBar.xcworkspace",
-              devices: ["iPhone 13"],
-              scheme: "GradientLoadingBar-Example")
+    run_tests(
+      workspace: "GradientLoadingBar.xcworkspace",
+      devices: ["iPhone 13"],
+      scheme: "GradientLoadingBar-Example"
+    )
   end
 
   desc "Execute validation of library."
