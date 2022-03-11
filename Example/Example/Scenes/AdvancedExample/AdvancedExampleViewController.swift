@@ -87,8 +87,7 @@ final class AdvancedExampleViewController: UIViewController {
     }
 
     @IBAction private func toggleCustomColorsButtonTouchUpInside(_: Any) {
-        // TODO: Add `isHidden` shortcut
-        if customColorsGradientLoadingBar.gradientActivityIndicatorView.isHidden {
+        if customColorsGradientLoadingBar.isHidden {
             customColorsGradientLoadingBar.fadeIn()
         } else {
             customColorsGradientLoadingBar.fadeOut()

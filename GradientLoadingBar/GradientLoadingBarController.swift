@@ -49,6 +49,16 @@ open class GradientLoadingBarController {
         }
     }
 
+    /// Boolean flag, whether the view is currently hidden.
+    public var isHidden: Bool {
+        get {
+            gradientActivityIndicatorView.isHidden
+        }
+        set {
+            gradientActivityIndicatorView.isHidden = newValue
+        }
+    }
+
     /// Singleton instance.
     public static var shared = GradientLoadingBar()
 
