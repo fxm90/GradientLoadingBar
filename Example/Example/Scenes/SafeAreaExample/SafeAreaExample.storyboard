@@ -17,10 +17,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="vQo-n2-n4V" userLabel="Top Stack View">
-                                <rect key="frame" x="16" y="409" width="382" height="31"/>
+                                <rect key="frame" x="16" y="400" width="382" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xx7-io-IHi" userLabel="ShowBasicBarButton">
-                                        <rect key="frame" x="0.0" y="0.0" width="183" height="31"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="183" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="wri-XG-tfO"/>
+                                        </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Show Basic Bar">
                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
@@ -30,7 +33,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xxs-Xn-l65" userLabel="HideBasicBarButton">
-                                        <rect key="frame" x="199" y="0.0" width="183" height="31"/>
+                                        <rect key="frame" x="199" y="0.0" width="183" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="zfx-4A-wZB"/>
+                                        </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Hide Basic Bar">
                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
@@ -42,10 +48,13 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="J6X-XZ-YZb" userLabel="Bottom Stack View">
-                                <rect key="frame" x="16" y="456" width="382" height="31"/>
+                                <rect key="frame" x="16" y="456" width="382" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8wt-vv-Sj1" userLabel="ShowNotchBarButton">
-                                        <rect key="frame" x="0.0" y="0.0" width="183" height="31"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="183" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="nUb-HA-Cts"/>
+                                        </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Show Notch Bar">
                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
@@ -55,7 +64,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DS9-JT-RIl" userLabel="HideNotchBarButton">
-                                        <rect key="frame" x="199" y="0.0" width="183" height="31"/>
+                                        <rect key="frame" x="199" y="0.0" width="183" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="64O-UM-b99"/>
+                                        </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Hide Notch Bar">
                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>

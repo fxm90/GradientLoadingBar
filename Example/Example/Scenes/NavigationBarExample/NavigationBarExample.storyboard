@@ -17,10 +17,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="NLc-ox-i4v">
-                                <rect key="frame" x="16" y="432.5" width="382" height="31"/>
+                                <rect key="frame" x="16" y="428" width="382" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m50-Bi-edx" userLabel="ShowButton">
-                                        <rect key="frame" x="0.0" y="0.0" width="183" height="31"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="183" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="3OT-yv-cyC"/>
+                                        </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Show">
                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
@@ -30,7 +33,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXh-Qp-yVs" userLabel="HideButton">
-                                        <rect key="frame" x="199" y="0.0" width="183" height="31"/>
+                                        <rect key="frame" x="199" y="0.0" width="183" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="0sc-bb-ZEH"/>
+                                        </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Hide">
                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
@@ -62,7 +68,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QqU-dK-9N3" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Gew-of-pOh">
-                        <rect key="frame" x="0.0" y="44" width="414" height="104"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

@@ -24,10 +24,13 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="L9o-al-XKN">
-                                <rect key="frame" x="16" y="432.5" width="382" height="31"/>
+                                <rect key="frame" x="16" y="428" width="382" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v1q-i7-LJ5" userLabel="ShowButton">
-                                        <rect key="frame" x="0.0" y="0.0" width="183" height="31"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="183" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="luJ-hF-vmw"/>
+                                        </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Show">
                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
@@ -37,7 +40,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kz6-Yl-S6N" userLabel="HideButton">
-                                        <rect key="frame" x="199" y="0.0" width="183" height="31"/>
+                                        <rect key="frame" x="199" y="0.0" width="183" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="r46-Ne-M0o"/>
+                                        </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Hide">
                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
