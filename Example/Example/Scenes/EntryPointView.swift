@@ -30,11 +30,6 @@ struct EntryPointView: View {
                                           subtitle: "Loading bar ignoring the safe area.")
                     }
 
-                    NavigationLink(destination: InterfaceBuilderExampleView()) {
-                        TitleSubtitleView(title: "🎨 Interface Builder Example",
-                                          subtitle: "Setup in a storyboard or xib.")
-                    }
-
                     NavigationLink(destination: AdvancedExampleView()) {
                         TitleSubtitleView(title: "🚀 Advanced Example",
                                           subtitle: "How to apply e.g. custom colors.")

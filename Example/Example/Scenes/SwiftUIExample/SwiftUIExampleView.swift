@@ -14,7 +14,8 @@ struct SwiftUIExampleView: View {
 
     var body: some View {
         List {
-            //
+            // We need to apply a `Spacer()` as header to have a little space between the sections
+            // and the navigation bar.
             Section(header: Spacer()) {
                 DefaultExampleView()
             }
@@ -171,7 +172,7 @@ private struct CustomProgressDurationExampleView: View {
 private struct RoundedRectangleButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .padding()
+            .padding(12)
             .frame(maxWidth: .infinity)
             .foregroundColor(.white)
             .background(Color.blue.cornerRadius(8))

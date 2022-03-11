@@ -45,8 +45,6 @@ final class NavigationBarExampleViewController: UIViewController {
     private func setupGradientProgressIndicatorView() {
         guard let navigationBar = navigationController?.navigationBar else { return }
 
-        gradientProgressIndicatorView.fadeOut(duration: 0)
-
         gradientProgressIndicatorView.translatesAutoresizingMaskIntoConstraints = false
         navigationBar.addSubview(gradientProgressIndicatorView)
 

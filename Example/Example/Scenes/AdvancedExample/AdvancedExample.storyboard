@@ -17,23 +17,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="wBu-Jx-yJe">
-                                <rect key="frame" x="16" y="400" width="382" height="96"/>
+                                <rect key="frame" x="16" y="362.5" width="382" height="171"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cc6-eP-2iq" userLabel="Custom Superview Button" customClass="BorderedButton" customModule="Example" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="382" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="AkT-c3-A4M"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Custom Superview">
-                                            <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="toggleCustomSuperviewButtonTouchUpInside:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="0Yr-Fe-Acm"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEU-Kf-t9a" userLabel="Custom Colors Button">
-                                        <rect key="frame" x="0.0" y="56" width="382" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="NJg-XX-Snw"/>
                                         </constraints>
@@ -43,6 +30,39 @@
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="toggleCustomColorsButtonTouchUpInside:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="loC-hh-CUH"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9g2-oL-JNk" customClass="GradientActivityIndicatorView" customModule="GradientLoadingBar">
+                                        <rect key="frame" x="0.0" y="56" width="382" height="3"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="3" id="gVZ-Gu-0d8"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5x1-lr-GQw" userLabel="Interface Builder Setup Button">
+                                        <rect key="frame" x="0.0" y="75" width="382" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="e4a-f8-HBf"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Interface-Builder Setup">
+                                            <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="interfaceBuilderSetupButtonTouchUpInside:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="zRi-LD-twy"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cc6-eP-2iq" userLabel="Custom Superview Button" customClass="BorderedButton" customModule="Example" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="131" width="382" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="AkT-c3-A4M"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Custom Superview">
+                                            <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="customSuperviewButtonTouchUpInside:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ydP-3C-qZO"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -59,6 +79,9 @@
                     <connections>
                         <outlet property="customColorsButton" destination="kEU-Kf-t9a" id="cmO-oH-05r"/>
                         <outlet property="customSuperviewButton" destination="cc6-eP-2iq" id="fqL-8j-Z58"/>
+                        <outlet property="gradientActivityIndicator" destination="9g2-oL-JNk" id="ge0-pf-6OJ"/>
+                        <outlet property="interfaceBuilderSetupButton" destination="5x1-lr-GQw" id="1ja-dz-ejF"/>
+                        <outlet property="stackView" destination="wBu-Jx-yJe" id="8j9-MR-DLr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

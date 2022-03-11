@@ -15,22 +15,31 @@ final class AdvancedExampleViewController: UIViewController {
 
     private enum Config {
         /// The programatically applied height of the `GradientActivityIndicatorView`.
-        static let height: CGFloat = 3.5
+        static let height: CGFloat = 3
 
         /// The custom gradient colors we use.
         /// Source: https://color.adobe.com/Pink-Flamingo-color-theme-10343714/
         static let gradientColors = [
             #colorLiteral(red: 0.9490196078, green: 0.3215686275, blue: 0.431372549, alpha: 1), #colorLiteral(red: 0.9450980392, green: 0.4784313725, blue: 0.5921568627, alpha: 1), #colorLiteral(red: 0.9529411765, green: 0.737254902, blue: 0.7843137255, alpha: 1), #colorLiteral(red: 0.4274509804, green: 0.8666666667, blue: 0.9490196078, alpha: 1), #colorLiteral(red: 0.7568627451, green: 0.9411764706, blue: 0.9568627451, alpha: 1),
         ]
+
+        static let smallStackViewSpacing: CGFloat = 8
     }
 
     // MARK: - Outlets
 
-    @IBOutlet private var customSuperviewButton: BorderedButton!
+    @IBOutlet private var stackView: UIStackView!
+
     @IBOutlet private var customColorsButton: UIButton!
+
+    @IBOutlet private var gradientActivityIndicator: GradientActivityIndicatorView!
+    @IBOutlet private var interfaceBuilderSetupButton: UIButton!
+
+    @IBOutlet private var customSuperviewButton: BorderedButton!
 
     // MARK: - Private properties
 
+    // swiftlint:disable:next identifier_name
     private let customSuperviewGradientActivityIndicatorView = GradientActivityIndicatorView()
     private let customColorsGradientLoadingBar = GradientLoadingBar()
 
@@ -39,19 +48,27 @@ final class AdvancedExampleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupCustomSuperviewGradientActivityIndicatorView()
+        setupStackView()
         setupCustomColorsGradientLoadingBar()
+        setupCustomSuperviewGradientActivityIndicatorView()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
         // Reset any possible visible loading bar.
-        customSuperviewGradientActivityIndicatorView.fadeOut()
         customColorsGradientLoadingBar.fadeOut()
     }
 
     // MARK: - Private methods
+
+    private func setupStackView() {
+        stackView.setCustomSpacing(Config.smallStackViewSpacing, after: gradientActivityIndicator)
+    }
+
+    private func setupCustomColorsGradientLoadingBar() {
+        customColorsGradientLoadingBar.gradientColors = Config.gradientColors
+    }
 
     private func setupCustomSuperviewGradientActivityIndicatorView() {
         customSuperviewGradientActivityIndicatorView.isHidden = true
@@ -69,24 +86,32 @@ final class AdvancedExampleViewController: UIViewController {
         ])
     }
 
-    private func setupCustomColorsGradientLoadingBar() {
-        customColorsGradientLoadingBar.gradientColors = Config.gradientColors
-    }
-
-    @IBAction private func toggleCustomSuperviewButtonTouchUpInside(_: Any) {
-        if customSuperviewGradientActivityIndicatorView.isHidden {
-            customSuperviewGradientActivityIndicatorView.fadeIn()
-        } else {
-            customSuperviewGradientActivityIndicatorView.fadeOut()
-        }
-    }
-
     @IBAction private func toggleCustomColorsButtonTouchUpInside(_: Any) {
         // TODO: Add `isHidden` shortcut
         if customColorsGradientLoadingBar.gradientActivityIndicatorView.isHidden {
             customColorsGradientLoadingBar.fadeIn()
         } else {
             customColorsGradientLoadingBar.fadeOut()
+        }
+    }
+
+    @IBAction private func interfaceBuilderSetupButtonTouchUpInside(_: Any) {
+        // We explicitly "only" reduce the alpha here, as calling `fadeIn()` / `fadeOut()` would update the `isHidden`
+        // flag accordingly. This would then lead to a height-update of the parent stack view.
+        UIView.animate(withDuration: 1.0) {
+            if self.gradientActivityIndicator.alpha > 0 {
+                self.gradientActivityIndicator.alpha = 0
+            } else {
+                self.gradientActivityIndicator.alpha = 1
+            }
+        }
+    }
+
+    @IBAction private func customSuperviewButtonTouchUpInside(_: Any) {
+        if customSuperviewGradientActivityIndicatorView.isHidden {
+            customSuperviewGradientActivityIndicatorView.fadeIn()
+        } else {
+            customSuperviewGradientActivityIndicatorView.fadeOut()
         }
     }
 }

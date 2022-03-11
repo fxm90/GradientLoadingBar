@@ -19,8 +19,6 @@
 		DCA9837627D693BB00D6EA30 /* BasicExample.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCA9837527D693BB00D6EA30 /* BasicExample.storyboard */; };
 		DCA9837827D6951C00D6EA30 /* SafeAreaExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9837727D6951C00D6EA30 /* SafeAreaExampleViewController.swift */; };
 		DCA9837A27D6958500D6EA30 /* SafeAreaExample.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCA9837927D6958500D6EA30 /* SafeAreaExample.storyboard */; };
-		DCA9837C27D69B5900D6EA30 /* InterfaceBuilderExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9837B27D69B5900D6EA30 /* InterfaceBuilderExampleViewController.swift */; };
-		DCA9837E27D69B8E00D6EA30 /* InterfaceBuilderExample.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCA9837D27D69B8E00D6EA30 /* InterfaceBuilderExample.storyboard */; };
 		DCA9838027D69C9300D6EA30 /* AdvancedExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9837F27D69C9300D6EA30 /* AdvancedExampleViewController.swift */; };
 		DCA9838227D69D3F00D6EA30 /* AdvancedExample.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCA9838127D69D3F00D6EA30 /* AdvancedExample.storyboard */; };
 		DCA9838727D6A44700D6EA30 /* NavigationBarExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9838627D6A44700D6EA30 /* NavigationBarExampleViewController.swift */; };
@@ -74,8 +72,6 @@
 		DCA9837527D693BB00D6EA30 /* BasicExample.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BasicExample.storyboard; sourceTree = "<group>"; };
 		DCA9837727D6951C00D6EA30 /* SafeAreaExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaExampleViewController.swift; sourceTree = "<group>"; };
 		DCA9837927D6958500D6EA30 /* SafeAreaExample.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SafeAreaExample.storyboard; sourceTree = "<group>"; };
-		DCA9837B27D69B5900D6EA30 /* InterfaceBuilderExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceBuilderExampleViewController.swift; sourceTree = "<group>"; };
-		DCA9837D27D69B8E00D6EA30 /* InterfaceBuilderExample.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InterfaceBuilderExample.storyboard; sourceTree = "<group>"; };
 		DCA9837F27D69C9300D6EA30 /* AdvancedExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedExampleViewController.swift; sourceTree = "<group>"; };
 		DCA9838127D69D3F00D6EA30 /* AdvancedExample.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AdvancedExample.storyboard; sourceTree = "<group>"; };
 		DCA9838627D6A44700D6EA30 /* NavigationBarExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarExampleViewController.swift; sourceTree = "<group>"; };
@@ -209,7 +205,6 @@
 			children = (
 				DCA9836E27D6909A00D6EA30 /* AdvancedExample */,
 				DCA9836D27D6908F00D6EA30 /* BasicExample */,
-				DCA9837327D691B600D6EA30 /* InterfaceBuilderExample */,
 				DCA9837427D691C600D6EA30 /* NavigationBarExample */,
 				DCA9837227D691A200D6EA30 /* SafeAreaExample */,
 				DCA9836F27D690A400D6EA30 /* SwiftUIExample */,
@@ -251,15 +246,6 @@
 				DCA9837727D6951C00D6EA30 /* SafeAreaExampleViewController.swift */,
 			);
 			path = SafeAreaExample;
-			sourceTree = "<group>";
-		};
-		DCA9837327D691B600D6EA30 /* InterfaceBuilderExample */ = {
-			isa = PBXGroup;
-			children = (
-				DCA9837D27D69B8E00D6EA30 /* InterfaceBuilderExample.storyboard */,
-				DCA9837B27D69B5900D6EA30 /* InterfaceBuilderExampleViewController.swift */,
-			);
-			path = InterfaceBuilderExample;
 			sourceTree = "<group>";
 		};
 		DCA9837427D691C600D6EA30 /* NavigationBarExample */ = {
@@ -442,7 +428,6 @@
 				DCA9838227D69D3F00D6EA30 /* AdvancedExample.storyboard in Resources */,
 				DCA9833E27D68AD600D6EA30 /* Assets.xcassets in Resources */,
 				DCA9838927D6A55A00D6EA30 /* NavigationBarExample.storyboard in Resources */,
-				DCA9837E27D69B8E00D6EA30 /* InterfaceBuilderExample.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -615,7 +600,6 @@
 				DCA9837827D6951C00D6EA30 /* SafeAreaExampleViewController.swift in Sources */,
 				DCA9838727D6A44700D6EA30 /* NavigationBarExampleViewController.swift in Sources */,
 				DCA9838B27D6A74800D6EA30 /* SwiftUIExampleView.swift in Sources */,
-				DCA9837C27D69B5900D6EA30 /* InterfaceBuilderExampleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
