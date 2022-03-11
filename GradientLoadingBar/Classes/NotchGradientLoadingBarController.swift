@@ -91,7 +91,8 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         let rightNotchPoint = (screenWidth + notchConfig.notchWidth) / 2
 
         // The center point of the large circles lays at the bottom of the small circles.
-        // See graphic https://www.paintcodeapp.com/news/iphone-x-screen-demystified for further details.
+        // Please have a look at the graphic `Assets/iphone-x-screen-demystified.svg` or the entire article at
+        // https://www.paintcodeapp.com/news/iphone-x-screen-demystified for further details on the notch layout.
         let smallCircleDiameter: CGFloat = 2 * notchConfig.smallCircleRadius
 
         // Reducing the height here a little in order to match the "basic" gradient loading bar.
