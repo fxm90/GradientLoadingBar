@@ -13,7 +13,7 @@ import XCTest
 class NotchGradientLoadingBarViewModelTestCase: XCTestCase {
     func testInitializerShouldSetSafeAreaDeviceToIPhoneX() {
         // Given
-        let deviceIdentifiers = ["iPhone10,3", "iPhone10,6", "iPhone11,2", "iPhone11,4", "iPhone11,6", "iPhone11,8"]
+        let deviceIdentifiers = ["iPhone10,3", "iPhone10,6", "iPhone11,2", "iPhone11,4", "iPhone11,6"]
         deviceIdentifiers.forEach { deviceIdentifier in
 
             // When
@@ -21,6 +21,19 @@ class NotchGradientLoadingBarViewModelTestCase: XCTestCase {
 
             // Then
             XCTAssertEqual(viewModel.safeAreaDevice, .iPhoneX)
+        }
+    }
+
+    func testInitializerShouldSetSafeAreaDeviceToIPhoneXR() {
+        // Given
+        let deviceIdentifiers = ["iPhone11,8"]
+        deviceIdentifiers.forEach { deviceIdentifier in
+
+            // When
+            let viewModel = NotchGradientLoadingBarViewModel(deviceIdentifier: deviceIdentifier)
+
+            // Then
+            XCTAssertEqual(viewModel.safeAreaDevice, .iPhoneXR)
         }
     }
 
