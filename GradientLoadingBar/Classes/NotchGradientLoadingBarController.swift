@@ -21,9 +21,14 @@ private struct NotchConfig {
     let largeCircleRadius: CGFloat
 
     /// Offset for the center-point of the large circle.
+    ///
+    /// - A positive value for the `X` property will move the large circles closer to the center of the screen. A negative offset closer to
+    ///   the corners of the screen.
+    ///
+    /// - A positive value for the `Y` property will move the large circles downwards. A negative offset will move them upwards.
     let largeCircleOffset: CGPoint
 
-    /// The transform to be applied to the bezier path.
+    /// The transform to be applied to the entire bezier path.
     let transform: CGAffineTransform
 }
 
@@ -150,7 +155,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
                              y: height)
 
         // Draw line to small-circle underneath and right to `rightNotchPoint`.
-        bezierPath.addLineTo(x: rightNotchPoint + bottomPathSmallCircleRadius + height,
+        bezierPath.addLineTo(x: height + rightNotchPoint + bottomPathSmallCircleRadius,
                              y: height)
 
         // Draw the small circle right to the `rightNotchPoint`.
@@ -162,7 +167,10 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
                           clockwise: false)
 
         // Draw the large circle left to the `rightNotchPoint`.
-        bezierPath.addArc(withCenter: CGPoint(x: height + rightNotchPoint - notchConfig.largeCircleRadius - notchConfig.largeCircleOffset.x,
+        //
+        // We explicitly ignore the horizontal offset (`notchConfig.largeCircleOffset.x`) here, to have the paths of the
+        // small- and large-circles end/begin on the same point on the x-axis.
+        bezierPath.addArc(withCenter: CGPoint(x: height + rightNotchPoint - notchConfig.largeCircleRadius,
                                               y: height + smallCircleDiameter + notchConfig.largeCircleOffset.y),
                           radius: notchConfig.largeCircleRadius,
                           startAngle: 0,
@@ -170,11 +178,17 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
                           clockwise: true)
 
         // Draw line to large-circle underneath and right to `leftNotchPoint`
-        bezierPath.addLineTo(x: height + leftNotchPoint + notchConfig.largeCircleRadius - notchConfig.largeCircleOffset.x,
+        //
+        // We explicitly ignore the horizontal offset (`notchConfig.largeCircleOffset.x`) here, to have the paths of the
+        // small- and large-circles end/begin on the same point on the x-axis.
+        bezierPath.addLineTo(x: height + leftNotchPoint + notchConfig.largeCircleRadius,
                              y: height + smallCircleDiameter + notchConfig.largeCircleRadius + notchConfig.largeCircleOffset.y)
 
         // Draw the large circle right to the `leftNotchPoint`.
-        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint - height + notchConfig.largeCircleRadius + notchConfig.largeCircleOffset.x,
+        //
+        // We explicitly ignore the horizontal offset (`notchConfig.largeCircleOffset.x`) here, to have the paths of the
+        // small- and large-circles end/begin on the same point on the x-axis.
+        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint - height + notchConfig.largeCircleRadius,
                                               y: height + smallCircleDiameter + notchConfig.largeCircleOffset.y),
                           radius: notchConfig.largeCircleRadius,
                           startAngle: CGFloat.pi / 2,
