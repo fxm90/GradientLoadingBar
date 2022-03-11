@@ -31,32 +31,20 @@ open class GradientLoadingBarController {
 
     /// Colors used for the gradient.
     public var gradientColors: [UIColor] {
-        get {
-            gradientActivityIndicatorView.gradientColors
-        }
-        set {
-            gradientActivityIndicatorView.gradientColors = newValue
-        }
+        get { gradientActivityIndicatorView.gradientColors }
+        set { gradientActivityIndicatorView.gradientColors = newValue }
     }
 
     /// Duration for the progress animation.
     public var progressAnimationDuration: TimeInterval {
-        get {
-            gradientActivityIndicatorView.progressAnimationDuration
-        }
-        set {
-            gradientActivityIndicatorView.progressAnimationDuration = newValue
-        }
+        get { gradientActivityIndicatorView.progressAnimationDuration }
+        set { gradientActivityIndicatorView.progressAnimationDuration = newValue }
     }
 
     /// Boolean flag, whether the view is currently hidden.
     public var isHidden: Bool {
-        get {
-            gradientActivityIndicatorView.isHidden
-        }
-        set {
-            gradientActivityIndicatorView.isHidden = newValue
-        }
+        get { gradientActivityIndicatorView.isHidden }
+        set { gradientActivityIndicatorView.isHidden = newValue }
     }
 
     /// Singleton instance.
