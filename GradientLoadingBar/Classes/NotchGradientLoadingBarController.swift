@@ -20,10 +20,8 @@ private struct NotchConfig {
     /// The radius of the large circle on the inside of the notch.
     let largeCircleRadius: CGFloat
 
-    /// We're moving the the large-circles a bit up.
-    /// This prevents having a straight line between the circles.
-    /// See <https://medium.com/tall-west/no-cutting-corners-on-the-iphone-x-97a9413b94e>
-    let verticalOffsetForLargeCircle: CGFloat
+    /// Offset for the center-point of the large circle.
+    let largeCircleOffset: CGPoint
 
     /// The transform to be applied to the bezier path.
     let transform: CGAffineTransform
@@ -112,20 +110,20 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
                           clockwise: true)
 
         // Draw the large circle right to the `leftNotchPoint`.
-        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint + notchConfig.largeCircleRadius,
-                                              y: smallCircleDiameter + notchConfig.verticalOffsetForLargeCircle),
+        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint + notchConfig.largeCircleRadius + notchConfig.largeCircleOffset.x,
+                                              y: smallCircleDiameter + notchConfig.largeCircleOffset.y),
                           radius: notchConfig.largeCircleRadius,
                           startAngle: CGFloat.pi,
                           endAngle: CGFloat.pi / 2,
                           clockwise: false)
 
         // Draw line to large-circle underneath and left to `rightNotchPoint`.
-        bezierPath.addLineTo(x: rightNotchPoint - notchConfig.largeCircleRadius,
-                             y: smallCircleDiameter + notchConfig.largeCircleRadius + notchConfig.verticalOffsetForLargeCircle)
+        bezierPath.addLineTo(x: rightNotchPoint - notchConfig.largeCircleRadius - notchConfig.largeCircleOffset.x,
+                             y: smallCircleDiameter + notchConfig.largeCircleRadius + notchConfig.largeCircleOffset.y)
 
         // Draw the large circle left to the `rightNotchPoint`.
-        bezierPath.addArc(withCenter: CGPoint(x: rightNotchPoint - notchConfig.largeCircleRadius,
-                                              y: smallCircleDiameter + notchConfig.verticalOffsetForLargeCircle),
+        bezierPath.addArc(withCenter: CGPoint(x: rightNotchPoint - notchConfig.largeCircleRadius - notchConfig.largeCircleOffset.x,
+                                              y: smallCircleDiameter + notchConfig.largeCircleOffset.y),
                           radius: notchConfig.largeCircleRadius,
                           startAngle: CGFloat.pi / 2,
                           endAngle: 0,
@@ -164,20 +162,20 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
                           clockwise: false)
 
         // Draw the large circle left to the `rightNotchPoint`.
-        bezierPath.addArc(withCenter: CGPoint(x: height + rightNotchPoint - notchConfig.largeCircleRadius,
-                                              y: height + smallCircleDiameter + notchConfig.verticalOffsetForLargeCircle),
+        bezierPath.addArc(withCenter: CGPoint(x: height + rightNotchPoint - notchConfig.largeCircleRadius - notchConfig.largeCircleOffset.x,
+                                              y: height + smallCircleDiameter + notchConfig.largeCircleOffset.y),
                           radius: notchConfig.largeCircleRadius,
                           startAngle: 0,
                           endAngle: CGFloat.pi / 2,
                           clockwise: true)
 
         // Draw line to large-circle underneath and right to `leftNotchPoint`
-        bezierPath.addLineTo(x: height + leftNotchPoint + notchConfig.largeCircleRadius,
-                             y: height + smallCircleDiameter + notchConfig.largeCircleRadius + notchConfig.verticalOffsetForLargeCircle)
+        bezierPath.addLineTo(x: height + leftNotchPoint + notchConfig.largeCircleRadius - notchConfig.largeCircleOffset.x,
+                             y: height + smallCircleDiameter + notchConfig.largeCircleRadius + notchConfig.largeCircleOffset.y)
 
         // Draw the large circle right to the `leftNotchPoint`.
-        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint - height + notchConfig.largeCircleRadius,
-                                              y: height + smallCircleDiameter + notchConfig.verticalOffsetForLargeCircle),
+        bezierPath.addArc(withCenter: CGPoint(x: leftNotchPoint - height + notchConfig.largeCircleRadius + notchConfig.largeCircleOffset.x,
+                                              y: height + smallCircleDiameter + notchConfig.largeCircleOffset.y),
                           radius: notchConfig.largeCircleRadius,
                           startAngle: CGFloat.pi / 2,
                           endAngle: CGFloat.pi,
@@ -224,19 +222,19 @@ private extension NotchGradientLoadingBarViewModel.SafeAreaDevice {
             /// Values are based on <https://www.paintcodeapp.com/news/iphone-x-screen-demystified>.
             return NotchConfig(notchWidth: 208,
                                largeCircleRadius: 22.5,
-                               verticalOffsetForLargeCircle: -4.75,
+                               largeCircleOffset: CGPoint(x: 0, y: -4.75),
                                transform: CGAffineTransform(translationX: 0.33, y: 0))
 
         case .iPhoneXR:
             return NotchConfig(notchWidth: 232,
                                largeCircleRadius: 21,
-                               verticalOffsetForLargeCircle: 0,
+                               largeCircleOffset: .zero,
                                transform: .identity)
 
         case .iPhone12:
             return NotchConfig(notchWidth: 209.5,
                                largeCircleRadius: 21,
-                               verticalOffsetForLargeCircle: -1.75,
+                               largeCircleOffset: CGPoint(x: 0, y: -1.75),
                                transform: .identity)
 
         case .iPhone13:
@@ -244,7 +242,7 @@ private extension NotchGradientLoadingBarViewModel.SafeAreaDevice {
             // Source: <https://9to5mac.com/2021/09/14/iphone-13-notch-smaller-but-bigger>.
             return NotchConfig(notchWidth: 161,
                                largeCircleRadius: 22,
-                               verticalOffsetForLargeCircle: -1,
+                               largeCircleOffset: CGPoint(x: 0, y: -1),
                                transform: .identity)
         }
     }
