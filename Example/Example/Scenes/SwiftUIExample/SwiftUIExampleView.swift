@@ -129,7 +129,7 @@ private struct CustomColorsExampleView: View {
 
 private struct CustomProgressDurationExampleView: View {
     private enum Config {
-        ///
+        /// The custom progress duration to use.
         static let progressDuration: TimeInterval = 10
     }
 
