@@ -227,8 +227,8 @@ private extension NotchGradientLoadingBarViewModel.SafeAreaDevice {
 
         case .iPhoneXR:
             return NotchConfig(notchWidth: 232,
-                               largeCircleRadius: 21,
-                               largeCircleOffset: .zero,
+                               largeCircleRadius: 24,
+                               largeCircleOffset: CGPoint(x: 0.5, y: -3.5),
                                transform: .identity)
 
         case .iPhone12:
