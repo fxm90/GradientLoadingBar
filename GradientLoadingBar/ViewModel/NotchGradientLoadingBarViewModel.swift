@@ -14,6 +14,7 @@ final class NotchGradientLoadingBarViewModel {
     enum SafeAreaDevice {
         case unknown
         case iPhoneX
+        case iPhoneXR
         case iPhone11
         case iPhone12
         case iPhone13
@@ -39,8 +40,11 @@ private extension NotchGradientLoadingBarViewModel.SafeAreaDevice {
     /// Taken from <https://stackoverflow.com/a/26962452/3532505>
     init(deviceIdentifier: String) {
         switch deviceIdentifier {
-        case "iPhone10,3", "iPhone10,6", "iPhone11,2", "iPhone11,4", "iPhone11,6", "iPhone11,8":
+        case "iPhone10,3", "iPhone10,6", "iPhone11,2", "iPhone11,4", "iPhone11,6":
             self = .iPhoneX
+
+        case "iPhone11,8":
+            self = .iPhoneXR
 
         case "iPhone12,1", "iPhone12,3", "iPhone12,5":
             self = .iPhone11
