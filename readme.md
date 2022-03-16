@@ -11,8 +11,8 @@ A customizable animated gradient loading bar. Inspired by [iOS 7 Progress Bar fr
 To run the example project, clone the repo, and open the workspace from the Example directory.
 
 ### Requirements
-- Swift 5.0
-- Xcode 10.2+
+- Swift 5.5
+- Xcode 13.2+
 - iOS 9.0+
 
 ### Integration
@@ -45,17 +45,18 @@ dependencies: [
 
 
 ### How to use
-This framework provides three classes:
+This framework provides four classes:
 
  - **GradientLoadingBar**: A controller, managing the visibility of the `GradientActivityIndicatorView` on the current key window.
-- **NotchGradientLoadingBar**: A subclass of `GradientLoadingBar`, wrapping the `GradientActivityIndicatorView` around the notch of the iPhone.
+ - **NotchGradientLoadingBar**: A subclass of `GradientLoadingBar`, wrapping the `GradientActivityIndicatorView` around the notch of the iPhone.
  - **GradientActivityIndicatorView**: A `UIView` containing the gradient with the animation. It can be added as a subview to another view either inside the interface builder or programmatically. Both ways are shown inside the example application.
+ - **GradientLoadingBarView**: A `View` for SwiftUI containing the gradient with the animation. The view can be added to any other SwiftUI view. The example application also contains same sample code for this use case.
 
 #### GradientLoadingBar
 To get started, import the module `GradientLoadingBar` into your file and save an instance of `GradientLoadingBar()` on a property of your view-controller. To show the loading bar, simply call the `fadeIn(duration:completion)` method and after your async operations have finished call the  `fadeOut(duration:completion)` method.
 
 ```swift
-class UserViewController: UIViewController {
+final class UserViewController: UIViewController {
 
     private let gradientLoadingBar = GradientLoadingBar()
 
@@ -76,7 +77,7 @@ class UserViewController: UIViewController {
 ```
 
 ##### Configuration
-You can overwrite the default configuration by calling the initializers with the optional parameters `height` and `isRelativeToSafeArea`:
+You can override the default configuration by calling the initializers with the optional parameters `height` and `isRelativeToSafeArea`:
 
 ```swift
 let gradientLoadingBar = GradientLoadingBar(
@@ -157,7 +158,7 @@ E.g. View added as a subview to a `UIButton`.
 [![Example][advanced-example--thumbnail]][advanced-example]
 
 ##### Note
-The progress-animation starts and stops according to the `isHidden` flag. Setting this flag to `false` will start the animation, setting this to `true` will stop the animation. Often you don't want to directly show / hide the view and instead smoothly fade it in or out. Therefore the view provides the methods `fadeIn(duration:completion)` and `fadeOut(duration:completion)`. Based on my [gist](https://gist.github.com/fxm90/723b5def31b46035cd92a641e3b184f6), these methods adjust the `alpha` value of the view and update the `isHidden` flag accordingly.
+The progress-animation starts and stops according to the `isHidden` flag. Setting this flag to `false` will start the animation, setting this to `true` will stop the animation. Often you don't want to directly show / hide the view and instead smoothly fade it in or out. Therefore the view provides the methods `fadeIn(duration:completion)` and `fadeOut(duration:completion)`. Based on the gist [`UIView+AnimateAlpha.swift`](https://gist.github.com/fxm90/723b5def31b46035cd92a641e3b184f6), these methods adjust the `alpha` value of the view and update the `isHidden` flag accordingly.
 
 ##### Properties
 ###### – `gradientColors: [UIColor]`
@@ -169,9 +170,46 @@ This property adjusts the duration of the animation moving the gradient from lef
 *To see all these screenshots in a real app, please have a look at the **example application**. For further customization you can also subclass `GradientLoadingBar` and overwrite the method `setupConstraints()`.*
 
 
+#### GradientLoadingBarView
+This is the SwiftUI variant for the `GradientActivityIndicatorView`. The view can be configured via the two parameters `gradientColors: [Color]` and `progressAnimation: Animation` passed to the initializer.
+
+##### – `gradientColors: [Color]` :
+This parameter adjusts the gradient colors shown on the loading bar.
+
+##### – `progressAnimation: Animation` :
+This parameter adjusts the duration of the animation moving the gradient from left to right.
+
+The visibility of the view can be updated with the view modifier [`opacity()`](https://developer.apple.com/documentation/swiftui/view/opacity(_:)) or [`hidden()`](https://developer.apple.com/documentation/swiftui/view/hidden()).
+
+To animate the visibility changes you need to create a property with the `@State` property wrapper, and update the property from a [`withAnimation`](https://developer.apple.com/documentation/swiftui/withanimation(_:_:)) block, e.g.
+
+```swift
+struct ExampleView: some View {
+
+    @State
+    private var isVisible = false
+
+    var body: some View {
+        VStack {
+            GradientLoadingBarView()
+                .frame(maxWidth: .infinity, maxHeight: 3)
+                .cornerRadius(1.5)
+                .opacity(isVisible ? 1 : 0)
+
+            Button("Toggle visibility") {
+                withAnimation(.easeInOut) {
+                    isVisible.toggle()
+                }
+            }
+        }
+    }
+}
+```
+
+
 ### Troubleshooting
 #### Interface Builder Support
-Unfortunatly the Interface Builder support is currently broken for Cocoapods frameworks. If you need Interface Builder support, add the following code to your Podfile and run `pod install` again. Afterwards you should be able to use the `GradientLoadingBar` inside the Interface Builder :)
+Unfortunately the Interface Builder support is currently broken for Cocoapods frameworks. If you need Interface Builder support, add the following code to your Podfile and run `pod install` again. Afterwards you should be able to use the `GradientLoadingBar` inside the Interface Builder :)
 
 ```
   post_install do |installer|
