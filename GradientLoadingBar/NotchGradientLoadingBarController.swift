@@ -66,7 +66,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         // As we currently only support portrait mode (and no device rotation), we can safely use `bounds.size.width` here.
         let screenWidth = superview.bounds.size.width
 
-        let notchBezierPath = self.notchBezierPath(for: screenWidth, notchConfig: viewModel.safeAreaDevice.notchConfig)
+        let notchBezierPath = notchBezierPath(for: screenWidth, notchConfig: viewModel.safeAreaDevice.notchConfig)
 
         // Setting the `lineWidth` draws a line, where the actual path is exactly in the middle of the drawn line.
         // To get the correct height (including the path) we have to add the `height` here to the given bounds (half height for top, half for bottom).
