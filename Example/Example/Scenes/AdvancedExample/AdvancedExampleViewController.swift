@@ -115,10 +115,8 @@ final class AdvancedExampleViewController: UIViewController {
     }
 }
 
-// MARK: - Helpers
+// MARK: - Subviews
 
-///
-///
 @IBDesignable
 final class BorderedButton: UIButton {
     private enum Config {
@@ -149,6 +147,8 @@ final class BorderedButton: UIButton {
         layer.masksToBounds = true
     }
 }
+
+// MARK: - Helpers
 
 struct AdvancedExampleView: View {
     var body: some View {
