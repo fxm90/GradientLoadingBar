@@ -123,6 +123,8 @@ final class AdvancedExampleViewController: UIViewController {
 final class BorderedButton: UIButton {
     private enum Config {
         static let borderColor = #colorLiteral(red: 0.2862745098, green: 0.5647058824, blue: 0.8862745098, alpha: 1)
+        static let borderWidth: CGFloat = 1
+        static let cornerRadius: CGFloat = 4
     }
 
     override init(frame: CGRect) {
@@ -142,8 +144,8 @@ final class BorderedButton: UIButton {
         tintColor = Config.borderColor
 
         layer.borderColor = Config.borderColor.cgColor
-        layer.borderWidth = 1
-        layer.cornerRadius = 4
+        layer.borderWidth = Config.borderWidth
+        layer.cornerRadius = Config.cornerRadius
         layer.masksToBounds = true
     }
 }
