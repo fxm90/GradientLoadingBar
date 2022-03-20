@@ -28,7 +28,7 @@ final class GradientActivityIndicatorViewTestCase: XCTestCase {
 
     // MARK: - Test cases
 
-    func test_gradientProgressIndicatorView_shouldContainCorrectDefaultColors() {
+    func test_gradientActivityIndicatorView_shouldContainCorrectDefaultColors() {
         // Given
         let gradientActivityIndicatorView = GradientActivityIndicatorView(frame: Config.frame)
 
@@ -40,7 +40,7 @@ final class GradientActivityIndicatorViewTestCase: XCTestCase {
         assertSnapshot(matching: gradientActivityIndicatorView, as: .image)
     }
 
-    func test_gradientProgressIndicatorView_shouldContainCorrectCustomColors() {
+    func test_gradientActivityIndicatorView_shouldContainCorrectCustomColors() {
         // Given
         let gradientActivityIndicatorView = GradientActivityIndicatorView(frame: Config.frame)
         gradientActivityIndicatorView.gradientColors = Config.gradientColors
