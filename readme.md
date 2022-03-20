@@ -181,7 +181,7 @@ This parameter adjusts the duration of the animation moving the gradient from le
 
 The visibility of the view can be updated with the view modifier [`opacity()`](https://developer.apple.com/documentation/swiftui/view/opacity(_:)) or [`hidden()`](https://developer.apple.com/documentation/swiftui/view/hidden()).
 
-To animate the visibility changes you need to create a property with the `@State` property wrapper, and update the property from a [`withAnimation`](https://developer.apple.com/documentation/swiftui/withanimation(_:_:)) block, e.g.
+To animate the visibility changes you need to create a property with the `@State` property wrapper, and update the value from a [`withAnimation`](https://developer.apple.com/documentation/swiftui/withanimation(_:_:)) block, e.g.
 
 ```swift
 struct ExampleView: some View {
