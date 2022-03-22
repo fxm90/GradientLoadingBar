@@ -24,6 +24,7 @@
 		DCA9838727D6A44700D6EA30 /* NavigationBarExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9838627D6A44700D6EA30 /* NavigationBarExampleViewController.swift */; };
 		DCA9838927D6A55A00D6EA30 /* NavigationBarExample.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCA9838827D6A55A00D6EA30 /* NavigationBarExample.storyboard */; };
 		DCA9838B27D6A74800D6EA30 /* SwiftUIExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9838A27D6A74800D6EA30 /* SwiftUIExampleView.swift */; };
+		F560001227EA2032001913A0 /* GradientLoadingBarView+ViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F560001127EA2032001913A0 /* GradientLoadingBarView+ViewModelTestCase.swift */; };
 		F57C83C927DA11580025AA11 /* GradientLoadingBarViewTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57C83C827DA11580025AA11 /* GradientLoadingBarViewTestCase.swift */; };
 		F5F5B69C27D94B1800D998B5 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F5B69727D94B1800D998B5 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift */; };
 		F5F5B69D27D94B1800D998B5 /* GradientLoadingBarViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F5B69927D94B1800D998B5 /* GradientLoadingBarViewModelTestCase.swift */; };
@@ -77,6 +78,7 @@
 		DCA9838627D6A44700D6EA30 /* NavigationBarExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarExampleViewController.swift; sourceTree = "<group>"; };
 		DCA9838827D6A55A00D6EA30 /* NavigationBarExample.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NavigationBarExample.storyboard; sourceTree = "<group>"; };
 		DCA9838A27D6A74800D6EA30 /* SwiftUIExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExampleView.swift; sourceTree = "<group>"; };
+		F560001127EA2032001913A0 /* GradientLoadingBarView+ViewModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GradientLoadingBarView+ViewModelTestCase.swift"; sourceTree = "<group>"; };
 		F57C83C827DA11580025AA11 /* GradientLoadingBarViewTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLoadingBarViewTestCase.swift; sourceTree = "<group>"; };
 		F5F5B69727D94B1800D998B5 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift"; sourceTree = "<group>"; };
 		F5F5B69927D94B1800D998B5 /* GradientLoadingBarViewModelTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLoadingBarViewModelTestCase.swift; sourceTree = "<group>"; };
@@ -268,8 +270,9 @@
 		F5F5B69827D94B1800D998B5 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				F5F5B69927D94B1800D998B5 /* GradientLoadingBarViewModelTestCase.swift */,
 				F5F5B69A27D94B1800D998B5 /* GradientActivityIndicatorViewModelTestCase.swift */,
+				F560001127EA2032001913A0 /* GradientLoadingBarView+ViewModelTestCase.swift */,
+				F5F5B69927D94B1800D998B5 /* GradientLoadingBarViewModelTestCase.swift */,
 				F5F5B69B27D94B1800D998B5 /* NotchGradientLoadingBarViewModelTestCase.swift */,
 			);
 			path = ViewModel;
@@ -607,6 +610,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F560001227EA2032001913A0 /* GradientLoadingBarView+ViewModelTestCase.swift in Sources */,
 				F5F5B69E27D94B1800D998B5 /* GradientActivityIndicatorViewModelTestCase.swift in Sources */,
 				F5F5B69C27D94B1800D998B5 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift in Sources */,
 				F5F5B69F27D94B1800D998B5 /* NotchGradientLoadingBarViewModelTestCase.swift in Sources */,
