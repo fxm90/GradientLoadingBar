@@ -23,46 +23,19 @@ public struct GradientLoadingBarView: View {
 
     // MARK: - Private properties
 
-    private let gradientColors: [Color]
-    private let progressDuration: TimeInterval
-
-    @State
-    private var size: CGSize = .zero {
-        didSet {
-            // This will stop the ongoing animation.
-            // Source: https://stackoverflow.com/a/59150940
-            withAnimation(.linear(duration: 0)) {
-                offset = size.width * -1
-            }
-
-            withAnimation(.linear(duration: progressDuration).repeatForever(autoreverses: false)) {
-                offset = size.width * 1
-            }
-        }
-    }
-
-    @State
-    private var offset: CGFloat = 0
+    @StateObject
+    private var viewModel: ViewModel
 
     // MARK: - Initializer
 
     public init(gradientColors: [Color] = Config.gradientColors,
                 progressDuration: TimeInterval = Config.progressDuration) {
-        // Simulate infinite animation - Therefore we'll reverse the colors and remove the first and last item
-        // to prevent duplicate values at the "inner edges" destroying the infinite look.
-        //
-        // E.g. for array of [.red, .yellow, .green]
-        // we will create    [.red, .yellow, .green, .yellow, .red, .yellow, .green]
-        //
-        // E.g. for array of [.red, .yellow, .green, .blue]
-        // we will create    [.red, .yellow, .green, .blue, .green, .yellow, .red, .yellow, .green, .blue]
-        let reversedGradientColors = gradientColors
-            .reversed()
-            .dropFirst()
-            .dropLast()
-
-        self.gradientColors = gradientColors + reversedGradientColors + gradientColors
-        self.progressDuration = progressDuration
+        // Even though the docs mention that "You don’t call this initializer directly", this seems to be the correct way to set-up a
+        // `StateObject` with parameters according to "Lessons from the SwiftUI Digital Lounge".
+        // https://swiftui-lab.com/random-lessons/#data-10
+        _viewModel = StateObject(
+            wrappedValue: ViewModel(gradientColors: gradientColors, progressDuration: progressDuration)
+        )
     }
 
     // MARK: - Render
@@ -73,15 +46,13 @@ public struct GradientLoadingBarView: View {
             // the size changes. Using a `GeometryReader` together with the `onAppear(_:)` view-modifier doesn't reflect any size changes.
             .modifier(SizeModifier())
             .onPreferenceChange(SizePreferenceKey.self) {
-                size = $0
+                viewModel.size = $0
             }
             // Using an `overlay` here makes sure that the parent view won't change it's frame.
             .overlay(//
-                LinearGradient(colors: gradientColors, startPoint: .leading, endPoint: .trailing)
-                    // To fit `gradientColors + reversedGradientColors + gradientColors` in our view,
-                    // we have to apply three times the width of our parent view.
-                    .frame(width: size.width * 3)
-                    .offset(x: offset, y: 0))
+                LinearGradient(colors: viewModel.gradientColors, startPoint: .leading, endPoint: .trailing)
+                    .frame(width: viewModel.gradientWidth)
+                    .offset(x: viewModel.offset, y: 0))
     }
 }
 
