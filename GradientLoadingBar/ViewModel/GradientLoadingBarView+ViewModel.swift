@@ -19,7 +19,7 @@ extension GradientLoadingBarView {
         let gradientColors: [Color]
 
         @Published
-        private(set) var offset: CGFloat = 0
+        private(set) var horizontalOffset: CGFloat = 0
 
         @Published
         var size: CGSize = .zero {
@@ -27,11 +27,11 @@ extension GradientLoadingBarView {
                 // This will stop any ongoing animation.
                 // Source: https://stackoverflow.com/a/59150940
                 withAnimation(.linear(duration: 0)) {
-                    offset = -size.width
+                    horizontalOffset = -size.width
                 }
 
                 withAnimation(.linear(duration: progressDuration).repeatForever(autoreverses: false)) {
-                    offset = size.width
+                    horizontalOffset = size.width
                 }
             }
         }

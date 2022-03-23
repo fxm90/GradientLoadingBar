@@ -52,7 +52,7 @@ public struct GradientLoadingBarView: View {
             .overlay(//
                 LinearGradient(colors: viewModel.gradientColors, startPoint: .leading, endPoint: .trailing)
                     .frame(width: viewModel.gradientWidth)
-                    .offset(x: viewModel.offset, y: 0))
+                    .offset(x: viewModel.horizontalOffset, y: 0))
     }
 }
 

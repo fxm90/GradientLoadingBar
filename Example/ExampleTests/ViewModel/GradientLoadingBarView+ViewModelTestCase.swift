@@ -27,23 +27,23 @@ final class GradientLoadingBarView_ViewModelTestCase: XCTestCase {
         XCTAssertEqual(viewModel.gradientColors, expectedGradientColors)
     }
 
-    // MARK: - Test property `offset`
+    // MARK: - Test property `horizontalOffset`
 
-    func test_initialOffset_shouldBeZero() {
+    func test_initialHorizontalOffset_shouldBeZero() {
         // When
         let viewModel = GradientLoadingBarView.ViewModel(gradientColors: [], progressDuration: 1)
 
         // Then
-        XCTAssertEqual(viewModel.offset, 0)
+        XCTAssertEqual(viewModel.horizontalOffset, 0)
     }
 
-    func test_settingSize_shouldUpdateOffset() {
+    func test_settingSize_shouldUpdateHorizontalOffset() {
         // Given
         let viewModel = GradientLoadingBarView.ViewModel(gradientColors: [], progressDuration: 1)
         let size = CGSize(width: .random(in: 1 ... 100_000), height: .random(in: 1 ... 100_000))
 
         var receivedValues = [CGFloat]()
-        let subscription = viewModel.$offset.sink {
+        let subscription = viewModel.$horizontalOffset.sink {
             receivedValues.append($0)
         }
 
