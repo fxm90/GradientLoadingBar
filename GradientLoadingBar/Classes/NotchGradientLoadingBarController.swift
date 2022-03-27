@@ -43,21 +43,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
     // MARK: - Public methods
 
     override open func setupConstraints(superview: UIView) {
-        guard #available(iOS 11.0, *) else {
-            /// The notch is only available when supporting safe area layout guides, which is starting from iOS 11.
-            super.setupConstraints(superview: superview)
-            return
-        }
-
-        // The `safeAreaInsets.top` always includes the status-bar and therefore will always be greater "0".
-        // As a workaround we check the bottom inset.
-        let hasNotch = superview.safeAreaInsets.bottom > 0
-
-        // The iPad also has a bottom inset, in order to avoid the home indicator. (https://developer.apple.com/forums/thread/110724)
-        // As a workaround we explicitly make sure to have a phone device.
-        let isIPhone = UIDevice.current.userInterfaceIdiom == .phone
-
-        guard hasNotch, isIPhone else {
+        guard let notchConfig = viewModel.safeAreaDevice.notchConfig else {
             // No special masking required for non safe area devices.
             super.setupConstraints(superview: superview)
             return
@@ -65,8 +51,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
 
         // As we currently only support portrait mode (and no device rotation), we can safely use `bounds.size.width` here.
         let screenWidth = superview.bounds.size.width
-
-        let notchBezierPath = self.notchBezierPath(for: screenWidth, notchConfig: viewModel.safeAreaDevice.notchConfig)
+        let notchBezierPath = self.notchBezierPath(for: screenWidth, notchConfig: notchConfig)
 
         // Setting the `lineWidth` draws a line, where the actual path is exactly in the middle of the drawn line.
         // To get the correct height (including the path) we have to add the `height` here to the given bounds (half height for top, half for bottom).
@@ -230,9 +215,12 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
 
 private extension NotchGradientLoadingBarViewModel.SafeAreaDevice {
     /// The notch specific configuration for the current device.
-    var notchConfig: NotchConfig {
+    var notchConfig: NotchConfig? {
         switch self {
-        case .unknown, .iPhoneX, .iPhone11:
+        case .unknown:
+            return nil
+
+        case .iPhoneX, .iPhone11:
             /// The default configuration for the iPhone X and 11.
             /// Values are based on <https://www.paintcodeapp.com/news/iphone-x-screen-demystified>.
             return NotchConfig(notchWidth: 208,
