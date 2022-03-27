@@ -220,7 +220,7 @@ private extension NotchGradientLoadingBarViewModel.SafeAreaDevice {
         case .unknown:
             return nil
 
-        case .iPhoneX, .iPhone11:
+        case .iPhoneX:
             /// The default configuration for the iPhone X and 11.
             /// Values are based on <https://www.paintcodeapp.com/news/iphone-x-screen-demystified>.
             return NotchConfig(notchWidth: 208,
@@ -228,7 +228,7 @@ private extension NotchGradientLoadingBarViewModel.SafeAreaDevice {
                                largeCircleOffset: CGPoint(x: 0, y: -4.75),
                                transform: CGAffineTransform(translationX: 0.33, y: 0))
 
-        case .iPhoneXR:
+        case .iPhoneXR, .iPhone11:
             return NotchConfig(notchWidth: 232,
                                largeCircleRadius: 24,
                                largeCircleOffset: CGPoint(x: 0.5, y: -3.5),
