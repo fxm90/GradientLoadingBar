@@ -53,9 +53,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
         let screenWidth = superview.bounds.size.width
         let notchBezierPath = notchBezierPath(for: screenWidth, notchConfig: notchConfig)
 
-        // Setting the `lineWidth` draws a line, where the actual path is exactly in the middle of the drawn line.
-        // To get the correct height (including the path) we have to add the `height` here to the given bounds (half height for top, half for bottom).
-        let viewHeight = notchBezierPath.bounds.height + height
+        let viewHeight = notchBezierPath.bounds.height + 1
         NSLayoutConstraint.activate([
             gradientActivityIndicatorView.topAnchor.constraint(equalTo: superview.topAnchor),
             gradientActivityIndicatorView.heightAnchor.constraint(equalToConstant: viewHeight),
