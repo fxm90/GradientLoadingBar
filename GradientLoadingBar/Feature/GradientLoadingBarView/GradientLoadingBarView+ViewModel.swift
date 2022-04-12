@@ -11,16 +11,19 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 extension GradientLoadingBarView {
-    ///
-    ///
+    /// This view model contains all logic related to the `GradientLoadingBarView`
+    /// and the corresponding progress animation.
     final class ViewModel: ObservableObject {
         // MARK: - Public properties
 
+        /// The gradient colors used for the progress animation (including the reversed colors).
         let gradientColors: [Color]
 
+        /// The horizontal offset of the `LinearGradient` used to simulate the progress animation.
         @Published
         private(set) var horizontalOffset: CGFloat = 0
 
+        /// The current size of the `GradientLoadingBarView`.
         @Published
         var size: CGSize = .zero {
             didSet {
@@ -30,12 +33,14 @@ extension GradientLoadingBarView {
                     horizontalOffset = -size.width
                 }
 
-                withAnimation(.linear(duration: progressDuration).repeatForever(autoreverses: false)) {
+                let progressAnimation: Animation = .linear(duration: progressDuration).repeatForever(autoreverses: false)
+                withAnimation(progressAnimation) {
                     horizontalOffset = size.width
                 }
             }
         }
 
+        /// The width of the `LinearGradient`.
         var gradientWidth: CGFloat {
             // To fit `gradientColors + reversedGradientColors + gradientColors` in our view,
             // we have to apply three times the width of our parent view.
