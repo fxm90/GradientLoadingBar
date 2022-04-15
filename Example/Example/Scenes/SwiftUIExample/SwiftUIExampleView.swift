@@ -14,17 +14,15 @@ struct SwiftUIExampleView: View {
 
     var body: some View {
         List {
-            // We need to apply a `Spacer()` as header to have a little space between the sections
-            // and the navigation bar.
-            Section(header: Spacer()) {
+            Section(header: Text("Default example")) {
                 DefaultExampleView()
             }
 
-            Section {
+            Section(header: Text("Custom colors")) {
                 CustomColorsExampleView()
             }
 
-            Section {
+            Section(header: Text("Custom animation duration")) {
                 CustomProgressDurationExampleView()
             }
         }
@@ -34,29 +32,14 @@ struct SwiftUIExampleView: View {
 
 // MARK: - Subviews
 
-private struct TitleSubtitleView: View {
-    let title: String
-    let subtitle: String
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(title)
-                .font(.headline)
-            Text(subtitle)
-                .font(.subheadline)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-    }
-}
-
 private struct DefaultExampleView: View {
     @State
-    private var isVisible = false
+    private var isVisible = true
 
     var body: some View {
         VStack(spacing: 16) {
-            TitleSubtitleView(title: "Default example",
-                              subtitle: "Example using the default configuration.")
+            Text("Example using the default configuration.")
+                .frame(maxWidth: .infinity, alignment: .leading)
 
             GradientLoadingBarView()
                 .frame(maxWidth: .infinity, maxHeight: 3)
@@ -94,12 +77,12 @@ private struct CustomColorsExampleView: View {
     }
 
     @State
-    private var isVisible = false
+    private var isVisible = true
 
     var body: some View {
         VStack(spacing: 16) {
-            TitleSubtitleView(title: "Custom colors",
-                              subtitle: "Example showing how to provide custom gradient colors.")
+            Text("Example showing how to provide custom gradient colors.")
+                .frame(maxWidth: .infinity, alignment: .leading)
 
             GradientLoadingBarView(gradientColors: Config.gradientColors)
                 .frame(maxWidth: .infinity, maxHeight: 3)
@@ -134,12 +117,12 @@ private struct CustomProgressDurationExampleView: View {
     }
 
     @State
-    private var isVisible = false
+    private var isVisible = true
 
     var body: some View {
         VStack(spacing: 16) {
-            TitleSubtitleView(title: "Custom animation duration",
-                              subtitle: "Example showing how to provide a custom progress animation duration.")
+            Text("Example showing how to provide a custom progress animation duration.")
+                .frame(maxWidth: .infinity, alignment: .leading)
 
             GradientLoadingBarView(progressDuration: Config.progressDuration)
                 .frame(maxWidth: .infinity, maxHeight: 3)

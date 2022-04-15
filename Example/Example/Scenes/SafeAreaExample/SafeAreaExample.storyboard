@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,11 +16,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="vQo-n2-n4V" userLabel="Top Stack View">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="vQo-n2-n4V" userLabel="Top Content Stack View">
                                 <rect key="frame" x="16" y="400" width="382" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xx7-io-IHi" userLabel="ShowBasicBarButton">
-                                        <rect key="frame" x="0.0" y="0.0" width="183" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="244" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="wri-XG-tfO"/>
                                         </constraints>
@@ -33,12 +33,12 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xxs-Xn-l65" userLabel="HideBasicBarButton">
-                                        <rect key="frame" x="199" y="0.0" width="183" height="40"/>
+                                        <rect key="frame" x="260" y="0.0" width="122" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="zfx-4A-wZB"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Hide Basic Bar">
+                                        <buttonConfiguration key="configuration" style="filled" title="Hide">
                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                         </buttonConfiguration>
                                         <connections>
@@ -47,11 +47,24 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="J6X-XZ-YZb" userLabel="Bottom Stack View">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="J6X-XZ-YZb" userLabel="Bottom Content Stack View">
                                 <rect key="frame" x="16" y="456" width="382" height="40"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DS9-JT-RIl" userLabel="HideNotchBarButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="104" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="64O-UM-b99"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Hide">
+                                            <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="hideNotchBarButtonTouchUpInside:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="INf-lf-Egt"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8wt-vv-Sj1" userLabel="ShowNotchBarButton">
-                                        <rect key="frame" x="0.0" y="0.0" width="183" height="40"/>
+                                        <rect key="frame" x="120" y="0.0" width="262" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="nUb-HA-Cts"/>
                                         </constraints>
@@ -61,19 +74,6 @@
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="showNotchBarButtonTouchUpInside:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="aHn-BO-ovO"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DS9-JT-RIl" userLabel="HideNotchBarButton">
-                                        <rect key="frame" x="199" y="0.0" width="183" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="64O-UM-b99"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Hide Notch Bar">
-                                            <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="hideNotchBarButtonTouchUpInside:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="INf-lf-Egt"/>
                                         </connections>
                                     </button>
                                 </subviews>
