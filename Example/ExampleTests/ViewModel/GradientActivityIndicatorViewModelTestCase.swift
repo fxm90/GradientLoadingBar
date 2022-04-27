@@ -40,16 +40,15 @@ final class GradientActivityIndicatorViewModelTestCase: XCTestCase {
             receivedIsAnimating = isAnimating
         }
 
-        let isHidden = true
-
         // When
         withExtendedLifetime(disposable) {
-            viewModel.isHidden = isHidden
+            viewModel.isHidden = true
         }
 
         // Then
-        let expectedIsAnimating = !isHidden
-        XCTAssertEqual(receivedIsAnimating, expectedIsAnimating)
+        XCTAssertFalse(
+            try XCTUnwrap(receivedIsAnimating, "Expected to have received a value from the subscription closure at this point.")
+        )
     }
 
     func test_settingIsHidden_toFalse_shouldUpdateIsAnimatingSubject_withTrue() throws {
@@ -59,16 +58,15 @@ final class GradientActivityIndicatorViewModelTestCase: XCTestCase {
             receivedIsAnimating = isAnimating
         }
 
-        let isHidden = false
-
         // When
         withExtendedLifetime(disposable) {
-            viewModel.isHidden = isHidden
+            viewModel.isHidden = false
         }
 
         // Then
-        let expectedIsAnimating = !isHidden
-        XCTAssertEqual(receivedIsAnimating, expectedIsAnimating)
+        XCTAssertTrue(
+            try XCTUnwrap(receivedIsAnimating, "Expected to have received a value from the subscription closure at this point.")
+        )
     }
 
     // MARK: - Test property `bounds`
