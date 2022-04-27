@@ -150,7 +150,7 @@ final class GradientActivityIndicatorViewModelTestCase: XCTestCase {
         }
 
         // Then
-        let expectedGradientLayerColors = [UIColor.red, .yellow, .green, .yellow, .red, .yellow, .green].map { $0.cgColor }
+        let expectedGradientLayerColors = [UIColor.red, .yellow, .green, .yellow, .red, .yellow, .green].map(\.cgColor)
         XCTAssertEqual(receivedGradientLayerColors, expectedGradientLayerColors)
     }
 

@@ -121,7 +121,7 @@ extension Array where Element == UIColor {
     ///
     ///
     func infiniteLayerColors() -> [CGColor] {
-        let cgColors = map { $0.cgColor }
+        let cgColors = map(\.cgColor)
 
         // Simulate infinite animation - Therefore we'll reverse the colors and remove the first and last item
         // to prevent duplicate values at the "inner edges" destroying the infinite look.
