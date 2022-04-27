@@ -62,7 +62,7 @@ struct EntryPointView: View {
             // Unfortunately setting the title here results in constraint warnings.
             // I couldn't find a possible fix yet, even `.navigationViewStyle(.stack)` doesn't seem to work.
             // https://stackoverflow.com/q/65316497
-            .navigationTitle("GradientProgressBar")
+            .navigationTitle("GradientLoadingBar")
             .navigationBarTitleDisplayMode(.large)
         }
     }
