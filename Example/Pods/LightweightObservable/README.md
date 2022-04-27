@@ -2,7 +2,7 @@
 
 <p align="center">
 	<img src="https://img.shields.io/badge/Swift-5.0-green.svg?style=flat" alt="Swift Version" />
-	<img src="http://img.shields.io/travis/com/fxm90/LightweightObservable.svg?style=flat" alt="CI Status" />
+	<img src="https://img.shields.io/github/workflow/status/fxm90/LightweightObservable/Continuous%20Integration" alt="CI Status" />
 	<img src="https://img.shields.io/codecov/c/github/fxm90/LightweightObservable.svg?style=flat" alt="Code Coverage" />
 	<img src="https://img.shields.io/cocoapods/v/LightweightObservable.svg?style=flat" alt="Version" />
 	<img src="https://img.shields.io/cocoapods/l/LightweightObservable.svg?style=flat" alt="License" />
@@ -27,6 +27,39 @@ To run the example project, clone the repo, and open the workspace from the Exam
 - Swift 5.0
 - Xcode 10.2+
 - iOS 9.0+
+
+### Projects targeting iOS >= 13.0
+In case your minimum required version is greater equal iOS 13.0, I recommend using [Combine](https://developer.apple.com/documentation/combine) instead of adding `Lightweight Observable` as a dependency. 
+
+If you rely on having a current and previous value in your subscription closure, please have a look at this extension: [Combine+Pairwise.swift](https://gist.github.com/fxm90/be62335d987016c84d2f8b3731197c98).
+
+#### Update: Since version `2.2` an `Observable` instance conforms to the [`Publisher`](https://developer.apple.com/documentation/combine/publisher) protocol from Swift's `Combine` 🎉 
+
+This makes transitioning from `LightweightObservable` to `Combine` a lot easier, as you can use features from `Combine` without having to change the underlying `Observable` to a `Publisher`. 
+
+Example Code for using `Combine` functions on an instance of `PublishSubject`:
+
+```swift
+var subscriptions = Set<AnyCancellable>()
+            
+let publishSubject = PublishSubject<Int>()
+publishSubject
+    .map { $0 * 2 }
+    .sink { print($0) }
+    .store(in: &subscriptions)
+
+publishSubject.update(1) // Prints "2"
+publishSubject.update(2) // Prints "4"
+publishSubject.update(3) // Prints "6"
+```
+
+**Cheatsheet**
+
+| `LightweightObservable` | `Combine`             |
+| ----------------------- | --------------------- |
+| `PublishSubject`        | `PassthroughSubject`  |
+| `Variable`              | `CurrentValueSubject` |
+
 
 ### Integration
 ##### CocoaPods
@@ -84,6 +117,8 @@ let formattedTimeSubject = Variable("4:20 PM")
 // ...
 
 formattedTimeSubject.value = "4:21 PM"
+// or
+formattedTimeSubject.update("4:21 PM")
 ```
 
 #### – Create an `Observable`
@@ -227,43 +262,42 @@ XCTAssertEqual(viewModel.formattedTime.value, "4:20")
 Using the given approach, your view-model could look like this:
 
 ```swift
-class TimeViewModel {
+final class ViewModel {
     // MARK: - Public properties
 
-    /// The current time as a formatted string (**immutable**).
-    var formattedTime: Observable<String> {
-        formattedTimeSubject
+    /// The current date and time as a formatted string (**immutable**).
+    var formattedDate: Observable<String> {
+        formattedDateSubject
     }
 
     // MARK: - Private properties
 
-    /// The current time as a formatted string (**mutable**).
-    private let formattedTimeSubject: Variable<String> = Variable("\(Date())")
+    /// The current date and time as a formatted string (**mutable**).
+    private let formattedDateSubject: Variable<String> = Variable("\(Date())")
 
     private var timer: Timer?
 
     // MARK: - Initializer
 
     init() {
-        // Update variable with current time every second.
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] _ in
-            self?.formattedTimeSubject.value = "\(Date())"
-        })
+        // Update variable with current date and time every second.
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            self?.formattedDateSubject.value = "\(Date())"
+        }
     }
 ```
 
 And your view controller like this:
 
 ```swift
-class TimeViewController: UIViewController {
+final class ViewController: UIViewController {
     // MARK: - Outlets
 
-    @IBOutlet private var timeLabel: UILabel!
+    @IBOutlet private var dateLabel: UILabel!
 
     // MARK: - Private properties
 
-    /// The view model calculating the current time.
-    private let timeViewModel = TimeViewModel()
+    private let viewModel = ViewModel()
 
     /// The dispose bag for this view controller. On it's deallocation, it removes the
     /// subscription-closures from the corresponding observable-properties.
@@ -274,9 +308,9 @@ class TimeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        timeViewModel
-            .formattedTime
-            .bind(to: \.text, on: timeLabel)
+        viewModel
+            .formattedDate
+            .bind(to: \.text, on: dateLabel)
             .disposed(by: &disposeBag)
     }
 ```

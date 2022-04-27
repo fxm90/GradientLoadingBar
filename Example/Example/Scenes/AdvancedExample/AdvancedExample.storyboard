@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZAD-6Y-gxa">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Advanced Example Table View Controller-->
+        <scene sceneID="iwG-zT-VrO">
+            <objects>
+                <tableViewController id="ZAD-6Y-gxa" customClass="AdvancedExampleTableViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="2vt-bX-4b7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CustomColorsTableViewCell" id="qq9-jr-nNk" customClass="CustomColorsTableViewCell" customModule="Example" customModuleProvider="target">
+                                <rect key="frame" x="20" y="49.5" width="374" height="120.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qq9-jr-nNk" id="60G-w2-6BV">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="120.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="zN2-pr-LT6">
+                                            <rect key="frame" x="16" y="16" width="342" height="88.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Example showing how to provide custom gradient colors." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbJ-pG-fGJ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="342" height="36"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uL7-lu-aRP" userLabel="Toggle Custom Colors Button">
+                                                    <rect key="frame" x="0.0" y="48" width="342" height="40.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="jZd-Vw-MAb"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="filled" title="Toggle Custom Colors ↑">
+                                                        <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="customColorsButtonTouchUpInside:" destination="qq9-jr-nNk" eventType="touchUpInside" id="XyI-4Q-sja"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="zN2-pr-LT6" firstAttribute="leading" secondItem="60G-w2-6BV" secondAttribute="leading" constant="16" id="18p-RW-IFT"/>
+                                        <constraint firstAttribute="bottom" secondItem="zN2-pr-LT6" secondAttribute="bottom" constant="16" id="6LP-eX-o55"/>
+                                        <constraint firstItem="zN2-pr-LT6" firstAttribute="top" secondItem="60G-w2-6BV" secondAttribute="top" constant="16" id="RzJ-mr-IHP"/>
+                                        <constraint firstAttribute="trailing" secondItem="zN2-pr-LT6" secondAttribute="trailing" constant="16" id="h7A-pm-6hb"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="InterfaceBuilderSetupTableViewCell" id="yBS-fc-uJy" customClass="InterfaceBuilderSetupTableViewCell" customModule="Example" customModuleProvider="target">
+                                <rect key="frame" x="20" y="170" width="374" height="83.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yBS-fc-uJy" id="Tid-am-qRM">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="83.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="KTF-6b-NmT">
+                                            <rect key="frame" x="16" y="16" width="342" height="51.5"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bCd-m6-FJm" customClass="GradientActivityIndicatorView" customModule="GradientLoadingBar">
+                                                    <rect key="frame" x="0.0" y="0.0" width="342" height="3"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="3" id="FQe-RY-KH7"/>
+                                                    </constraints>
+                                                </view>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TpO-6A-9Bl" userLabel="Toggle IB Setup Button">
+                                                    <rect key="frame" x="0.0" y="11" width="342" height="40.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="QLO-3y-Y29"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="filled" title="Toggle IB Setup 🎨">
+                                                        <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="toggleIBSetupButtonTouchUpInside:" destination="yBS-fc-uJy" eventType="touchUpInside" id="WLP-Dw-VmD"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="KTF-6b-NmT" firstAttribute="top" secondItem="Tid-am-qRM" secondAttribute="top" constant="16" id="2Bc-ex-Ggk"/>
+                                        <constraint firstItem="KTF-6b-NmT" firstAttribute="leading" secondItem="Tid-am-qRM" secondAttribute="leading" constant="16" id="Aka-HV-cVb"/>
+                                        <constraint firstAttribute="bottom" secondItem="KTF-6b-NmT" secondAttribute="bottom" constant="16" id="MH0-A6-FGH"/>
+                                        <constraint firstAttribute="trailing" secondItem="KTF-6b-NmT" secondAttribute="trailing" constant="16" id="pLD-Mq-O5j"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="gradientActivityIndicator" destination="bCd-m6-FJm" id="z4t-IP-gqw"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CustomSuperviewViewCell" id="ah2-WM-rFd" customClass="CustomSuperviewTableViewCell" customModule="Example" customModuleProvider="target">
+                                <rect key="frame" x="20" y="253.5" width="374" height="120.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ah2-WM-rFd" id="2Sj-GS-zEL">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="120.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="ja4-s5-ZP7">
+                                            <rect key="frame" x="20" y="16" width="334" height="88.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Example showing how to add the loading bar as a subview." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7X-oS-Zcv">
+                                                    <rect key="frame" x="0.0" y="0.0" width="334" height="36"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZxZ-rY-wUa" userLabel="Toggle Custom Superview Button" customClass="BorderedButton" customModule="Example" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="48" width="334" height="40.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="YS7-tA-cMK"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="Toggle Custom Superview 🧪">
+                                                        <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="toggleButtonTouchUpInside:" destination="ah2-WM-rFd" eventType="touchUpInside" id="W51-If-b5H"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="ja4-s5-ZP7" firstAttribute="top" secondItem="2Sj-GS-zEL" secondAttribute="top" constant="16" id="ERr-8u-XhG"/>
+                                        <constraint firstAttribute="trailing" secondItem="ja4-s5-ZP7" secondAttribute="trailing" constant="20" id="SsK-Vx-1BL"/>
+                                        <constraint firstAttribute="bottom" secondItem="ja4-s5-ZP7" secondAttribute="bottom" constant="16" id="UBf-R5-ixV"/>
+                                        <constraint firstItem="ja4-s5-ZP7" firstAttribute="leading" secondItem="2Sj-GS-zEL" secondAttribute="leading" constant="20" id="xgE-OJ-VIu"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="toggleButton" destination="ZxZ-rY-wUa" id="TwF-62-tM1"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ZAD-6Y-gxa" id="3QD-qs-jpF"/>
+                            <outlet property="delegate" destination="ZAD-6Y-gxa" id="yIF-PG-bRO"/>
+                        </connections>
+                    </tableView>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R94-H9-mvS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-165" y="27"/>
+        </scene>
+    </scenes>
+    <designables>
+        <designable name="ZxZ-rY-wUa">
+            <size key="intrinsicContentSize" width="216.5" height="31"/>
+        </designable>
+    </designables>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

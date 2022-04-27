@@ -4,7 +4,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '13.0'
 use_frameworks!
 
-target 'GradientLoadingBar_Example' do
+target 'Example' do
   pod 'GradientLoadingBar', :path => '../'
 
 # Development pods.
@@ -12,17 +12,16 @@ target 'GradientLoadingBar_Example' do
   pod 'SwiftLint', '~> 0.42'
   pod 'SwiftConfigurationFiles', :git => 'https://github.com/fxm90/SwiftConfigurationFiles.git'
 
-  target 'GradientLoadingBar_Tests' do
+  target 'ExampleTests' do
     inherit! :search_paths
-
-    # Pods for testing.
+    # Pods for testing
   end
 
-  target 'GradientLoadingBar_SnapshotTests' do
+  target 'ExampleSnapshotTests' do
     inherit! :search_paths
 
     # Pods for snapshot testing.
-    pod 'SnapshotTesting', '~> 1.7', :inhibit_warnings => true
+    pod 'SnapshotTesting', '~> 1.9', :inhibit_warnings => true
   end
 
   post_install do |installer|
@@ -46,4 +45,5 @@ target 'GradientLoadingBar_Example' do
       end
     end
   end
+
 end
