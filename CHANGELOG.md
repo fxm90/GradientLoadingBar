@@ -167,7 +167,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial release
 
 
-[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/2.2.5...master
+[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/2.2.5...main
 [2.2.5]: https://github.com/fxm90/GradientLoadingBar/compare/2.2.4...2.2.5
 [2.2.4]: https://github.com/fxm90/GradientLoadingBar/compare/2.2.3...2.2.4
 [2.2.3]: https://github.com/fxm90/GradientLoadingBar/compare/2.2.2...2.2.3
