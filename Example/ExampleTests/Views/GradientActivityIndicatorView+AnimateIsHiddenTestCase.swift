@@ -12,6 +12,7 @@ import XCTest
 
 // swiftlint:disable:next type_name
 final class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
+
     // MARK: - Private properties
 
     private var window: UIWindow!

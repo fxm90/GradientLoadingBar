@@ -14,6 +14,7 @@ extension GradientLoadingBarView {
     /// This view model contains all logic related to the `GradientLoadingBarView`
     /// and the corresponding progress animation.
     final class ViewModel: ObservableObject {
+
         // MARK: - Public properties
 
         /// The gradient colors used for the progress animation (including the reversed colors).
@@ -51,7 +52,7 @@ extension GradientLoadingBarView {
 
         private var progressDuration: TimeInterval
 
-        // MARK: - Public methods
+        // MARK: - Instance Lifecycle
 
         init(gradientColors: [Color], progressDuration: TimeInterval) {
             // Simulate infinite animation - Therefore we'll reverse the colors and remove the first and last item

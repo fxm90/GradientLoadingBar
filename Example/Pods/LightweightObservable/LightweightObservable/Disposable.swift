@@ -13,6 +13,7 @@ public typealias DisposeBag = [Disposable]
 
 /// Calls a closure on when this instance is deallocated.
 public final class Disposable {
+
     // MARK: - Types
 
     /// Type for the closure to be called on deallocation.
@@ -23,7 +24,7 @@ public final class Disposable {
     /// The closure to be called on deallocation.
     private let dispose: Dispose
 
-    // MARK: - Initializer
+    // MARK: - Instance Lifecycle
 
     /// Creates a new instance.
     ///

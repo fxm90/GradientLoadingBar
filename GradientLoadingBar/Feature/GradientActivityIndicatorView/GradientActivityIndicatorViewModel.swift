@@ -42,6 +42,7 @@ typealias ColorLocationMatrix = [ColorLocationRow]
 ///
 /// As the colors at the start are the same as at the end, we can loop the animation without visual artefacts.
 final class GradientActivityIndicatorViewModel {
+
     // MARK: - Public properties
 
     /// Observable color array for the gradient layer (of type `CGColor`).
@@ -104,7 +105,7 @@ final class GradientActivityIndicatorViewModel {
     private let animationDurationSubject = Variable(TimeInterval.GradientLoadingBar.progressDuration)
     private let isAnimatingSubject = Variable(true)
 
-    // MARK: - Initializer
+    // MARK: - Instance Lifecycle
 
     init() {
         let gradientLayerColors = ColorLocationRow.gradientLayerColors(from: gradientColors)
@@ -116,7 +117,7 @@ final class GradientActivityIndicatorViewModel {
     }
 }
 
-// MARK: - Helpers
+// MARK: - Helper
 
 private extension ColorLocationRow {
     /// Generates the colors used on the gradient-layer.

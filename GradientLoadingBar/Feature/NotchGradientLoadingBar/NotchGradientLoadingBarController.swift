@@ -36,6 +36,7 @@ private struct NotchConfig {
 public typealias NotchGradientLoadingBar = NotchGradientLoadingBarController
 
 open class NotchGradientLoadingBarController: GradientLoadingBarController {
+
     // MARK: - Private properties
 
     private let viewModel = NotchGradientLoadingBarViewModel()
@@ -209,7 +210,7 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
     }
 }
 
-// MARK: - Helpers
+// MARK: - Helper
 
 private extension NotchGradientLoadingBarViewModel.SafeAreaDevice {
     /// The notch specific configuration for the current device.

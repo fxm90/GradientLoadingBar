@@ -12,6 +12,7 @@ import SnapshotTesting
 @testable import GradientLoadingBar
 
 final class GradientActivityIndicatorViewTestCase: XCTestCase {
+
     // MARK: - Config
 
     private enum Config {

@@ -11,6 +11,7 @@ import SwiftUI
 import GradientLoadingBar
 
 final class AdvancedExampleTableViewController: UITableViewController {
+
     // MARK: - Config
 
     private enum Config {

@@ -13,6 +13,7 @@ import SwiftUI
 
 // swiftlint:disable:next type_name
 final class GradientLoadingBarView_ViewModelTestCase: XCTestCase {
+
     // MARK: - Test property `gradientColors`
 
     func test_initialGradientColors_shouldIncludeReversedGradientColors() {

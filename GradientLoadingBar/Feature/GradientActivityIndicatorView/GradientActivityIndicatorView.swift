@@ -11,6 +11,7 @@ import LightweightObservable
 
 @IBDesignable
 open class GradientActivityIndicatorView: UIView {
+
     // MARK: - Config
 
     /// Animation-Key for the progress animation.
@@ -68,7 +69,7 @@ open class GradientActivityIndicatorView: UIView {
     /// The dispose bag for the observables.
     private var disposeBag = DisposeBag()
 
-    // MARK: - Initializers
+    // MARK: - Instance Lifecycle
 
     override public init(frame: CGRect) {
         super.init(frame: frame)

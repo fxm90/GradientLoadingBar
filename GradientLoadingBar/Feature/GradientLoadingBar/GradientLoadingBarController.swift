@@ -14,6 +14,7 @@ public typealias GradientLoadingBar = GradientLoadingBarController
 
 /// The `GradientLoadingBarController` mediates between the `GradientLoadingBarViewModel` and the corresponding `GradientActivityIndicatorView`.
 open class GradientLoadingBarController {
+
     // MARK: - Public properties
 
     /// The height of the gradient bar.
@@ -58,7 +59,7 @@ open class GradientLoadingBarController {
     /// The dispose bag for the observables.
     private var disposeBag = DisposeBag()
 
-    // MARK: - Initializers
+    // MARK: - Instance Lifecycle
 
     /// Creates a new gradient loading bar instance.
     ///

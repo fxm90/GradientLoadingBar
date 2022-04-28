@@ -12,6 +12,7 @@ import LightweightObservable
 @testable import GradientLoadingBar
 
 final class GradientLoadingBarViewModelTestCase: XCTestCase {
+
     // MARK: - Private properties
 
     private var sharedApplicationMock: SharedApplicationMock!

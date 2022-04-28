@@ -10,6 +10,7 @@ import UIKit
 import GradientLoadingBar
 
 final class CustomSuperviewTableViewCell: UITableViewCell {
+
     // MARK: - Config
 
     private enum Config {

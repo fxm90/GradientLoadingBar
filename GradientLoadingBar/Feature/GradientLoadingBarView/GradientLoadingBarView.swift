@@ -11,6 +11,7 @@ import SwiftUI
 // For some reason the animation looks broken on iOS versions <= 15.0.
 @available(iOS 15.0, *)
 public struct GradientLoadingBarView: View {
+
     // MARK: - Config
 
     public enum Config {
@@ -26,7 +27,7 @@ public struct GradientLoadingBarView: View {
     @StateObject
     private var viewModel: ViewModel
 
-    // MARK: - Initializer
+    // MARK: - Instance Lifecycle
 
     public init(gradientColors: [Color] = Config.gradientColors,
                 progressDuration: TimeInterval = Config.progressDuration) {

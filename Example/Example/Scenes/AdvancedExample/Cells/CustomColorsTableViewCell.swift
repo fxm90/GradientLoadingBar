@@ -9,6 +9,7 @@
 import UIKit
 
 final class CustomColorsTableViewCell: UITableViewCell {
+
     // MARK: - Public properties
 
     static let reuseIdentifier = "CustomColorsTableViewCell"

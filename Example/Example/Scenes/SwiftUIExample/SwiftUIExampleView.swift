@@ -10,6 +10,7 @@ import SwiftUI
 import GradientLoadingBar
 
 struct SwiftUIExampleView: View {
+
     // MARK: - Render
 
     var body: some View {

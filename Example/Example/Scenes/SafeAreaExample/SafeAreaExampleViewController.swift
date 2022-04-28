@@ -11,6 +11,7 @@ import SwiftUI
 import GradientLoadingBar
 
 final class SafeAreaExampleViewController: UIViewController {
+
     // MARK: - Private properties
 
     private let gradientLoadingBar = GradientLoadingBar(isRelativeToSafeArea: false)
@@ -45,7 +46,7 @@ final class SafeAreaExampleViewController: UIViewController {
     }
 }
 
-// MARK: - Helpers
+// MARK: - Helper
 
 struct SafeAreaExampleView: View {
     var body: some View {

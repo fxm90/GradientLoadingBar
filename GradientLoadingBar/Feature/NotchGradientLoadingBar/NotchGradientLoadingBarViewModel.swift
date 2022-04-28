@@ -9,6 +9,7 @@
 import UIKit
 
 final class NotchGradientLoadingBarViewModel {
+
     // MARK: - Types
 
     enum SafeAreaDevice {
@@ -25,14 +26,14 @@ final class NotchGradientLoadingBarViewModel {
     /// The current safe area device.
     let safeAreaDevice: SafeAreaDevice
 
-    // MARK: - Initializer
+    // MARK: - Instance Lifecycle
 
     init(deviceIdentifier: String = UIDevice.identifier) {
         safeAreaDevice = SafeAreaDevice(deviceIdentifier: deviceIdentifier)
     }
 }
 
-// MARK: - Helpers
+// MARK: - Helper
 
 private extension NotchGradientLoadingBarViewModel.SafeAreaDevice {
     /// Creates a new instance from a given `deviceIdentifier` (value returned by `UIDevice.identifier`).

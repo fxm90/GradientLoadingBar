@@ -11,6 +11,7 @@ import SwiftUI
 import GradientLoadingBar
 
 final class NavigationBarExampleViewController: UIViewController {
+
     // MARK: - Config
 
     private enum Config {
@@ -70,7 +71,7 @@ final class NavigationBarExampleViewController: UIViewController {
     }
 }
 
-// MARK: - Helpers
+// MARK: - Helper
 
 struct NavigationBarExampleView: View {
     var body: some View {

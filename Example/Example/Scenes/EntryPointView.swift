@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct EntryPointView: View {
+
     // MARK: - Private properties
 
     @State

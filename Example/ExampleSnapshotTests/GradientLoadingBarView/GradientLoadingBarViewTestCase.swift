@@ -13,6 +13,7 @@ import SnapshotTesting
 @testable import GradientLoadingBar
 
 final class GradientLoadingBarViewTestCase: XCTestCase {
+
     // MARK: - Config
 
     private enum Config {
