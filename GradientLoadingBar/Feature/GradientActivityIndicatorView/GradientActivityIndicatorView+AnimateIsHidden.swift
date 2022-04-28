@@ -16,7 +16,6 @@ import UIKit
 ///
 /// - SeeAlso: [Github Gist – UIView+AnimateIsHidden.swift](https://gist.github.com/fxm90/723b5def31b46035cd92a641e3b184f6)
 public extension GradientActivityIndicatorView {
-    // MARK: - Public methods
 
     /// Updates the view visibility.
     ///

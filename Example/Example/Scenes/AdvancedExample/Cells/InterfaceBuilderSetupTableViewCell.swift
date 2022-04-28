@@ -10,6 +10,7 @@ import UIKit
 import GradientLoadingBar
 
 final class InterfaceBuilderSetupTableViewCell: UITableViewCell {
+
     // MARK: - Config
 
     private enum Config {

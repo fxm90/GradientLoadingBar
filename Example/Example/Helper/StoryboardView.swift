@@ -9,11 +9,12 @@
 import SwiftUI
 
 struct StoryboardView: UIViewControllerRepresentable {
+
     // MARK: - Public properties
 
     let name: String
 
-    // MARK: - Public properties
+    // MARK: - Public methods
 
     func makeUIViewController(context _: Context) -> UIViewController {
         let storyboard = UIStoryboard(name: name, bundle: nil)

@@ -12,6 +12,7 @@ import LightweightObservable
 /// This view model checks for the availability of the key-window,
 /// and adds it as a superview to the gradient-view.
 final class GradientLoadingBarViewModel {
+
     // MARK: - Public properties
 
     /// Observable for the superview of the gradient-view.
@@ -28,7 +29,7 @@ final class GradientLoadingBarViewModel {
     private let sharedApplication: UIApplicationProtocol
     private let notificationCenter: NotificationCenter
 
-    // MARK: - Constructor
+    // MARK: - Instance Lifecycle
 
     init(sharedApplication: UIApplicationProtocol = UIApplication.shared, notificationCenter: NotificationCenter = .default) {
         self.sharedApplication = sharedApplication

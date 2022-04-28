@@ -11,6 +11,7 @@ import SwiftUI
 import GradientLoadingBar
 
 final class BasicExampleViewController: UIViewController {
+
     // MARK: - Public methods
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -31,7 +32,7 @@ final class BasicExampleViewController: UIViewController {
     }
 }
 
-// MARK: - Helpers
+// MARK: - Helper
 
 struct BasicExampleView: View {
     var body: some View {

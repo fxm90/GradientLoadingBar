@@ -10,6 +10,7 @@ import UIKit
 
 @IBDesignable
 final class BorderedButton: UIButton {
+
     // MARK: - Config
 
     private enum Config {
@@ -18,7 +19,7 @@ final class BorderedButton: UIButton {
         static let cornerRadius: CGFloat = 4
     }
 
-    // MARK: - Initializer
+    // MARK: - Instance Lifecycle
 
     override init(frame: CGRect) {
         super.init(frame: frame)

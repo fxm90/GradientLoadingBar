@@ -11,6 +11,7 @@ import LightweightObservable
 
 /// This view model contains all logic related to the `GradientActivityIndicatorView`.
 final class GradientActivityIndicatorViewModel {
+
     // MARK: - Types
 
     struct SizeUpdate: Equatable {
@@ -88,7 +89,7 @@ final class GradientActivityIndicatorViewModel {
 
     private var disposeBag = DisposeBag()
 
-    // MARK: - Initializer
+    // MARK: - Instance Lifecycle
 
     init() {
         gradientLayerColorsSubject = Variable(gradientColors.infiniteLayerColors())

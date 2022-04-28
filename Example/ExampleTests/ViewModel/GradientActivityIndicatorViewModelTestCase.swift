@@ -13,6 +13,7 @@ import LightweightObservable
 
 // swiftlint:disable:next type_name
 final class GradientActivityIndicatorViewModelTestCase: XCTestCase {
+
     // MARK: - Private properties
 
     private var viewModel: GradientActivityIndicatorViewModel!
