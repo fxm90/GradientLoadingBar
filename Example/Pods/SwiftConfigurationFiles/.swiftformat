@@ -22,6 +22,7 @@
 # Rules
 #
 --disable andOperator
+--disable blankLinesAtStartOfScope
 --disable sortedImports
 --disable wrapMultilineStatementBraces
 
