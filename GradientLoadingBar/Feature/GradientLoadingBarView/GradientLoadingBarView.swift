@@ -50,10 +50,11 @@ public struct GradientLoadingBarView: View {
                 viewModel.size = $0
             }
             // Using an `overlay` here makes sure that the parent view won't change it's frame.
-            .overlay(//
+            .overlay(
                 LinearGradient(colors: viewModel.gradientColors, startPoint: .leading, endPoint: .trailing)
                     .frame(width: viewModel.gradientWidth)
-                    .offset(x: viewModel.horizontalOffset, y: 0))
+                    .offset(x: viewModel.horizontalOffset, y: 0)
+            )
     }
 }
 

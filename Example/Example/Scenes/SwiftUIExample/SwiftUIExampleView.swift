@@ -34,6 +34,7 @@ struct SwiftUIExampleView: View {
 // MARK: - Subviews
 
 private struct DefaultExampleView: View {
+
     @State
     private var isVisible = true
 
@@ -69,6 +70,7 @@ private struct DefaultExampleView: View {
 }
 
 private struct CustomColorsExampleView: View {
+
     private enum Config {
         /// The custom gradient colors we use.
         /// Source: https://color.adobe.com/Pink-Flamingo-color-theme-10343714/
@@ -112,6 +114,7 @@ private struct CustomColorsExampleView: View {
 }
 
 private struct CustomProgressDurationExampleView: View {
+
     private enum Config {
         /// The custom progress duration to use.
         static let progressDuration: TimeInterval = 10
@@ -154,6 +157,7 @@ private struct CustomProgressDurationExampleView: View {
 // MARK: - Helper
 
 private struct RoundedRectangleButtonStyle: ButtonStyle {
+
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding(12)
