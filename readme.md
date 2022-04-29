@@ -50,7 +50,7 @@ This framework provides four classes:
  - **GradientLoadingBar**: A controller, managing the visibility of the `GradientActivityIndicatorView` on the current key window.
  - **NotchGradientLoadingBar**: A subclass of `GradientLoadingBar`, wrapping the `GradientActivityIndicatorView` around the notch of the iPhone.
  - **GradientActivityIndicatorView**: A `UIView` containing the gradient with the animation. It can be added as a subview to another view either inside the interface builder or programmatically. Both ways are shown inside the example application.
- - **GradientLoadingBarView**: A `View` for SwiftUI containing the gradient with the animation. The view can be added to any other SwiftUI view. The example application also contains same sample code for this use case.
+ - **GradientLoadingBarView**: A `View` for SwiftUI containing the gradient with the animation. The view can be added to any other SwiftUI view. The example application also contains sample code for this use case.
 
 #### GradientLoadingBar
 To get started, import the module `GradientLoadingBar` into your file and save an instance of `GradientLoadingBar()` on a property of your view-controller. To show the loading bar, simply call the `fadeIn(duration:completion)` method and after your async operations have finished call the  `fadeOut(duration:completion)` method.
@@ -171,12 +171,12 @@ This property adjusts the duration of the animation moving the gradient from lef
 
 
 #### GradientLoadingBarView
-This is the SwiftUI variant for the `GradientActivityIndicatorView`. The view can be configured via the two parameters `gradientColors: [Color]` and `progressAnimation: Animation` passed to the initializer.
+This is the SwiftUI variant for the `GradientActivityIndicatorView`. The view can be configured via the two parameters `gradientColors: [Color]` and `progressDuration: TimeInterval` passed to the initializer.
 
 ##### – `gradientColors: [Color]` :
 This parameter adjusts the gradient colors shown on the loading bar.
 
-##### – `progressAnimation: Animation` :
+##### – `progressDuration: TimeInterval` :
 This parameter adjusts the duration of the animation moving the gradient from left to right.
 
 The visibility of the view can be updated with the view modifier [`opacity()`](https://developer.apple.com/documentation/swiftui/view/opacity(_:)) or [`hidden()`](https://developer.apple.com/documentation/swiftui/view/hidden()).
