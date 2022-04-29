@@ -30,14 +30,7 @@ final class GradientLoadingBarControllerTestCase: XCTestCase {
         // When
         gradientLoadingBarController.fadeIn(duration: 0)
 
-        let expectation = expectation(description: "Wait for view to appear.")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            expectation.fulfill()
-        }
-
         // Then
-        wait(for: [expectation], timeout: 1)
-
         assertSnapshot(matching: rootViewController,
                        as: .image(drawHierarchyInKeyWindow: true, precision: Config.precision))
     }
