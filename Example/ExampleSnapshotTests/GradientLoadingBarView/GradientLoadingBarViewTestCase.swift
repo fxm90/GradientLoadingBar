@@ -28,7 +28,7 @@ final class GradientLoadingBarViewTestCase: XCTestCase {
         ].map(Color.init)
 
         /// The percentage of pixels that must match.
-        static let precision: Float = 0.99
+        static let precision: Float = 0.98
     }
 
     // MARK: - Test cases
