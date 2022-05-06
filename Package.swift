@@ -15,7 +15,7 @@ let package = Package(name: "GradientLoadingBar",
                       targets: [
                           .target(name: "GradientLoadingBar",
                                   dependencies: ["LightweightObservable"],
-                                  path: "GradientLoadingBar/Classes"),
+                                  path: "GradientLoadingBar/"),
                           .testTarget(name: "GradientLoadingBarTests",
                                       dependencies: ["GradientLoadingBar"],
                                       path: "Example/Tests/"),
