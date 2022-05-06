@@ -7,6 +7,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+
+## [2.3.0] - 2022-06-05
+### Added
+ - Add `GradientLoadingBarView` to support SwiftUI
+
 ## [2.2.5] - 2022-27-03
 ### Fixed
  - Fixed incorrect layout on `NotchGradientLoadingBar` when using iPhone 11
@@ -167,7 +172,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial release
 
 
-[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/2.2.5...main
+[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.0...main
+[2.3.0]: https://github.com/fxm90/GradientLoadingBar/compare/2.2.5...2.3.0
 [2.2.5]: https://github.com/fxm90/GradientLoadingBar/compare/2.2.4...2.2.5
 [2.2.4]: https://github.com/fxm90/GradientLoadingBar/compare/2.2.3...2.2.4
 [2.2.3]: https://github.com/fxm90/GradientLoadingBar/compare/2.2.2...2.2.3
