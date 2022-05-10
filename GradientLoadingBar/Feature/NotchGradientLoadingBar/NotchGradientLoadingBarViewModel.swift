@@ -17,6 +17,9 @@ final class NotchGradientLoadingBarViewModel {
         case iPhoneX
         case iPhoneXR
         case iPhone11
+        // The "iPhone 11 Pro" and "iPhone 11 Pro Max" have a smaller notch than the "iPhone 11".
+        case iPhone11Pro
+        case iPhone11ProMax
         case iPhone12
         case iPhone13
     }
@@ -47,8 +50,14 @@ private extension NotchGradientLoadingBarViewModel.SafeAreaDevice {
         case "iPhone11,8":
             self = .iPhoneXR
 
-        case "iPhone12,1", "iPhone12,3", "iPhone12,5":
+        case "iPhone12,1":
             self = .iPhone11
+
+        case "iPhone12,3":
+            self = .iPhone11Pro
+
+        case "iPhone12,5":
+            self = .iPhone11ProMax
 
         case "iPhone13,1", "iPhone13,2", "iPhone13,3", "iPhone13,4":
             self = .iPhone12
