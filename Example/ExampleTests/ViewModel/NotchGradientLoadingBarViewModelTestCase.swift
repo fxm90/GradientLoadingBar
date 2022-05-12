@@ -11,6 +11,7 @@ import XCTest
 @testable import GradientLoadingBar
 
 final class NotchGradientLoadingBarViewModelTestCase: XCTestCase {
+
     func test_initializer_shouldSetSafeAreaDevice_toIPhoneX() {
         // Given
         let deviceIdentifiers = ["iPhone10,3", "iPhone10,6", "iPhone11,2", "iPhone11,4", "iPhone11,6"]
@@ -26,28 +27,46 @@ final class NotchGradientLoadingBarViewModelTestCase: XCTestCase {
 
     func test_initializer_shouldSetSafeAreaDevice_toIPhoneXR() {
         // Given
-        let deviceIdentifiers = ["iPhone11,8"]
-        deviceIdentifiers.forEach { deviceIdentifier in
+        let deviceIdentifier = "iPhone11,8"
 
-            // When
-            let viewModel = NotchGradientLoadingBarViewModel(deviceIdentifier: deviceIdentifier)
+        // When
+        let viewModel = NotchGradientLoadingBarViewModel(deviceIdentifier: deviceIdentifier)
 
-            // Then
-            XCTAssertEqual(viewModel.safeAreaDevice, .iPhoneXR)
-        }
+        // Then
+        XCTAssertEqual(viewModel.safeAreaDevice, .iPhoneXR)
     }
 
     func test_initializer_shouldSetSafeAreaDevice_toIPhone11() {
         // Given
-        let deviceIdentifiers = ["iPhone12,1", "iPhone12,3", "iPhone12,5"]
-        deviceIdentifiers.forEach { deviceIdentifier in
+        let deviceIdentifier = "iPhone12,1"
 
-            // When
-            let viewModel = NotchGradientLoadingBarViewModel(deviceIdentifier: deviceIdentifier)
+        // When
+        let viewModel = NotchGradientLoadingBarViewModel(deviceIdentifier: deviceIdentifier)
 
-            // Then
-            XCTAssertEqual(viewModel.safeAreaDevice, .iPhone11)
-        }
+        // Then
+        XCTAssertEqual(viewModel.safeAreaDevice, .iPhone11)
+    }
+
+    func test_initializer_shouldSetSafeAreaDevice_toIPhone11Pro() {
+        // Given
+        let deviceIdentifier = "iPhone12,3"
+
+        // When
+        let viewModel = NotchGradientLoadingBarViewModel(deviceIdentifier: deviceIdentifier)
+
+        // Then
+        XCTAssertEqual(viewModel.safeAreaDevice, .iPhone11Pro)
+    }
+
+    func test_initializer_shouldSetSafeAreaDevice_toIPhone11ProMax() {
+        // Given
+        let deviceIdentifier = "iPhone12,5"
+
+        // When
+        let viewModel = NotchGradientLoadingBarViewModel(deviceIdentifier: deviceIdentifier)
+
+        // Then
+        XCTAssertEqual(viewModel.safeAreaDevice, .iPhone11ProMax)
     }
 
     func test_initializer_shouldSetSafeAreaDevice_toIPhone12() {
