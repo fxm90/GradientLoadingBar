@@ -155,7 +155,7 @@ final class GradientActivityIndicatorViewModelTestCase: XCTestCase {
 
     // MARK: - Test property `progressAnimationDuration`
 
-    func test_settingProgressAnimationDuration_shouldUpdategGradientLayerAnimationDuration() {
+    func test_settingProgressAnimationDuration_shouldUpdateGradientLayerAnimationDuration() {
         // Given
         var receivedGradientLayerAnimationDuration: TimeInterval?
         let disposable = viewModel.gradientLayerAnimationDuration.subscribe { gradientLayerAnimationDuration, _ in
