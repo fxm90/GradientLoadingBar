@@ -42,8 +42,9 @@ final class GradientLoadingBarViewModelTestCase: XCTestCase {
                                                     notificationCenter: notificationCenter)
 
         // Then
-        let variable = try XCTUnwrap(viewModel.superview as? Variable, "Cast `Observable` instance to `Variable` in order to validate the initial value.")
-        XCTAssertNil(variable.value)
+        // The property `superview` is an optional, as well as the property `value`.
+        // Therefore we can't use `XCTAssertNil` here, as this doesn't work with double optionals.
+        XCTAssertEqual(viewModel.superview.value, .some(nil))
     }
 
     func test_initializer_shouldSetupSuperviewObservable_withKeyWindow() {
