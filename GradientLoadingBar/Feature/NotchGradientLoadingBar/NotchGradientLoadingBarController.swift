@@ -257,6 +257,7 @@ private extension NotchGradientLoadingBarViewModel.SafeAreaDevice {
 }
 
 private extension UIBezierPath {
+
     // swiftlint:disable:next identifier_name
     func addLineTo(x: CGFloat, y: CGFloat) {
         addLine(to: CGPoint(x: x, y: y))

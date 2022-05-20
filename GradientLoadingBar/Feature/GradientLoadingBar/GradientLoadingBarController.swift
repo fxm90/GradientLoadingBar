@@ -19,24 +19,24 @@ open class GradientLoadingBarController {
 
     /// The height of the gradient bar.
     ///
-    ///  - Note: Has to be public to allow overwriting `setupConstraints()`
+    ///  - Note: This property needs to have a public access level to allow overwriting `setupConstraints()`.
     public let height: CGFloat
 
-    /// Flag whether the top layout constraint should respect `safeAreaLayoutGuide`.
+    /// Flag whether the top layout constraint should respect the `safeAreaLayoutGuide`.
     ///
-    ///  - Note: Has to be public to allow overwriting `setupConstraints()`
+    ///  - Note: This property needs to have a public access level to allow overwriting `setupConstraints()`.
     public let isRelativeToSafeArea: Bool
 
-    /// View containing the gradient layer.
+    /// The view containing the gradient layer.
     public let gradientActivityIndicatorView = GradientActivityIndicatorView()
 
-    /// Colors used for the gradient.
+    /// The colors for the gradient.
     public var gradientColors: [UIColor] {
         get { gradientActivityIndicatorView.gradientColors }
         set { gradientActivityIndicatorView.gradientColors = newValue }
     }
 
-    /// Duration for the progress animation.
+    /// The duration for the progress animation.
     public var progressAnimationDuration: TimeInterval {
         get { gradientActivityIndicatorView.progressAnimationDuration }
         set { gradientActivityIndicatorView.progressAnimationDuration = newValue }
@@ -65,7 +65,7 @@ open class GradientLoadingBarController {
     ///
     /// - Parameters:
     ///   - height:               Height of the gradient bar (defaults to `3.0`).
-    ///   - isRelativeToSafeArea: Flag whether the top layout constraint should respect `safeAreaLayoutGuide`.
+    ///   - isRelativeToSafeArea: Flag whether the top layout constraint should respect the `safeAreaLayoutGuide`.
     ///
     /// - Returns: Instance of gradient loading bar.
     public init(height: CGFloat = 3, isRelativeToSafeArea: Bool = true) {

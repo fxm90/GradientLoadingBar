@@ -14,6 +14,8 @@ final class GradientActivityIndicatorViewModel {
 
     // MARK: - Types
 
+    /// - Note: The `fromValue` used on the `CABasicAnimation` is dependent on the `frame`,
+    ///         therefore we always update these values together.
     struct SizeUpdate: Equatable {
         let frame: CGRect
         let fromValue: CGFloat
@@ -52,25 +54,24 @@ final class GradientActivityIndicatorViewModel {
     var bounds: CGRect = .zero {
         didSet {
             // Three times of the width in order to apply normal, reversed and normal gradient
-            // in order to simulate infinite animation.
+            // to simulate an infinite animation.
             var frame = bounds
             frame.size.width *= 3
 
-            gradientLayerSizeUpdateSubject.value = SizeUpdate(frame: frame,
-                                                              fromValue: bounds.width * -2)
+            gradientLayerSizeUpdateSubject.value = SizeUpdate(frame: frame, fromValue: bounds.width * -2)
         }
     }
 
     /// Color array used for the gradient (of type `UIColor`).
     var gradientColors = UIColor.GradientLoadingBar.gradientColors {
         didSet {
-            gradientLayerColorsSubject.value = gradientColors.infiniteLayerColors()
+            gradientLayerColorsSubject.value = gradientColors.infiniteGradientColors().map(\.cgColor)
         }
     }
 
     /// The duration for the progress animation.
     ///
-    ///  - Note: We explicitly have to pass this through the view-model in order to restart the animation when this value changes
+    ///  - Note: We explicitly have to pass this value through the view-model, in order to restart the animation when this value changes
     ///          while the loading bar is visible.
     var progressAnimationDuration = TimeInterval.GradientLoadingBar.progressDuration {
         didSet {
@@ -80,7 +81,7 @@ final class GradientActivityIndicatorViewModel {
 
     // MARK: - Private properties
 
-    // As our view is initially visible, we also have to start the progress animation initially.
+    // As a `UIView` is initially visible, we also have to start the progress animation initially.
     private let isAnimatingSubject = Variable(true)
     private let gradientLayerSizeUpdateSubject = Variable(SizeUpdate(frame: .zero, fromValue: 0))
 
@@ -92,7 +93,7 @@ final class GradientActivityIndicatorViewModel {
     // MARK: - Instance Lifecycle
 
     init() {
-        gradientLayerColorsSubject = Variable(gradientColors.infiniteLayerColors())
+        gradientLayerColorsSubject = Variable(gradientColors.infiniteGradientColors().map(\.cgColor))
         gradientLayerAnimationDurationSubject = Variable(progressAnimationDuration)
 
         gradientLayerAnimationDuration.subscribe { [weak self] _, _ in
@@ -107,7 +108,7 @@ final class GradientActivityIndicatorViewModel {
     // MARK: - Private methods
 
     /// Unfortunately the only easy way to update a running `CABasicAnimation`, is to restart it.
-    /// Mutating a running animation throws an exception!!
+    /// Mutating a running animation throws an exception!
     private func restartAnimationIfNeeded() {
         guard isAnimatingSubject.value else { return }
 
@@ -116,26 +117,27 @@ final class GradientActivityIndicatorViewModel {
     }
 }
 
-// MARK: - Helperz
+// MARK: - Helper
 
 extension Array where Element == UIColor {
-    ///
-    ///
-    func infiniteLayerColors() -> [CGColor] {
-        let cgColors = map(\.cgColor)
 
-        // Simulate infinite animation - Therefore we'll reverse the colors and remove the first and last item
-        // to prevent duplicate values at the "inner edges" destroying the infinite look.
-        //
-        // E.g. for array of [.red, .yellow, .green]
-        // we will create    [.red, .yellow, .green, .yellow, .red, .yellow, .green]
-        //
-        // E.g. for array of [.red, .yellow, .green, .blue]
-        // we will create    [.red, .yellow, .green, .blue, .green, .yellow, .red, .yellow, .green, .blue]
-        let reversedColors = cgColors.reversed()
+    /// Creates an infinite gradient out of the given colors.
+    ///
+    /// Therefore we'll reverse the colors and remove the first and last item
+    /// to prevent duplicate values at the "inner edges" destroying the infinite look.
+    ///
+    /// E.g. for array of [.red, .yellow, .green]
+    /// we will create    [.red, .yellow, .green, .yellow, .red, .yellow, .green]
+    ///
+    /// E.g. for array of [.red, .yellow, .green, .blue]
+    /// we will create    [.red, .yellow, .green, .blue, .green, .yellow, .red, .yellow, .green, .blue]
+    ///
+    /// With the created array we can animate from left to right and restart the animation without a noticeable glitch.
+    func infiniteGradientColors() -> [UIColor] {
+        let reversedColors = reversed()
             .dropFirst()
             .dropLast()
 
-        return cgColors + reversedColors + cgColors
+        return self + reversedColors + self
     }
 }

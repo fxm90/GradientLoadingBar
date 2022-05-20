@@ -39,9 +39,10 @@ final class NotchGradientLoadingBarViewModel {
 // MARK: - Helper
 
 private extension NotchGradientLoadingBarViewModel.SafeAreaDevice {
+
     /// Creates a new instance from a given `deviceIdentifier` (value returned by `UIDevice.identifier`).
     ///
-    /// Taken from <https://stackoverflow.com/a/26962452/3532505>
+    /// - Note: This is taken from <https://stackoverflow.com/a/26962452/3532505>
     init(deviceIdentifier: String) {
         switch deviceIdentifier {
         case "iPhone10,3", "iPhone10,6", "iPhone11,2", "iPhone11,4", "iPhone11,6":
@@ -72,6 +73,7 @@ private extension NotchGradientLoadingBarViewModel.SafeAreaDevice {
 }
 
 private extension UIDevice {
+
     /// Returns the device identifier.
     ///
     /// Based on: <https://stackoverflow.com/a/26962452/3532505>
