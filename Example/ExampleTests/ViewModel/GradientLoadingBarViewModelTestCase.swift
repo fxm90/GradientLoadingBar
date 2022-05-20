@@ -36,7 +36,7 @@ final class GradientLoadingBarViewModelTestCase: XCTestCase {
 
     // MARK: - Test observable `superview`
 
-    func test_initializer_shouldSetupSuperviewObservable_withNil() throws {
+    func test_init_shouldSetupSuperviewObservable_withNil() throws {
         // When
         let viewModel = GradientLoadingBarViewModel(sharedApplication: sharedApplicationMock,
                                                     notificationCenter: notificationCenter)
@@ -47,7 +47,7 @@ final class GradientLoadingBarViewModelTestCase: XCTestCase {
         XCTAssertEqual(viewModel.superview.value, .some(nil))
     }
 
-    func test_initializer_shouldSetupSuperviewObservable_withKeyWindow() {
+    func test_init_shouldSetupSuperviewObservable_withKeyWindow() {
         // Given
         let keyWindow = UIWindow()
         sharedApplicationMock.keyWindowInConnectedScenes = keyWindow
@@ -60,22 +60,27 @@ final class GradientLoadingBarViewModelTestCase: XCTestCase {
         XCTAssertEqual(viewModel.superview.value, keyWindow)
     }
 
-    func test_initializer_shouldSetupSuperviewObservable_afterUIWindowDidBecomeKeyNotification() {
+    func test_init_shouldSetupSuperviewObservable_afterUIWindowDidBecomeKeyNotification() {
         // Given
-        sharedApplicationMock.keyWindowInConnectedScenes = nil
-
         let viewModel = GradientLoadingBarViewModel(sharedApplication: sharedApplicationMock,
                                                     notificationCenter: notificationCenter)
 
-        // When
+        var receivedKeyWindows = [UIView?]()
+        let disposable = viewModel.superview.subscribe { keyWindow, _ in
+            receivedKeyWindows.append(keyWindow)
+        }
+
         let keyWindow = UIWindow()
         sharedApplicationMock.keyWindowInConnectedScenes = keyWindow
 
-        notificationCenter.post(name: UIWindow.didBecomeKeyNotification,
-                                object: nil)
+        // When
+        withExtendedLifetime(disposable) {
+            notificationCenter.post(name: UIWindow.didBecomeKeyNotification, object: nil)
+        }
 
         // Then
-        XCTAssertEqual(viewModel.superview.value, keyWindow)
+        let expectedKeyWindows = [nil, keyWindow]
+        XCTAssertEqual(receivedKeyWindows, expectedKeyWindows)
     }
 
     func test_deinit_shouldResetSuperviewObservable_withNil() {
@@ -86,25 +91,19 @@ final class GradientLoadingBarViewModelTestCase: XCTestCase {
         var viewModel: GradientLoadingBarViewModel? = GradientLoadingBarViewModel(sharedApplication: sharedApplicationMock,
                                                                                   notificationCenter: notificationCenter)
 
-        let expectation = expectation(description: "Expected observer to be informed to reset superview to nil.")
-        var disposeBag = DisposeBag()
-
-        // As we've just initialized the view model it has to exist at this point, and therefore we can "safely" use force-unwrapping here.
-        // swiftlint:disable:next force_unwrapping
-        viewModel!.superview.subscribe { newSuperview, _ in
-            guard newSuperview == nil else {
-                // Skip initial call to observer.
-                return
-            }
-
-            expectation.fulfill()
-        }.disposed(by: &disposeBag)
+        var receivedKeyWindows = [UIView?]()
+        let disposable = viewModel?.superview.subscribe { keyWindow, _ in
+            receivedKeyWindows.append(keyWindow)
+        }
 
         // When
-        viewModel = nil
+        withExtendedLifetime(disposable) {
+            viewModel = nil
+        }
 
         // Then
-        wait(for: [expectation], timeout: 0.1)
+        let expectedKeyWindows = [keyWindow, nil]
+        XCTAssertEqual(receivedKeyWindows, expectedKeyWindows)
     }
 }
 
