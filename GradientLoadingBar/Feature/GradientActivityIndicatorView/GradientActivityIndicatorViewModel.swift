@@ -73,7 +73,7 @@ final class GradientActivityIndicatorViewModel {
     ///
     ///  - Note: We explicitly have to pass this value through the view-model, in order to restart the animation when this value changes
     ///          while the loading bar is visible.
-    var progressAnimationDuration = TimeInterval.GradientLoadingBar.progressDuration {
+    var progressAnimationDuration: TimeInterval = .GradientLoadingBar.progressDuration {
         didSet {
             gradientLayerAnimationDurationSubject.value = progressAnimationDuration
         }

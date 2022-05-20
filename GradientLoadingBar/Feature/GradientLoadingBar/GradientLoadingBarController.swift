@@ -64,11 +64,11 @@ open class GradientLoadingBarController {
     /// Creates a new gradient loading bar instance.
     ///
     /// - Parameters:
-    ///   - height:               Height of the gradient bar (defaults to `3.0`).
+    ///   - height:               Height of the gradient bar.
     ///   - isRelativeToSafeArea: Flag whether the top layout constraint should respect the `safeAreaLayoutGuide`.
     ///
     /// - Returns: Instance of gradient loading bar.
-    public init(height: CGFloat = 3, isRelativeToSafeArea: Bool = true) {
+    public init(height: CGFloat = .GradientLoadingBar.height, isRelativeToSafeArea: Bool = true) {
         self.height = height
         self.isRelativeToSafeArea = isRelativeToSafeArea
 
@@ -103,13 +103,13 @@ open class GradientLoadingBarController {
     }
 
     /// Fades in the gradient loading bar.
-    public func fadeIn(duration: TimeInterval = TimeInterval.GradientLoadingBar.fadeInDuration, completion: ((Bool) -> Void)? = nil) {
+    public func fadeIn(duration: TimeInterval = .GradientLoadingBar.fadeInDuration, completion: ((Bool) -> Void)? = nil) {
         gradientActivityIndicatorView.fadeIn(duration: duration,
                                              completion: completion)
     }
 
     /// Fades out the gradient loading bar.
-    public func fadeOut(duration: TimeInterval = TimeInterval.GradientLoadingBar.fadeOutDuration, completion: ((Bool) -> Void)? = nil) {
+    public func fadeOut(duration: TimeInterval = .GradientLoadingBar.fadeOutDuration, completion: ((Bool) -> Void)? = nil) {
         gradientActivityIndicatorView.fadeOut(duration: duration,
                                               completion: completion)
     }
