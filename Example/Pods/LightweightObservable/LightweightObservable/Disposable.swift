@@ -11,7 +11,7 @@ import Foundation
 /// Helper to allow storing multiple disposables and matching name from [RxSwift](https://github.com/ReactiveX/RxSwift).
 public typealias DisposeBag = [Disposable]
 
-/// Calls a closure on when this instance is deallocated.
+/// Invokes a closure when this instance is deallocated.
 public final class Disposable {
 
     // MARK: - Types
