@@ -13,11 +13,18 @@ import Combine
 
 @available(iOS 13.0, *)
 extension Observable: Publisher {
+
+    // MARK: - Types
+
     public typealias Output = T
     public typealias Failure = Never
 
+    // MARK: - Public methods
+
     public func receive<S: Subscriber>(subscriber: S) where S.Input == Output, S.Failure == Failure {
-        let subscription = Subscription(subscriber: subscriber)
+        let subscription = Subscription<S>()
+        subscription.subscriber = subscriber
+
         subscriber.receive(subscription: subscription)
 
         // We explicitly subscribe to our `Observable` instance after passing the `Combine.Subscription` to the `Combine.Subscriber`.
@@ -30,12 +37,16 @@ extension Observable: Publisher {
 private extension Observable {
     /// A custom subscription to forward events from an `Observable` instance.
     final class Subscription<S: Subscriber> where S.Input == Output, S.Failure == Failure {
-        private var subscriber: S?
+
+        // MARK: - Public properties
+
+        var subscriber: S?
+
+        // MARK: - Private properties
+
         private var disposable: Disposable?
 
-        init(subscriber: S) {
-            self.subscriber = subscriber
-        }
+        // MARK: - Public methods
 
         /// Updates our `subscriber` (`Combine.Subscriber`) with the values from the observable.
         ///
@@ -48,6 +59,8 @@ private extension Observable {
         }
     }
 }
+
+// MARK: - `Subscription` conformance
 
 @available(iOS 13.0, *)
 extension Observable.Subscription: Subscription {

@@ -15,6 +15,7 @@ import Foundation
 /// - Remark: I'd prefer having a protocol definition here, but casting an instance with a generic (e.g. `Variable<Int>(0)`) to a protocol
 ///           with an associated type (`Observable<Int>`) doesn't work yet. Therefore we use an "abstract" class as a workaround.
 public class Observable<T> {
+
     // MARK: - Types
 
     /// The type for the new value of the observable.
@@ -50,7 +51,7 @@ public class Observable<T> {
     /// Map with all **active** observers.
     private var observers = [Index: Observer]()
 
-    // MARK: - Initalizer
+    // MARK: - Instance Lifecycle
 
     /// Initializes a new observable.
     ///
@@ -92,6 +93,7 @@ public class Observable<T> {
 
 /// Starts empty and only emits new elements to subscribers.
 public final class PublishSubject<T>: Observable<T> {
+
     // MARK: - Public properties
 
     /// The current (readonly) value of the observable (if available).
@@ -106,7 +108,7 @@ public final class PublishSubject<T>: Observable<T> {
     /// - Note: Workaround for compiler error `Cannot override with a stored property 'value'`.
     private var _value: Value?
 
-    // MARK: - Initializer
+    // MARK: - Instance Lifecycle
 
     /// Initializes a new publish subject.
     ///
@@ -129,6 +131,7 @@ public final class PublishSubject<T>: Observable<T> {
 
 /// Starts with an initial value and replays it or the latest element to new subscribers.
 public final class Variable<T>: Observable<T> {
+
     // MARK: - Public properties
 
     /// The current (read- and writeable) value of the variable.
@@ -148,7 +151,7 @@ public final class Variable<T>: Observable<T> {
         }
     }
 
-    // MARK: - Initializer
+    // MARK: - Instance Lifecycle
 
     /// Initializes a new variable with the given value.
     ///

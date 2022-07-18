@@ -10,6 +10,7 @@ import Foundation
 
 /// Additional helper methods for an observable that that underlying type conforms to `Equatable`.
 public extension Observable where T: Equatable {
+
     // MARK: - Types
 
     /// The type for the filter closure.
