@@ -45,6 +45,7 @@ SwiftFormat is a code library and command-line tool for reformatting Swift code 
 
 SwiftFormat goes above and beyond what you might expect from a code formatter. In addition to adjusting white space it can insert or remove implicit `self`, remove redundant parentheses, and correct many other deviations from the standard Swift idioms.
 
+
 Why would I want to do that?
 -----------------------------
 
@@ -73,7 +74,7 @@ Command-line tool
 
 **Installation:**
 
-You can install the `swiftformat` command-line tool on macOS using [Homebrew](http://brew.sh/). Assuming you already have Homebrew installed, just type:
+You can install the `swiftformat` command-line tool on macOS or Linux using [Homebrew](http://brew.sh/). Assuming you already have Homebrew installed, just type:
 
 ```bash
 $ brew install swiftformat
@@ -91,12 +92,6 @@ Alternatively, you can install the tool on macOS or Linux by using [Mint](https:
 $ mint install nicklockwood/SwiftFormat
 ```
 
-And then run it using:
-
-```bash
-$ mint run swiftformat
-```
-
 Or if you prefer, you can check out and build SwiftFormat manually on macOS, Linux or Windows as follows:
 
 ```bash
@@ -106,6 +101,16 @@ $ swift build -c release
 ```
 
 If you are installing SwiftFormat into your project directory, you can use [CocoaPods](https://cocoapods.org/) on macOS to automatically install the swiftformat binary along with your other pods - see the Xcode build phase instructions below for details.
+
+Another option is to include the binary artifactbundle in your `Package.swift`:
+
+```swift
+.binaryTarget(
+    name: "SwiftFormat",
+    url: "https://github.com/nicklockwood/SwiftFormat/releases/download/0.49.12/swiftformat-macos.artifactbundle.zip",
+    checksum: "CHECKSUM"
+),
+``` 
 
 If you would prefer not to use a package manager, you can build the command-line app manually:
 
