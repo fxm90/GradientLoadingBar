@@ -6,8 +6,8 @@
 //  Copyright © 2016 Felix Mau. All rights reserved.
 //
 
-import UIKit
 import LightweightObservable
+import UIKit
 
 @IBDesignable
 open class GradientActivityIndicatorView: UIView {

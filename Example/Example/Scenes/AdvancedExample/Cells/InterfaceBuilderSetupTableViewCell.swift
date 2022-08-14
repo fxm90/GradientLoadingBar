@@ -6,8 +6,8 @@
 //  Copyright © 2022 Felix Mau. All rights reserved.
 //
 
-import UIKit
 import GradientLoadingBar
+import UIKit
 
 final class InterfaceBuilderSetupTableViewCell: UITableViewCell {
 

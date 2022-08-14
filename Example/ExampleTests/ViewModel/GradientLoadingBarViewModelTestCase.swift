@@ -6,8 +6,8 @@
 //  Copyright © 2017 Felix Mau. All rights reserved.
 //
 
-import XCTest
 import LightweightObservable
+import XCTest
 
 @testable import GradientLoadingBar
 

@@ -6,9 +6,9 @@
 //  Copyright © 2022 Felix Mau. All rights reserved.
 //
 
-import UIKit
-import SwiftUI
 import GradientLoadingBar
+import SwiftUI
+import UIKit
 
 final class SafeAreaExampleViewController: UIViewController {
 
