@@ -6,8 +6,8 @@
 //  Copyright © 2022 Felix Mau. All rights reserved.
 //
 
-import SwiftUI
 import GradientLoadingBar
+import SwiftUI
 
 struct SwiftUIExampleView: View {
 

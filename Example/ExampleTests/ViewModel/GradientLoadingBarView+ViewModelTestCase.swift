@@ -6,8 +6,8 @@
 //  Copyright © 2022 Felix Mau. All rights reserved.
 //
 
-import XCTest
 import SwiftUI
+import XCTest
 
 @testable import GradientLoadingBar
 

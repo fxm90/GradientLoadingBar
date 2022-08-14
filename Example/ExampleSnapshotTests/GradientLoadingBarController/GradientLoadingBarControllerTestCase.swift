@@ -6,8 +6,8 @@
 //  Copyright © 2020 Felix Mau. All rights reserved.
 //
 
-import XCTest
 import SnapshotTesting
+import XCTest
 
 @testable import GradientLoadingBar
 

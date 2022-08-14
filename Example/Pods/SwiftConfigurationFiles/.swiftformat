@@ -23,7 +23,6 @@
 #
 --disable andOperator
 --disable blankLinesAtStartOfScope
---disable sortedImports
 --disable wrapMultilineStatementBraces
 
 #
@@ -31,3 +30,4 @@
 #
 --wraparguments "after-first"
 --wrapcollections "before-first"
+--importgrouping testable-last

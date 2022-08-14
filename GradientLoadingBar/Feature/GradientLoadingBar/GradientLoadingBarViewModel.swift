@@ -6,8 +6,8 @@
 //  Copyright © 2017 Felix Mau. All rights reserved.
 //
 
-import UIKit
 import LightweightObservable
+import UIKit
 
 /// This view model checks for the availability of the key-window,
 /// and adds it as a superview to the gradient-view.
