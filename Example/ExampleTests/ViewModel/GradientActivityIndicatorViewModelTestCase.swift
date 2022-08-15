@@ -103,9 +103,12 @@ final class GradientActivityIndicatorViewModelTestCase: XCTestCase {
         }
         receivedIsAnimating.removeAll()
 
+        let size = CGSize(width: .random(in: 1 ... 100), height: .random(in: 1 ... 100))
+        let bounds = CGRect(origin: .zero, size: size)
+
         // When
         withExtendedLifetime(disposable) {
-            viewModel.bounds = CGRect(origin: .zero, size: .zero)
+            viewModel.bounds = bounds
         }
 
         // Then
@@ -119,6 +122,9 @@ final class GradientActivityIndicatorViewModelTestCase: XCTestCase {
         let disposable = viewModel.isAnimating.subscribe { isAnimating, _ in
             receivedIsAnimating.append(isAnimating)
         }
+
+        let size = CGSize(width: .random(in: 1 ... 100), height: .random(in: 1 ... 100))
+        let bounds = CGRect(origin: .zero, size: size)
 
         viewModel.isHidden = true
         receivedIsAnimating.removeAll()
