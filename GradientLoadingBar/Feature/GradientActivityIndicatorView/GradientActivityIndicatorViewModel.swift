@@ -73,10 +73,9 @@ final class GradientActivityIndicatorViewModel {
     ///
     ///  - Note: We explicitly have to pass this value through the view-model, in order to restart the animation when this value changes
     ///          while the loading bar is visible.
-    var progressAnimationDuration: TimeInterval = .GradientLoadingBar.progressDuration {
-        didSet {
-            gradientLayerAnimationDurationSubject.value = progressAnimationDuration
-        }
+    var progressAnimationDuration: TimeInterval {
+        get { gradientLayerAnimationDurationSubject.value }
+        set { gradientLayerAnimationDurationSubject.value = newValue }
     }
 
     // MARK: - Private properties
@@ -94,7 +93,7 @@ final class GradientActivityIndicatorViewModel {
 
     init() {
         gradientLayerColorsSubject = Variable(gradientColors.infiniteGradientColors().map(\.cgColor))
-        gradientLayerAnimationDurationSubject = Variable(progressAnimationDuration)
+        gradientLayerAnimationDurationSubject = Variable(.GradientLoadingBar.progressDuration)
 
         gradientLayerAnimationDuration.subscribe { [weak self] _, _ in
             self?.restartAnimationIfNeeded()
