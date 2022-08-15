@@ -14,25 +14,42 @@ import XCTest
 final class NotchGradientLoadingBarControllerTestCase: XCTestCase {
     // swiftlint:disable:previous type_name
 
-    // MARK: - Config
+    // MARK: - Private properties
 
-    private enum Config {
-        /// The percentage of pixels that must match.
-        static let precision: Float = 0.99
+    private var window: UIWindow!
+
+    // MARK: - Public methods
+
+    override func setUp() {
+        super.setUp()
+
+        window = UIApplication.shared.keyWindowInConnectedScenes
+    }
+
+    override func tearDown() {
+        window = nil
+
+        super.tearDown()
     }
 
     // MARK: - Test cases
 
     func test_notchGradientLoadingBarController() {
         // Given
+        // Show an empty view controller behind loading bar in our test.
         let rootViewController = UIViewController()
-        let notchGradientLoadingBarController = NotchGradientLoadingBarController()
+        window.rootViewController = rootViewController
+
+        let expectation = expectation(description: "Expect view to be completely fade in.")
 
         // When
-        notchGradientLoadingBarController.fadeIn(duration: 0)
+        let gradientLoadingBarController = NotchGradientLoadingBarController()
+        gradientLoadingBarController.fadeIn(duration: 0) { _ in
+            expectation.fulfill()
+        }
 
         // Then
-        assertSnapshot(matching: rootViewController,
-                       as: .image(drawHierarchyInKeyWindow: true, precision: Config.precision))
+        wait(for: [expectation], timeout: 0.1)
+        assertSnapshot(matching: window, as: .image)
     }
 }
