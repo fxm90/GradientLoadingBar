@@ -95,11 +95,11 @@ final class GradientActivityIndicatorViewModel {
         gradientLayerColorsSubject = Variable(gradientColors.infiniteGradientColors().map(\.cgColor))
         gradientLayerAnimationDurationSubject = Variable(.GradientLoadingBar.progressDuration)
 
-        gradientLayerAnimationDuration.subscribe { [weak self] _, _ in
+        gradientLayerAnimationDuration.subscribeDistinct { [weak self] _, _ in
             self?.restartAnimationIfNeeded()
         }.disposed(by: &disposeBag)
 
-        gradientLayerSizeUpdate.subscribe { [weak self] _, _ in
+        gradientLayerSizeUpdate.subscribeDistinct { [weak self] _, _ in
             self?.restartAnimationIfNeeded()
         }.disposed(by: &disposeBag)
     }
