@@ -40,7 +40,7 @@ final class NotchGradientLoadingBarControllerTestCase: XCTestCase {
         let rootViewController = UIViewController()
         window.rootViewController = rootViewController
 
-        let expectation = expectation(description: "Expect view to be completely fade in.")
+        let expectation = expectation(description: "Expect view to be completely visible.")
 
         // When
         let gradientLoadingBarController = NotchGradientLoadingBarController()
@@ -49,7 +49,9 @@ final class NotchGradientLoadingBarControllerTestCase: XCTestCase {
         }
 
         // Then
-        wait(for: [expectation], timeout: 0.1)
-        assertSnapshot(matching: window, as: .image)
+        wait(for: [expectation], timeout: 0.01)
+
+        // Workaround, as snapshotting a `UIWindow` is currently not supported and crashes when running all tests.
+        assertSnapshot(matching: window.layer, as: .image)
     }
 }
