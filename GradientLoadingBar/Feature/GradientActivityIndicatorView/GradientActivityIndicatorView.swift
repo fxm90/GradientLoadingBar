@@ -54,7 +54,7 @@ open class GradientActivityIndicatorView: UIView {
 
     /// The progress animation.
     ///
-    /// - Note: `fromValue` and `duration` are updated from the view-model.
+    /// - Note: `fromValue` and `duration` are updated from the view-model subscription.
     private let animation: CABasicAnimation = {
         let animation = CABasicAnimation(keyPath: "position.x")
         animation.fromValue = 0
