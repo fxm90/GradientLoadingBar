@@ -12,15 +12,6 @@ import LightweightObservable
 /// This view model contains all logic related to the `GradientActivityIndicatorView`.
 final class GradientActivityIndicatorViewModel {
 
-    // MARK: - Types
-
-    /// - Note: The `fromValue` used on the `CABasicAnimation` is dependent on the `frame`,
-    ///         therefore we always update these values together.
-    struct SizeUpdate: Equatable {
-        let frame: CGRect
-        let fromValue: CGFloat
-    }
-
     // MARK: - Public properties
 
     /// Observable state of the progress animation.
@@ -53,12 +44,7 @@ final class GradientActivityIndicatorViewModel {
     /// The bounds of the view.
     var bounds: CGRect = .zero {
         didSet {
-            // Three times of the width in order to apply normal, reversed and normal gradient
-            // to simulate an infinite animation.
-            var frame = bounds
-            frame.size.width *= 3
-
-            gradientLayerSizeUpdateSubject.value = SizeUpdate(frame: frame, fromValue: bounds.width * -2)
+            gradientLayerSizeUpdateSubject.value = SizeUpdate(bounds: bounds)
         }
     }
 
@@ -82,7 +68,7 @@ final class GradientActivityIndicatorViewModel {
 
     // As a `UIView` is initially visible, we also have to start the progress animation initially.
     private let isAnimatingSubject = Variable(true)
-    private let gradientLayerSizeUpdateSubject = Variable(SizeUpdate(frame: .zero, fromValue: 0))
+    private let gradientLayerSizeUpdateSubject = Variable(SizeUpdate(bounds: .zero))
 
     private let gradientLayerColorsSubject: Variable<[CGColor]>
     private let gradientLayerAnimationDurationSubject: Variable<TimeInterval>
@@ -113,6 +99,37 @@ final class GradientActivityIndicatorViewModel {
 
         isAnimatingSubject.value = false
         isAnimatingSubject.value = true
+    }
+}
+
+// MARK: - Supporting Types
+
+extension GradientActivityIndicatorViewModel {
+
+    /// - Note: The `fromValue` used on the `CABasicAnimation` is dependent on the `frame`,
+    ///         therefore we always update these values together.
+    struct SizeUpdate: Equatable {
+
+        /// The frame of our gradient layer.
+        /// This has to be three times the width of the parent bounds in order to apply the normal, reversed and
+        /// again normal gradient colors to simulate the infinite animation.
+        var frame: CGRect {
+            var frame = bounds
+            frame.size.width *= 3
+
+            return frame
+        }
+
+        var fromValue: CGFloat {
+            bounds.width * -2
+        }
+
+        /// The boundaries of the superview.
+        private let bounds: CGRect
+
+        init(bounds: CGRect) {
+            self.bounds = bounds
+        }
     }
 }
 
