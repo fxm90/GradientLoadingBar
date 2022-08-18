@@ -118,7 +118,7 @@ final class GradientActivityIndicatorViewModel {
 
 // MARK: - Helper
 
-extension Array where Element == UIColor {
+private extension Array where Element == UIColor {
 
     /// Creates an infinite gradient out of the given colors.
     ///
