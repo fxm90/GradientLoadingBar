@@ -29,6 +29,7 @@
 		F53E34FF28AED042006FB130 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53E34F828AED042006FB130 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift */; };
 		F53E350028AED042006FB130 /* GradientLoadingBarViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53E34FA28AED042006FB130 /* GradientLoadingBarViewModelTestCase.swift */; };
 		F53E350128AED042006FB130 /* NotchGradientLoadingBarViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53E34FC28AED042006FB130 /* NotchGradientLoadingBarViewModelTestCase.swift */; };
+		F53E350328AED0BF006FB130 /* GradientActivityIndicatorViewModel+SizeUpdateTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53E350228AED0BF006FB130 /* GradientActivityIndicatorViewModel+SizeUpdateTestCase.swift */; };
 		F57C83C927DA11580025AA11 /* GradientLoadingBarViewTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57C83C827DA11580025AA11 /* GradientLoadingBarViewTestCase.swift */; };
 		F5C7E8882809CDEE00036B8E /* CustomColorsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7E8872809CDEE00036B8E /* CustomColorsTableViewCell.swift */; };
 		F5C7E88A2809CDF600036B8E /* InterfaceBuilderSetupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7E8892809CDF600036B8E /* InterfaceBuilderSetupTableViewCell.swift */; };
@@ -87,6 +88,7 @@
 		F53E34F828AED042006FB130 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift"; sourceTree = "<group>"; };
 		F53E34FA28AED042006FB130 /* GradientLoadingBarViewModelTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLoadingBarViewModelTestCase.swift; sourceTree = "<group>"; };
 		F53E34FC28AED042006FB130 /* NotchGradientLoadingBarViewModelTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotchGradientLoadingBarViewModelTestCase.swift; sourceTree = "<group>"; };
+		F53E350228AED0BF006FB130 /* GradientActivityIndicatorViewModel+SizeUpdateTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GradientActivityIndicatorViewModel+SizeUpdateTestCase.swift"; sourceTree = "<group>"; };
 		F57C83C827DA11580025AA11 /* GradientLoadingBarViewTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLoadingBarViewTestCase.swift; sourceTree = "<group>"; };
 		F5C7E8872809CDEE00036B8E /* CustomColorsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColorsTableViewCell.swift; sourceTree = "<group>"; };
 		F5C7E8892809CDF600036B8E /* InterfaceBuilderSetupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceBuilderSetupTableViewCell.swift; sourceTree = "<group>"; };
@@ -290,8 +292,9 @@
 		F53E34F628AED042006FB130 /* GradientActivityIndicatorView */ = {
 			isa = PBXGroup;
 			children = (
-				F53E34F728AED042006FB130 /* GradientActivityIndicatorViewModelTestCase.swift */,
 				F53E34F828AED042006FB130 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift */,
+				F53E350228AED0BF006FB130 /* GradientActivityIndicatorViewModel+SizeUpdateTestCase.swift */,
+				F53E34F728AED042006FB130 /* GradientActivityIndicatorViewModelTestCase.swift */,
 			);
 			path = GradientActivityIndicatorView;
 			sourceTree = "<group>";
@@ -671,6 +674,7 @@
 				F53E350028AED042006FB130 /* GradientLoadingBarViewModelTestCase.swift in Sources */,
 				F53E34FF28AED042006FB130 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift in Sources */,
 				F53E34FE28AED042006FB130 /* GradientActivityIndicatorViewModelTestCase.swift in Sources */,
+				F53E350328AED0BF006FB130 /* GradientActivityIndicatorViewModel+SizeUpdateTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
