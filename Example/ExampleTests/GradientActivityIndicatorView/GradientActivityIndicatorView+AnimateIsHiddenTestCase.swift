@@ -11,7 +11,7 @@ import XCTest
 @testable import GradientLoadingBar
 
 // swiftlint:disable:next type_name
-final class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
+final class GradientActivityIndicatorView_AnimateIsHiddenTestCase: XCTestCase {
 
     // MARK: - Private properties
 

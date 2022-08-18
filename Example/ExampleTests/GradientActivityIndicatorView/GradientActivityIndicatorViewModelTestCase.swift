@@ -88,10 +88,7 @@ final class GradientActivityIndicatorViewModelTestCase: XCTestCase {
         }
 
         // Then
-        let expectedSizeUpdate =
-            GradientActivityIndicatorViewModel.SizeUpdate(frame: CGRect(x: 0, y: 0, width: size.width * 3, height: size.height),
-                                                          fromValue: size.width * -2)
-
+        let expectedSizeUpdate = GradientActivityIndicatorViewModel.SizeUpdate(bounds: bounds)
         XCTAssertEqual(receivedSizeUpdate, expectedSizeUpdate)
     }
 
@@ -131,7 +128,7 @@ final class GradientActivityIndicatorViewModelTestCase: XCTestCase {
 
         // When
         withExtendedLifetime(disposable) {
-            viewModel.bounds = CGRect(origin: .zero, size: .zero)
+            viewModel.bounds = bounds
         }
 
         // Then
