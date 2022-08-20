@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(name: "GradientLoadingBar",
-                      platforms: [.iOS(.v9)],
+                      platforms: [.iOS(.v12)],
                       products: [
                           .library(name: "GradientLoadingBar",
                                    targets: ["GradientLoadingBar"]),
