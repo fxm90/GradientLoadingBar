@@ -120,6 +120,7 @@ extension GradientActivityIndicatorViewModel {
             return frame
         }
 
+        /// The value to start the animation from.
         var fromValue: CGFloat {
             bounds.width * -2
         }
