@@ -77,7 +77,7 @@ private extension UIDevice {
     /// Returns the device identifier.
     ///
     /// Based on: <https://stackoverflow.com/a/26962452/3532505>
-    /// Adapted for Simulator usage on <https://stackoverflow.com/a/46380596/3532505>
+    /// Adapted for Simulator usage based on <https://stackoverflow.com/a/46380596/3532505>
     static var identifier: String {
         #if targetEnvironment(simulator)
             return ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] ?? ""
