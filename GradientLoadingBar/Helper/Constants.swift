@@ -9,7 +9,8 @@
 import UIKit
 
 public extension UIColor {
-    /// Default colors for components.
+
+    // swiftlint:disable:next missing_docs
     enum GradientLoadingBar {
         /// The default color palette for the gradient colors.
         ///
@@ -20,8 +21,18 @@ public extension UIColor {
     }
 }
 
+public extension CGFloat {
+
+    // swiftlint:disable:next missing_docs
+    enum GradientLoadingBar {
+        /// The default height of the `GradientLoadingBar`.
+        public static let height: CGFloat = 3
+    }
+}
+
 public extension TimeInterval {
-    /// Numeric default values.
+
+    // swiftlint:disable:next missing_docs
     enum GradientLoadingBar {
         /// The default duration for fading-in the loading bar, measured in seconds.
         public static let fadeInDuration = 0.33

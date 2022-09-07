@@ -11,7 +11,7 @@ import XCTest
 @testable import GradientLoadingBar
 
 // swiftlint:disable:next type_name
-final class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
+final class GradientActivityIndicatorView_AnimateIsHiddenTestCase: XCTestCase {
 
     // MARK: - Private properties
 
@@ -44,7 +44,7 @@ final class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
 
     func test_animateIsHidden_shouldShowView_andCallCompletionHandler() {
         // Given
-        let expectation = expectation(description: "Expect completion handler to be called.")
+        let expectation = expectation(description: "Expect completion handler to be invoked.")
 
         // Hide view to validate fade-in.
         gradientActivityIndicatorView.alpha = 0
@@ -65,7 +65,7 @@ final class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
 
     func test_animateIsHidden_withInterruption_shouldShowView_andCallCompletionHandler() {
         // Given
-        let expectation = expectation(description: "Expect completion handler to be called.")
+        let expectation = expectation(description: "Expect completion handler to be invoked.")
 
         // Hide view to validate fade-in.
         gradientActivityIndicatorView.alpha = 0
@@ -88,7 +88,7 @@ final class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
 
     func test_animateIsHidden_shouldHideView_andCallCompletionHandler() {
         // Given
-        let expectation = expectation(description: "Expect completion handler to be called.")
+        let expectation = expectation(description: "Expect completion handler to be invoked.")
 
         // When
         gradientActivityIndicatorView.animate(isHidden: true, duration: 0.1) { isFinished in
@@ -105,7 +105,7 @@ final class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
 
     func test_animateIsHidden_withInterruption_shouldNotHideView_andCallCompletionHandler() {
         // Given
-        let expectation = expectation(description: "Expect completion handler to be called.")
+        let expectation = expectation(description: "Expect completion handler to be invoked.")
 
         // When
         gradientActivityIndicatorView.animate(isHidden: true, duration: 0.1) { isFinished in
@@ -126,7 +126,7 @@ final class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
 
     func test_fadeIn_shouldShowView_andCallCompletionHandler() {
         // Given
-        let expectation = expectation(description: "Expect completion handler to be called.")
+        let expectation = expectation(description: "Expect completion handler to be invoked.")
 
         // Hide view to validate fade-in.
         gradientActivityIndicatorView.alpha = 0
@@ -147,7 +147,7 @@ final class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
 
     func test_fadeIn_withInterruption_shouldShowView_andCallCompletionHandler() {
         // Given
-        let expectation = expectation(description: "Expect completion handler to be called.")
+        let expectation = expectation(description: "Expect completion handler to be invoked.")
 
         // Hide view to validate fade-in.
         gradientActivityIndicatorView.alpha = 0
@@ -172,7 +172,7 @@ final class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
 
     func test_fadeOut_shouldHideView_andCallCompletionHandler() {
         // Given
-        let expectation = expectation(description: "Expect completion handler to be called.")
+        let expectation = expectation(description: "Expect completion handler to be invoked.")
 
         // When
         gradientActivityIndicatorView.fadeOut(duration: 0.1) { isFinished in
@@ -189,7 +189,7 @@ final class GradientActivityIndicatorViewAnimateIsHiddenTestCase: XCTestCase {
 
     func test_fadeOut_withInterruption_shouldNotHideView_andCallCompletionHandler() {
         // Given
-        let expectation = expectation(description: "Expect completion handler to be called.")
+        let expectation = expectation(description: "Expect completion handler to be invoked.")
 
         // When
         gradientActivityIndicatorView.fadeOut(duration: 0.1) { isFinished in
