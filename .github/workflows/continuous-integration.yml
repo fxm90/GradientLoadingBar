@@ -24,7 +24,7 @@ jobs:
   # This workflow starts with a job called "build-and-test".
   build-and-test:
     name: Build & Test
-    runs-on: macos-latest
+    runs-on: macos-12
 
     # Steps represent a sequence of tasks that will be executed as part of the job.
     steps:
