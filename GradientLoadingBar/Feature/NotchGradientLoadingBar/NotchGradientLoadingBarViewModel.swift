@@ -15,13 +15,20 @@ final class NotchGradientLoadingBarViewModel {
     enum SafeAreaDevice {
         case unknown
         case iPhoneX
+        case iPhoneXS
+        case iPhoneXSMax
         case iPhoneXR
         case iPhone11
-        // The "iPhone 11 Pro" and "iPhone 11 Pro Max" have a smaller notch than the "iPhone 11".
         case iPhone11Pro
         case iPhone11ProMax
+        case iPhone12Mini
         case iPhone12
+        case iPhone12Pro
+        case iPhone12ProMax
+        case iPhone13Mini
         case iPhone13
+        case iPhone13Pro
+        case iPhone13ProMax
     }
 
     // MARK: - Public properties
@@ -44,9 +51,16 @@ private extension NotchGradientLoadingBarViewModel.SafeAreaDevice {
     ///
     /// - Note: This is taken from <https://stackoverflow.com/a/26962452/3532505>
     init(deviceIdentifier: String) {
+        // swiftlint:disable:previous cyclomatic_complexity
         switch deviceIdentifier {
-        case "iPhone10,3", "iPhone10,6", "iPhone11,2", "iPhone11,4", "iPhone11,6":
+        case "iPhone10,3", "iPhone10,6":
             self = .iPhoneX
+
+        case "iPhone11,2":
+            self = .iPhoneXS
+
+        case "iPhone11,4", "iPhone11,6":
+            self = .iPhoneXSMax
 
         case "iPhone11,8":
             self = .iPhoneXR
@@ -60,11 +74,29 @@ private extension NotchGradientLoadingBarViewModel.SafeAreaDevice {
         case "iPhone12,5":
             self = .iPhone11ProMax
 
-        case "iPhone13,1", "iPhone13,2", "iPhone13,3", "iPhone13,4":
+        case "iPhone13,1":
+            self = .iPhone12Mini
+
+        case "iPhone13,2":
             self = .iPhone12
 
-        case "iPhone14,4", "iPhone14,5", "iPhone14,2", "iPhone14,3":
+        case "iPhone13,3":
+            self = .iPhone12Pro
+
+        case "iPhone13,4":
+            self = .iPhone12ProMax
+
+        case "iPhone14,4":
+            self = .iPhone13Mini
+
+        case "iPhone14,5":
             self = .iPhone13
+
+        case "iPhone14,2":
+            self = .iPhone13Pro
+
+        case "iPhone14,3":
+            self = .iPhone13ProMax
 
         default:
             self = .unknown
