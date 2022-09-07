@@ -22,10 +22,11 @@ private struct NotchConfig {
 
     /// Offset for the center-point of the large circle.
     ///
-    /// - A positive value for the `X` property will move the large circles closer to the center of the screen. A negative offset closer to
-    ///   the corners of the screen.
+    /// - A positive value for the `X` property will move the large circles closer to the center of the screen.
+    ///   A negative offset closer to the corners of the screen.
     ///
-    /// - A positive value for the `Y` property will move the large circles downwards. A negative offset will move them upwards.
+    /// - A positive value for the `Y` property will move the large circles downwards.
+    ///   A negative offset will move them upwards.
     let largeCircleOffset: CGPoint
 
     /// The transform to be applied to the entire bezier path.
@@ -257,6 +258,7 @@ private extension NotchGradientLoadingBarViewModel.SafeAreaDevice {
 }
 
 private extension UIBezierPath {
+
     // swiftlint:disable:next identifier_name
     func addLineTo(x: CGFloat, y: CGFloat) {
         addLine(to: CGPoint(x: x, y: y))

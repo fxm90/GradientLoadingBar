@@ -39,7 +39,7 @@ import SwiftUI
         @StateObject
         private var viewModel: ViewModel
 
-        // MARK: - Instance Lifecycle
+        // MARK: - Initializer
 
         public init(gradientColors: [Color] = Config.gradientColors,
                     progressDuration: TimeInterval = Config.progressDuration) {
