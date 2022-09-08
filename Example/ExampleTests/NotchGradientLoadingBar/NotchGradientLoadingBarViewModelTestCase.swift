@@ -45,7 +45,7 @@ final class NotchGradientLoadingBarViewModelTestCase: XCTestCase {
         }
     }
 
-    func test_initializer_shouldSetSafeAreaDevice_toUnknown() {
+    func test_initializer_shouldSetSafeAreaDevice_toNil() {
         // Given
         let deviceIdentifier = "Foo-Bar-🤡"
 
@@ -53,6 +53,6 @@ final class NotchGradientLoadingBarViewModelTestCase: XCTestCase {
         let viewModel = NotchGradientLoadingBarViewModel(deviceIdentifier: deviceIdentifier)
 
         // Then
-        XCTAssertEqual(viewModel.safeAreaDevice, .unknown)
+        XCTAssertNil(viewModel.safeAreaDevice)
     }
 }
