@@ -212,33 +212,48 @@ private extension NotchConfig {
         case .unknown:
             return nil
 
-        case .iPhoneX:
-            /// The default configuration for the iPhone X and 11.
+        case .iPhoneX, .iPhoneXS, .iPhoneXSMax:
+            /// The default configuration for the iPhone X.
             /// Values are based on <https://www.paintcodeapp.com/news/iphone-x-screen-demystified>.
-            self.init(notchWidth: 208,
+            self.init(notchWidth: 209,
                       largeCircleRadius: 22.5,
                       largeCircleVerticalOffset: -4.75,
-                      transform: CGAffineTransform(translationX: 0.33, y: 0))
+                      transform: safeAreaDevice == .iPhoneXSMax ? .identity : CGAffineTransform(translationX: 0.33, y: 0))
 
         case .iPhoneXR, .iPhone11:
-            self.init(notchWidth: 230.5,
+            self.init(notchWidth: 230,
                       largeCircleRadius: 24,
                       largeCircleVerticalOffset: -3.5,
                       transform: .identity)
 
+        // The "iPhone 11 Pro" and "iPhone 11 Pro Max" have a smaller notch than the "iPhone 11".
         case .iPhone11Pro, .iPhone11ProMax:
             self.init(notchWidth: 209,
                       largeCircleRadius: 21,
                       largeCircleVerticalOffset: -3.5,
+                      transform: safeAreaDevice == .iPhone11ProMax ? .identity : CGAffineTransform(translationX: 0.33, y: 0))
+
+        // The "iPhone 12 Mini" has a larger notch than the "iPhone 12".
+        case .iPhone12Mini:
+            self.init(notchWidth: 226,
+                      largeCircleRadius: 24,
+                      largeCircleVerticalOffset: -2,
                       transform: .identity)
 
-        case .iPhone12:
+        case .iPhone12, .iPhone12Pro, .iPhone12ProMax:
             self.init(notchWidth: 209.5,
                       largeCircleRadius: 21,
                       largeCircleVerticalOffset: -1.75,
                       transform: .identity)
 
-        case .iPhone13:
+        // The "iPhone 13 Mini" has a larger notch than the "iPhone 13".
+        case .iPhone13Mini:
+            self.init(notchWidth: 174.75,
+                      largeCircleRadius: 24.5,
+                      largeCircleVerticalOffset: 0.5,
+                      transform: .identity)
+
+        case .iPhone13, .iPhone13Pro, .iPhone13ProMax:
             // The iPhone 13 specific configuration: ‟iPhone 13 notch is 20% smaller in width, but it is also a little taller in height‟.
             // Source: <https://9to5mac.com/2021/09/14/iphone-13-notch-smaller-but-bigger>.
             self.init(notchWidth: 161,
