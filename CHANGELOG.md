@@ -7,10 +7,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [2.3.2] - 2022-08-09
+### Changed
+ - Improved Bézier Path of `NotchGradientLoadingBar`
+ - Adapt logic of `UIKit` variant for calculating and animating the gradient to `SwiftUI` variant. This should not make any difference visually, but will be easier to maintain.
+### Fixed
+ - Fixed incorrect layout on `NotchGradientLoadingBar` when using "iPhone 12 Mini" or "iPhone 13 Mini"
 
 ## [2.3.1] - 2022-10-05
 ### Fixed
- - Fixed incorrect layout on `NotchGradientLoadingBar` when using "iPhone 11 Pro" and "iPhone 11 Pro Max" ([#029])
+ - Fixed incorrect layout on `NotchGradientLoadingBar` when using "iPhone 11 Pro" or "iPhone 11 Pro Max" ([#029])
 
 [#029]: https://github.com/fxm90/GradientLoadingBar/issues/29
 
@@ -178,8 +184,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial release
 
 
-[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.1...main
-[2.3.0]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.0...2.3.1
+[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.2...main
+[2.3.2]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.1...2.3.2
+[2.3.1]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.0...2.3.1
 [2.3.0]: https://github.com/fxm90/GradientLoadingBar/compare/2.2.5...2.3.0
 [2.2.5]: https://github.com/fxm90/GradientLoadingBar/compare/2.2.4...2.2.5
 [2.2.4]: https://github.com/fxm90/GradientLoadingBar/compare/2.2.3...2.2.4
