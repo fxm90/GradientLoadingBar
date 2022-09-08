@@ -9,7 +9,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [2.3.3] - 2022-08-09
 ### Changed
- - Added specific Bézier Path for `NotchGradientLoadingBar` for "iPhone 14" or "iPhone 14 Plus"
+ - Added specific Bézier Path for `NotchGradientLoadingBar` for "iPhone 14" and "iPhone 14 Plus"
 
 ## [2.3.2] - 2022-08-09
 ### Changed
