@@ -32,6 +32,8 @@ final class NotchGradientLoadingBarViewModelTestCase: XCTestCase {
             "iPhone14,5": .iPhone13,
             "iPhone14,2": .iPhone13Pro,
             "iPhone14,3": .iPhone13ProMax,
+            "iPhone14,7": .iPhone14,
+            "iPhone14,8": .iPhone14Plus,
         ]
 
         identifiersToSafeAreaDeviceMap.forEach { deviceIdentifier, safeAreaDevice in
