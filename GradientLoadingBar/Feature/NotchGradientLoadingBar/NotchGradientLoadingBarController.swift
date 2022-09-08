@@ -253,7 +253,7 @@ private extension NotchConfig {
                       largeCircleVerticalOffset: 0.5,
                       transform: .identity)
 
-        case .iPhone13, .iPhone13Pro, .iPhone13ProMax:
+        case .iPhone13, .iPhone13Pro, .iPhone13ProMax, .iPhone14, .iPhone14Plus:
             // The iPhone 13 specific configuration: ‟iPhone 13 notch is 20% smaller in width, but it is also a little taller in height‟.
             // Source: <https://9to5mac.com/2021/09/14/iphone-13-notch-smaller-but-bigger>.
             self.init(notchWidth: 161,

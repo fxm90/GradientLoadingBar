@@ -29,12 +29,14 @@ final class NotchGradientLoadingBarViewModel {
         case iPhone13
         case iPhone13Pro
         case iPhone13ProMax
+        case iPhone14
+        case iPhone14Plus
     }
 
     // MARK: - Public properties
 
     /// The current safe area device.
-    let safeAreaDevice: SafeAreaDevice
+    let safeAreaDevice: SafeAreaDevice?
 
     // MARK: - Instance Lifecycle
 
@@ -97,6 +99,12 @@ private extension NotchGradientLoadingBarViewModel.SafeAreaDevice {
 
         case "iPhone14,3":
             self = .iPhone13ProMax
+
+        case "iPhone14,7":
+            self = .iPhone14
+
+        case "iPhone14,8":
+            self = .iPhone14Plus
 
         default:
             self = .unknown
