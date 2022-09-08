@@ -20,14 +20,17 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
     // MARK: - Public methods
 
     override open func setupConstraints(superview: UIView) {
-        guard let notchConfig = NotchConfig(safeAreaDevice: viewModel.safeAreaDevice) else {
+        guard let safeAreaDevice = viewModel.safeAreaDevice else {
             // No special masking required for non safe area devices.
             super.setupConstraints(superview: superview)
             return
         }
 
-        // As we currently only support portrait mode (and no device rotation), we can safely use `bounds.size.width` here.
+        // We currently only support portrait mode (without device rotation),
+        // and therefore can safely use `bounds.size.width` here.
         let screenWidth = superview.bounds.size.width
+
+        let notchConfig = NotchConfig(safeAreaDevice: safeAreaDevice)
         let notchBezierPath = notchBezierPath(for: screenWidth, notchConfig: notchConfig)
 
         let viewHeight = notchBezierPath.bounds.height + 1
@@ -207,11 +210,8 @@ private extension NotchConfig {
     /// Initializes the notch specific configuration for the current safe area device.
     ///
     /// - Note: We define this in an extension to keep the memberwise initializer.
-    init?(safeAreaDevice: NotchGradientLoadingBarViewModel.SafeAreaDevice) {
+    init(safeAreaDevice: NotchGradientLoadingBarViewModel.SafeAreaDevice) {
         switch safeAreaDevice {
-        case .unknown:
-            return nil
-
         case .iPhoneX, .iPhoneXS, .iPhoneXSMax:
             /// The default configuration for the iPhone X.
             /// Values are based on <https://www.paintcodeapp.com/news/iphone-x-screen-demystified>.

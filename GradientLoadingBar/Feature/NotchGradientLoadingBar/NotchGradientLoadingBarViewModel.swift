@@ -13,7 +13,6 @@ final class NotchGradientLoadingBarViewModel {
     // MARK: - Types
 
     enum SafeAreaDevice {
-        case unknown
         case iPhoneX
         case iPhoneXS
         case iPhoneXSMax
@@ -52,7 +51,7 @@ private extension NotchGradientLoadingBarViewModel.SafeAreaDevice {
     /// Creates a new instance from a given `deviceIdentifier` (value returned by `UIDevice.identifier`).
     ///
     /// - Note: This is taken from <https://stackoverflow.com/a/26962452/3532505>
-    init(deviceIdentifier: String) {
+    init?(deviceIdentifier: String) {
         // swiftlint:disable:previous cyclomatic_complexity
         switch deviceIdentifier {
         case "iPhone10,3", "iPhone10,6":
@@ -107,7 +106,7 @@ private extension NotchGradientLoadingBarViewModel.SafeAreaDevice {
             self = .iPhone14Plus
 
         default:
-            self = .unknown
+            return nil
         }
     }
 }
