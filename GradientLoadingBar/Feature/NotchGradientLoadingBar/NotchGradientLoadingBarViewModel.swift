@@ -12,7 +12,7 @@ final class NotchGradientLoadingBarViewModel {
 
     // MARK: - Types
 
-    enum SafeAreaDevice {
+    enum NotchDevice {
         case iPhoneX
         case iPhoneXS
         case iPhoneXSMax
@@ -34,19 +34,19 @@ final class NotchGradientLoadingBarViewModel {
 
     // MARK: - Public properties
 
-    /// The current safe area device.
-    let safeAreaDevice: SafeAreaDevice?
+    /// The current device if it has a notch / otherwise `nil`.
+    let notchDevice: NotchDevice?
 
     // MARK: - Instance Lifecycle
 
     init(deviceIdentifier: String = UIDevice.identifier) {
-        safeAreaDevice = SafeAreaDevice(deviceIdentifier: deviceIdentifier)
+        notchDevice = NotchDevice(deviceIdentifier: deviceIdentifier)
     }
 }
 
 // MARK: - Helper
 
-private extension NotchGradientLoadingBarViewModel.SafeAreaDevice {
+private extension NotchGradientLoadingBarViewModel.NotchDevice {
 
     /// Creates a new instance from a given `deviceIdentifier` (value returned by `UIDevice.identifier`).
     ///
