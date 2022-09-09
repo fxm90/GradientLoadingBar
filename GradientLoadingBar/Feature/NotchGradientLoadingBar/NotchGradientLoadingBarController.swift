@@ -20,14 +20,17 @@ open class NotchGradientLoadingBarController: GradientLoadingBarController {
     // MARK: - Public methods
 
     override open func setupConstraints(superview: UIView) {
-        guard let notchConfig = NotchConfig(safeAreaDevice: viewModel.safeAreaDevice) else {
-            // No special masking required for non safe area devices.
+        guard let notchDevice = viewModel.notchDevice else {
+            // No special masking required for devices without a notch.
             super.setupConstraints(superview: superview)
             return
         }
 
-        // As we currently only support portrait mode (and no device rotation), we can safely use `bounds.size.width` here.
+        // We currently only support portrait mode (without device rotation),
+        // and therefore can safely use `bounds.size.width` here.
         let screenWidth = superview.bounds.size.width
+
+        let notchConfig = NotchConfig(notchDevice: notchDevice)
         let notchBezierPath = notchBezierPath(for: screenWidth, notchConfig: notchConfig)
 
         let viewHeight = notchBezierPath.bounds.height + 1
@@ -207,18 +210,15 @@ private extension NotchConfig {
     /// Initializes the notch specific configuration for the current safe area device.
     ///
     /// - Note: We define this in an extension to keep the memberwise initializer.
-    init?(safeAreaDevice: NotchGradientLoadingBarViewModel.SafeAreaDevice) {
-        switch safeAreaDevice {
-        case .unknown:
-            return nil
-
+    init(notchDevice: NotchGradientLoadingBarViewModel.NotchDevice) {
+        switch notchDevice {
         case .iPhoneX, .iPhoneXS, .iPhoneXSMax:
             /// The default configuration for the iPhone X.
             /// Values are based on <https://www.paintcodeapp.com/news/iphone-x-screen-demystified>.
             self.init(notchWidth: 209,
                       largeCircleRadius: 22.5,
                       largeCircleVerticalOffset: -4.75,
-                      transform: safeAreaDevice == .iPhoneXSMax ? .identity : CGAffineTransform(translationX: 0.33, y: 0))
+                      transform: notchDevice == .iPhoneXSMax ? .identity : CGAffineTransform(translationX: 0.33, y: 0))
 
         case .iPhoneXR, .iPhone11:
             self.init(notchWidth: 230,
@@ -231,7 +231,7 @@ private extension NotchConfig {
             self.init(notchWidth: 209,
                       largeCircleRadius: 21,
                       largeCircleVerticalOffset: -3.5,
-                      transform: safeAreaDevice == .iPhone11ProMax ? .identity : CGAffineTransform(translationX: 0.33, y: 0))
+                      transform: notchDevice == .iPhone11ProMax ? .identity : CGAffineTransform(translationX: 0.33, y: 0))
 
         // The "iPhone 12 Mini" has a larger notch than the "iPhone 12".
         case .iPhone12Mini:
@@ -253,7 +253,7 @@ private extension NotchConfig {
                       largeCircleVerticalOffset: 0.5,
                       transform: .identity)
 
-        case .iPhone13, .iPhone13Pro, .iPhone13ProMax:
+        case .iPhone13, .iPhone13Pro, .iPhone13ProMax, .iPhone14, .iPhone14Plus:
             // The iPhone 13 specific configuration: ‟iPhone 13 notch is 20% smaller in width, but it is also a little taller in height‟.
             // Source: <https://9to5mac.com/2021/09/14/iphone-13-notch-smaller-but-bigger>.
             self.init(notchWidth: 161,
