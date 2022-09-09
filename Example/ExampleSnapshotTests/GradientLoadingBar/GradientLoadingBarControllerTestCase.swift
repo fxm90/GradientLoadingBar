@@ -48,7 +48,7 @@ final class GradientLoadingBarControllerTestCase: XCTestCase {
         }
 
         // Then
-        wait(for: [expectation], timeout: 0.01)
+        wait(for: [expectation], timeout: 0.1)
 
         // Workaround, as snapshotting a `UIWindow` is currently not supported and crashes when running all tests.
         assertSnapshot(matching: window.layer, as: .image)
