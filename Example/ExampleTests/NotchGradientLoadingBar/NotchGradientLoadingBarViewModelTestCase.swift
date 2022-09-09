@@ -12,9 +12,9 @@ import XCTest
 
 final class NotchGradientLoadingBarViewModelTestCase: XCTestCase {
 
-    func test_initializer_shouldSetCorrectSafeAreaDevice() {
+    func test_initializer_shouldSetCorrectNotchDevice() {
         // Given
-        let identifiersToSafeAreaDeviceMap: [String: NotchGradientLoadingBarViewModel.SafeAreaDevice] = [
+        let identifiersToNotchDeviceMap: [String: NotchGradientLoadingBarViewModel.NotchDevice] = [
             "iPhone10,3": .iPhoneX,
             "iPhone10,6": .iPhoneX,
             "iPhone11,2": .iPhoneXS,
@@ -36,16 +36,16 @@ final class NotchGradientLoadingBarViewModelTestCase: XCTestCase {
             "iPhone14,8": .iPhone14Plus,
         ]
 
-        identifiersToSafeAreaDeviceMap.forEach { deviceIdentifier, safeAreaDevice in
+        identifiersToNotchDeviceMap.forEach { deviceIdentifier, notchDevice in
             // When
             let viewModel = NotchGradientLoadingBarViewModel(deviceIdentifier: deviceIdentifier)
 
             // Then
-            XCTAssertEqual(viewModel.safeAreaDevice, safeAreaDevice)
+            XCTAssertEqual(viewModel.notchDevice, notchDevice)
         }
     }
 
-    func test_initializer_shouldSetSafeAreaDevice_toNil() {
+    func test_initializer_shouldSetNotchDevice_toNil() {
         // Given
         let deviceIdentifier = "Foo-Bar-🤡"
 
@@ -53,6 +53,6 @@ final class NotchGradientLoadingBarViewModelTestCase: XCTestCase {
         let viewModel = NotchGradientLoadingBarViewModel(deviceIdentifier: deviceIdentifier)
 
         // Then
-        XCTAssertNil(viewModel.safeAreaDevice)
+        XCTAssertNil(viewModel.notchDevice)
     }
 }
