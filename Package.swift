@@ -1,22 +1,17 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.1
 
 import PackageDescription
 
 let package = Package(name: "GradientLoadingBar",
-                      platforms: [.iOS(.v9)],
+                      platforms: [.iOS(.v13)],
                       products: [
                           .library(name: "GradientLoadingBar",
                                    targets: ["GradientLoadingBar"]),
                       ],
-                      dependencies: [
-                          .package(url: "https://github.com/fxm90/LightweightObservable",
-                                   .upToNextMajor(from: "2.0.0")),
-                      ],
                       targets: [
                           .target(name: "GradientLoadingBar",
-                                  dependencies: ["LightweightObservable"],
                                   path: "GradientLoadingBar/"),
                           .testTarget(name: "GradientLoadingBarTests",
                                       dependencies: ["GradientLoadingBar"],
-                                      path: "Example/Tests/"),
+                                      path: "Example/ExampleTests/"),
                       ])

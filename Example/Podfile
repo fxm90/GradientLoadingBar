@@ -7,7 +7,7 @@ use_frameworks!
 target 'Example' do
   pod 'GradientLoadingBar', :path => '../'
 
-# Development pods.
+  # Development pods.
   pod 'SwiftFormat/CLI', '~> 0.41'
   pod 'SwiftLint', '~> 0.42'
   pod 'SwiftConfigurationFiles', :git => 'https://github.com/fxm90/SwiftConfigurationFiles.git'
@@ -25,28 +25,8 @@ target 'Example' do
   end
 
   post_install do |installer|
-    installer.pods_project.targets.each do |target|
-      target.build_configurations.each do |config|
-        if target.name == 'GradientLoadingBar' || target.name == 'LightweightObservable'
-          # Explicitly set the iOS deployment target for `GradientLoadingBar` in our pods project, as this will be read by Carthage.
-          # To make the project compile we have to do this for the dependency 'LightweightObservable' as well.
-          #
-          # - Note: This value has to match `s.ios.deployment_target` from the `.podspec` file!!
-          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '9.0'
-        else
-          # Remove the deployment target from all other pods in our project and let them inherit
-          # the project/workspace deployment target that has been specified at the top of the Podfile.
-          # Source: https://stackoverflow.com/a/63489366
-          config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
-        end
-      end
-    end
-
-    #
-    # Fix issues with interface builder and CocoaPods.
-    #
+    # Fix issues with interface builder and cocoapods.
     # Source: https://github.com/CocoaPods/CocoaPods/issues/7606#issuecomment-484294739
-    #
     installer.pods_project.build_configurations.each do |config|
       next unless config.name == 'Debug'
 
@@ -54,5 +34,16 @@ target 'Example' do
         '$(FRAMEWORK_SEARCH_PATHS)'
       ]
     end
+
+    # Fix warning "The iOS Simulator deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 8.0,
+    #              but the range of supported deployment target versions is 11.0 to 16.0.99."
+    #
+    # Source: https://stackoverflow.com/a/58367269
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+      end
+    end
   end
+
 end

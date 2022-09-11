@@ -18,13 +18,8 @@
   },
   "swift_versions": "5.5",
   "platforms": {
-    "ios": "9.0"
+    "ios": "13.0"
   },
   "source_files": "GradientLoadingBar/**/*",
-  "dependencies": {
-    "LightweightObservable": [
-      "~> 2.1"
-    ]
-  },
   "swift_version": "5.5"
 }
