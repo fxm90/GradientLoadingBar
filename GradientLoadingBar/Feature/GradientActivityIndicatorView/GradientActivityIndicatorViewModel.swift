@@ -6,8 +6,8 @@
 //  Copyright © 2019 Felix Mau. All rights reserved.
 //
 
-import Foundation
 import LightweightObservable
+import UIKit
 
 /// This view model contains all logic related to the `GradientActivityIndicatorView`.
 final class GradientActivityIndicatorViewModel {
