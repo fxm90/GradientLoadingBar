@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [2.3.4] - 2022-11-09
+### Fixed
+ - Added missing `UIKit` import when using Swift Package Manager.
+
 ## [2.3.3] - 2022-08-09
 ### Changed
  - Added specific Bézier Path for `NotchGradientLoadingBar` for "iPhone 14" and "iPhone 14 Plus"
@@ -188,7 +192,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial release
 
 
-[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.3...main
+[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.4...main
+[2.3.4]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.3...2.3.4
 [2.3.3]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.2...2.3.3
 [2.3.2]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.1...2.3.2
 [2.3.1]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.0...2.3.1
