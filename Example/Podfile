@@ -25,8 +25,28 @@ target 'Example' do
   end
 
   post_install do |installer|
-    # Fix issues with interface builder and cocoapods.
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        if target.name == 'GradientLoadingBar' || target.name == 'LightweightObservable'
+          # Explicitly set the iOS deployment target for `GradientLoadingBar` in our pods project, as this will be read by Carthage.
+          # To make the project compile we have to do this for the dependency 'LightweightObservable' as well.
+          #
+          # - Note: This value has to match `s.ios.deployment_target` from the `.podspec` file!!
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '9.0'
+        else
+          # Remove the deployment target from all other pods in our project and let them inherit
+          # the project/workspace deployment target that has been specified at the top of the Podfile.
+          # Source: https://stackoverflow.com/a/63489366
+          config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
+        end
+      end
+    end
+
+    #
+    # Fix issues with interface builder and CocoaPods.
+    #
     # Source: https://github.com/CocoaPods/CocoaPods/issues/7606#issuecomment-484294739
+    #
     installer.pods_project.build_configurations.each do |config|
       next unless config.name == 'Debug'
 
@@ -34,16 +54,5 @@ target 'Example' do
         '$(FRAMEWORK_SEARCH_PATHS)'
       ]
     end
-
-    # We support all iOS versions starting from 9.0. Therefore we manually decrease the deployment target for `GradientLoadingBar` here,
-    # so other (development / testing related pods) can use a higher deployment target, which is defined using `platform :ios` above.
-    installer.pods_project.targets.each do |target|
-      next unless target.name == 'GradientLoadingBar'
-
-      target.build_configurations.each do |config|
-        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '9.0'
-      end
-    end
   end
-
 end
