@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [2.3.5] - 2022-12-09
+### Fixed
+ - Fixed wrong minimum iOS deployment target when using Carthage.
+
 ## [2.3.4] - 2022-11-09
 ### Fixed
  - Added missing `UIKit` import when using Swift Package Manager.
@@ -110,7 +114,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [1.1.14] - 2018-20-12
 ### Changed
-- Fix fade-out animation not working in iOS 12 (https://openradar.appspot.com/46753872)
+- Fixed fade-out animation not working in iOS 12 (https://openradar.appspot.com/46753872)
 
 ## [1.1.13] - 2018-14-11
 ### Changed
@@ -168,7 +172,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [1.1.3] - 2017-09-25
 ### Fixed
- - Fix never adding gradient view to "keyWindow" if it is not available on first call to "show()"
+ - Fixed never adding gradient view to "keyWindow" if it is not available on first call to "show()"
 
 ## [1.1.2] - 2017-08-27
 ### Added
@@ -178,8 +182,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [1.1.1] - 2017-08-18
 ### Fixed
- - Fix optical animation issue
- - Fix orientation change bug
+ - Fixed optical animation issue
+ - Fixed orientation change bug
 ### Changed
  - Refactor entire code
  - Lint code
@@ -192,7 +196,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial release
 
 
-[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.4...main
+[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.5...main
+[2.3.5]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.4...2.3.5
 [2.3.4]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.3...2.3.4
 [2.3.3]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.2...2.3.3
 [2.3.2]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.1...2.3.2
