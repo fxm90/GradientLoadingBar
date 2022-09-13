@@ -20,6 +20,19 @@
   "platforms": {
     "ios": "13.0"
   },
-  "source_files": "GradientLoadingBar/**/*",
+  "source_files": "GradientLoadingBar/Sources/**/*.swift",
+  "testspecs": [
+    {
+      "name": "Tests",
+      "test_type": "unit",
+      "requires_app_host": true,
+      "source_files": "GradientLoadingBar/Tests/**/*.{swift,md}",
+      "dependencies": {
+        "SnapshotTesting": [
+          "~> 1.9"
+        ]
+      }
+    }
+  ],
   "swift_version": "5.5"
 }

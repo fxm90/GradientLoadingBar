@@ -12,6 +12,7 @@ import XCTest
 
 @testable import GradientLoadingBar
 
+@available(iOS 15.0, *)
 final class GradientLoadingBarViewTestCase: XCTestCase {
 
     // MARK: - Config

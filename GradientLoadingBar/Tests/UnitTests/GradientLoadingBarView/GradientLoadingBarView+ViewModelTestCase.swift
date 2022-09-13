@@ -11,8 +11,9 @@ import XCTest
 
 @testable import GradientLoadingBar
 
-// swiftlint:disable:next type_name
+@available(iOS 15.0, *)
 final class GradientLoadingBarView_ViewModelTestCase: XCTestCase {
+    // swiftlint:disable:previous type_name
 
     // MARK: - Test property `gradientColors`
 

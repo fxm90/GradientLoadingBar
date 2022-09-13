@@ -5,24 +5,12 @@ platform :ios, '13.0'
 use_frameworks!
 
 target 'Example' do
-  pod 'GradientLoadingBar', :path => '../'
+  pod 'GradientLoadingBar', :path => '../', :testspecs => ['Tests']
 
   # Development pods.
   pod 'SwiftFormat/CLI', '~> 0.41'
   pod 'SwiftLint', '~> 0.42'
   pod 'SwiftConfigurationFiles', :git => 'https://github.com/fxm90/SwiftConfigurationFiles.git'
-
-  target 'ExampleTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'ExampleSnapshotTests' do
-    inherit! :search_paths
-
-    # Pods for snapshot testing.
-    pod 'SnapshotTesting', '~> 1.9', :inhibit_warnings => true
-  end
 
   post_install do |installer|
     installer.pods_project.targets.each do |target|

@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8A0BF2A649F852F27812AA32 /* Pods_ExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28825A77907675CA26D91A13 /* Pods_ExampleTests.framework */; };
-		A3603BFBB6494793AEE84E88 /* Pods_ExampleSnapshotTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 255BE21D23572DD0713A94E2 /* Pods_ExampleSnapshotTests.framework */; };
 		DC4E50A16A3B84900FBD1981 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12DDBD589B02F5D3C9C3AF69 /* Pods_Example.framework */; };
 		DCA9833A27D68AD400D6EA30 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9833927D68AD400D6EA30 /* ExampleApp.swift */; };
 		DCA9833E27D68AD600D6EA30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCA9833D27D68AD600D6EA30 /* Assets.xcassets */; };
@@ -24,54 +22,19 @@
 		DCA9838B27D6A74800D6EA30 /* SwiftUIExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9838A27D6A74800D6EA30 /* SwiftUIExampleView.swift */; };
 		F50E4C7E28061655001232D3 /* AdvancedExample.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F50E4C7D28061655001232D3 /* AdvancedExample.storyboard */; };
 		F50E4C8028061715001232D3 /* AdvancedExampleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50E4C7F28061715001232D3 /* AdvancedExampleTableViewController.swift */; };
-		F53E34FD28AED042006FB130 /* GradientLoadingBarView+ViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53E34F528AED042006FB130 /* GradientLoadingBarView+ViewModelTestCase.swift */; };
-		F53E34FE28AED042006FB130 /* GradientActivityIndicatorViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53E34F728AED042006FB130 /* GradientActivityIndicatorViewModelTestCase.swift */; };
-		F53E34FF28AED042006FB130 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53E34F828AED042006FB130 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift */; };
-		F53E350028AED042006FB130 /* GradientLoadingBarViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53E34FA28AED042006FB130 /* GradientLoadingBarViewModelTestCase.swift */; };
-		F53E350128AED042006FB130 /* NotchGradientLoadingBarViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53E34FC28AED042006FB130 /* NotchGradientLoadingBarViewModelTestCase.swift */; };
-		F53E350328AED0BF006FB130 /* GradientActivityIndicatorViewModel+SizeUpdateTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53E350228AED0BF006FB130 /* GradientActivityIndicatorViewModel+SizeUpdateTestCase.swift */; };
-		F57C83C927DA11580025AA11 /* GradientLoadingBarViewTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57C83C827DA11580025AA11 /* GradientLoadingBarViewTestCase.swift */; };
 		F5C7E8882809CDEE00036B8E /* CustomColorsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7E8872809CDEE00036B8E /* CustomColorsTableViewCell.swift */; };
 		F5C7E88A2809CDF600036B8E /* InterfaceBuilderSetupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7E8892809CDF600036B8E /* InterfaceBuilderSetupTableViewCell.swift */; };
 		F5C7E88C2809CDFD00036B8E /* CustomSuperviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7E88B2809CDFD00036B8E /* CustomSuperviewTableViewCell.swift */; };
 		F5C7E88F2809CF1200036B8E /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7E88E2809CF1200036B8E /* BorderedButton.swift */; };
-		F5FC82FA27DA0BBF00FE1D7D /* GradientActivityIndicatorViewTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FC82E827DA0BBF00FE1D7D /* GradientActivityIndicatorViewTestCase.swift */; };
-		F5FC82FE27DA0BBF00FE1D7D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F5FC82EF27DA0BBF00FE1D7D /* README.md */; };
-		F5FC830027DA0BBF00FE1D7D /* GradientLoadingBarControllerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FC82F327DA0BBF00FE1D7D /* GradientLoadingBarControllerTestCase.swift */; };
-		F5FC830127DA0BBF00FE1D7D /* NotchGradientLoadingBarControllerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FC82F427DA0BBF00FE1D7D /* NotchGradientLoadingBarControllerTestCase.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		DCA9834727D68AD600D6EA30 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DCA9832E27D68AD400D6EA30 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DCA9833527D68AD400D6EA30;
-			remoteInfo = Example;
-		};
-		F5FC82E227DA0B3200FE1D7D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DCA9832E27D68AD400D6EA30 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DCA9833527D68AD400D6EA30;
-			remoteInfo = Example;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		12DDBD589B02F5D3C9C3AF69 /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		255BE21D23572DD0713A94E2 /* Pods_ExampleSnapshotTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExampleSnapshotTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		28825A77907675CA26D91A13 /* Pods_ExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3299012A62A2E4310D02CD78 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
-		58EE67DB75A1006623BCF31C /* Pods-ExampleSnapshotTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleSnapshotTests.debug.xcconfig"; path = "Target Support Files/Pods-ExampleSnapshotTests/Pods-ExampleSnapshotTests.debug.xcconfig"; sourceTree = "<group>"; };
-		8546348DA9E4805657E6F366 /* Pods-ExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-ExampleTests/Pods-ExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
-		A84CFB3E33CA7C6024D463AF /* Pods-ExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleTests.release.xcconfig"; path = "Target Support Files/Pods-ExampleTests/Pods-ExampleTests.release.xcconfig"; sourceTree = "<group>"; };
-		B4A7D9EEF6ADF47333E77805 /* Pods-ExampleSnapshotTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleSnapshotTests.release.xcconfig"; path = "Target Support Files/Pods-ExampleSnapshotTests/Pods-ExampleSnapshotTests.release.xcconfig"; sourceTree = "<group>"; };
 		DCA9833627D68AD400D6EA30 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCA9833927D68AD400D6EA30 /* ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
 		DCA9833D27D68AD600D6EA30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DCA9834027D68AD600D6EA30 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		DCA9834627D68AD600D6EA30 /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCA9836827D68E3500D6EA30 /* StoryboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardView.swift; sourceTree = "<group>"; };
 		DCA9836B27D6905000D6EA30 /* EntryPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPointView.swift; sourceTree = "<group>"; };
 		DCA9837027D6912300D6EA30 /* BasicExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicExampleViewController.swift; sourceTree = "<group>"; };
@@ -83,22 +46,10 @@
 		DCA9838A27D6A74800D6EA30 /* SwiftUIExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExampleView.swift; sourceTree = "<group>"; };
 		F50E4C7D28061655001232D3 /* AdvancedExample.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AdvancedExample.storyboard; sourceTree = "<group>"; };
 		F50E4C7F28061715001232D3 /* AdvancedExampleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedExampleTableViewController.swift; sourceTree = "<group>"; };
-		F53E34F528AED042006FB130 /* GradientLoadingBarView+ViewModelTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GradientLoadingBarView+ViewModelTestCase.swift"; sourceTree = "<group>"; };
-		F53E34F728AED042006FB130 /* GradientActivityIndicatorViewModelTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientActivityIndicatorViewModelTestCase.swift; sourceTree = "<group>"; };
-		F53E34F828AED042006FB130 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift"; sourceTree = "<group>"; };
-		F53E34FA28AED042006FB130 /* GradientLoadingBarViewModelTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLoadingBarViewModelTestCase.swift; sourceTree = "<group>"; };
-		F53E34FC28AED042006FB130 /* NotchGradientLoadingBarViewModelTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotchGradientLoadingBarViewModelTestCase.swift; sourceTree = "<group>"; };
-		F53E350228AED0BF006FB130 /* GradientActivityIndicatorViewModel+SizeUpdateTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GradientActivityIndicatorViewModel+SizeUpdateTestCase.swift"; sourceTree = "<group>"; };
-		F57C83C827DA11580025AA11 /* GradientLoadingBarViewTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLoadingBarViewTestCase.swift; sourceTree = "<group>"; };
 		F5C7E8872809CDEE00036B8E /* CustomColorsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColorsTableViewCell.swift; sourceTree = "<group>"; };
 		F5C7E8892809CDF600036B8E /* InterfaceBuilderSetupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceBuilderSetupTableViewCell.swift; sourceTree = "<group>"; };
 		F5C7E88B2809CDFD00036B8E /* CustomSuperviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSuperviewTableViewCell.swift; sourceTree = "<group>"; };
 		F5C7E88E2809CF1200036B8E /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
-		F5FC82DE27DA0B3200FE1D7D /* ExampleSnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleSnapshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F5FC82E827DA0BBF00FE1D7D /* GradientActivityIndicatorViewTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientActivityIndicatorViewTestCase.swift; sourceTree = "<group>"; };
-		F5FC82EF27DA0BBF00FE1D7D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		F5FC82F327DA0BBF00FE1D7D /* GradientLoadingBarControllerTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLoadingBarControllerTestCase.swift; sourceTree = "<group>"; };
-		F5FC82F427DA0BBF00FE1D7D /* NotchGradientLoadingBarControllerTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotchGradientLoadingBarControllerTestCase.swift; sourceTree = "<group>"; };
 		FAA1A12E84EBC1F48401EB10 /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,22 +62,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DCA9834327D68AD600D6EA30 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8A0BF2A649F852F27812AA32 /* Pods_ExampleTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F5FC82DB27DA0B3200FE1D7D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A3603BFBB6494793AEE84E88 /* Pods_ExampleSnapshotTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -134,8 +69,6 @@
 			isa = PBXGroup;
 			children = (
 				12DDBD589B02F5D3C9C3AF69 /* Pods_Example.framework */,
-				28825A77907675CA26D91A13 /* Pods_ExampleTests.framework */,
-				255BE21D23572DD0713A94E2 /* Pods_ExampleSnapshotTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -145,10 +78,6 @@
 			children = (
 				FAA1A12E84EBC1F48401EB10 /* Pods-Example.debug.xcconfig */,
 				3299012A62A2E4310D02CD78 /* Pods-Example.release.xcconfig */,
-				8546348DA9E4805657E6F366 /* Pods-ExampleTests.debug.xcconfig */,
-				A84CFB3E33CA7C6024D463AF /* Pods-ExampleTests.release.xcconfig */,
-				58EE67DB75A1006623BCF31C /* Pods-ExampleSnapshotTests.debug.xcconfig */,
-				B4A7D9EEF6ADF47333E77805 /* Pods-ExampleSnapshotTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -157,8 +86,6 @@
 			isa = PBXGroup;
 			children = (
 				DCA9833827D68AD400D6EA30 /* Example */,
-				DCA9834927D68AD600D6EA30 /* ExampleTests */,
-				F5FC82DF27DA0B3200FE1D7D /* ExampleSnapshotTests */,
 				DCA9833727D68AD400D6EA30 /* Products */,
 				A6AC3866473F1A669D221CA4 /* Pods */,
 				33D2CE217238EAE7A5515634 /* Frameworks */,
@@ -169,8 +96,6 @@
 			isa = PBXGroup;
 			children = (
 				DCA9833627D68AD400D6EA30 /* Example.app */,
-				DCA9834627D68AD600D6EA30 /* ExampleTests.xctest */,
-				F5FC82DE27DA0B3200FE1D7D /* ExampleSnapshotTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -193,17 +118,6 @@
 				DCA9834027D68AD600D6EA30 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		DCA9834927D68AD600D6EA30 /* ExampleTests */ = {
-			isa = PBXGroup;
-			children = (
-				F53E34F628AED042006FB130 /* GradientActivityIndicatorView */,
-				F53E34F928AED042006FB130 /* GradientLoadingBar */,
-				F53E34F428AED042006FB130 /* GradientLoadingBarView */,
-				F53E34FB28AED042006FB130 /* NotchGradientLoadingBar */,
-			);
-			path = ExampleTests;
 			sourceTree = "<group>";
 		};
 		DCA9836727D68E3500D6EA30 /* Helper */ = {
@@ -273,48 +187,6 @@
 			path = NavigationBarExample;
 			sourceTree = "<group>";
 		};
-		F53E34F328AED009006FB130 /* NotchGradientLoadingBar */ = {
-			isa = PBXGroup;
-			children = (
-				F5FC82F427DA0BBF00FE1D7D /* NotchGradientLoadingBarControllerTestCase.swift */,
-			);
-			path = NotchGradientLoadingBar;
-			sourceTree = "<group>";
-		};
-		F53E34F428AED042006FB130 /* GradientLoadingBarView */ = {
-			isa = PBXGroup;
-			children = (
-				F53E34F528AED042006FB130 /* GradientLoadingBarView+ViewModelTestCase.swift */,
-			);
-			path = GradientLoadingBarView;
-			sourceTree = "<group>";
-		};
-		F53E34F628AED042006FB130 /* GradientActivityIndicatorView */ = {
-			isa = PBXGroup;
-			children = (
-				F53E34F828AED042006FB130 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift */,
-				F53E350228AED0BF006FB130 /* GradientActivityIndicatorViewModel+SizeUpdateTestCase.swift */,
-				F53E34F728AED042006FB130 /* GradientActivityIndicatorViewModelTestCase.swift */,
-			);
-			path = GradientActivityIndicatorView;
-			sourceTree = "<group>";
-		};
-		F53E34F928AED042006FB130 /* GradientLoadingBar */ = {
-			isa = PBXGroup;
-			children = (
-				F53E34FA28AED042006FB130 /* GradientLoadingBarViewModelTestCase.swift */,
-			);
-			path = GradientLoadingBar;
-			sourceTree = "<group>";
-		};
-		F53E34FB28AED042006FB130 /* NotchGradientLoadingBar */ = {
-			isa = PBXGroup;
-			children = (
-				F53E34FC28AED042006FB130 /* NotchGradientLoadingBarViewModelTestCase.swift */,
-			);
-			path = NotchGradientLoadingBar;
-			sourceTree = "<group>";
-		};
 		F5C7E8862809CDE200036B8E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,42 +203,6 @@
 				F5C7E88E2809CF1200036B8E /* BorderedButton.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		F5FC82DF27DA0B3200FE1D7D /* ExampleSnapshotTests */ = {
-			isa = PBXGroup;
-			children = (
-				F5FC82E727DA0BBF00FE1D7D /* GradientActivityIndicatorView */,
-				F5FC82F227DA0BBF00FE1D7D /* GradientLoadingBar */,
-				F5FC830727DA0D8400FE1D7D /* GradientLoadingBarView */,
-				F53E34F328AED009006FB130 /* NotchGradientLoadingBar */,
-				F5FC82EF27DA0BBF00FE1D7D /* README.md */,
-			);
-			path = ExampleSnapshotTests;
-			sourceTree = "<group>";
-		};
-		F5FC82E727DA0BBF00FE1D7D /* GradientActivityIndicatorView */ = {
-			isa = PBXGroup;
-			children = (
-				F5FC82E827DA0BBF00FE1D7D /* GradientActivityIndicatorViewTestCase.swift */,
-			);
-			path = GradientActivityIndicatorView;
-			sourceTree = "<group>";
-		};
-		F5FC82F227DA0BBF00FE1D7D /* GradientLoadingBar */ = {
-			isa = PBXGroup;
-			children = (
-				F5FC82F327DA0BBF00FE1D7D /* GradientLoadingBarControllerTestCase.swift */,
-			);
-			path = GradientLoadingBar;
-			sourceTree = "<group>";
-		};
-		F5FC830727DA0D8400FE1D7D /* GradientLoadingBarView */ = {
-			isa = PBXGroup;
-			children = (
-				F57C83C827DA11580025AA11 /* GradientLoadingBarViewTestCase.swift */,
-			);
-			path = GradientLoadingBarView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -393,45 +229,6 @@
 			productReference = DCA9833627D68AD400D6EA30 /* Example.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DCA9834527D68AD600D6EA30 /* ExampleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DCA9835D27D68AD600D6EA30 /* Build configuration list for PBXNativeTarget "ExampleTests" */;
-			buildPhases = (
-				765F099D280F5648383C9020 /* [CP] Check Pods Manifest.lock */,
-				DCA9834227D68AD600D6EA30 /* Sources */,
-				DCA9834327D68AD600D6EA30 /* Frameworks */,
-				DCA9834427D68AD600D6EA30 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DCA9834827D68AD600D6EA30 /* PBXTargetDependency */,
-			);
-			name = ExampleTests;
-			productName = ExampleTests;
-			productReference = DCA9834627D68AD600D6EA30 /* ExampleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		F5FC82DD27DA0B3200FE1D7D /* ExampleSnapshotTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F5FC82E627DA0B3200FE1D7D /* Build configuration list for PBXNativeTarget "ExampleSnapshotTests" */;
-			buildPhases = (
-				716A5EA63D5ED262C053AE2D /* [CP] Check Pods Manifest.lock */,
-				F5FC82DA27DA0B3200FE1D7D /* Sources */,
-				F5FC82DB27DA0B3200FE1D7D /* Frameworks */,
-				F5FC82DC27DA0B3200FE1D7D /* Resources */,
-				849CA8738A44CA8E17195413 /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F5FC82E327DA0B3200FE1D7D /* PBXTargetDependency */,
-			);
-			name = ExampleSnapshotTests;
-			productName = ExampleSnapshotTests;
-			productReference = F5FC82DE27DA0B3200FE1D7D /* ExampleSnapshotTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -444,14 +241,6 @@
 				TargetAttributes = {
 					DCA9833527D68AD400D6EA30 = {
 						CreatedOnToolsVersion = 13.2.1;
-					};
-					DCA9834527D68AD600D6EA30 = {
-						CreatedOnToolsVersion = 13.2.1;
-						TestTargetID = DCA9833527D68AD400D6EA30;
-					};
-					F5FC82DD27DA0B3200FE1D7D = {
-						CreatedOnToolsVersion = 13.2.1;
-						TestTargetID = DCA9833527D68AD400D6EA30;
 					};
 				};
 			};
@@ -469,8 +258,6 @@
 			projectRoot = "";
 			targets = (
 				DCA9833527D68AD400D6EA30 /* Example */,
-				DCA9834527D68AD600D6EA30 /* ExampleTests */,
-				F5FC82DD27DA0B3200FE1D7D /* ExampleSnapshotTests */,
 			);
 		};
 /* End PBXProject section */
@@ -486,21 +273,6 @@
 				DCA9837627D693BB00D6EA30 /* BasicExample.storyboard in Resources */,
 				DCA9833E27D68AD600D6EA30 /* Assets.xcassets in Resources */,
 				DCA9838927D6A55A00D6EA30 /* NavigationBarExample.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DCA9834427D68AD600D6EA30 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F5FC82DC27DA0B3200FE1D7D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F5FC82FE27DA0BBF00FE1D7D /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,67 +299,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		716A5EA63D5ED262C053AE2D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ExampleSnapshotTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		765F099D280F5648383C9020 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ExampleTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		849CA8738A44CA8E17195413 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ExampleSnapshotTests/Pods-ExampleSnapshotTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ExampleSnapshotTests/Pods-ExampleSnapshotTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ExampleSnapshotTests/Pods-ExampleSnapshotTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C56CF067D28EB40785524B49 /* [CP] Embed Pods Frameworks */ = {
@@ -665,44 +376,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DCA9834227D68AD600D6EA30 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F53E350128AED042006FB130 /* NotchGradientLoadingBarViewModelTestCase.swift in Sources */,
-				F53E34FD28AED042006FB130 /* GradientLoadingBarView+ViewModelTestCase.swift in Sources */,
-				F53E350028AED042006FB130 /* GradientLoadingBarViewModelTestCase.swift in Sources */,
-				F53E34FF28AED042006FB130 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift in Sources */,
-				F53E34FE28AED042006FB130 /* GradientActivityIndicatorViewModelTestCase.swift in Sources */,
-				F53E350328AED0BF006FB130 /* GradientActivityIndicatorViewModel+SizeUpdateTestCase.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F5FC82DA27DA0B3200FE1D7D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F5FC82FA27DA0BBF00FE1D7D /* GradientActivityIndicatorViewTestCase.swift in Sources */,
-				F57C83C927DA11580025AA11 /* GradientLoadingBarViewTestCase.swift in Sources */,
-				F5FC830027DA0BBF00FE1D7D /* GradientLoadingBarControllerTestCase.swift in Sources */,
-				F5FC830127DA0BBF00FE1D7D /* NotchGradientLoadingBarControllerTestCase.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		DCA9834827D68AD600D6EA30 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DCA9833527D68AD400D6EA30 /* Example */;
-			targetProxy = DCA9834727D68AD600D6EA30 /* PBXContainerItemProxy */;
-		};
-		F5FC82E327DA0B3200FE1D7D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DCA9833527D68AD400D6EA30 /* Example */;
-			targetProxy = F5FC82E227DA0B3200FE1D7D /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		DCA9835827D68AD600D6EA30 /* Debug */ = {
@@ -883,86 +557,6 @@
 			};
 			name = Release;
 		};
-		DCA9835E27D68AD600D6EA30 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8546348DA9E4805657E6F366 /* Pods-ExampleTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F63GJC2AN7;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = hamburg.felix.gradientLoadingBar.example.ExampleTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example.app/Example";
-			};
-			name = Debug;
-		};
-		DCA9835F27D68AD600D6EA30 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A84CFB3E33CA7C6024D463AF /* Pods-ExampleTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F63GJC2AN7;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = hamburg.felix.gradientLoadingBar.example.ExampleTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example.app/Example";
-			};
-			name = Release;
-		};
-		F5FC82E427DA0B3200FE1D7D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 58EE67DB75A1006623BCF31C /* Pods-ExampleSnapshotTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = hamburg.felix.gradientLoadingBar.ExampleSnapshotTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example.app/Example";
-			};
-			name = Debug;
-		};
-		F5FC82E527DA0B3200FE1D7D /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4A7D9EEF6ADF47333E77805 /* Pods-ExampleSnapshotTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = hamburg.felix.gradientLoadingBar.ExampleSnapshotTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example.app/Example";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -980,24 +574,6 @@
 			buildConfigurations = (
 				DCA9835B27D68AD600D6EA30 /* Debug */,
 				DCA9835C27D68AD600D6EA30 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DCA9835D27D68AD600D6EA30 /* Build configuration list for PBXNativeTarget "ExampleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DCA9835E27D68AD600D6EA30 /* Debug */,
-				DCA9835F27D68AD600D6EA30 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F5FC82E627DA0B3200FE1D7D /* Build configuration list for PBXNativeTarget "ExampleSnapshotTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F5FC82E427DA0B3200FE1D7D /* Debug */,
-				F5FC82E527DA0B3200FE1D7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

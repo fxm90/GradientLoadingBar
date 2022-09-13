@@ -50,15 +50,15 @@ jobs:
         working-directory: ./Example
         run: bundle exec fastlane lint
 
-      - name: Execute tests.
-        working-directory: ./Example
-        run: bundle exec fastlane tests
+      # - name: Execute tests.
+      #   working-directory: ./Example
+      #   run: bundle exec fastlane tests
 
-      - name: Execute validation of library.
+      - name: Execute validation of library (incl. running tests).
         working-directory: ./Example
         run: bundle exec fastlane pod_lint
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1.2.1
+        uses: codecov/codecov-action@v3
 
       - run: echo "🍏 This job's status is ${{ job.status }}."

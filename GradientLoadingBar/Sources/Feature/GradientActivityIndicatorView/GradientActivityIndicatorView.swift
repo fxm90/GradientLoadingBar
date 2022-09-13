@@ -47,7 +47,7 @@ open class GradientActivityIndicatorView: UIView {
         let layer = CAGradientLayer()
         layer.anchorPoint = .zero
         layer.startPoint = .zero
-        layer.endPoint = CGPoint(x: 1.0, y: 0.0)
+        layer.endPoint = CGPoint(x: 1, y: 0)
 
         return layer
     }()
