@@ -35,24 +35,42 @@ platform :ios do
     )
   end
 
+  desc "Verify Carthage support by making sure the scheme `GradientLoadingBar` is shared."
+  lane :verify_carthage do
+    #
+    # For Carthage support we explicitly have to mark the scheme `GradientLoadingBar` as shared.
+    # Source: https://www.amerhukic.com/how-to-add-carthage-support-in-existing-cocoapod-project
+    #
+    build_app(
+      project: "Pods/Pods.xcodeproj",
+      scheme: "GradientLoadingBar",
+      skip_archive: true
+    )
+  end
+
   desc "Execute tests."
   lane :tests do
     run_tests(
-      # Running `pod install` will add the scheme `GradientLoadingBar-Unit-Tests` as non shared.
-      # As a workaround we added the test target to the `Example` scheme.
-      workspace: "Example.xcworkspace",
+      project: "Pods/Pods.xcodeproj",
+      scheme: "GradientLoadingBar-Unit-Tests",
       devices: ["iPhone 13"],
-      scheme: "Example"
+      code_coverage: true,
+      number_of_retries: 1
     )
   end
 
   desc "Execute validation of library."
   lane :pod_lint do
     Dir.chdir("..") do
+      #
       # Move outside of `Example/` directory.
       #
-      # - Note: `pod lib lint` will also run the tests.
-      pod_lib_lint()
+      # - Note: We skip running the tests here, as we have a separate lane for this which allows better customization.
+      #
+      pod_lib_lint(
+        verbose: true,
+        skip_tests: true
+      )
     end
   end
 end
