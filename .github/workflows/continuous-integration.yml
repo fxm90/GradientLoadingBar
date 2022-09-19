@@ -19,6 +19,14 @@ on:
     #          https://docs.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events
     - cron: '0 0 * * *'
 
+# Use latest Xcode version.
+#
+# Source:
+# - https://www.jessesquires.com/blog/2020/01/06/selecting-an-xcode-version-on-github-ci/
+# - https://github.com/actions/runner-images/blob/main/images/macos/macos-12-Readme.md#xcode
+env:
+  DEVELOPER_DIR: /Applications/Xcode_14.0.app/Contents/Developer
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel.
 jobs:
   # This workflow starts with a job called "build-and-test".
