@@ -7,7 +7,7 @@
 //
 
 import Combine
-import Foundation
+import UIKit
 
 /// This view model contains all logic related to the `GradientActivityIndicatorView`.
 final class GradientActivityIndicatorViewModel {
