@@ -6,7 +6,7 @@
 //  Copyright © 2017 Felix Mau. All rights reserved.
 //
 
-import LightweightObservable
+import Combine
 import UIKit
 
 /// This view model checks for the availability of the key-window,
@@ -16,25 +16,19 @@ final class GradientLoadingBarViewModel {
     // MARK: - Public properties
 
     /// Observable for the superview of the gradient-view.
-    var superview: Observable<UIView?> {
-        superviewSubject
+    var superview: AnyPublisher<UIView?, Never> {
+        superviewSubject.eraseToAnyPublisher()
     }
 
     // MARK: - Private properties
 
-    private let superviewSubject: Variable<UIView?> = Variable(nil)
+    private let superviewSubject = CurrentValueSubject<UIView?, Never>(nil)
 
-    // MARK: - Dependencies
-
-    private let sharedApplication: UIApplicationProtocol
-    private let notificationCenter: NotificationCenter
+    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Instance Lifecycle
 
     init(sharedApplication: UIApplicationProtocol = UIApplication.shared, notificationCenter: NotificationCenter = .default) {
-        self.sharedApplication = sharedApplication
-        self.notificationCenter = notificationCenter
-
         if let keyWindow = sharedApplication.keyWindowInConnectedScenes {
             superviewSubject.value = keyWindow
         }
@@ -42,24 +36,19 @@ final class GradientLoadingBarViewModel {
         // The key window might be not available yet. This can happen, if the initializer is called from
         // `UIApplicationDelegate.application(_:didFinishLaunchingWithOptions:)`.
         // Furthermore the key window can change. Therefore we setup an observer to inform the view model
-        // when a `UIWindow` object becomes the key window.
-        notificationCenter.addObserver(self,
-                                       selector: #selector(didReceiveUIWindowDidBecomeKeyNotification(_:)),
-                                       name: UIWindow.didBecomeKeyNotification,
-                                       object: nil)
+        // when a new `UIWindow` object becomes the key window.
+        notificationCenter
+            .publisher(for: UIWindow.didBecomeKeyNotification)
+            .compactMap { _ in sharedApplication.keyWindowInConnectedScenes }
+            .sink { [weak self] keyWindow in
+                self?.superviewSubject.value = keyWindow
+            }
+            .store(in: &subscriptions)
     }
 
     deinit {
         /// By providing a custom de-initializer we make sure to remove the gradient-view from its superview.
         superviewSubject.value = nil
-    }
-
-    // MARK: - Private methods
-
-    @objc private func didReceiveUIWindowDidBecomeKeyNotification(_: Notification) {
-        guard let keyWindow = sharedApplication.keyWindowInConnectedScenes else { return }
-
-        superviewSubject.value = keyWindow
     }
 }
 

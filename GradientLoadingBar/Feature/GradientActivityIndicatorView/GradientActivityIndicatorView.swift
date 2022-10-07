@@ -6,7 +6,7 @@
 //  Copyright © 2016 Felix Mau. All rights reserved.
 //
 
-import LightweightObservable
+import Combine
 import UIKit
 
 @IBDesignable
@@ -55,7 +55,7 @@ open class GradientActivityIndicatorView: UIView {
     /// The progress animation.
     ///
     /// - Note: `fromValue` and `duration` are updated from the view-model subscription.
-    private let animation: CABasicAnimation = {
+    private let progressAnimation: CABasicAnimation = {
         let animation = CABasicAnimation(keyPath: "position.x")
         animation.fromValue = 0
         animation.toValue = 0
@@ -70,7 +70,7 @@ open class GradientActivityIndicatorView: UIView {
     private let viewModel = GradientActivityIndicatorViewModel()
 
     /// The dispose bag for the observables.
-    private var disposeBag = DisposeBag()
+    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Instance Lifecycle
 
@@ -109,27 +109,27 @@ open class GradientActivityIndicatorView: UIView {
     }
 
     private func bindViewModelToView() {
-        viewModel.isAnimating.subscribeDistinct { [weak self] isAnimating, _ in
+        viewModel.isAnimating.sink { [weak self] isAnimating in
             self?.updateProgressAnimation(isAnimating: isAnimating)
-        }.disposed(by: &disposeBag)
+        }.store(in: &subscriptions)
 
-        viewModel.gradientLayerSizeUpdate.subscribeDistinct { [weak self] sizeUpdate, _ in
+        viewModel.gradientLayerSizeUpdate.sink { [weak self] sizeUpdate in
             self?.gradientLayer.frame = sizeUpdate.frame
-            self?.animation.fromValue = sizeUpdate.fromValue
-        }.disposed(by: &disposeBag)
+            self?.progressAnimation.fromValue = sizeUpdate.fromValue
+        }.store(in: &subscriptions)
 
-        viewModel.gradientLayerColors.subscribeDistinct { [weak self] gradientColors, _ in
+        viewModel.gradientLayerColors.sink { [weak self] gradientColors in
             self?.gradientLayer.colors = gradientColors
-        }.disposed(by: &disposeBag)
+        }.store(in: &subscriptions)
 
-        viewModel.gradientLayerAnimationDuration.subscribeDistinct { [weak self] animationDuration, _ in
-            self?.animation.duration = animationDuration
-        }.disposed(by: &disposeBag)
+        viewModel.gradientLayerAnimationDuration.sink { [weak self] animationDuration in
+            self?.progressAnimation.duration = animationDuration
+        }.store(in: &subscriptions)
     }
 
     private func updateProgressAnimation(isAnimating: Bool) {
         if isAnimating {
-            gradientLayer.add(animation, forKey: Config.progressAnimationKey)
+            gradientLayer.add(progressAnimation, forKey: Config.progressAnimationKey)
         } else {
             gradientLayer.removeAnimation(forKey: Config.progressAnimationKey)
         }

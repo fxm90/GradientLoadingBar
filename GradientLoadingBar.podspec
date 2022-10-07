@@ -29,7 +29,7 @@ Inspired by https://codepen.io/marcobiedermann/pen/LExXWW
   s.source           = { :git => 'https://github.com/fxm90/GradientLoadingBar.git', :tag => s.version.to_s }
 
   s.swift_version         = '5.5'
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '13.0'
 
   s.source_files = 'GradientLoadingBar/**/*'
 
@@ -39,6 +39,6 @@ Inspired by https://codepen.io/marcobiedermann/pen/LExXWW
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-s.dependency 'LightweightObservable', '~> 2.1'
+  # s.dependency 'LightweightObservable', '~> 2.1'
 
 end

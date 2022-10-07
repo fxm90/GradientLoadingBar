@@ -6,7 +6,7 @@
 //  Copyright © 2017 Felix Mau. All rights reserved.
 //
 
-import LightweightObservable
+import Combine
 import XCTest
 
 @testable import GradientLoadingBar
@@ -41,13 +41,18 @@ final class GradientLoadingBarViewModelTestCase: XCTestCase {
         let viewModel = GradientLoadingBarViewModel(sharedApplication: sharedApplicationMock,
                                                     notificationCenter: notificationCenter)
 
+        var receivedValues = [UIView?]()
+        let cancellable = viewModel.superview.sink {
+            receivedValues.append($0)
+        }
+
         // Then
-        // The property `superview` is an optional, as well as the property `value`.
-        // Therefore we can't use `XCTAssertNil` here, as this doesn't work with double optionals.
-        XCTAssertEqual(viewModel.superview.value, .some(nil))
+        withExtendedLifetime(cancellable) {
+            XCTAssertEqual(receivedValues, [nil])
+        }
     }
 
-    func test_init_shouldSetupSuperviewObservable_withKeyWindow() {
+    func test_init_shouldSetupSuperviewObservable_withKeyWindow() throws {
         // Given
         let keyWindow = UIWindow()
         sharedApplicationMock.keyWindowInConnectedScenes = keyWindow
@@ -57,7 +62,15 @@ final class GradientLoadingBarViewModelTestCase: XCTestCase {
                                                     notificationCenter: notificationCenter)
 
         // Then
-        XCTAssertEqual(viewModel.superview.value, keyWindow)
+        var receivedValues = [UIView?]()
+        let cancellable = viewModel.superview.sink {
+            receivedValues.append($0)
+        }
+
+        // Then
+        withExtendedLifetime(cancellable) {
+            XCTAssertEqual(receivedValues, [keyWindow])
+        }
     }
 
     func test_init_shouldSetupSuperviewObservable_afterUIWindowDidBecomeKeyNotification() {
@@ -66,7 +79,7 @@ final class GradientLoadingBarViewModelTestCase: XCTestCase {
                                                     notificationCenter: notificationCenter)
 
         var receivedKeyWindows = [UIView?]()
-        let disposable = viewModel.superview.subscribe { keyWindow, _ in
+        let cancellable = viewModel.superview.sink { keyWindow in
             receivedKeyWindows.append(keyWindow)
         }
 
@@ -74,7 +87,7 @@ final class GradientLoadingBarViewModelTestCase: XCTestCase {
         sharedApplicationMock.keyWindowInConnectedScenes = keyWindow
 
         // When
-        withExtendedLifetime(disposable) {
+        withExtendedLifetime(cancellable) {
             notificationCenter.post(name: UIWindow.didBecomeKeyNotification, object: nil)
         }
 
@@ -92,12 +105,12 @@ final class GradientLoadingBarViewModelTestCase: XCTestCase {
                                                                                   notificationCenter: notificationCenter)
 
         var receivedKeyWindows = [UIView?]()
-        let disposable = viewModel?.superview.subscribe { keyWindow, _ in
+        let cancellable = viewModel?.superview.sink { keyWindow in
             receivedKeyWindows.append(keyWindow)
         }
 
         // When
-        withExtendedLifetime(disposable) {
+        withExtendedLifetime(cancellable) {
             viewModel = nil
         }
 

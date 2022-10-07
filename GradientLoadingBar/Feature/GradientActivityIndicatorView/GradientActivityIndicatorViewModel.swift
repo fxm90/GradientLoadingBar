@@ -6,8 +6,8 @@
 //  Copyright © 2019 Felix Mau. All rights reserved.
 //
 
-import LightweightObservable
-import UIKit
+import Combine
+import Foundation
 
 /// This view model contains all logic related to the `GradientActivityIndicatorView`.
 final class GradientActivityIndicatorViewModel {
@@ -15,23 +15,28 @@ final class GradientActivityIndicatorViewModel {
     // MARK: - Public properties
 
     /// Observable state of the progress animation.
-    var isAnimating: Observable<Bool> {
-        isAnimatingSubject
+    var isAnimating: AnyPublisher<Bool, Never> {
+        isAnimatingSubject.eraseToAnyPublisher()
     }
 
     /// Observable frame of the gradient layer.
-    var gradientLayerSizeUpdate: Observable<SizeUpdate> {
-        gradientLayerSizeUpdateSubject
+    var gradientLayerSizeUpdate: AnyPublisher<SizeUpdate, Never> {
+        boundsSubject
+            .map { SizeUpdate(bounds: $0) }
+            .eraseToAnyPublisher()
     }
 
     /// Observable color array for the gradient layer (of type `CGColor`).
-    var gradientLayerColors: Observable<[CGColor]> {
+    var gradientLayerColors: AnyPublisher<[CGColor], Never> {
         gradientLayerColorsSubject
+            .map { $0.infiniteGradientColors() }
+            .map { $0.map(\.cgColor) }
+            .eraseToAnyPublisher()
     }
 
     /// Observable duration of the animation of the gradient layer.
-    var gradientLayerAnimationDuration: Observable<TimeInterval> {
-        gradientLayerAnimationDurationSubject
+    var gradientLayerAnimationDuration: AnyPublisher<TimeInterval, Never> {
+        gradientLayerAnimationDurationSubject.eraseToAnyPublisher()
     }
 
     /// Boolean flag, whether the view is currently hidden.
@@ -42,17 +47,15 @@ final class GradientActivityIndicatorViewModel {
     }
 
     /// The bounds of the view.
-    var bounds: CGRect = .zero {
-        didSet {
-            gradientLayerSizeUpdateSubject.value = SizeUpdate(bounds: bounds)
-        }
+    var bounds: CGRect {
+        get { boundsSubject.value }
+        set { boundsSubject.value = newValue }
     }
 
     /// Color array used for the gradient (of type `UIColor`).
-    var gradientColors = UIColor.GradientLoadingBar.gradientColors {
-        didSet {
-            gradientLayerColorsSubject.value = gradientColors.infiniteGradientColors().map(\.cgColor)
-        }
+    var gradientColors: [UIColor] {
+        get { gradientLayerColorsSubject.value }
+        set { gradientLayerColorsSubject.value = newValue }
     }
 
     /// The duration for the progress animation.
@@ -67,27 +70,24 @@ final class GradientActivityIndicatorViewModel {
     // MARK: - Private properties
 
     // As a `UIView` is initially visible, we also have to start the progress animation initially.
-    private let isAnimatingSubject = Variable(true)
-    private let gradientLayerSizeUpdateSubject = Variable(SizeUpdate(bounds: .zero))
+    private let isAnimatingSubject = CurrentValueSubject<Bool, Never>(true)
+    private let boundsSubject = CurrentValueSubject<CGRect, Never>(.zero)
 
-    private let gradientLayerColorsSubject: Variable<[CGColor]>
-    private let gradientLayerAnimationDurationSubject: Variable<TimeInterval>
+    private let gradientLayerColorsSubject = CurrentValueSubject<[UIColor], Never>(UIColor.GradientLoadingBar.gradientColors)
+    private let gradientLayerAnimationDurationSubject = CurrentValueSubject<TimeInterval, Never>(TimeInterval.GradientLoadingBar.progressDuration)
 
-    private var disposeBag = DisposeBag()
+    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Instance Lifecycle
 
     init() {
-        gradientLayerColorsSubject = Variable(gradientColors.infiniteGradientColors().map(\.cgColor))
-        gradientLayerAnimationDurationSubject = Variable(.GradientLoadingBar.progressDuration)
-
-        gradientLayerAnimationDuration.subscribe { [weak self] _, _ in
+        gradientLayerAnimationDuration.sink { [weak self] _ in
             self?.restartAnimationIfNeeded()
-        }.disposed(by: &disposeBag)
+        }.store(in: &subscriptions)
 
-        gradientLayerSizeUpdate.subscribe { [weak self] _, _ in
+        gradientLayerSizeUpdate.sink { [weak self] _ in
             self?.restartAnimationIfNeeded()
-        }.disposed(by: &disposeBag)
+        }.store(in: &subscriptions)
     }
 
     // MARK: - Private methods

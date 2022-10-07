@@ -6,7 +6,6 @@
 //  Copyright © 2019 Felix Mau. All rights reserved.
 //
 
-import LightweightObservable
 import XCTest
 
 @testable import GradientLoadingBar
@@ -37,12 +36,12 @@ final class GradientActivityIndicatorViewModelTestCase: XCTestCase {
     func test_settingIsHidden_toTrue_shouldUpdateIsAnimatingSubject_withFalse() throws {
         // Given
         var receivedIsAnimating: Bool?
-        let disposable = viewModel.isAnimating.subscribe { isAnimating, _ in
+        let cancellable = viewModel.isAnimating.sink { isAnimating in
             receivedIsAnimating = isAnimating
         }
 
         // When
-        withExtendedLifetime(disposable) {
+        withExtendedLifetime(cancellable) {
             viewModel.isHidden = true
         }
 
@@ -55,12 +54,12 @@ final class GradientActivityIndicatorViewModelTestCase: XCTestCase {
     func test_settingIsHidden_toFalse_shouldUpdateIsAnimatingSubject_withTrue() throws {
         // Given
         var receivedIsAnimating: Bool?
-        let disposable = viewModel.isAnimating.subscribe { isAnimating, _ in
+        let cancellable = viewModel.isAnimating.sink { isAnimating in
             receivedIsAnimating = isAnimating
         }
 
         // When
-        withExtendedLifetime(disposable) {
+        withExtendedLifetime(cancellable) {
             viewModel.isHidden = false
         }
 
@@ -75,7 +74,7 @@ final class GradientActivityIndicatorViewModelTestCase: XCTestCase {
     func test_settingBounds_shouldUpdateGradientLayerSizeUpdate() {
         // Given
         var receivedSizeUpdate: GradientActivityIndicatorViewModel.SizeUpdate?
-        let disposable = viewModel.gradientLayerSizeUpdate.subscribe { sizeUpdate, _ in
+        let cancellable = viewModel.gradientLayerSizeUpdate.sink { sizeUpdate in
             receivedSizeUpdate = sizeUpdate
         }
 
@@ -83,7 +82,7 @@ final class GradientActivityIndicatorViewModelTestCase: XCTestCase {
         let bounds = CGRect(origin: .zero, size: size)
 
         // When
-        withExtendedLifetime(disposable) {
+        withExtendedLifetime(cancellable) {
             viewModel.bounds = bounds
         }
 
@@ -95,7 +94,7 @@ final class GradientActivityIndicatorViewModelTestCase: XCTestCase {
     func test_settingBounds_shouldRestartAnimation() {
         // Given
         var receivedIsAnimating = [Bool]()
-        let disposable = viewModel.isAnimating.subscribe { isAnimating, _ in
+        let cancellable = viewModel.isAnimating.sink { isAnimating in
             receivedIsAnimating.append(isAnimating)
         }
         receivedIsAnimating.removeAll()
@@ -104,7 +103,7 @@ final class GradientActivityIndicatorViewModelTestCase: XCTestCase {
         let bounds = CGRect(origin: .zero, size: size)
 
         // When
-        withExtendedLifetime(disposable) {
+        withExtendedLifetime(cancellable) {
             viewModel.bounds = bounds
         }
 
@@ -116,7 +115,7 @@ final class GradientActivityIndicatorViewModelTestCase: XCTestCase {
     func test_settingBounds_shouldNotRestartAnimation_dueToViewIsHidden() {
         // Given
         var receivedIsAnimating = [Bool]()
-        let disposable = viewModel.isAnimating.subscribe { isAnimating, _ in
+        let cancellable = viewModel.isAnimating.sink { isAnimating in
             receivedIsAnimating.append(isAnimating)
         }
 
@@ -127,7 +126,7 @@ final class GradientActivityIndicatorViewModelTestCase: XCTestCase {
         receivedIsAnimating.removeAll()
 
         // When
-        withExtendedLifetime(disposable) {
+        withExtendedLifetime(cancellable) {
             viewModel.bounds = bounds
         }
 
@@ -140,14 +139,14 @@ final class GradientActivityIndicatorViewModelTestCase: XCTestCase {
     func test_settingGradientColors_shouldUpdateGradientLayerColors() {
         // Given
         var receivedGradientLayerColors: [CGColor]?
-        let disposable = viewModel.gradientLayerColors.subscribe { gradientLayerColors, _ in
+        let cancellable = viewModel.gradientLayerColors.sink { gradientLayerColors in
             receivedGradientLayerColors = gradientLayerColors
         }
 
         let gradientColors: [UIColor] = [.red, .yellow, .green]
 
         // When
-        withExtendedLifetime(disposable) {
+        withExtendedLifetime(cancellable) {
             viewModel.gradientColors = gradientColors
         }
 
@@ -161,14 +160,14 @@ final class GradientActivityIndicatorViewModelTestCase: XCTestCase {
     func test_settingProgressAnimationDuration_shouldUpdateGradientLayerAnimationDuration() {
         // Given
         var receivedGradientLayerAnimationDuration: TimeInterval?
-        let disposable = viewModel.gradientLayerAnimationDuration.subscribe { gradientLayerAnimationDuration, _ in
+        let cancellable = viewModel.gradientLayerAnimationDuration.sink { gradientLayerAnimationDuration in
             receivedGradientLayerAnimationDuration = gradientLayerAnimationDuration
         }
 
         let progressAnimationDuration: TimeInterval = .random(in: 0 ... 100)
 
         // When
-        withExtendedLifetime(disposable) {
+        withExtendedLifetime(cancellable) {
             viewModel.progressAnimationDuration = progressAnimationDuration
         }
 
@@ -179,13 +178,13 @@ final class GradientActivityIndicatorViewModelTestCase: XCTestCase {
     func test_settingProgressAnimationDuration_shouldRestartAnimation() {
         // Given
         var receivedIsAnimating = [Bool]()
-        let disposable = viewModel.isAnimating.subscribe { isAnimating, _ in
+        let cancellable = viewModel.isAnimating.sink { isAnimating in
             receivedIsAnimating.append(isAnimating)
         }
         receivedIsAnimating.removeAll()
 
         // When
-        withExtendedLifetime(disposable) {
+        withExtendedLifetime(cancellable) {
             viewModel.progressAnimationDuration = .random(in: 0 ... 100)
         }
 
@@ -197,7 +196,7 @@ final class GradientActivityIndicatorViewModelTestCase: XCTestCase {
     func test_settingProgressAnimationDuration_shouldNotRestartAnimation_dueToViewIsHidden() {
         // Given
         var receivedIsAnimating = [Bool]()
-        let disposable = viewModel.isAnimating.subscribe { isAnimating, _ in
+        let cancellable = viewModel.isAnimating.sink { isAnimating in
             receivedIsAnimating.append(isAnimating)
         }
 
@@ -205,7 +204,7 @@ final class GradientActivityIndicatorViewModelTestCase: XCTestCase {
         receivedIsAnimating.removeAll()
 
         // When
-        withExtendedLifetime(disposable) {
+        withExtendedLifetime(cancellable) {
             viewModel.progressAnimationDuration = .random(in: 0 ... 100)
         }
 

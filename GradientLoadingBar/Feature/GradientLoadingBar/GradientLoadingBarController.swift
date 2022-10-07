@@ -6,7 +6,7 @@
 //  Copyright © 2016 Felix Mau. All rights reserved.
 //
 
-import LightweightObservable
+import Combine
 import UIKit
 
 /// Type-alias for the controller to match pod name.
@@ -57,7 +57,7 @@ open class GradientLoadingBarController {
     private let viewModel = GradientLoadingBarViewModel()
 
     /// The dispose bag for the observables.
-    private var disposeBag = DisposeBag()
+    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Instance Lifecycle
 
@@ -117,9 +117,9 @@ open class GradientLoadingBarController {
     // MARK: - Private methods
 
     private func bindViewModelToView() {
-        viewModel.superview.subscribeDistinct { [weak self] newSuperview, _ in
-            self?.updateSuperview(newSuperview)
-        }.disposed(by: &disposeBag)
+        viewModel.superview.sink { [weak self] superview in
+            self?.updateSuperview(superview)
+        }.store(in: &subscriptions)
     }
 
     private func updateSuperview(_ superview: UIView?) {
