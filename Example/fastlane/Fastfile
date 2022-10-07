@@ -53,7 +53,7 @@ platform :ios do
     run_tests(
       project: "Pods/Pods.xcodeproj",
       scheme: "GradientLoadingBar-Unit-Tests",
-      devices: ["iPhone 13"],
+      devices: ["iPhone 14"],
       code_coverage: true,
       number_of_retries: 1
     )
