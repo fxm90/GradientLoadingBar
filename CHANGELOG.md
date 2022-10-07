@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [3.0.0] - 2022-07-10
+### Changed
+ - Use `Combine` instead of dependency `LightweightObservable`. Therefore the minimum required iOS version increased to 13. Otherwise there are no breaking changes.
+
 ## [2.3.5] - 2022-12-09
 ### Fixed
  - Fixed wrong minimum iOS deployment target when using Carthage.
@@ -196,7 +200,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial release
 
 
-[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.5...main
+[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/3.0.0...main
+[2.3.5]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.5...3.0.0
 [2.3.5]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.4...2.3.5
 [2.3.4]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.3...2.3.4
 [2.3.3]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.2...2.3.3

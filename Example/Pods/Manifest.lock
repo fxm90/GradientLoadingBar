@@ -1,6 +1,6 @@
 PODS:
-  - GradientLoadingBar (2.3.5)
-  - GradientLoadingBar/Tests (2.3.5):
+  - GradientLoadingBar (3.0.0)
+  - GradientLoadingBar/Tests (3.0.0):
     - SnapshotTesting (~> 1.9)
   - SnapshotTesting (1.9.0)
   - SwiftConfigurationFiles (0.0.1)
@@ -32,7 +32,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/fxm90/SwiftConfigurationFiles.git
 
 SPEC CHECKSUMS:
-  GradientLoadingBar: 3faa74eba09967a78994422ed0ff5f5324b485b8
+  GradientLoadingBar: 3c4246535efdedaf9b471c05caabfdb4b87b40a2
   SnapshotTesting: 6141c48b6aa76ead61431ca665c14ab9a066c53b
   SwiftConfigurationFiles: 1cf2228a911ebed9f42f8dec077bb634f04ca6c8
   SwiftFormat: e73212c71908404e333da34e303772b9e516ac9b
