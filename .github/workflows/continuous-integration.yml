@@ -19,6 +19,14 @@ on:
     #          https://docs.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events
     - cron: '0 0 * * *'
 
+# Use latest Xcode version.
+#
+# Source:
+# - https://www.jessesquires.com/blog/2020/01/06/selecting-an-xcode-version-on-github-ci/
+# - https://github.com/actions/runner-images/blob/main/images/macos/macos-12-Readme.md#xcode
+env:
+  DEVELOPER_DIR: /Applications/Xcode_14.0.app/Contents/Developer
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel.
 jobs:
   # This workflow starts with a job called "build-and-test".
@@ -54,11 +62,15 @@ jobs:
         working-directory: ./Example
         run: bundle exec fastlane tests
 
+      - name: Execute validation Carthage support.
+        working-directory: ./Example
+        run: bundle exec fastlane verify_carthage
+
       - name: Execute validation of library.
         working-directory: ./Example
         run: bundle exec fastlane pod_lint
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1.2.1
+        uses: codecov/codecov-action@v3
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
