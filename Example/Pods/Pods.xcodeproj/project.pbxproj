@@ -71,6 +71,7 @@
 		E76B7845AC63CD09A0690ADCA2F288EF /* NotchGradientLoadingBarViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC75067FBFAE2101CDC04ACEEAF52A5 /* NotchGradientLoadingBarViewModelTestCase.swift */; };
 		EE12C41FB0FDE0B408CD9B38F4486EA5 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A64E5EE1B24BD953A55E4034119A210C /* README.md */; };
 		F2DBAE1958541B2ABAB3C30EE18DEFB0 /* GradientLoadingBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46DDFC661BED5E686F5FC283A0B473 /* GradientLoadingBarController.swift */; };
+		F5FA6AFD290E68EF00F665CF /* XCTest+AssertSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FA6AFC290E68EF00F665CF /* XCTest+AssertSnapshot.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,6 +178,7 @@
 		EBBEA2B36F48CA1D6E4CA325EA91C4C7 /* GradientActivityIndicatorViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GradientActivityIndicatorViewModel.swift; sourceTree = "<group>"; };
 		EE38CBAA3AA7C73AA148D79A1BC4D8B0 /* GradientLoadingBar-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GradientLoadingBar-Info.plist"; sourceTree = "<group>"; };
 		F15E3D2604499C5905C145503CF0AEF2 /* GradientLoadingBar.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = GradientLoadingBar.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F5FA6AFC290E68EF00F665CF /* XCTest+AssertSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTest+AssertSnapshot.swift"; sourceTree = "<group>"; };
 		F776327B63AC7738D831A067EEB9DA4C /* GradientActivityIndicatorViewModelTestCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GradientActivityIndicatorViewModelTestCase.swift; sourceTree = "<group>"; };
 		FB60F34AA79894687776DB4758251781 /* SwiftLint.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftLint.debug.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -298,6 +300,7 @@
 				B555B7835959996152A3D9311092041D /* GradientLoadingBar */,
 				2E3CD5CD009CAE07E3636D51B9BA042D /* GradientLoadingBarView */,
 				980B854ED8686498363F21CEFA9F9480 /* NotchGradientLoadingBar */,
+				F5FA6AFC290E68EF00F665CF /* XCTest+AssertSnapshot.swift */,
 			);
 			name = SnapshotTests;
 			path = GradientLoadingBar/Tests/SnapshotTests;
@@ -795,6 +798,7 @@
 			files = (
 				18B846EABB5A71E24B3239EA12D34DE8 /* GradientActivityIndicatorView+AnimateIsHiddenTestCase.swift in Sources */,
 				CC595FE2F02CC6E1419A4B57D690199D /* GradientActivityIndicatorViewModel+SizeUpdateTestCase.swift in Sources */,
+				F5FA6AFD290E68EF00F665CF /* XCTest+AssertSnapshot.swift in Sources */,
 				1645ADED0F1D0606B5CB96708CB6888D /* GradientActivityIndicatorViewModelTestCase.swift in Sources */,
 				58B4BA64EB2868B1CC008312A62CF62C /* GradientActivityIndicatorViewTestCase.swift in Sources */,
 				197246CEAA8A7722E3A596C2DD899908 /* GradientLoadingBarControllerTestCase.swift in Sources */,

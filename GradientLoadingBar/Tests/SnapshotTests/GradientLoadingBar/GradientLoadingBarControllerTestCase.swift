@@ -6,12 +6,18 @@
 //  Copyright © 2020 Felix Mau. All rights reserved.
 //
 
-import SnapshotTesting
 import XCTest
 
 @testable import GradientLoadingBar
 
 final class GradientLoadingBarControllerTestCase: XCTestCase {
+
+    // MARK: - Config
+
+    private enum Config {
+        /// As the gradient might look slightly different each time, we're using a reduced precision here.
+        static let precision = 0.99
+    }
 
     // MARK: - Private properties
 
@@ -50,7 +56,6 @@ final class GradientLoadingBarControllerTestCase: XCTestCase {
         // Then
         wait(for: [expectation], timeout: 0.1)
 
-        // Workaround, as snapshotting a `UIWindow` is currently not supported and crashes when running all tests.
-        assertSnapshot(matching: window.layer, as: .image)
+        assertSnapshot(matching: window, precision: Config.precision)
     }
 }

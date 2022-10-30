@@ -6,7 +6,6 @@
 //  Copyright © 2019 Felix Mau. All rights reserved.
 //
 
-import SnapshotTesting
 import XCTest
 
 @testable import GradientLoadingBar
@@ -25,6 +24,9 @@ final class GradientActivityIndicatorViewTestCase: XCTestCase {
         static let gradientColors = [
             #colorLiteral(red: 0.9490196078, green: 0.3215686275, blue: 0.431372549, alpha: 1), #colorLiteral(red: 0.9450980392, green: 0.4784313725, blue: 0.5921568627, alpha: 1), #colorLiteral(red: 0.9529411765, green: 0.737254902, blue: 0.7843137255, alpha: 1), #colorLiteral(red: 0.4274509804, green: 0.8666666667, blue: 0.9490196078, alpha: 1), #colorLiteral(red: 0.7568627451, green: 0.9411764706, blue: 0.9568627451, alpha: 1),
         ]
+
+        /// As the gradient might look slightly different each time, we're using a reduced precision here.
+        static let precision = 0.98
     }
 
     // MARK: - Test cases
@@ -38,7 +40,7 @@ final class GradientActivityIndicatorViewTestCase: XCTestCase {
         gradientActivityIndicatorView.layer.removeAllAnimations()
 
         // Then
-        assertSnapshot(matching: gradientActivityIndicatorView, as: .image)
+        assertSnapshot(matching: gradientActivityIndicatorView, precision: Config.precision)
     }
 
     func test_gradientActivityIndicatorView_shouldContainCorrectCustomColors() {
@@ -51,6 +53,6 @@ final class GradientActivityIndicatorViewTestCase: XCTestCase {
         gradientActivityIndicatorView.layer.removeAllAnimations()
 
         // Then
-        assertSnapshot(matching: gradientActivityIndicatorView, as: .image)
+        assertSnapshot(matching: gradientActivityIndicatorView, precision: Config.precision)
     }
 }
