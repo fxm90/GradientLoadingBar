@@ -36,7 +36,6 @@ Inspired by https://codepen.io/marcobiedermann/pen/LExXWW
   s.test_spec 'Tests' do |test_spec|
     test_spec.requires_app_host = true
     test_spec.source_files = 'GradientLoadingBar/Tests/**/*.{swift,md}'
-    test_spec.dependency 'SnapshotTesting', '~> 1.9'
   end
 
   # s.resource_bundles = {
