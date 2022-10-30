@@ -20,25 +20,6 @@ extension XCTest {
         static let defaultPrecision: Double = 1
     }
 
-    // MARK: - Types
-
-    enum SnapshotWritingError: Error {
-        case invalidPNGData
-        case failedToCreateDirectory(underlyingError: Error)
-        case failedToWriteImage(fileURL: URL)
-    }
-
-    enum SnapshotReadingError: Error {
-        case failedToReadImage(underlyingError: Error)
-        case failedToCreateImageFromFile(fileURL: URL)
-    }
-
-    enum SnapshotComparisonError: Error {
-        case invalidCoreImage
-        case invalidDataProvider
-        case differentSize(lhsSize: CGSize, rhsSize: CGSize)
-    }
-
     // MARK: - Public methods
 
     @MainActor
@@ -122,46 +103,32 @@ extension XCTest {
             .appendingPathComponent(snapshotImageFileName, isDirectory: false)
             .appendingPathExtension("png")
 
-        // We're using `.path` instead of `.absoluteString` here, to get rid of the "file://" prefix.
-        guard FileManager.default.fileExists(atPath: snapshotImageFileURL.path) else {
-            do {
-                try writeSnapshot(for: image, snapshotImageFileURL: snapshotImageFileURL)
-                XCTFail("Created reference image. Please run test again to verify reference image.", file: file, line: line)
-            } catch let error as SnapshotWritingError {
-                switch error {
-                case .invalidPNGData:
-                    XCTFail("Failed to create PNG data from image.", file: file, line: line)
-
-                case let .failedToCreateDirectory(underlyingError):
-                    XCTFail("Failed to create snapshot directory: `\(underlyingError)`.", file: file, line: line)
-
-                case let .failedToWriteImage(snapshotImageFileURL):
-                    XCTFail("Failed to create snapshot image at `\(snapshotImageFileURL.path)`.", file: file, line: line)
-                }
-            } catch {
-                XCTFail("Unknown error `\(error)`.", file: file, line: line)
+        let snapshotFileManager = SnapshotFileManager(fileURL: snapshotImageFileURL)
+        do {
+            guard snapshotFileManager.hasReferenceImage() else {
+                try snapshotFileManager.saveReferenceImage(image)
+                XCTFail("Created reference image. Please run test again to verify the reference image.", file: file, line: line)
+                return
             }
 
-            return
-        }
+            let referenceImage = try snapshotFileManager.loadReferenceImage()
 
-        do {
-            let referenceImage = try readSnapshot(snapshotImageFileURL: snapshotImageFileURL)
-            let difference = try difference(lhsImage: referenceImage, rhsImage: image)
+            let imageComparisonService = ImageComparisonService(lhsImage: referenceImage, rhsImage: image)
+            let difference = try imageComparisonService.calculateDifference()
 
-            // The above method `difference(lhsImage:rhsImage:)` returns "0" for no difference and "1" for a complete difference.
+            // The above method `calculateDifference()` returns "0" for no difference and "1" for a complete difference.
             // The parameter `precision` defines "1" as totally equal images, therefore we subtract the differences from "1" here.
             let invertedDifference = 1 - difference
             XCTAssertGreaterThanOrEqual(invertedDifference, precision, file: file, line: line)
-        } catch let error as SnapshotReadingError {
+        } catch let error as SnapshotFileManager.LoadError {
             switch error {
-            case let .failedToReadImage(underlyingError):
+            case let .failedToLoadFile(underlyingError):
                 XCTFail("Failed to read snapshot reference file: `\(underlyingError)`.", file: file, line: line)
 
-            case let .failedToCreateImageFromFile(fileURL):
-                XCTFail("Failed to create reference image from file at path: `\(fileURL.absoluteString)`.", file: file, line: line)
+            case .failedToInstantiateImage:
+                XCTFail("Failed to create reference image from file.", file: file, line: line)
             }
-        } catch let error as SnapshotComparisonError {
+        } catch let error as ImageComparisonService.Error {
             switch error {
             case .invalidCoreImage:
                 XCTFail("Failed to read property `cgImage` from image.", file: file, line: line)
@@ -172,65 +139,164 @@ extension XCTest {
             case let .differentSize(lhsSize, rhsSize):
                 XCTFail("Can't compare images due to different sizes: `\(lhsSize)` and `\(rhsSize)`.", file: file, line: line)
             }
+        } catch let error as SnapshotFileManager.SaveError {
+            switch error {
+            case .invalidPNGData:
+                XCTFail("Failed to create PNG data from image.", file: file, line: line)
+
+            case let .failedToCreateDirectory(underlyingError):
+                XCTFail("Failed to create snapshot directory: `\(underlyingError)`.", file: file, line: line)
+
+            case .failedToWriteImage:
+                XCTFail("Failed to write snapshot reference image.", file: file, line: line)
+            }
         } catch {
             XCTFail("Unknown error `\(error)`.", file: file, line: line)
         }
     }
+}
 
-    private func writeSnapshot(for image: UIImage, snapshotImageFileURL: URL) throws {
-        let snapshotDirectoryURL = snapshotImageFileURL
-            .deletingLastPathComponent()
+// MARK: - Supporting Types -
 
-        let fileManager = FileManager.default
-        if !fileManager.fileExists(atPath: snapshotDirectoryURL.absoluteString) {
+private final class SnapshotFileManager {
+
+    // MARK: - Types
+
+    enum SaveError: Swift.Error {
+        case invalidPNGData
+        case failedToCreateDirectory(underlyingError: Swift.Error)
+        case failedToWriteImage
+    }
+
+    enum LoadError: Swift.Error {
+        case failedToLoadFile(underlyingError: Error)
+        case failedToInstantiateImage
+    }
+
+    // MARK: - Private properties
+
+    private let fileManager: FileManager = .default
+    private let fileURL: URL
+
+    // MARK: - Instance Lifecycle
+
+    init(fileURL: URL) {
+        self.fileURL = fileURL
+    }
+
+    // MARK: - Public methods
+
+    func hasReferenceImage() -> Bool {
+        // We're using `.path` instead of `.absoluteString` here, to get rid of the "file://" prefix.
+        fileManager.fileExists(atPath: fileURL.path)
+    }
+
+    func saveReferenceImage(_ image: UIImage) throws {
+        let directory = fileURL.deletingLastPathComponent()
+        if !fileManager.fileExists(atPath: directory.absoluteString) {
             do {
-                try fileManager.createDirectory(at: snapshotDirectoryURL, withIntermediateDirectories: true)
+                try fileManager.createDirectory(at: directory, withIntermediateDirectories: true)
             } catch {
-                throw SnapshotWritingError.failedToCreateDirectory(underlyingError: error)
+                throw SaveError.failedToCreateDirectory(underlyingError: error)
             }
         }
 
         guard let imagePNGData = image.pngData() else {
-            throw SnapshotWritingError.invalidPNGData
+            throw SaveError.invalidPNGData
         }
 
-        let isSuccess = fileManager.createFile(atPath: snapshotImageFileURL.path, contents: imagePNGData)
+        let isSuccess = fileManager.createFile(atPath: fileURL.path, contents: imagePNGData)
         if !isSuccess {
-            throw SnapshotWritingError.failedToWriteImage(fileURL: snapshotImageFileURL)
+            throw SaveError.failedToWriteImage
         }
     }
 
-    func readSnapshot(snapshotImageFileURL: URL) throws -> UIImage {
+    func loadReferenceImage() throws -> UIImage {
         do {
-            let snapshotImagePNGData = try Data(contentsOf: snapshotImageFileURL)
-            guard let snapshotImage = UIImage(data: snapshotImagePNGData) else {
-                throw SnapshotReadingError.failedToCreateImageFromFile(fileURL: snapshotImageFileURL)
+            let referenceImagePNGData = try Data(contentsOf: fileURL)
+            guard let referenceImage = UIImage(data: referenceImagePNGData) else {
+                throw LoadError.failedToInstantiateImage
             }
 
-            return snapshotImage
+            return referenceImage
         } catch {
-            throw SnapshotReadingError.failedToReadImage(underlyingError: error)
+            throw LoadError.failedToLoadFile(underlyingError: error)
         }
     }
+}
+
+private final class ImageComparisonService {
+
+    // MARK: - Types
+
+    enum Error: Swift.Error {
+        case invalidCoreImage
+        case invalidDataProvider
+        case differentSize(lhsSize: CGSize, rhsSize: CGSize)
+    }
+
+    private struct Pixel {
+        // swiftlint:disable identifier_name
+        let r: UInt8
+        let g: UInt8
+        let b: UInt8
+        let a: UInt8
+        // swiftlint:enable identifier_name
+
+        /// Calculates the difference between the current instance and the given `rhsPixel` in percent.
+        ///
+        /// Returns:
+        ///  - "0" if the `rhsPixel` has the **same color and alpha** values as the current instance.
+        ///  - "1" if the `rhsPixel` has the **opposite color and alpha** values as the current instance.
+        func difference(to rhsPixel: Pixel) -> Double {
+            // We explicitly have to cast from `UInt8` to `Int` before subtracting the values,
+            // as otherwise we could get a "arithmetic overflow" runtime failure for negative values.
+            let absoluteDiffR = abs(Int(r) - Int(rhsPixel.r))
+            let absoluteDiffG = abs(Int(g) - Int(rhsPixel.g))
+            let absoluteDiffB = abs(Int(b) - Int(rhsPixel.b))
+            let absoluteDiffA = abs(Int(a) - Int(rhsPixel.a))
+
+            let percentageDiffR = (1.0 / 255) * Double(absoluteDiffR)
+            let percentageDiffG = (1.0 / 255) * Double(absoluteDiffG)
+            let percentageDiffB = (1.0 / 255) * Double(absoluteDiffB)
+            let percentageDiffA = (1.0 / 255) * Double(absoluteDiffA)
+
+            return (percentageDiffR + percentageDiffG + percentageDiffB + percentageDiffA) / 4
+        }
+    }
+
+    // MARK: - Private properties
+
+    private let lhsImage: UIImage
+    private let rhsImage: UIImage
+
+    // MARK: - Instance Lifecycle
+
+    init(lhsImage: UIImage, rhsImage: UIImage) {
+        self.lhsImage = lhsImage
+        self.rhsImage = rhsImage
+    }
+
+    // MARK: - Public methods
 
     /// Calculates the difference between the given `lhsImage` and `rhsImage` in percent.
     ///
     /// Returns:
     ///  - "0" if `lhsImage` and `rhsImage` have the **same color and alpha** values.
     ///  - "1" if `lhsImage` and `rhsImage` have the **opposite color and alpha** values.
-    func difference(lhsImage: UIImage, rhsImage: UIImage) throws -> Double {
+    func calculateDifference() throws -> Double {
         guard
             let lhsCGImage = lhsImage.cgImage,
             let rhsCGImage = rhsImage.cgImage
         else {
-            throw SnapshotComparisonError.invalidCoreImage
+            throw Error.invalidCoreImage
         }
 
         guard
             let lhsDataProvider = lhsCGImage.dataProvider,
             let rhsDataProvider = rhsCGImage.dataProvider
         else {
-            throw SnapshotComparisonError.invalidDataProvider
+            throw Error.invalidDataProvider
         }
 
         // We explicitly check for the width and height of the `CGImage` here.
@@ -239,7 +305,7 @@ extension XCTest {
         // > its size as "60x60", and will also look good on a 3x resolution screen where 3 pixels correspond to 1 point.
         // https://stackoverflow.com/a/6488838
         guard lhsCGImage.size == rhsCGImage.size else {
-            throw SnapshotComparisonError.differentSize(lhsSize: lhsImage.size, rhsSize: rhsImage.size)
+            throw Error.differentSize(lhsSize: lhsImage.size, rhsSize: rhsImage.size)
         }
 
         let lhsPixelData = lhsDataProvider.data
@@ -275,38 +341,6 @@ extension XCTest {
 
         let totalValues = imageWidth * imageHeight
         return sumDifference / Double(totalValues)
-    }
-}
-
-// MARK: - Supporting Types
-
-private struct Pixel {
-    // swiftlint:disable identifier_name
-    let r: UInt8
-    let g: UInt8
-    let b: UInt8
-    let a: UInt8
-    // swiftlint:enable identifier_name
-
-    /// Calculates the difference between the current instance and the given `rhsPixel` in percent.
-    ///
-    /// Returns:
-    ///  - "0" if the `rhsPixel` has the **same color and alpha** values as the current instance.
-    ///  - "1" if the `rhsPixel` has the **opposite color and alpha** values as the current instance.
-    func difference(to rhsPixel: Pixel) -> Double {
-        // We explicitly have to cast from `UInt8` to `Int` before subtracting the values,
-        // as otherwise we could get a "arithmetic overflow" runtime failure for negative values.
-        let absoluteDiffR = abs(Int(r) - Int(rhsPixel.r))
-        let absoluteDiffG = abs(Int(g) - Int(rhsPixel.g))
-        let absoluteDiffB = abs(Int(b) - Int(rhsPixel.b))
-        let absoluteDiffA = abs(Int(a) - Int(rhsPixel.a))
-
-        let percentageDiffR = (1.0 / 255) * Double(absoluteDiffR)
-        let percentageDiffG = (1.0 / 255) * Double(absoluteDiffG)
-        let percentageDiffB = (1.0 / 255) * Double(absoluteDiffB)
-        let percentageDiffA = (1.0 / 255) * Double(absoluteDiffA)
-
-        return (percentageDiffR + percentageDiffG + percentageDiffB + percentageDiffA) / 4
     }
 }
 
