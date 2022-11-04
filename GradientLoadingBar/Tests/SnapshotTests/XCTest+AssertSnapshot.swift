@@ -313,7 +313,7 @@ private final class ImageComparisonService {
         // > its size as "60x60", and will also look good on a 3x resolution screen where 3 pixels correspond to 1 point.
         // https://stackoverflow.com/a/6488838
         guard lhsCGImage.size == rhsCGImage.size else {
-            throw Error.differentSize(lhsSize: lhsImage.size, rhsSize: rhsImage.size)
+            throw Error.differentSize(lhsSize: lhsCGImage.size, rhsSize: rhsCGImage.size)
         }
 
         guard
