@@ -64,6 +64,9 @@ jobs:
 
       - name: Archive logs
         uses: actions/upload-artifact@v3
+        # Always run action "Archive logs", even if the previous step failed.
+        # https://docs.github.com/en/actions/learn-github-actions/expressions#status-check-functions
+        if: always()
         with:
           name: logs
           path: Logs
