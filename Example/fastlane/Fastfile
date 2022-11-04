@@ -54,8 +54,7 @@ platform :ios do
       project: "Pods/Pods.xcodeproj",
       scheme: "GradientLoadingBar-Unit-Tests",
       devices: ["iPhone 14"],
-      code_coverage: true,
-      number_of_retries: 1
+      code_coverage: true
     )
   end
 
