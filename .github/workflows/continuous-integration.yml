@@ -62,6 +62,12 @@ jobs:
         working-directory: ./Example
         run: bundle exec fastlane tests
 
+      - name: Archive logs
+        uses: actions/upload-artifact@v3
+        with:
+          name: logs
+          path: Logs
+
       - name: Execute validation Carthage support.
         working-directory: ./Example
         run: bundle exec fastlane verify_carthage
