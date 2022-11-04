@@ -112,6 +112,11 @@ extension XCTestCase {
             // The above method `calculateDifference()` returns "0" for no difference and "1" for a complete difference.
             // The parameter `precision` defines "1" as totally equal images, therefore we subtract the differences from "1" here.
             let invertedDifference = 1 - difference
+            if invertedDifference < precision {
+                // Test failed, update existing reference image.
+                try snapshotFileManager.saveReferenceImage(image)
+            }
+
             XCTAssertGreaterThanOrEqual(invertedDifference, precision, file: file, line: line)
         } catch let error as SnapshotFileManager.LoadError {
             switch error {
