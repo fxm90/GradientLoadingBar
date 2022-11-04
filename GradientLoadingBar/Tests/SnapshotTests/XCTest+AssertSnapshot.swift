@@ -16,8 +16,9 @@ extension XCTestCase {
     // MARK: - Config
 
     private enum Config {
-        static let snapshotDirectory = "__Snapshots__"
         static let defaultPrecision: Double = 1
+        static let snapshotDirectory = "__Snapshots__"
+        static let shouldUpdateReferenceImageOnFailure = true
     }
 
     // MARK: - Public methods
@@ -112,8 +113,7 @@ extension XCTestCase {
             // The above method `calculateDifference()` returns "0" for no difference and "1" for a complete difference.
             // The parameter `precision` defines "1" as totally equal images, therefore we subtract the differences from "1" here.
             let invertedDifference = 1 - difference
-            if invertedDifference < precision {
-                // Test failed, update existing reference image.
+            if invertedDifference < precision, Config.shouldUpdateReferenceImageOnFailure {
                 try snapshotFileManager.saveReferenceImage(image)
             }
 
