@@ -37,6 +37,7 @@ extension XCTestCase {
 
         let renderer = ImageRenderer(content: swiftUIView)
         renderer.scale = 3
+        renderer.colorMode = .extendedLinear
 
         guard let image = renderer.uiImage else {
             XCTFail("Failed to get image from `ImageRenderer`.", file: file, line: line)
