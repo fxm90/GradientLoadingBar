@@ -11,7 +11,7 @@ import XCTest
 
 /// Since version 1.10.0 the [Snapshot Testing library from Point Free](https://github.com/pointfreeco/swift-snapshot-testing/) dropped support
 /// for CocoaPods. Therefore we use these helper methods, to avoid being dependent on an outdated version of the above mentioned library.
-extension XCTest {
+extension XCTestCase {
 
     // MARK: - Config
 
@@ -25,12 +25,12 @@ extension XCTest {
     @MainActor
     func assertSnapshot(matching swiftUIView: some View,
                         precision: Double = Config.defaultPrecision,
-                        callFunction: String = #function,
-                        callFilePath: String = #filePath,
+                        callFunction: StaticString = #function,
+                        callFilePath: StaticString = #filePath,
                         file: StaticString = #file,
                         line: UInt = #line) {
         guard #available(iOS 16.0, *) else {
-            XCTFail("`ImageRenderer` is only available in iOS 16.0 or newer. Make sure to use a corresponding device.", file: file, line: line)
+            XCTFail("`ImageRenderer` is only available in iOS 16.0 or newer! Please make sure to use a corresponding device.", file: file, line: line)
             return
         }
 
@@ -50,8 +50,8 @@ extension XCTest {
 
     func assertSnapshot(matching viewController: UIViewController,
                         precision: Double = Config.defaultPrecision,
-                        callFunction: String = #function,
-                        callFilePath: String = #filePath,
+                        callFunction: StaticString = #function,
+                        callFilePath: StaticString = #filePath,
                         file: StaticString = #file,
                         line: UInt = #line) {
         assertSnapshot(matching: viewController.view,
@@ -64,8 +64,8 @@ extension XCTest {
 
     func assertSnapshot(matching view: UIView,
                         precision: Double = Config.defaultPrecision,
-                        callFunction: String = #function,
-                        callFilePath: String = #filePath,
+                        callFunction: StaticString = #function,
+                        callFilePath: StaticString = #filePath,
                         file: StaticString = #file,
                         line: UInt = #line) {
         let renderer = UIGraphicsImageRenderer(size: view.bounds.size)
@@ -86,14 +86,14 @@ extension XCTest {
     // swiftlint:disable:next function_parameter_count function_body_length cyclomatic_complexity
     private func assertSnapshot(matching image: UIImage,
                                 precision: Double,
-                                callFunction: String,
-                                callFilePath: String,
+                                callFunction: StaticString,
+                                callFilePath: StaticString,
                                 file: StaticString,
                                 line: UInt) {
         // E.g. "test_gradientActivityIndicatorView_shouldContainCorrectDefaultColors"
-        let snapshotImageFileName = callFunction.trimmingCharacters(in: .alphanumerics.inverted)
+        let snapshotImageFileName = String(callFunction).trimmingCharacters(in: .alphanumerics.inverted)
 
-        let unitTestFileURL = URL(fileURLWithPath: callFilePath)
+        let unitTestFileURL = URL(fileURLWithPath: String(callFilePath))
         let snapshotImageFileURL = unitTestFileURL
             // Remove ".swift"
             .deletingLastPathComponent()
@@ -112,6 +112,9 @@ extension XCTest {
             }
 
             let referenceImage = try snapshotFileManager.loadReferenceImage()
+
+            addAttachment(name: "Snapshot image", image: image)
+            addAttachment(name: "Reference image", image: referenceImage)
 
             let imageComparisonService = ImageComparisonService(lhsImage: referenceImage, rhsImage: image)
             let difference = try imageComparisonService.calculateDifference()
@@ -133,8 +136,8 @@ extension XCTest {
             case .invalidCoreImage:
                 XCTFail("Failed to read property `cgImage` from image.", file: file, line: line)
 
-            case .invalidDataProvider:
-                XCTFail("Failed to read property `dataProvider` from core image.", file: file, line: line)
+            case .invalidData:
+                XCTFail("Failed to read the `data` from `dataProvider` on core image.", file: file, line: line)
 
             case let .differentSize(lhsSize, rhsSize):
                 XCTFail("Can't compare images due to different sizes: `\(lhsSize)` and `\(rhsSize)`.", file: file, line: line)
@@ -153,6 +156,13 @@ extension XCTest {
         } catch {
             XCTFail("Unknown error `\(error)`.", file: file, line: line)
         }
+    }
+
+    private func addAttachment(name: String, image: UIImage) {
+        let imageAttachment = XCTAttachment(image: image)
+        imageAttachment.name = name
+        imageAttachment.lifetime = .keepAlways
+        add(imageAttachment)
     }
 }
 
@@ -231,17 +241,15 @@ private final class ImageComparisonService {
 
     enum Error: Swift.Error {
         case invalidCoreImage
-        case invalidDataProvider
+        case invalidData
         case differentSize(lhsSize: CGSize, rhsSize: CGSize)
     }
 
     private struct Pixel {
-        // swiftlint:disable identifier_name
-        let r: UInt8
-        let g: UInt8
-        let b: UInt8
-        let a: UInt8
-        // swiftlint:enable identifier_name
+        let red: UInt8
+        let green: UInt8
+        let blue: UInt8
+        let alpha: UInt8
 
         /// Calculates the difference between the current instance and the given `rhsPixel` in percent.
         ///
@@ -251,17 +259,17 @@ private final class ImageComparisonService {
         func difference(to rhsPixel: Pixel) -> Double {
             // We explicitly have to cast from `UInt8` to `Int` before subtracting the values,
             // as otherwise we could get a "arithmetic overflow" runtime failure for negative values.
-            let absoluteDiffR = abs(Int(r) - Int(rhsPixel.r))
-            let absoluteDiffG = abs(Int(g) - Int(rhsPixel.g))
-            let absoluteDiffB = abs(Int(b) - Int(rhsPixel.b))
-            let absoluteDiffA = abs(Int(a) - Int(rhsPixel.a))
+            let absoluteDiffRed = abs(Int(red) - Int(rhsPixel.red))
+            let absoluteDiffGreen = abs(Int(green) - Int(rhsPixel.green))
+            let absoluteDiffBlue = abs(Int(blue) - Int(rhsPixel.blue))
+            let absoluteDiffAlpha = abs(Int(alpha) - Int(rhsPixel.alpha))
 
-            let percentageDiffR = (1.0 / 255) * Double(absoluteDiffR)
-            let percentageDiffG = (1.0 / 255) * Double(absoluteDiffG)
-            let percentageDiffB = (1.0 / 255) * Double(absoluteDiffB)
-            let percentageDiffA = (1.0 / 255) * Double(absoluteDiffA)
+            let percentageDiffRed = (1.0 / 255) * Double(absoluteDiffRed)
+            let percentageDiffGreen = (1.0 / 255) * Double(absoluteDiffGreen)
+            let percentageDiffBlue = (1.0 / 255) * Double(absoluteDiffBlue)
+            let percentageDiffAlpha = (1.0 / 255) * Double(absoluteDiffAlpha)
 
-            return (percentageDiffR + percentageDiffG + percentageDiffB + percentageDiffA) / 4
+            return (percentageDiffRed + percentageDiffGreen + percentageDiffBlue + percentageDiffAlpha) / 4
         }
     }
 
@@ -292,13 +300,6 @@ private final class ImageComparisonService {
             throw Error.invalidCoreImage
         }
 
-        guard
-            let lhsDataProvider = lhsCGImage.dataProvider,
-            let rhsDataProvider = rhsCGImage.dataProvider
-        else {
-            throw Error.invalidDataProvider
-        }
-
         // We explicitly check for the width and height of the `CGImage` here.
         // > It's because `UIImage` has a scale property. This mediates between pixels and points. So, for example, a `UIImage` created
         // > from a "180x180" pixel image, but with a scale of "3", is automatically treated as having size 60x60 points. It will report
@@ -308,43 +309,54 @@ private final class ImageComparisonService {
             throw Error.differentSize(lhsSize: lhsImage.size, rhsSize: rhsImage.size)
         }
 
-        let lhsPixelData = lhsDataProvider.data
+        guard
+            let lhsPixelData = lhsCGImage.dataProvider?.data,
+            let rhsPixelData = rhsCGImage.dataProvider?.data
+        else {
+            throw Error.invalidData
+        }
+
         let lhsData: UnsafePointer<UInt8> = CFDataGetBytePtr(lhsPixelData)
-
-        let rhsPixelData = rhsDataProvider.data
         let rhsData: UnsafePointer<UInt8> = CFDataGetBytePtr(rhsPixelData)
-
-        let imageWidth = lhsCGImage.width
-        let imageHeight = lhsCGImage.height
 
         var sumDifference = 0.0
 
         // swiftlint:disable identifier_name
-        for x in 0 ..< imageWidth {
-            for y in 0 ..< imageHeight {
+        for x in 0 ..< lhsCGImage.width {
+            for y in 0 ..< lhsCGImage.height {
                 // swiftlint:enable identifier_name
-                let pixelIndex = ((imageWidth * y) + x) * 4
+                let pixelIndex = ((lhsCGImage.width * y) + x) * 4
 
-                let lhsPixel = Pixel(r: lhsData[pixelIndex],
-                                     g: lhsData[pixelIndex + 1],
-                                     b: lhsData[pixelIndex + 2],
-                                     a: lhsData[pixelIndex + 3])
+                let lhsPixel = Pixel(red: lhsData[pixelIndex],
+                                     green: lhsData[pixelIndex + 1],
+                                     blue: lhsData[pixelIndex + 2],
+                                     alpha: lhsData[pixelIndex + 3])
 
-                let rhsPixel = Pixel(r: rhsData[pixelIndex],
-                                     g: rhsData[pixelIndex + 1],
-                                     b: rhsData[pixelIndex + 2],
-                                     a: rhsData[pixelIndex + 3])
+                let rhsPixel = Pixel(red: rhsData[pixelIndex],
+                                     green: rhsData[pixelIndex + 1],
+                                     blue: rhsData[pixelIndex + 2],
+                                     alpha: rhsData[pixelIndex + 3])
 
                 sumDifference += lhsPixel.difference(to: rhsPixel)
             }
         }
 
-        let totalValues = imageWidth * imageHeight
+        let totalValues = lhsCGImage.width * lhsCGImage.height
         return sumDifference / Double(totalValues)
     }
 }
 
 // MARK: - Helper
+
+private extension String {
+
+    /// Source: https://stackoverflow.com/a/46403722
+    init(_ staticString: StaticString) {
+        self = staticString.withUTF8Buffer {
+            String(decoding: $0, as: UTF8.self)
+        }
+    }
+}
 
 private extension CGImage {
 
