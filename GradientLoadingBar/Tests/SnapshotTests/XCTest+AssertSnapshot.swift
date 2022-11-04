@@ -105,8 +105,8 @@ extension XCTestCase {
 
             let referenceImage = try snapshotFileManager.loadReferenceImage()
 
-            addAttachment(name: "Snapshot image", image: image)
-            addAttachment(name: "Reference image", image: referenceImage)
+            addAttachment(name: "Snapshot", image: image)
+            addAttachment(name: "Reference", image: referenceImage)
 
             let imageComparisonService = ImageComparisonService(lhsImage: referenceImage, rhsImage: image)
             let difference = try imageComparisonService.calculateDifference()
@@ -173,9 +173,16 @@ extension XCTestCase {
 
     private func addAttachment(name: String, image: UIImage) {
         let imageAttachment = XCTAttachment(image: image)
-        imageAttachment.name = name
+        imageAttachment.name = "Image: \(name)"
         imageAttachment.lifetime = .keepAlways
         add(imageAttachment)
+
+        if let pngData = image.pngData() {
+            let dataAttachment = XCTAttachment(data: pngData)
+            dataAttachment.name = "Data: \(name)"
+            dataAttachment.lifetime = .keepAlways
+            add(dataAttachment)
+        }
     }
 }
 
