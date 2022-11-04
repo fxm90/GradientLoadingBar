@@ -63,9 +63,9 @@ jobs:
         run: bundle exec fastlane tests
 
       - name: Archive logs
-        # Always run action "Archive logs", even if the previous step failed.
+        # Only run action "Archive logs" when any previous step of a job fails.
         # https://docs.github.com/en/actions/learn-github-actions/expressions#status-check-functions
-        if: always()
+        if: failure()
         uses: actions/upload-artifact@v3
         with:
           name: logs
