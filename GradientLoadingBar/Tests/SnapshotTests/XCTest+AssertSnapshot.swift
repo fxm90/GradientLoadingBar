@@ -83,27 +83,15 @@ extension XCTestCase {
 
     // MARK: - Private methods
 
-    // swiftlint:disable:next function_parameter_count function_body_length cyclomatic_complexity
+    // swiftlint:disable:next function_parameter_count cyclomatic_complexity
     private func assertSnapshot(matching image: UIImage,
                                 precision: Double,
                                 callFunction: StaticString,
                                 callFilePath: StaticString,
                                 file: StaticString,
                                 line: UInt) {
-        // E.g. "test_gradientActivityIndicatorView_shouldContainCorrectDefaultColors"
-        let snapshotImageFileName = String(callFunction).trimmingCharacters(in: .alphanumerics.inverted)
-
-        let unitTestFileURL = URL(fileURLWithPath: String(callFilePath))
-        let snapshotImageFileURL = unitTestFileURL
-            // Remove ".swift"
-            .deletingLastPathComponent()
-            // Append e.g. "__Snapshot__" directory
-            .appendingPathComponent(Config.snapshotDirectory, isDirectory: true)
-            // Append e.g. "test_gradientActivityIndicatorView_shouldContainCorrectDefaultColors"
-            .appendingPathComponent(snapshotImageFileName, isDirectory: false)
-            .appendingPathExtension("png")
-
-        let snapshotFileManager = SnapshotFileManager(fileURL: snapshotImageFileURL)
+        let referenceImageFileURL = referenceImageFileURL(callFunction: callFunction, callFilePath: callFilePath)
+        let snapshotFileManager = SnapshotFileManager(fileURL: referenceImageFileURL)
         do {
             guard snapshotFileManager.hasReferenceImage() else {
                 try snapshotFileManager.saveReferenceImage(image)
@@ -156,6 +144,23 @@ extension XCTestCase {
         } catch {
             XCTFail("Unknown error `\(error)`.", file: file, line: line)
         }
+    }
+
+    private func referenceImageFileURL(callFunction: StaticString, callFilePath: StaticString) -> URL {
+        // E.g. "test_gradientActivityIndicatorView_shouldContainCorrectDefaultColors"
+        let referenceImageFileName = String(callFunction).trimmingCharacters(in: .alphanumerics.inverted)
+
+        // E.g. "/Users/f.mau/iOS/GradientLoadingBar/GradientLoadingBar/Tests/SnapshotTests/GradientLoadingBar/GradientLoadingBarControllerTestCase.swift"
+        let unitTestFileURL = URL(fileURLWithPath: String(callFilePath))
+
+        return unitTestFileURL
+            // Remove "__FILENAME__.swift"
+            .deletingLastPathComponent()
+            // Append e.g. "__Snapshot__" directory
+            .appendingPathComponent(Config.snapshotDirectory, isDirectory: true)
+            // Append e.g. "test_gradientActivityIndicatorView_shouldContainCorrectDefaultColors"
+            .appendingPathComponent(referenceImageFileName, isDirectory: false)
+            .appendingPathExtension("png")
     }
 
     private func addAttachment(name: String, image: UIImage) {
