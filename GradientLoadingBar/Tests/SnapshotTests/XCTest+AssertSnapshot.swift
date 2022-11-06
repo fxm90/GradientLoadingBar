@@ -18,7 +18,7 @@ extension XCTestCase {
     private enum Config {
         static let defaultPrecision: Double = 1
         static let snapshotDirectory = "__Snapshots__"
-        static let shouldUpdateReferenceImageOnFailure = true
+        static let shouldUpdateReferenceImageOnFailure = false
     }
 
     // MARK: - Public methods
@@ -37,7 +37,7 @@ extension XCTestCase {
 
         let renderer = ImageRenderer(content: swiftUIView)
         renderer.scale = 3
-        renderer.colorMode = .nonLinear
+        renderer.isOpaque = true
 
         guard let image = renderer.uiImage else {
             XCTFail("Failed to get image from `ImageRenderer`.", file: file, line: line)
@@ -172,17 +172,13 @@ extension XCTestCase {
     }
 
     private func addAttachment(name: String, image: UIImage) {
-        let imageAttachment = XCTAttachment(image: image)
-        imageAttachment.name = "Image: \(name)"
-        imageAttachment.lifetime = .keepAlways
-        add(imageAttachment)
+        guard let pngData = image.pngData() else { return }
 
-        if let pngData = image.pngData() {
-            let dataAttachment = XCTAttachment(data: pngData)
-            dataAttachment.name = "Data: \(name)"
-            dataAttachment.lifetime = .keepAlways
-            add(dataAttachment)
-        }
+        let attachment = XCTAttachment(data: pngData)
+        attachment.name = "PNG Data: \(name)"
+        attachment.lifetime = .keepAlways
+
+        add(attachment)
     }
 }
 
