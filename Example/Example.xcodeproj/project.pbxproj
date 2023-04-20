@@ -320,6 +320,7 @@
 		};
 		DCA9836527D68D6400D6EA30 /* SwiftFormat */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -338,6 +339,7 @@
 		};
 		DCA9836627D68D7000D6EA30 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
