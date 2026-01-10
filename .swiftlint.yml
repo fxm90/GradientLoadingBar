@@ -1,0 +1,85 @@
+#
+# .swiftlint.yml
+# Configuration file for SwiftLint (https://github.com/realm/SwiftLint/)
+#
+# A more detailed documentation of the rules can be found at
+# https://realm.github.io/SwiftLint/rule-directory.html
+#
+# Created by Felix Mau (https://felix.hamburg)
+#
+
+included:
+  - ./
+
+excluded:
+  - ".build/**/*"
+  - Package.swift
+
+opt_in_rules:
+  - accessibility_label_for_image # Images that provide context should have an accessibility label or should be explicitly hidden from accessibility
+  - accessibility_trait_for_button # All views with tap gestures added should include the .isButton or the .isLink accessibility traits
+  - closure_spacing # Closure expressions should have a single space inside each brace.
+  - contains_over_filter_count # Prefer `contains` over comparing `filter(where:).count` to 0.
+  - contains_over_filter_is_empty # Prefer `contains` over using `filter(where:).isEmpty`.
+  - contains_over_first_not_nil # Prefer `contains` over `first(where:) != nil` and `firstIndex(where:) != nil`.
+  - contains_over_range_nil_comparison # Prefer `contains` over `range(of:) != nil` and `range(of:) == nil`.
+  - convenience_type # Types used for hosting only static members should be implemented as a caseless enum to avoid instantiation.
+  - duplicate_imports # Imports should be unique.
+  - empty_collection_literal # Prefer checking `isEmpty` over comparing collection to an empty array or dictionary literal.
+  - empty_count # Prefer checking `isEmpty` over comparing count to zero.
+  - empty_parameters # Prefer `() ->` over `Void ->`.
+  - empty_string # Prefer checking `isEmpty` over comparing string to an empty string literal.
+  - empty_xctest_method # Empty XCTest method should be avoided.
+  - explicit_init # Explicitly calling .init() should be avoided.
+  - fatal_error_message # A fatalError call should have a message.
+  - file_header # Header comments should be consistent with project patterns.
+  - first_where # Prefer using `.first(where:)` over `.filter { }.first` in collections.
+  - for_where # `where` clauses are preferred over a single `if` inside a `for`.
+  - force_unwrapping # Force unwrapping should be avoided.
+  - identical_operands # Comparing two identical operands is likely a mistake.
+  - implicit_return # Prefer implicit returns in closures, functions and getters.
+  - is_disjoint # Prefer using `Set.isDisjoint(with:)` over `Set.intersection(_:).isEmpty`.
+  - last_where # Prefer using `.last(where:)` over `.filter { }.last` in collections.
+  - legacy_multiple # Prefer using the `isMultiple(of:)` function instead of using the remainder operator (`%`).
+  - missing_docs # Declarations should be documented.
+  - modifier_order # Modifier order should be consistent.
+  - multiline_arguments # Arguments should be either on the same line, or one per line.
+  - multiline_parameters # Functions and methods parameters should be either on the same line, or one per line.
+  - operator_usage_whitespace # Operators should be surrounded by a single whitespace when they are being used.
+  - overridden_super_call # Some overridden methods should always call super
+  - prefer_self_type_over_type_of_self # Prefer `Self` over `type(of: self)` when accessing properties or calling methods.
+  - prefer_zero_over_explicit_init # Prefer `.zero` over explicit init with zero parameters (e.g. `CGPoint(x: 0, y: 0)`).
+  - prohibited_super_call # Some methods should not call super, e.g. `UIViewController.loadView()`.
+  - redundant_nil_coalescing # nil coalescing operator is only evaluated if the lhs is nil, coalescing operator with nil as rhs is redundant.
+  - toggle_bool # Prefer `someBool.toggle()` over `someBool = !someBool`.
+  - unavailable_function # Unimplemented functions should be marked as unavailable.
+  - unused_optional_binding # Prefer `!= nil` over `let _ =`
+  - void_return # Prefer `-> Void` over `-> ()`.
+  - weak_delegate # Delegates should be weak to avoid reference cycles
+  - yoda_condition # The constant literal should be placed on the right-hand side of the comparison operator.
+
+file_header:
+  required_pattern: |
+    \/\/
+    \/\/  SWIFTLINT_CURRENT_FILENAME
+    \/\/  (GradientLoadingBar|GradientLoadingBarTests|GradientLoadingBarExample)
+    \/\/
+    \/\/  Created by .*? on \d{2}\.\d{2}\.\d{2}\.
+    \/\/  Copyright © \d{4} .*?\. All rights reserved\.
+    \/\/
+
+line_length: 150
+
+nesting:
+  type_level:
+    warning: 3
+
+trailing_comma:
+  mandatory_comma: true
+
+custom_rules:
+  comments_space:
+    name: "Space After Comment"
+    regex: '(^ *//\w+)'
+    message: "There should be a space after //."
+    severity: warning

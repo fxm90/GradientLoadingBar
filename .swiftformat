@@ -1,0 +1,23 @@
+#
+# .swiftformat
+# Configuration file for SwiftFormat (https://github.com/nicklockwood/SwiftFormat/)
+#
+# A more detailed documentation of the rules can be found at
+# https://github.com/nicklockwood/SwiftFormat/blob/master/Rules.md
+#
+# Created by Felix Mau (https://felix.hamburg)
+#
+
+#
+# Rules
+#
+
+# Allows an empty line before the first `// MARK: -` statement.
+--disable blankLinesAtStartOfScope
+
+#
+# Rule Configuration
+#
+--indent 2
+--import-grouping testable-last
+--wraparguments before-first
