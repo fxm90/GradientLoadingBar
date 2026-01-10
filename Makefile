@@ -81,3 +81,14 @@ test: verify-xcodebuild-installed
 		-scheme GradientLoadingBar \
 		-destination 'platform=iOS Simulator,name=iPhone 17,OS=26.2' \
 		-enableCodeCoverage YES
+	
+##    $ make build-example-application
+##        Builds the Example Application using xcodebuild.
+##
+.PHONY: build-example-application
+build-example-application: verify-xcodebuild-installed
+	@$(XCODEBUILD) \
+		build \
+		-project Example/GradientLoadingBarExample.xcodeproj \
+		-scheme GradientLoadingBarExample \
+		-destination 'platform=iOS Simulator,name=iPhone 17,OS=26.2'
