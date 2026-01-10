@@ -31,6 +31,7 @@ verify-swiftformat-installed:
 .PHONY: format
 format: verify-swiftformat-installed
 	@$(SWIFTFORMAT) ./
+
 ##    $ make format-check
 ##        Runs SwiftFormat in lint mode (no changes). Intended for CI.
 ##

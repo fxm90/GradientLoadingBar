@@ -1,0 +1,62 @@
+#
+# continuous-integration.yml
+# Created by Felix Mau (https://felix.hamburg)
+#
+
+name: Continuous Integration
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  # Lint and Format
+  # Ensures that the code adheres to the defined style guidelines.
+  lint-and-format:
+    runs-on: macos-26
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v6
+
+      - name: Install SwiftFormat via Homebrew
+        run: brew install swiftformat
+
+      - name: Install SwiftLint via Homebrew
+        run: brew install swiftlint
+
+      - name: SwiftFormat
+        run: make format-check
+
+      - name: SwiftLint
+        run: make lint
+
+  # Tests
+  # Ensures that the package compiles and that all tests pass, including code coverage reporting to Codecov.
+  tests:
+    runs-on: macos-26
+    needs: lint-and-format
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v6
+
+      - name: Execute tests
+        run: make test
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+  # Build Example Application
+  # Ensures that the package can be integrated into a real application, to catch any potential issues e.g. with access control.
+  build-example-application:
+    runs-on: macos-26
+    needs: tests
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v6
+
+      - name: Build Example Application
+        run: make build-example-application
