@@ -8,6 +8,22 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [4.0.0] - 2026-01-31
+
+### Changed
+
+- Complete rewrite using modern Swift features including the [`Observation`](https://developer.apple.com/documentation/Observation) framework.
+  Therefore the minimum required iOS version increased to iOS `26.0` and Swift `6.2`.
+- Reorganized project structure to follow Swift Package Manager conventions (`Sources/` and `Tests/` directories).
+- Rewrote example application using SwiftUI with improved feature demonstrations.
+- Updated README with comprehensive documentation and new screenshots.
+
+### Removed
+
+- Dropped support for CocoaPods. This follows CocoaPods' [read-only trunk notice](https://blog.cocoapods.org/CocoaPods-Specs-Repo/). Please migrate to Swift Package Manager.
+- Dropped support for Carthage. Please migrate to Swift Package Manager.
+- Removed legacy example project and Podfile infrastructure.
+
 ## [3.0.0] - 2022-07-10
 
 ### Changed
@@ -281,7 +297,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 - Initial release
 
-[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/3.0.0...main
+[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/4.0.0...main
+[4.0.0]: https://github.com/fxm90/GradientLoadingBar/compare/3.0.0...4.0.0
 [3.0.0]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.5...3.0.0
 [2.3.5]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.4...2.3.5
 [2.3.4]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.3...2.3.4
