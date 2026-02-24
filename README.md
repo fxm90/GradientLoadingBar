@@ -194,7 +194,7 @@ If you prefer direct view composition, `GradientActivityIndicatorView` is a `UIV
 
 ### Usage
 
-Store an instance as a property, set-up constraints and control the visibility using `fadeIn()` and `fadeOut()`.
+Store an instance as a property, set up constraints and control the visibility using `fadeIn()` and `fadeOut()`.
 
 ```swift
 final class UserProfileViewController: UIViewController {
@@ -264,7 +264,7 @@ gradientActivityIndicatorView.progressAnimationDuration = 4.5
 ### Usage
 
 ```swift
-struct ContentView: some View {
+struct ContentView: View {
 
   var body: some View {
     GradientLoadingBarView()
@@ -301,7 +301,7 @@ Control the visibility using standard SwiftUI view modifiers such as:
 Example with fade animation.
 
 ```swift
-struct ContentView: some View {
+struct ContentView: View {
 
   @State
   private var isVisible = false
