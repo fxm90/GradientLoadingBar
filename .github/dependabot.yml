@@ -1,0 +1,12 @@
+version: 2
+updates:
+  # GitHub Actions
+  # Keeps the actions used in the workflows up to date.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
