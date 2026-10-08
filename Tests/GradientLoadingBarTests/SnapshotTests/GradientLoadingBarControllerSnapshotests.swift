@@ -12,9 +12,10 @@ import Testing
 import UIKit
 @testable import GradientLoadingBar
 
+// swiftformat:disable swiftTestingTestCaseNames
+
 /// - Note: For more readable reference file names, we don't use raw identifiers for test names here.
 @MainActor
-@Suite
 struct GradientLoadingBarControllerSnapshotTests {
   // swiftlint:disable:previous type_name
 

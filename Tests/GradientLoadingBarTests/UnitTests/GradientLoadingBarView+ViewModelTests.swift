@@ -11,7 +11,6 @@ import Testing
 @testable import GradientLoadingBar
 
 @MainActor
-@Suite
 struct `GradientLoadingBarView+ViewModelTests` {
   // swiftlint:disable:previous type_name
 
