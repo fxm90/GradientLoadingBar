@@ -14,7 +14,7 @@ extension GradientLoadingBarView {
   /// This view model contains all logic related to the `GradientLoadingBarView`
   /// and the corresponding progress animation.
   @Observable
-  final class ViewModel: ObservableObject {
+  final class ViewModel {
 
     // MARK: - Internal Properties
 
