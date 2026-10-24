@@ -6,7 +6,7 @@
 //  Copyright © 2020 Felix Mau. All rights reserved.
 //
 
-import UIKit
+public import UIKit
 
 /// Type-alias for the controller to match the package name.
 public typealias NotchGradientLoadingBar = NotchGradientLoadingBarController
@@ -53,7 +53,7 @@ public class NotchGradientLoadingBarController: GradientLoadingBarController {
   // MARK: - Private Properties
 
   /// The view model for our controller.
-  private let viewModel: NotchGradientLoadingBarViewModel
+  private let viewModel: any NotchGradientLoadingBarViewModel
 
   // MARK: - Instance Lifecycle
 
@@ -62,8 +62,8 @@ public class NotchGradientLoadingBarController: GradientLoadingBarController {
   init(
     height: CGFloat,
     isRelativeToSafeArea: Bool,
-    gradientLoadingBarViewModel: GradientLoadingBarViewModel,
-    notchGradientLoadingBarViewModel viewModel: NotchGradientLoadingBarViewModel,
+    gradientLoadingBarViewModel: any GradientLoadingBarViewModel,
+    notchGradientLoadingBarViewModel viewModel: any NotchGradientLoadingBarViewModel,
   ) {
     self.viewModel = viewModel
 

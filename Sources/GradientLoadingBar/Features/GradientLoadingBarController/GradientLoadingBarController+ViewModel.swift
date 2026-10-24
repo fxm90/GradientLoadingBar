@@ -43,7 +43,7 @@ extension GradientLoadingBarController {
     // MARK: - Instance Lifecycle
 
     init(
-      sharedApplication: UIApplicationProtocol = UIApplication.shared,
+      sharedApplication: any UIApplicationProtocol = UIApplication.shared,
       notificationCenter: NotificationCenter = .default,
     ) {
       if let keyWindow = sharedApplication.firstKeyWindow {

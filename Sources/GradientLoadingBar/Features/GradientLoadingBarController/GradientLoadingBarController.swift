@@ -7,7 +7,7 @@
 //
 
 import Combine
-import UIKit
+public import UIKit
 
 /// Type-alias for the controller to match the package name.
 public typealias GradientLoadingBar = GradientLoadingBarController
@@ -128,7 +128,7 @@ public class GradientLoadingBarController {
   private let isRelativeToSafeArea: Bool
 
   /// The view model for our controller.
-  private let viewModel: GradientLoadingBarViewModel
+  private let viewModel: any GradientLoadingBarViewModel
 
   /// The dispose bag for the observables.
   private var subscriptions = Set<AnyCancellable>()
@@ -140,7 +140,7 @@ public class GradientLoadingBarController {
   init(
     height: CGFloat,
     isRelativeToSafeArea: Bool,
-    gradientLoadingBarViewModel viewModel: GradientLoadingBarViewModel,
+    gradientLoadingBarViewModel viewModel: any GradientLoadingBarViewModel,
   ) {
     self.height = height
     self.isRelativeToSafeArea = isRelativeToSafeArea
