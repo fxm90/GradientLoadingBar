@@ -6,7 +6,7 @@
 //  Copyright © 2018 Felix Mau. All rights reserved.
 //
 
-import UIKit
+public import UIKit
 
 /// Convenience animation helpers for `GradientActivityIndicatorView` that
 /// fade the view in and out while keeping the `isHidden` flag in sync.

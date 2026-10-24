@@ -6,7 +6,7 @@
 //  Copyright © 2022 Felix Mau. All rights reserved.
 //
 
-import SwiftUI
+public import SwiftUI
 import UIKit
 
 /// A SwiftUI view that displays an animated horizontal gradient, commonly used as a loading indicator.

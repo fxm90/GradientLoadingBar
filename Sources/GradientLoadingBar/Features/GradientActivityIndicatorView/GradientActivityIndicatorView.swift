@@ -6,7 +6,7 @@
 //  Copyright © 2016 Felix Mau. All rights reserved.
 //
 
-import UIKit
+public import UIKit
 
 /// A view that displays an animated horizontal gradient, commonly used as a loading indicator.
 ///

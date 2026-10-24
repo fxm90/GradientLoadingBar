@@ -7,7 +7,7 @@
 //
 
 import Combine
-import UIKit
+public import UIKit
 
 /// Type-alias for the controller to match the package name.
 public typealias GradientLoadingBar = GradientLoadingBarController

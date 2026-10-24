@@ -6,7 +6,7 @@
 //  Copyright © 2020 Felix Mau. All rights reserved.
 //
 
-import UIKit
+public import UIKit
 
 /// Type-alias for the controller to match the package name.
 public typealias NotchGradientLoadingBar = NotchGradientLoadingBarController

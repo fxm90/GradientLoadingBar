@@ -6,6 +6,9 @@ import PackageDescription
 let swiftSettings: [SwiftSetting] = [
   .enableUpcomingFeature("ExistentialAny"),
   .enableUpcomingFeature("MemberImportVisibility"),
+  .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
+  .enableUpcomingFeature("InferIsolatedConformances"),
+  .enableUpcomingFeature("InternalImportsByDefault"),
 ]
 
 let package = Package(

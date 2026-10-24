@@ -6,7 +6,7 @@
 //  Copyright © 2019 Felix Mau. All rights reserved.
 //
 
-import Foundation
+public import Foundation
 
 public extension TimeInterval {
 
