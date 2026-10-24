@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [4.0.1] - 2026-10-24
+
+### Changed
+
+- Enabled the Swift upcoming features `ExistentialAny`, `MemberImportVisibility`, `NonisolatedNonsendingByDefault`, `InferIsolatedConformances` and `InternalImportsByDefault`. There are no changes to the public API.
+
 ## [4.0.0] - 2026-01-31
 
 ### Changed
@@ -297,7 +303,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 - Initial release
 
-[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/4.0.0...main
+[Unreleased]: https://github.com/fxm90/GradientLoadingBar/compare/4.0.1...main
+[4.0.1]: https://github.com/fxm90/GradientLoadingBar/compare/4.0.0...4.0.1
 [4.0.0]: https://github.com/fxm90/GradientLoadingBar/compare/3.0.0...4.0.0
 [3.0.0]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.5...3.0.0
 [2.3.5]: https://github.com/fxm90/GradientLoadingBar/compare/2.3.4...2.3.5
